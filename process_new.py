@@ -56,12 +56,20 @@ startingString = "0123456789ABCDEF"
 bRemoveANumberFromACell = "False"
 bAutoComplete = False
 bSolve_singles = False
+bShowRemainders = False
+bInitialShowRemainders = False
+bIDDuples = False
+bIDTriples = False
+bIDQuads = False
+duples_list = []
+triple_list = []
+quads_list = []
+
 D = 0
 R = 0
 NullValue = "Null"
 
-bShowRemainders = False
-bInitialShowRemainders = False
+
 
 r_1_nums = ""
 r_2_nums = ""
@@ -981,6 +989,13 @@ def process_duple_list(duple_first, duple_second):
                 aref['nums'] = new_nums
                 current_btn['text'] = aref['nums']
 
+def ID_Duples():
+    bIDDuples = True
+def ID_Triples():
+    bIDTriples = True
+def ID_Quads():
+    bIDQuads = True
+
 def find_Triple():
     print("953 Entering find_Triple")
     # number passed is the length sought plus 1
@@ -1090,18 +1105,34 @@ def update_cell(btn, aref):
     # print("705 Entered update_cell.", btn, aref)
     # arrRef0 = dict(btn='btn_R1C1', row=1, col=1, sq=1,
     global bRemoveANumberFromACell
+    global bIDDuples
+    global bIDTriples
+    global bIDQuads
+
     # btn1 = aref["btn"]
     # print("720 ", btn1, type(btn1))
     row = aref["row"]
     col = aref["col"]
     sq = aref["sq"]
+    if bIDDuples == True:
+        process_duples(btn, aref)
+        # continue
+    elif bIDTriples == True:
+        process_duples(btn, aref)
+        # continue
+    elif bIDQuads == True:
+        process_duples(btn, aref)
+        # continue
+
     # print("724 ", btn, row, col, sq)
     # reset_cell_values(current_btn, aref)
-    if bRemoveANumberFromACell == "False":
+    elif bRemoveANumberFromACell == "False":
         # print("707 Entered bRemoveANumberFromACell.")
         reset_cell_values(btn, aref)
         remove_aref_from_not_done_arefs(aref)
         update_puzzle(row, col, sq)
+        cells_done()
+        cells_remaining()
         # print(f"currentNumber = '{currentNumber}'")
         # print(f"update_cell'{btn}, {aref}")
     elif bRemoveANumberFromACell == "True":
@@ -1110,6 +1141,22 @@ def update_cell(btn, aref):
         set_bRemoveANumberFromACell()
         # print(f"currentNumber = '{currentNumber}'")
         # print(f"update_cell'{btn}, {aref}")
+
+def process_duples(btn, aref):
+    duples_list.append(btn, aref)
+    if len(duples_list) != 0:
+        print(duples_list)
+
+
+def process_triples(btn, aref):
+    triple_list.append(btn, aref)
+    if len(triple_list) != 0:
+        print(triple_list)
+    triple_list = []
+def process_quads(btn, aref):
+    quads_list.append(btn, aref)
+    if len(quads_list) != 0:
+        print(quads_list)
 
 def update_R1C1():
     print("691 R1C1 button pressed.")
@@ -2298,7 +2345,7 @@ def save_currentSolution():
     # aref0('nums') = aref0('nums')
 
 def load_currentSolution():
-    arc = dict{}
+    # arc = dict{}
     # arrRef0 = dict(aref='arrRef0', btn=btn_R1C1, row=1, col=1, sq=1, done=False, nums=startingString, width=6,
     #                height=hit, font=labelfont, fg="black")
 
@@ -3405,28 +3452,27 @@ btn_R9C16 = Button(F12_frame, wraplength=48, justify=LEFT, text=startingString,
 btn_R9C16.grid(row=1, column=3, sticky='w')
 btn_R9C16.config(font=labelfont)
 # btn_R2C16.bind("<<ComboboxSelected>>", create_record())
-btn_solve_singles = Button(fn_frame, wraplength=40, justify=LEFT, text='Solve\nRow Col Square',
+btn_solve_singles = Button(fn_frame, wraplength=40, justify=LEFT, text='Solve\nRCS',
             command=solve_row_singles, width=6, height=hit)
 btn_solve_singles.grid(row=2, column=0, sticky='nw')
 btn_solve_singles.config(font=entryfont)
-btn_Save = Button(fn_frame, wraplength=40, justify=LEFT, text='Save\ncurr\nsoln',
-            command=save_currentSolution, width=6, height=hit)
-btn_Save.grid(row=2, column=1, sticky='nw')
-btn_Save.config(font=entryfont)
-btn_load_current = Button(fn_frame, wraplength=40, justify=LEFT, text='Load\ncurr\nsoln',
-            command=load_currentSolution, width=6, height=hit)
-btn_load_current.grid(row=2, column=2, sticky='nw')
-btn_load_current.config(font=entryfont)
+btn_IDDuples = Button(fn_frame, wraplength=40, justify=LEFT, text='ID\nduples',
+            command=ID_Duples, width=6, height=hit)
+btn_IDDuples.grid(row=2, column=1, sticky='nw')
+btn_IDDuples.config(font=entryfont)
+btn_IDTriples = Button(fn_frame, wraplength=40, justify=LEFT, text='ID\ntriples',
+            command=ID_Triples, width=6, height=hit)
+btn_IDTriples.grid(row=2, column=2, sticky='nw')
+btn_IDTriples.config(font=entryfont)
 # btn_y = Button(fn_frame, wraplength=40, justify=LEFT, text='y',
 #             command=set_current_num_to_6, width=6, height=hit)
 # btn_y.grid(row=2, column=2, sticky='nw')
 # btn_y.config(font=entryfont)
-btn_z = Button(fn_frame, wraplength=48, justify=LEFT, text='z',
-            command=set_current_num_to_7, width=6, height=hit)
-btn_z.grid(row=2, column=3, sticky='nw')
-btn_z.config(font=entryfont)
-btn_z.bind("<<ButtonPress>>", set_current_num_to_7)
-###
+btn_IDQuads = Button(fn_frame, wraplength=48, justify=LEFT, text='ID\nquads',
+            command=ID_Quads, width=6, height=hit)
+btn_IDQuads.grid(row=2, column=3, sticky='nw')
+btn_IDQuads.config(font=entryfont)
+
 btn_del_num = Button(fn_frame, wraplength=40, justify=LEFT, text='Del\nnum\nfrom\ncell',
             command=set_bRemoveANumberFromACell, width=6, height=hit)
 btn_del_num.grid(row=3, column=0, sticky='nw')
@@ -3443,7 +3489,7 @@ btn_done = Button(fn_frame, wraplength=40, justify=LEFT, text='Cells\nDone',
             command=cells_done, width=6, height=hit)
 btn_done.grid(row=3, column=2, sticky='nw')
 btn_done.config(font=entryfont)
-btn_remaining = Button(fn_frame, wraplength=48, justify=LEFT, text='Cells\nRemaining',
+btn_remaining = Button(fn_frame, wraplength=48, justify=LEFT, text='Cells\nRemain',
             command=cells_remaining, width=6, height=hit)
 btn_remaining.grid(row=3, column=3, sticky='nw')
 btn_remaining.config(font=entryfont)
