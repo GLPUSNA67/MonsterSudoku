@@ -13,7 +13,7 @@ from tkinter import *  # get widget classes
 #     level    = logging.WARNING,      # Logging level (DEBUG, INFO, WARNING, ERROR, or CRITICAL)
 # )
 import tkinter as tk
-#import numpy as np
+import numpy as np
 #import matplotlib as mpl
 #import matplotlib.pyplot as plt
 #from scipy import *
@@ -62,8 +62,9 @@ bIDDuples = False
 bIDTriples = False
 bIDQuads = False
 duples_list = []
-triple_list = []
+triples_list = []
 quads_list = []
+duple_done_list = []
 
 D = 0
 R = 0
@@ -402,7 +403,7 @@ def make_RCS_sets(num):
     s_15_set = set()
     s_16_set = set()
     ex_text = "Empty start\n"
-    print("396 len(not_done_arefs) is ", len(not_done_arefs))
+    # print("396 len(not_done_arefs) is ", len(not_done_arefs))
 
     for cell in not_done_arefs:
         if num > len(cell['nums']):
@@ -410,7 +411,7 @@ def make_RCS_sets(num):
             row = (cell['row'])
             col = (cell['col'])
             sq = (cell['sq'])
-            print("400 cell ", cell)
+            # print("400 cell ", btn)
             if cell['row'] == 1 and len(cell['nums']) < 4:
                 r_1_set.add(cell['nums'])
             elif cell['row'] == 2 and len(cell['nums']) < 4:
@@ -545,11 +546,11 @@ def CheckForOnlyOneNumber():
     s_15_nums = ""
     s_16_nums = ""
     ex_text = "Empty start\n"
-    print("396 len(not_done_arefs) is ", len(not_done_arefs))
+    # print("396 len(not_done_arefs) is ", len(not_done_arefs))
 
     for cell in not_done_arefs:
         current_button = cell['btn']
-        print(current_button)
+        #print(current_button)
         # print("400 btn is ", eval(cell['btn']))
         if cell['row'] == 1:
             r_1_nums += cell['nums']
@@ -842,15 +843,134 @@ def solve_row_singles():
 
 
 def find_Duple():
+    ''' Find duples and display list in text box.'''
+    print("847 Entering find_Duple")
+    # develop the duple candidate list, e.g, all cells with len numbers == 2
+    duple_candidate_list = []
+    duple_candidate_list = make_Duple_Candidate_list()
+    #print("850 duple_candidate_list is ", duple_candidate_list)
+    # sort the list to identify duples that haven't yet been processed
+    id_duples(duple_candidate_list)
+    #find_Duple1()
+
+def id_duples(duple_candidate_list):
+    ''' sort the list to identify duples that haven't yet been processed '''
+    duple_list = []
+    print("858 Entering find_Duple")
+    print("859 duple_candidate_list is ", duple_candidate_list)
+    for item in duple_candidate_list:
+        if item:
+        # print("716 item nums are ", item[0], item[1], item[2], item[3])
+            i_row = int(item[0])
+            i_col = int(item[1])
+            i_sq = int(item[2])
+            i_pair = item[3] # i_pair is the duple (the two numbers) being considered as a potential duple
+        try:
+            for item in duple_candidate_list:
+                # if item[0] and item[1] and item[2] and item[3]:
+                c_row = int(item[0])
+                c_col = int(item[1])
+                c_sq = int(item[2])
+                c_pair = item[3]
+                # If the cell to compare is the original cell, pass
+                if i_pair == c_pair and i_row == c_row and i_col == c_col and i_sq == c_sq:
+                    pass
+                # If the current cell is not the same as the original cell, process it
+                elif i_pair == c_pair and (i_row == c_row or i_col == c_col or i_sq == c_sq):
+                    ex_text = f"{i_row}, {i_col}, {i_sq}, {i_pair}, {c_row}, {c_col}, {c_sq}, {c_pair}"
+                    print("741 pairs are ", i_row, i_col, i_sq, i_pair, c_row, c_col, c_sq, c_pair, c_pair[0], c_pair[1])
+                    # duple_first = {i_row}, {i_col}, {i_sq}, {i_pair}
+                    duple_first = f"{i_row}, {i_col}, {i_sq}, {i_pair}"
+                    duple_first = duple_first.split(',')
+                    duple_second = f"{c_row}, {c_col}, {c_sq}, {c_pair}"
+                    duple_second = duple_second.split(',')
+                    current_duple = [duple_first, duple_second]
+                    print("747 duple_first is ", current_duple)
+                    # print("747 duple_first is ", duple_first, duple_second)
+                    # print("748 duple_list is ", list(duple_first, duple_second))
+                    # txt_Explain.delete(0, END)
+                    txt_Explain.insert(END, ex_text)
+                    txt_Explain.insert(END, "\n")
+                    # duple_list_1 = duple_first.split(',')
+                    print("893 duple_list is ", duple_list)
+                    if duple_list == []:
+                        duple_list = [duple_first, duple_second]
+                    # duple_list_2 = duple_second.split(',')
+                    else:
+                        duple_list = duple_list.append(current_duple)
+                    print("896 duple_list is ", duple_list)
+                    # if duple_candidate_list != []:
+                    #     duples_list.append(duple_candidate_list)
+                    #     ex_text = f"908 duples_list is {duples_list}" 
+                    #     txt_Explain.insert(END, ex_text)
+                    #     print("908 duples_list is ", duples_list)
+            process_duple_list(duple_list)
+                    # process_duple_list(duple_first, duple_second)
+
+        except Exception as e:
+            pass
+
+
+
+
+
+    # for item in duple_candidate_list:
+    #     nums = item[3]
+    #     print("862 duple_candidate_list item is ", item)
+    #     print("863 item numbers are ", nums)
+    #     rest_of_list = duple_candidate_list
+    #     rest_of_list = rest_of_list.pop(item[0])
+    #     print("866 rest_of_list is ", rest_of_list)
+    #     for item in rest_of_list:
+    #         nums1 = item[3]
+    #         print("869 rest_of_list item is ", nums1)
+    #         if nums == nums1:
+    #             print("871 numbers are equal")
+    #             continue
+    #         else:
+    #             print("874 nums don't match")
+                
+            # print("861 rest_of_list item numbers are ", nums1)
+
+
+def make_Duple_Candidate_list():
+    ex_text = ""
+    temp_list = []
+    temp_list_1 = []
+    duple_candidate_list = []
+    duple_list = []
+    for cell in not_done_arefs:
+        if len(cell['nums']) == 2:
+            
+            ex_text = str(cell['row']) + ", " + str(cell['col']) + ", " + str(cell['sq']) + ", " + str(cell['nums']) + "\n "
+            list_text = str(cell['row']) + ", " + str(cell['col']) + ", " + str(cell['sq']) + ", " + str(cell['nums'])
+            #print("530 potential duples are ", ex_text)
+            row = cell['row']
+            col = cell['col']
+            sq = cell['sq']
+            nums = cell['nums']
+            duple_list = [row, col, sq, nums]
+            duple_candidate_list.append(duple_list)
+            # duple_candidate_list.append(col)
+            # duple_candidate_list.append(sq)
+            # duple_candidate_list.append(nums)
+            # txt_Explain.insert(END, ex_text)
+            # duple_candidate_list.append(temp_list)
+            #duple_candidate_list.append(temp_list)
+    #print("874 duple_candidate_list is ", duple_candidate_list)
+    return duple_candidate_list
+
+def find_Duple1():
     print("525 Entering find_Duple")
     # print("343 len(not_done_arefs) is ", len(not_done_arefs))
     ex_text = ""
     temp_list = []
     temp_list_1 = []
+    duple_candidate_list = []
     duple_list = []
     for cell in not_done_arefs:
         if len(cell['nums']) == 2:
-            print("530 potential duple ", cell, cell['nums'])
+            # print("530 potential duple ", cell, cell['nums'])
             ex_text = str(cell['row']) + ", " + str(cell['col']) + ", " + str(cell['sq']) + ", " + str(cell['nums']) + "\n "
             row = cell['row']
             col = cell['col']
@@ -861,28 +981,29 @@ def find_Duple():
             temp_list.append(sq)
             temp_list.append(nums)
             txt_Explain.insert(END, ex_text)
-            duple_list.append(list(temp_list))
+            duple_candidate_list.append(list(temp_list))
             temp_list = []
             # *** The duple_list now has a list of all the lists of duple row, col, sq, and nums
     # print("706 potential duple ", duple_list) #str(cell['row']), , cell['nums']
     # ex_text = ""
-    for item in duple_list:
+    for item in duple_candidate_list:
         if item:
         # print("716 item nums are ", item[0], item[1], item[2], item[3])
             i_row = int(item[0])
             i_col = int(item[1])
             i_sq = int(item[2])
-            i_pair = item[3]
+            i_pair = item[3] # i_pair is the duple (the two numbers) being considered as a potential duple
         try:
-            for item in duple_list:
+            for item in duple_candidate_list:
                 # if item[0] and item[1] and item[2] and item[3]:
                 c_row = int(item[0])
                 c_col = int(item[1])
                 c_sq = int(item[2])
                 c_pair = item[3]
+                # If the cell to compare is the original cell, pass
                 if i_pair == c_pair and i_row == c_row and i_col == c_col and i_sq == c_sq:
                     pass
-                # print("727 pairs are the same.")
+                # If the current cell is not the same as the original cell, process it
                 elif i_pair == c_pair and (i_row == c_row or i_col == c_col or i_sq == c_sq):
                     ex_text = f"{i_row}, {i_col}, {i_sq}, {i_pair}, {c_row}, {c_col}, {c_sq}, {c_pair}"
                     print("741 pairs are ", i_row, i_col, i_sq, i_pair, c_row, c_col, c_sq, c_pair, c_pair[0], c_pair[1])
@@ -897,26 +1018,38 @@ def find_Duple():
                     txt_Explain.insert(END, ex_text)
                     txt_Explain.insert(END, "\n")
                     # duple_list_1 = duple_first.split(',')
-                    print("755 duple_list is ", duple_first, duple_first[0], duple_first[1])
+                    print("1019 duple_list parts are ", duple_first, duple_first[0], duple_first[1])
                     # duple_list_2 = duple_second.split(',')
-                    duple_list = [duple_first, duple_second]
-                    print("754 duple_list is ", duple_list)
-                    if duple_list != []:
+                    
+                    print("1022 duples_list is ", duples_list)
+                    if duples_list == []:
+                        duples_list = [duple_first, duple_second]
+                        ex_text = f"1025 duples_list is {duples_list}" 
+                        txt_Explain.insert(END, ex_text)
+                        print("1027 duples_list is ", duples_list)
+                    else:
+                        duples_list.append(duple_candidate_list)
+                        ex_text = f"1030 duples_list is {duples_list}" 
+                        txt_Explain.insert(END, ex_text)
+                        print("1032 duples_list is ", duples_list)
+                        process_duple_list(duple_first, duple_second)
                         process_duple_list(duple_first, duple_second)
 
         except Exception as e:
-            pass
+            print("1036 e", e)
             # print(e)
 
         # start with item 1 duple e.g. item[3]
         # if item item[3] == item[3] in any item in the rest of the list,
         # it is a potential duple, so check to see if it is in the same RCS
 
-def process_duple_list(duple_first, duple_second):
+def process_duple_list(duple_list):
+    print("1039 duples_list is ", duple_list)
+    duple_first = duple_list[0]
+    duple_second = duple_list[1]
+    print("1041 duple parts are ",duple_first, duple_second)
     global not_done_arefs
     global currentNumber
-    # print("772 duple list is ", duple_first)
-    # print("773 duple list is ", duple_first[0], duple_first[1], duple_first[2], duple_first[3])
     first_row = int(duple_first[0])
     first_col = int(duple_first[1])
     first_sq = int(duple_first[2])
@@ -937,18 +1070,12 @@ def process_duple_list(duple_first, duple_second):
         # print("794 duple col is ", first_col, second_col, duple_col)
     if first_sq == second_sq:
         duple_sq = first_sq
-        # print("797 duple sq is ", first_sq, second_sq, duple_sq) #first_row, first_col, first_sq,
-    # print("798 first duple is ", type(first_nums), first_nums, first_chr_1, second_chr_1)
-    # if the rows, or col, or sq are the same,
-    # delete each number from the other cells in the row
     for aref in not_done_arefs:
         current_btn = aref['btn']
         a_row = aref['row']
         a_col = aref['col']
         a_sq = aref['sq']
         a_nums = aref['nums']
-        # print("812 first cell is ", a_row, a_col, a_sq, a_nums)
-        # aref = eval(btn_dict[current_btn])
         if (a_row == first_row and a_col == first_col and a_sq == first_sq) or \
                 (a_row == second_row and a_col == second_col and a_sq == second_sq):
             pass
@@ -988,6 +1115,197 @@ def process_duple_list(duple_first, duple_second):
                 print("723 new_nums ", new_nums)
                 aref['nums'] = new_nums
                 current_btn['text'] = aref['nums']
+    duple_done_list.append(duple_first, duple_second)
+    print("1126 duple_done_list is ", duple_done_list)
+
+def find_Triple():
+    print("1131 Entering find_Triple")
+    txt_Explain.insert(END, "1132 potential triples are \n")
+    triple_candidate_list = make_triple_candidate_list()
+    # print("1146 triple_candidate_list ", triple_candidate_list)
+    id_triples(triple_candidate_list)
+
+def make_triple_candidate_list():
+    print("1129 enter make_triple_candidate_list")
+    ex_text = ""
+    temp_list = []
+    temp_list_1 = []
+    triple_candidate_list = []
+    triple_list = []
+    for cell in not_done_arefs:
+        if len(cell['nums']) <= 3:
+            # print("1011 potential triple ", cell['row'], cell['col'], cell['sq'], cell['nums'])
+            ex_text = str(cell['row']) + ", " + str(cell['col']) + ", " + str(cell['sq']) + ", " + str(cell['nums']) + "\n "
+            list_ex_text = list[str(cell['row']), str(cell['col']), str(cell['sq']), str(cell['nums'])]
+            row = cell['row']
+            col = cell['col']
+            sq = cell['sq']
+            nums = str(cell['nums'])
+            # temp_list = [row, col, sq, nums]
+            temp_list = [row, col, sq, nums]
+            # print("1169 temp_list is ", temp_list)
+            # temp_list = "[" + str(cell['row']) + ", " + str(cell['col']) + ", " + str(cell['sq']) + ", " + str(cell['nums']) + "]"
+            txt_Explain.insert(END, ex_text)
+            txt_Explain.insert(END, temp_list)
+            txt_Explain.insert(END, "\n")
+            triple_candidate_list.append(temp_list)
+            # print("1227 triple_candidate_list ", triple_candidate_list)
+            temp_list = []
+    txt_Explain.insert(END, "1156\n")
+    txt_Explain.insert(END, triple_candidate_list)
+    return triple_candidate_list
+
+def id_triples(triple_candidate_list):
+        print("1159 enter id_triples")
+        # tl_set = set()
+        for item in triple_candidate_list:
+            tcl_set0 = set()
+            row0 = item[0]
+            col0 = item[1]
+            sq0 = item[2]
+            nums0 = item[3]
+            l0 = len(nums0)
+            n1 = nums0[0]
+            tcl_set0.add(n1)
+            n2 = nums0[1]
+            tcl_set0.add(n2)
+            if l0 == 3:
+                n3 = nums0[2]
+                tcl_set0.add(n3)
+            print("1175 ", row0, col0, sq0, nums0, tcl_set0)
+            # tcl_set1 = tcl_set0
+            for item in triple_candidate_list:
+                # tcl_set1 = tcl_set0
+                tcl_set1 = tcl_set0.copy()
+                # print("1179 ", tcl_set0, tcl_set1)
+                row1 = item[0]
+                col1 = item[1]
+                sq1 = item[2]
+                nums1 = item[3]
+                print("1183 ", row1, col1, sq1, nums1, tcl_set1)
+                # print("1172 ", row1, col1, sq1, nums1)
+                if nums0 == nums1 and row0 == row1 and sq0 == sq1 and nums0 == nums0:
+                    pass # the items/cells are the same
+                else:
+                    # tcl_set1 = tcl_set0    
+                    l1 = len(nums1)
+                    n4 = nums1[0]
+                    tcl_set1.add(n4)
+                    n5 = nums1[1]
+                    tcl_set1.add(n5)
+                    if l1 == 3:
+                        n6 = nums1[2]
+                        tcl_set1.add(n6)
+                    tcl_len = len(tcl_set1)
+                    if tcl_len > 3:
+                        tcl_set1 = tcl_set0.copy()
+                        print("1202 ", tcl_set0, tcl_set1)
+                        print("1203 tcl_set1 length > 3", nums1, tcl_set1 )
+                    else:
+                        print("1202 ", row1, col1, sq1, nums1, tcl_set1)
+                        for item in triple_candidate_list:
+                            tcl_set2 = tcl_set1.copy()
+                            row2 = item[0]
+                            col2 = item[1]
+                            sq2 = item[2]
+                            nums2 = item[3]
+                            # print("1172 ", row1, col1, sq1, nums1)
+                            if nums1 == nums2 and row1 == row2 and sq1 == sq2 and nums1 == nums2:
+                                pass # the items/cells are the same
+                            else:
+                                l2 = len(nums2)
+                                n7 = nums2[0]
+                                tcl_set2.add(n7)
+                                n8 = nums2[1]
+                                tcl_set2.add(n8)
+                                if len(tcl_set2) > 3:
+                                    tcl_set2 = tcl_set1
+                                else:
+                                    # print("1226 tcl_set2 is ", tcl_set2)
+                                    if l2 == 3:
+                                        n9 = nums2[2]
+                                        tcl_set2.add(n9)
+                                    if len(tcl_set2) > 3:
+                                        tcl_set2 = tcl_set1.copy()
+                                    elif len(tcl_set2) == 3:
+                                        print("1233 tcl_set2 is ", tcl_set2)
+                            # compare_cell_nums(nums0, nums1, nums2, tcl_set0, tcl_set1, tcl_set2)
+
+def compare_cell_nums(nums0, nums1, nums2, tcl_set0, tcl_set1, tcl_set2):
+    # print("1179 enter compare_cell_nums")
+    ''' Compare cell nums breaks two nums string into numbers
+    and adds them to a set to see if the form a triple'''
+    # print("1182 nums0, nums1 ", nums0, nums1)
+    l = len(nums0)
+    n1 = nums0[0]
+    tcl_set0.add(n1)
+    n2 = nums0[1]
+    tcl_set0.add(n2)
+    if l == 3:
+        n3 = nums0[2]
+        tcl_set0.add(n3)
+
+    tcl_set1 = tcl_set0    
+    l1 = len(nums1)
+    n4 = nums1[0]
+    tcl_set1.add(n4)
+    n5 = nums1[1]
+    tcl_set1.add(n5)
+    if l1 == 3:
+        n6 = nums1[2]
+        tcl_set1.add(n6)
+    tcl_len = len(tcl_set1)
+    if tcl_len > 3:
+        tcl_set1 = set()
+    else:
+        # tcl_set2 = tcl_set1
+
+        if nums2 != "":
+            l2 = len(nums2)
+            n7 = nums2[0]
+            tcl_set2.add(n7)
+            n8 = nums2[1]
+            tcl_set2.add(n8)
+            if len(tcl_set2) > 3:
+                tcl_set2 = set()
+            else:
+                # print("1226 tcl_set2 is ", tcl_set2)
+                if l2 == 3:
+                    n9 = nums2[2]
+                    tcl_set2.add(n9)
+                if len(tcl_set2) > 3:
+                    tcl_set2 = set()
+                elif len(tcl_set2) == 3:
+                    print("1233 tcl_set2 is ", tcl_set2)
+
+def triple_parse_test():
+    tcl = [['1', '6', '2', '8AC'], ['1', '10', '3', '6A']]
+    print("1214 tcl[0] is ", tcl[0])
+    # parse the first two items to test functionality of set creation
+    nums = tcl[0][3]
+    l = len(nums)
+    tcl_set = set()
+    n1 = nums[0]
+    tcl_set.add(n1)
+    n2 = nums[1]
+    tcl_set.add(n2)
+    if l == 3:
+        n3 = nums[2]
+        tcl_set.add(n3)
+    nums1 = tcl[1][3]
+    l1 = len(nums1)
+    n4 = nums1[0]
+    tcl_set.add(n4)
+    n5 = nums1[1]
+    tcl_set.add(n5)
+    if l1 == 3:
+        n6 = nums1[2]
+        tcl_set.add(n6)
+    tcl_len = len(tcl_set)
+    if tcl_len > 3:
+        print("1237 not a valid set")
+
+    print("1215 tcl[0][3] is ", tcl[0][3])
 
 def ID_Duples():
     bIDDuples = True
@@ -996,10 +1314,10 @@ def ID_Triples():
 def ID_Quads():
     bIDQuads = True
 
-def find_Triple():
-    print("953 Entering find_Triple")
-    # number passed is the length sought plus 1
-    make_RCS_sets(4)
+# def find_Triple():
+#     print("953 Entering find_Triple")
+#     # number passed is the length sought plus 1
+#     make_RCS_sets(4)
 
 def find_Quad():
     print("525 Entering find_Quad")
@@ -1101,7 +1419,7 @@ def remove_aref_from_not_done_arefs(aref):
 
 # def update_cell(btn, aref, row, col, sq):
 def update_cell(btn, aref):
-    print("705 Entered update_cell.", type(btn), btn, type(aref), aref)
+    #print("705 Entered update_cell.", type(btn), btn, type(aref), aref)
     # print("705 Entered update_cell.", btn, aref)
     # arrRef0 = dict(btn='btn_R1C1', row=1, col=1, sq=1,
     global bRemoveANumberFromACell
@@ -3972,7 +4290,42 @@ txt_Explain.insert(END, 'Explanatory text goes below.\n')
 txt_Other = Text(txt_frame, width=32, height=15)
 txt_Other.grid(row=0, column=0, rowspan=4, sticky='w')  #, columnspan=4, sticky='nw'
 txt_Other.config(font=labelfont)
-txt_Other.insert(END, 'Other text goes below.\n')
+txt_Other.insert(END, "Hints\n")
+txt_Other.insert(END, "Load solution\n")
+txt_Other.insert(END, "Find and solve Done = 123 \n")
+txt_Other.insert(END, "Duple C14\n")
+txt_Other.insert(END, "Triple C16\n") #  = 59C : 14,16 = 6; 2,16 D 9; 3,16 D 9; 12,16 Del C 
+txt_Other.insert(END, "Find and solve Done = 142\n")
+txt_Other.insert(END, "Duple S3\n")
+txt_Other.insert(END, "Duple S8 = BF : 8,13 Del F  Duple S8 = 9C Del Cs from row\n")
+txt_Other.insert(END, "Quad S14\n") # Quad S14 39AD : 16,5 = 5; D = 143 15,5 Del 3; 15,8 Del AD
+txt_Other.insert(END, "Duple S13\n")  # S13 Duple 7C 
+txt_Other.insert(END, "Triple S15\n")  # triple S15  359 : 15,11 = 1; 13,12 Del 5; 14,5 Del 5
+txt_Other.insert(END, "Triple S15\n")  # triple S15 triple ACD : 16,13 = 5; D = 145
+txt_Other.insert(END, "S15, C12 has only Cs\n") # S15, C12 has only Cs in S, 6,112 Del C
+txt_Other.insert(END, "Triple R9\n") # Triple R9  14A : Del 1,4,A from other cells
+txt_Other.insert(END, "Triple S15\n")
+txt_Other.insert(END, "S7 R6 has only 5s in row\n") # S7 R6 has only 5s in row, so 5,11 Del 5  8
+txt_Other.insert(END, "Find and solve Done = 165\n")
+txt_Other.insert(END, "Duple S15\n") # Duple S15 R14 AD : 14,4 = 0, 14,1 Del 1; 14,2 Del AD
+txt_Other.insert(END, "Duple S12\n") # Duple S12 C15 Duple 14 : 4,15 Del 4
+txt_Other.insert(END, "5,6 = 0 no auto complete\n") # 5,6 = 0 no auto complete with find and solve
+txt_Other.insert(END, "Duple S15\n") # S15 Duple 39 : 6,10 Del 3, 7,10, Del 3
+txt_Other.insert(END, "S14 C7 has only 9A\n") # S14 C7 has only 9A in square : duple : del from col, also, 13,6 = 3
+# txt_Other.insert(END, "4,2 = 4 no auto complete\n")
+# txt_Other.insert(END, "5,2 = 2 no auto complete\n")
+
+txt_Other.insert(END, "S1 C4 has the only 7s\n") # S1 C4 has the only 7s in the column, so 3,1 del 7 and 3,3 del 7
+txt_Other.insert(END, "Quad C3\n") # 13AD  ?Wrong Quad S1 39AE so 2,4 del 3 ; 12,4 del 8
+txt_Other.insert(END, "Duple S5\n") # Duple 7C so 5,1 = 1 Triple C3 13A, del 1,3A,  duple 7C  5,1 = 1
+
+txt_Other.insert(END, "11,2 = 0 no auto complete\n")
+txt_Other.insert(END, "5,2 = 2 no auto complete\n")
+txt_Other.insert(END, "6,7 = E no auto complete\n")
+txt_Other.insert(END, "Duple S5\n") # Duple 3D
+txt_Other.insert(END, "Quad S1\n") # 349A  ?Wrong Quad S1 39AE so 2,4 del 3 ; 12,4 del 8
+txt_Other.insert(END, "Duple S1\n") # Duple 78
+txt_Other.insert(END, "Find and solve\n") # Find and solve * ?  finished!.\n")
 
 # EventText=tk.Text(root, height=10, width=50)
 EventScrollBar = tk.Scrollbar(ex_frame, command=txt_Explain.yview, orient="vertical")
