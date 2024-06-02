@@ -13,7 +13,8 @@ Key concepts: Maintain the values of each cell in dictionary structures with key
 will either solve an individual cell or simplify the puzzle by reducing the number of potential numbers in cells and implement structures and functions that
 will update the puzzle values, store the current values in a data structure, call a function that will update the puzzle with the current values, 
 notify the user of the current status of the puzzle so he/she can choose a function that will further solve or simplify the puzzle.
-For example, start with a list of all cells. When initializing the puzzle, (from a published source) select a number, then select a cell to hold it. 
+When I say select, I mean click on the item. That could be a number in the number pad on the top right corner of the form, or a cell in the puzzle.
+For example, start with a list of all cells. When initializing the puzzle, (from a published source) select a number from the number pad, then select a cell to set its value. 
 When that cell is updated, the value in the cell structure is updated, the font size is increased, the color is changed (both make solved cells highly visible), 
 the cell is marked "Done," the cell is removed from a "list of cells not done," the number of cells "Done" and "Not Done" is updated, for each cell in the 
 same row, column, and square, the number solved for is removed from the list of numbers remaining, and, after all the cells have been updated, the puzzle display is refreshed.
@@ -35,5 +36,11 @@ After each variaton of this process has been completed, go back the the find "On
 Continue cycling through these functions/procedures until there are no more updates -- until the number of cells done doesn't increase. 
 There are other patterns that can be applied and are being developed, but with a low priority.
 An additional feature of the program is that it is not a black box. Every time a runction finds a solution or simplifys the puzzle, there should be a print out of 
-what the program did.
+what the program did. In the bottom right corner, there are two text boxes that have potentially helpful information for the user. The top box lists potential solutions
+for only one number, duples, etc. The bottom box lists "hints" for potential actions to take. For example, the bottom right text box may have "Triple S15." That means
+the user should look for a possible triple in Square 15. (Row, Column and Square numbers start with number 1 and go through 16. This numbering system is easier to keep
+track of than a 0 based system and is only used for the user interface.)
+There are several unresolved issues with the program. One issue is that sometimes there is only one number in a cell and clicking on the "Solve RCS" button doesn't solve
+the cell. In these cases, select the number to be updated, then select the cell. This will cause a manual update of the cell and the puzzle.  
+Please feel free to provide suggestions for improving this document.
 More to come.
