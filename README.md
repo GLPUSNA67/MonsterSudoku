@@ -29,6 +29,8 @@ puzzle.
 Sometimes, you can't find a solution, but you can simplify the puzzle my removing some of the remaining numbers. One pattern that occurs regularly is where two cells
 in a row have the same two numbers. So, cells 5 and 13 may both have the values (7, B). Since one cell must have one number and the other cell must have the other number,
 we can remove those numbers from all other cells in that row. Use a similar procedure for every RCS. Also, use a similar function for 3, 4 and 5 numbers. 
+However, there is a problem with 3 and larger matches! A triple can consist of 3 numbers in 3 different cells, but those numbers can be consist of 2 or 3 numbers in each cell.
+For example, a valid triple might be (0, 1) (1, 2) and (0, 2), or one of the cells might have (0, 1, 2). It gets more complicated with quads (4 numbers) and quints (5 numbers). 
 After each variaton of this process has been completed, go back the the find "Only one number" functions and try them again. 
 Continue cycling through these functions/procedures until there are no more updates -- until the number of cells done doesn't increase. 
 There are other patterns that can be applied and are being developed, but with a low priority.
