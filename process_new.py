@@ -1,11 +1,12 @@
 import sys
-# import pickle
+import pickle
+# import pint
 import json
 import ctypes
 from tkinter import *  # get widget classes
 # from tkinter import Combobox, Entry, Label, font
 # *** path is C:\Users\Owner\AppData\Roaming\JetBrains\PyCharmCE2022.2\scratches
-#import ttk
+# import ttk
 # import logging
 # logging.basicConfig(
 #     filename = 'app.log',            # Name of the log file (omit to use stderr)
@@ -14,17 +15,17 @@ from tkinter import *  # get widget classes
 # )
 import tkinter as tk
 import numpy as np
-#import matplotlib as mpl
-#import matplotlib.pyplot as plt
-#from scipy import *
-#from scipy import constants
+# import matplotlib as mpl
+# import matplotlib.pyplot as plt
+# from scipy import *
+# from scipy import constants
 # from sqlite3 import *
-#from sqlite3 import Error
+# from sqlite3 import Error
 # import SQL_tables_to_dict_str as sq
 # import pdb
 # from tkinter import messagebox as mb #*  # get standard dialogs
-#from MessageBoxes import *
-#from tkinter import messagebox as mb
+# from MessageBoxes import *
+# from tkinter import messagebox as mb
 # from tkinter import font
 root = Tk()
 # root.config(text="Monster Sudoku Solver")
@@ -69,7 +70,6 @@ duple_done_list = []
 D = 0
 R = 0
 NullValue = "Null"
-
 
 
 r_1_nums = ""
@@ -130,6 +130,7 @@ delete_singles_row_list = []
 delete_singles_col_list = []
 delete_singles_sq_list = []
 
+
 def update_done_arefs_list(aref):
     print("362 Entering update_done_arefs_list aref is ", aref)
     for aref in arrRefs_List:
@@ -169,7 +170,7 @@ F4_frame = Frame(main_canvas)
 F4_frame.grid(row=2, column=12, sticky="nw")
 F4_frame.config(highlightbackground="blue", highlightthickness=2)
 sn_frame = Frame(main_canvas)
-sn_frame.grid(row=2, column=16, sticky="nw") #sn is for select a number
+sn_frame.grid(row=2, column=16, sticky="nw")  # sn is for select a number
 sn_frame.config(highlightbackground="green", highlightthickness=2)
 F5_frame = Frame(main_canvas)
 F5_frame.grid(row=3, column=0, sticky="nw")
@@ -184,7 +185,8 @@ F8_frame = Frame(main_canvas)
 F8_frame.grid(row=3, column=12, sticky="nw")
 F8_frame.config(highlightbackground="red", highlightthickness=2)
 fn_frame = Frame(main_canvas)
-fn_frame.grid(row=3, column=16, sticky="nw") #fn is for select a function name
+# fn is for select a function name
+fn_frame.grid(row=3, column=16, sticky="nw")
 fn_frame.config(highlightbackground="green", highlightthickness=2)
 F9_frame = Frame(main_canvas)
 F9_frame.grid(row=4, column=0, sticky="nw")
@@ -211,10 +213,12 @@ F16_frame = Frame(main_canvas)
 F16_frame.grid(row=5, column=12, sticky="nw")
 F16_frame.config(highlightbackground="blue", highlightthickness=2)
 ex_frame = Frame(main_canvas)
-ex_frame.grid(row=4, column=16, sticky="nw") #fn is for select a function name
+# fn is for select a function name
+ex_frame.grid(row=4, column=16, sticky="nw")
 ex_frame.config(highlightbackground="red", highlightthickness=2)
 txt_frame = Frame(main_canvas)
-txt_frame.grid(row=5, column=16, sticky="nw") #fn is for select a function name
+# fn is for select a function name
+txt_frame.grid(row=5, column=16, sticky="nw")
 txt_frame.config(highlightbackground="red", highlightthickness=2)
 
 
@@ -253,10 +257,12 @@ def set_current_num_to_5():
     currentNumber = "5"
     print("Current number is ", currentNumber)
 
+
 def set_current_num_to_6():
     global currentNumber
     currentNumber = "6"
     print("Current number is ", currentNumber)
+
 
 def set_current_num_to_7():
     print("button 7 pressed.")
@@ -264,45 +270,54 @@ def set_current_num_to_7():
     currentNumber = "7"
     print("Current number is ", currentNumber)
 
+
 def set_current_num_to_8():
     global currentNumber
     currentNumber = "8"
     print("Current number is ", currentNumber)
+
 
 def set_current_num_to_9():
     global currentNumber
     currentNumber = "9"
     print("Current number is ", currentNumber)
 
+
 def set_current_num_to_A():
     global currentNumber
     currentNumber = "A"
     print("Current number is ", currentNumber)
+
 
 def set_current_num_to_B():
     global currentNumber
     currentNumber = "B"
     print("Current number is ", currentNumber)
 
+
 def set_current_num_to_C():
     global currentNumber
     currentNumber = "C"
     print("Current number is ", currentNumber)
+
 
 def set_current_num_to_D():
     global currentNumber
     currentNumber = "D"
     print("Current number is ", currentNumber)
 
+
 def set_current_num_to_E():
     global currentNumber
     currentNumber = "E"
     print("Current number is ", currentNumber)
 
+
 def set_current_num_to_F():
     global currentNumber
     currentNumber = "F"
     print("Current number is ", currentNumber)
+
 
 def make_RCS_sets(num):
     print("298 Entered make_RCS_sets", num)
@@ -447,6 +462,7 @@ def make_RCS_sets(num):
     print("409 r_X_set are ", r_1_set, r_2_set, r_3_set, r_4_set, r_5_set, r_6_set, r_7_set, r_8_set,
           r_9_set, r_10_set, r_11_set, r_12_set, r_13_set, r_14_set, r_15_set, r_16_set)
 
+
 def CheckForOnlyOneNumber():
     print("296 Entered CheckForOnlyOneNumber")
     global r_1_nums
@@ -550,7 +566,7 @@ def CheckForOnlyOneNumber():
 
     for cell in not_done_arefs:
         current_button = cell['btn']
-        #print(current_button)
+        # print(current_button)
         # print("400 btn is ", eval(cell['btn']))
         if cell['row'] == 1:
             r_1_nums += cell['nums']
@@ -712,6 +728,7 @@ def CheckForOnlyOneNumber():
     cells_remaining()
     print("550 delete_singles_row_list is ", delete_singles_row_list)
 
+
 def solve_row_singles():
     print("564 Entering solve_singles")
     # global bSolve_singles
@@ -770,10 +787,12 @@ def solve_row_singles():
         for item in delete_singles_col_list:
             # print("619 col item ", col, type(col), item[0], type(int(item[0])), item[1])
             if col == int(item[0]) and item[1] in nums:
-                print("521 col item ", col, type(row), item[0], type(int(item[0])), item[1])
+                print("521 col item ", col, type(row),
+                      item[0], type(int(item[0])), item[1])
                 currentNumber = item[1]
                 current_button = cell['btn']
-                print("572 cell and type are ", type(current_button), current_button, type(cell), cell)
+                print("572 cell and type are ", type(current_button),
+                      current_button, type(cell), cell)
                 # reset_cell_values(current_button, cell) # function doesn't work, but lines work
                 cell['done'] = True
                 cell['nums'] = currentNumber
@@ -848,10 +867,11 @@ def find_Duple():
     # develop the duple candidate list, e.g, all cells with len numbers == 2
     duple_candidate_list = []
     duple_candidate_list = make_Duple_Candidate_list()
-    #print("850 duple_candidate_list is ", duple_candidate_list)
+    # print("850 duple_candidate_list is ", duple_candidate_list)
     # sort the list to identify duples that haven't yet been processed
     id_duples(duple_candidate_list)
-    #find_Duple1()
+    # find_Duple1()
+
 
 def id_duples(duple_candidate_list):
     ''' sort the list to identify duples that haven't yet been processed '''
@@ -860,11 +880,12 @@ def id_duples(duple_candidate_list):
     print("859 duple_candidate_list is ", duple_candidate_list)
     for item in duple_candidate_list:
         if item:
-        # print("716 item nums are ", item[0], item[1], item[2], item[3])
+            # print("716 item nums are ", item[0], item[1], item[2], item[3])
             i_row = int(item[0])
             i_col = int(item[1])
             i_sq = int(item[2])
-            i_pair = item[3] # i_pair is the duple (the two numbers) being considered as a potential duple
+            # i_pair is the duple (the two numbers) being considered as a potential duple
+            i_pair = item[3]
         try:
             for item in duple_candidate_list:
                 # if item[0] and item[1] and item[2] and item[3]:
@@ -878,7 +899,8 @@ def id_duples(duple_candidate_list):
                 # If the current cell is not the same as the original cell, process it
                 elif i_pair == c_pair and (i_row == c_row or i_col == c_col or i_sq == c_sq):
                     ex_text = f"{i_row}, {i_col}, {i_sq}, {i_pair}, {c_row}, {c_col}, {c_sq}, {c_pair}"
-                    print("741 pairs are ", i_row, i_col, i_sq, i_pair, c_row, c_col, c_sq, c_pair, c_pair[0], c_pair[1])
+                    print("741 pairs are ", i_row, i_col, i_sq, i_pair,
+                          c_row, c_col, c_sq, c_pair, c_pair[0], c_pair[1])
                     # duple_first = {i_row}, {i_col}, {i_sq}, {i_pair}
                     duple_first = f"{i_row}, {i_col}, {i_sq}, {i_pair}"
                     duple_first = duple_first.split(',')
@@ -901,18 +923,14 @@ def id_duples(duple_candidate_list):
                     print("896 duple_list is ", duple_list)
                     # if duple_candidate_list != []:
                     #     duples_list.append(duple_candidate_list)
-                    #     ex_text = f"908 duples_list is {duples_list}" 
+                    #     ex_text = f"908 duples_list is {duples_list}"
                     #     txt_Explain.insert(END, ex_text)
                     #     print("908 duples_list is ", duples_list)
             process_duple_list(duple_list)
-                    # process_duple_list(duple_first, duple_second)
+            # process_duple_list(duple_first, duple_second)
 
         except Exception as e:
             pass
-
-
-
-
 
     # for item in duple_candidate_list:
     #     nums = item[3]
@@ -929,7 +947,7 @@ def id_duples(duple_candidate_list):
     #             continue
     #         else:
     #             print("874 nums don't match")
-                
+
             # print("861 rest_of_list item numbers are ", nums1)
 
 
@@ -941,10 +959,12 @@ def make_Duple_Candidate_list():
     duple_list = []
     for cell in not_done_arefs:
         if len(cell['nums']) == 2:
-            
-            ex_text = str(cell['row']) + ", " + str(cell['col']) + ", " + str(cell['sq']) + ", " + str(cell['nums']) + "\n "
-            list_text = str(cell['row']) + ", " + str(cell['col']) + ", " + str(cell['sq']) + ", " + str(cell['nums'])
-            #print("530 potential duples are ", ex_text)
+
+            ex_text = str(cell['row']) + ", " + str(cell['col']) + \
+                ", " + str(cell['sq']) + ", " + str(cell['nums']) + "\n "
+            list_text = str(cell['row']) + ", " + str(cell['col']) + \
+                ", " + str(cell['sq']) + ", " + str(cell['nums'])
+            # print("530 potential duples are ", ex_text)
             row = cell['row']
             col = cell['col']
             sq = cell['sq']
@@ -956,9 +976,10 @@ def make_Duple_Candidate_list():
             # duple_candidate_list.append(nums)
             # txt_Explain.insert(END, ex_text)
             # duple_candidate_list.append(temp_list)
-            #duple_candidate_list.append(temp_list)
-    #print("874 duple_candidate_list is ", duple_candidate_list)
+            # duple_candidate_list.append(temp_list)
+    # print("874 duple_candidate_list is ", duple_candidate_list)
     return duple_candidate_list
+
 
 def find_Duple1():
     print("525 Entering find_Duple")
@@ -971,7 +992,8 @@ def find_Duple1():
     for cell in not_done_arefs:
         if len(cell['nums']) == 2:
             # print("530 potential duple ", cell, cell['nums'])
-            ex_text = str(cell['row']) + ", " + str(cell['col']) + ", " + str(cell['sq']) + ", " + str(cell['nums']) + "\n "
+            ex_text = str(cell['row']) + ", " + str(cell['col']) + \
+                ", " + str(cell['sq']) + ", " + str(cell['nums']) + "\n "
             row = cell['row']
             col = cell['col']
             sq = cell['sq']
@@ -988,11 +1010,12 @@ def find_Duple1():
     # ex_text = ""
     for item in duple_candidate_list:
         if item:
-        # print("716 item nums are ", item[0], item[1], item[2], item[3])
+            # print("716 item nums are ", item[0], item[1], item[2], item[3])
             i_row = int(item[0])
             i_col = int(item[1])
             i_sq = int(item[2])
-            i_pair = item[3] # i_pair is the duple (the two numbers) being considered as a potential duple
+            # i_pair is the duple (the two numbers) being considered as a potential duple
+            i_pair = item[3]
         try:
             for item in duple_candidate_list:
                 # if item[0] and item[1] and item[2] and item[3]:
@@ -1006,7 +1029,8 @@ def find_Duple1():
                 # If the current cell is not the same as the original cell, process it
                 elif i_pair == c_pair and (i_row == c_row or i_col == c_col or i_sq == c_sq):
                     ex_text = f"{i_row}, {i_col}, {i_sq}, {i_pair}, {c_row}, {c_col}, {c_sq}, {c_pair}"
-                    print("741 pairs are ", i_row, i_col, i_sq, i_pair, c_row, c_col, c_sq, c_pair, c_pair[0], c_pair[1])
+                    print("741 pairs are ", i_row, i_col, i_sq, i_pair,
+                          c_row, c_col, c_sq, c_pair, c_pair[0], c_pair[1])
                     # duple_first = {i_row}, {i_col}, {i_sq}, {i_pair}
                     duple_first = f"{i_row}, {i_col}, {i_sq}, {i_pair}"
                     duple_first = duple_first.split(',')
@@ -1018,18 +1042,19 @@ def find_Duple1():
                     txt_Explain.insert(END, ex_text)
                     txt_Explain.insert(END, "\n")
                     # duple_list_1 = duple_first.split(',')
-                    print("1019 duple_list parts are ", duple_first, duple_first[0], duple_first[1])
+                    print("1019 duple_list parts are ", duple_first,
+                          duple_first[0], duple_first[1])
                     # duple_list_2 = duple_second.split(',')
-                    
+
                     print("1022 duples_list is ", duples_list)
                     if duples_list == []:
                         duples_list = [duple_first, duple_second]
-                        ex_text = f"1025 duples_list is {duples_list}" 
+                        ex_text = f"1025 duples_list is {duples_list}"
                         txt_Explain.insert(END, ex_text)
                         print("1027 duples_list is ", duples_list)
                     else:
                         duples_list.append(duple_candidate_list)
-                        ex_text = f"1030 duples_list is {duples_list}" 
+                        ex_text = f"1030 duples_list is {duples_list}"
                         txt_Explain.insert(END, ex_text)
                         print("1032 duples_list is ", duples_list)
                         process_duple_list(duple_first, duple_second)
@@ -1043,11 +1068,12 @@ def find_Duple1():
         # if item item[3] == item[3] in any item in the rest of the list,
         # it is a potential duple, so check to see if it is in the same RCS
 
+
 def process_duple_list(duple_list):
     print("1039 duples_list is ", duple_list)
     duple_first = duple_list[0]
     duple_second = duple_list[1]
-    print("1041 duple parts are ",duple_first, duple_second)
+    print("1041 duple parts are ", duple_first, duple_second)
     global not_done_arefs
     global currentNumber
     first_row = int(duple_first[0])
@@ -1080,7 +1106,8 @@ def process_duple_list(duple_list):
                 (a_row == second_row and a_col == second_col and a_sq == second_sq):
             pass
         elif duple_row != 0 and first_row == a_row:
-            print("818 partial match in aref", duple_row, duple_col, duple_sq, first_row, a_row, first_chr_1, a_nums)
+            print("818 partial match in aref", duple_row, duple_col,
+                  duple_sq, first_row, a_row, first_chr_1, a_nums)
             if first_chr_1 in a_nums:
                 new_nums = aref['nums'].replace(first_chr_1, "")
                 # print("723 new_nums ", new_nums)
@@ -1092,7 +1119,8 @@ def process_duple_list(duple_list):
                 aref['nums'] = new_nums
                 current_btn['text'] = aref['nums']
         elif duple_col != 0 and first_col == a_col:
-            print("823 partial match in aref", duple_row, duple_col, duple_sq, first_row, a_row, first_chr_1, a_nums)
+            print("823 partial match in aref", duple_row, duple_col,
+                  duple_sq, first_row, a_row, first_chr_1, a_nums)
             if first_chr_1 in a_nums:
                 new_nums = aref['nums'].replace(first_chr_1, "")
                 print("723 new_nums ", new_nums)
@@ -1104,7 +1132,8 @@ def process_duple_list(duple_list):
                 aref['nums'] = new_nums
                 current_btn['text'] = aref['nums']
         elif duple_sq != 0 and first_sq == a_sq:
-            print("828 partial match in aref", duple_row, duple_col, duple_sq, first_row, a_row, first_chr_1, a_nums)
+            print("828 partial match in aref", duple_row, duple_col,
+                  duple_sq, first_row, a_row, first_chr_1, a_nums)
             if first_chr_1 in a_nums:
                 new_nums = aref['nums'].replace(first_chr_1, "")
                 print("723 new_nums ", new_nums)
@@ -1118,12 +1147,14 @@ def process_duple_list(duple_list):
     duple_done_list.append(duple_first, duple_second)
     print("1126 duple_done_list is ", duple_done_list)
 
+
 def find_Triple():
     print("1131 Entering find_Triple")
     txt_Explain.insert(END, "1132 potential triples are \n")
     triple_candidate_list = make_triple_candidate_list()
     # print("1146 triple_candidate_list ", triple_candidate_list)
     id_triples(triple_candidate_list)
+
 
 def make_triple_candidate_list():
     print("1129 enter make_triple_candidate_list")
@@ -1135,8 +1166,10 @@ def make_triple_candidate_list():
     for cell in not_done_arefs:
         if len(cell['nums']) <= 3:
             # print("1011 potential triple ", cell['row'], cell['col'], cell['sq'], cell['nums'])
-            ex_text = str(cell['row']) + ", " + str(cell['col']) + ", " + str(cell['sq']) + ", " + str(cell['nums']) + "\n "
-            list_ex_text = list[str(cell['row']), str(cell['col']), str(cell['sq']), str(cell['nums'])]
+            ex_text = str(cell['row']) + ", " + str(cell['col']) + \
+                ", " + str(cell['sq']) + ", " + str(cell['nums']) + "\n "
+            list_ex_text = list[str(cell['row']), str(
+                cell['col']), str(cell['sq']), str(cell['nums'])]
             row = cell['row']
             col = cell['col']
             sq = cell['sq']
@@ -1155,81 +1188,83 @@ def make_triple_candidate_list():
     txt_Explain.insert(END, triple_candidate_list)
     return triple_candidate_list
 
+
 def id_triples(triple_candidate_list):
-        print("1159 enter id_triples")
-        # tl_set = set()
+    print("1159 enter id_triples")
+    # tl_set = set()
+    for item in triple_candidate_list:
+        tcl_set0 = set()
+        row0 = item[0]
+        col0 = item[1]
+        sq0 = item[2]
+        nums0 = item[3]
+        l0 = len(nums0)
+        n1 = nums0[0]
+        tcl_set0.add(n1)
+        n2 = nums0[1]
+        tcl_set0.add(n2)
+        if l0 == 3:
+            n3 = nums0[2]
+            tcl_set0.add(n3)
+        print("1175 ", row0, col0, sq0, nums0, tcl_set0)
+        # tcl_set1 = tcl_set0
         for item in triple_candidate_list:
-            tcl_set0 = set()
-            row0 = item[0]
-            col0 = item[1]
-            sq0 = item[2]
-            nums0 = item[3]
-            l0 = len(nums0)
-            n1 = nums0[0]
-            tcl_set0.add(n1)
-            n2 = nums0[1]
-            tcl_set0.add(n2)
-            if l0 == 3:
-                n3 = nums0[2]
-                tcl_set0.add(n3)
-            print("1175 ", row0, col0, sq0, nums0, tcl_set0)
             # tcl_set1 = tcl_set0
-            for item in triple_candidate_list:
+            tcl_set1 = tcl_set0.copy()
+            # print("1179 ", tcl_set0, tcl_set1)
+            row1 = item[0]
+            col1 = item[1]
+            sq1 = item[2]
+            nums1 = item[3]
+            print("1183 ", row1, col1, sq1, nums1, tcl_set1)
+            # print("1172 ", row1, col1, sq1, nums1)
+            if nums0 == nums1 and row0 == row1 and sq0 == sq1 and nums0 == nums0:
+                pass  # the items/cells are the same
+            else:
                 # tcl_set1 = tcl_set0
-                tcl_set1 = tcl_set0.copy()
-                # print("1179 ", tcl_set0, tcl_set1)
-                row1 = item[0]
-                col1 = item[1]
-                sq1 = item[2]
-                nums1 = item[3]
-                print("1183 ", row1, col1, sq1, nums1, tcl_set1)
-                # print("1172 ", row1, col1, sq1, nums1)
-                if nums0 == nums1 and row0 == row1 and sq0 == sq1 and nums0 == nums0:
-                    pass # the items/cells are the same
+                l1 = len(nums1)
+                n4 = nums1[0]
+                tcl_set1.add(n4)
+                n5 = nums1[1]
+                tcl_set1.add(n5)
+                if l1 == 3:
+                    n6 = nums1[2]
+                    tcl_set1.add(n6)
+                tcl_len = len(tcl_set1)
+                if tcl_len > 3:
+                    tcl_set1 = tcl_set0.copy()
+                    print("1202 ", tcl_set0, tcl_set1)
+                    print("1203 tcl_set1 length > 3", nums1, tcl_set1)
                 else:
-                    # tcl_set1 = tcl_set0    
-                    l1 = len(nums1)
-                    n4 = nums1[0]
-                    tcl_set1.add(n4)
-                    n5 = nums1[1]
-                    tcl_set1.add(n5)
-                    if l1 == 3:
-                        n6 = nums1[2]
-                        tcl_set1.add(n6)
-                    tcl_len = len(tcl_set1)
-                    if tcl_len > 3:
-                        tcl_set1 = tcl_set0.copy()
-                        print("1202 ", tcl_set0, tcl_set1)
-                        print("1203 tcl_set1 length > 3", nums1, tcl_set1 )
-                    else:
-                        print("1202 ", row1, col1, sq1, nums1, tcl_set1)
-                        for item in triple_candidate_list:
-                            tcl_set2 = tcl_set1.copy()
-                            row2 = item[0]
-                            col2 = item[1]
-                            sq2 = item[2]
-                            nums2 = item[3]
-                            # print("1172 ", row1, col1, sq1, nums1)
-                            if nums1 == nums2 and row1 == row2 and sq1 == sq2 and nums1 == nums2:
-                                pass # the items/cells are the same
+                    print("1202 ", row1, col1, sq1, nums1, tcl_set1)
+                    for item in triple_candidate_list:
+                        tcl_set2 = tcl_set1.copy()
+                        row2 = item[0]
+                        col2 = item[1]
+                        sq2 = item[2]
+                        nums2 = item[3]
+                        # print("1172 ", row1, col1, sq1, nums1)
+                        if nums1 == nums2 and row1 == row2 and sq1 == sq2 and nums1 == nums2:
+                            pass  # the items/cells are the same
+                        else:
+                            l2 = len(nums2)
+                            n7 = nums2[0]
+                            tcl_set2.add(n7)
+                            n8 = nums2[1]
+                            tcl_set2.add(n8)
+                            if len(tcl_set2) > 3:
+                                tcl_set2 = tcl_set1
                             else:
-                                l2 = len(nums2)
-                                n7 = nums2[0]
-                                tcl_set2.add(n7)
-                                n8 = nums2[1]
-                                tcl_set2.add(n8)
+                                # print("1226 tcl_set2 is ", tcl_set2)
+                                if l2 == 3:
+                                    n9 = nums2[2]
+                                    tcl_set2.add(n9)
                                 if len(tcl_set2) > 3:
-                                    tcl_set2 = tcl_set1
-                                else:
-                                    # print("1226 tcl_set2 is ", tcl_set2)
-                                    if l2 == 3:
-                                        n9 = nums2[2]
-                                        tcl_set2.add(n9)
-                                    if len(tcl_set2) > 3:
-                                        tcl_set2 = tcl_set1.copy()
-                                    elif len(tcl_set2) == 3:
-                                        print("1233 tcl_set2 is ", tcl_set2)
-                            # compare_cell_nums(nums0, nums1, nums2, tcl_set0, tcl_set1, tcl_set2)
+                                    tcl_set2 = tcl_set1.copy()
+                                elif len(tcl_set2) == 3:
+                                    print("1233 tcl_set2 is ", tcl_set2)
+                        # compare_cell_nums(nums0, nums1, nums2, tcl_set0, tcl_set1, tcl_set2)
+
 
 def compare_cell_nums(nums0, nums1, nums2, tcl_set0, tcl_set1, tcl_set2):
     # print("1179 enter compare_cell_nums")
@@ -1245,7 +1280,7 @@ def compare_cell_nums(nums0, nums1, nums2, tcl_set0, tcl_set1, tcl_set2):
         n3 = nums0[2]
         tcl_set0.add(n3)
 
-    tcl_set1 = tcl_set0    
+    tcl_set1 = tcl_set0
     l1 = len(nums1)
     n4 = nums1[0]
     tcl_set1.add(n4)
@@ -1278,6 +1313,7 @@ def compare_cell_nums(nums0, nums1, nums2, tcl_set0, tcl_set1, tcl_set2):
                 elif len(tcl_set2) == 3:
                     print("1233 tcl_set2 is ", tcl_set2)
 
+
 def triple_parse_test():
     tcl = [['1', '6', '2', '8AC'], ['1', '10', '3', '6A']]
     print("1214 tcl[0] is ", tcl[0])
@@ -1307,10 +1343,15 @@ def triple_parse_test():
 
     print("1215 tcl[0][3] is ", tcl[0][3])
 
+
 def ID_Duples():
     bIDDuples = True
+
+
 def ID_Triples():
     bIDTriples = True
+
+
 def ID_Quads():
     bIDQuads = True
 
@@ -1319,10 +1360,12 @@ def ID_Quads():
 #     # number passed is the length sought plus 1
 #     make_RCS_sets(4)
 
+
 def find_Quad():
     print("525 Entering find_Quad")
 
-def update_RCS(current_button, aref): #Row, Column, Square):
+
+def update_RCS(current_button, aref):  # Row, Column, Square):
     current_button['text'] = aref['nums']
     # current_btn['text'] = aref['nums']
 
@@ -1331,6 +1374,7 @@ def update_RCS(current_button, aref): #Row, Column, Square):
 #     if aref['done'] == True and aref in not_done_arefs:
 #         not_done_arefs.remove(aref)
 #     print("545 update_not_done_arefs ", len(not_done_arefs))
+
 
 def update_puzzle(row, column, square):
     # print("529 update_puzzle row, column, square ", row, column, square, currentNumber)
@@ -1366,7 +1410,8 @@ def update_puzzle(row, column, square):
 
 
 def reset_cell_values(current_btn, aref):
-    print("710 Entered reset_cell_values", type(current_btn), current_btn, type(aref), aref)
+    print("710 Entered reset_cell_values", type(
+        current_btn), current_btn, type(aref), aref)
     '''A single number has been selected, so reset the cell values.'''
     aref['done'] = True
     aref['nums'] = currentNumber
@@ -1393,6 +1438,7 @@ def refresh_display(current_btn, aref):
     # arrRef0['font'] = buttonfont
     # arrRef0['fg'] = "red"
 
+
 def set_bRemoveANumberFromACell():
     global bRemoveANumberFromACell
     if bRemoveANumberFromACell == "False":
@@ -1404,6 +1450,7 @@ def set_bRemoveANumberFromACell():
         btn_del_num['text'] = 'Del\nnum\nfrom\ncell'
     print("695 bRemoveANumberFromACell is ", bRemoveANumberFromACell)
 
+
 def remove_num_from_cell(current_btn, aref):
     print("701 Entered remove_num_from_cell.")
     global currentNumber
@@ -1412,14 +1459,17 @@ def remove_num_from_cell(current_btn, aref):
     aref['nums'] = new_nums
     current_btn['text'] = aref['nums']
 
+
 def remove_aref_from_not_done_arefs(aref):
     print("709 Entered remove_aref_from_not_done_arefs.")
     if aref in not_done_arefs:
         not_done_arefs.remove(aref)
 
 # def update_cell(btn, aref, row, col, sq):
+
+
 def update_cell(btn, aref):
-    #print("705 Entered update_cell.", type(btn), btn, type(aref), aref)
+    # print("705 Entered update_cell.", type(btn), btn, type(aref), aref)
     # print("705 Entered update_cell.", btn, aref)
     # arrRef0 = dict(btn='btn_R1C1', row=1, col=1, sq=1,
     global bRemoveANumberFromACell
@@ -1460,6 +1510,7 @@ def update_cell(btn, aref):
         # print(f"currentNumber = '{currentNumber}'")
         # print(f"update_cell'{btn}, {aref}")
 
+
 def process_duples(btn, aref):
     duples_list.append(btn, aref)
     if len(duples_list) != 0:
@@ -1471,10 +1522,13 @@ def process_triples(btn, aref):
     if len(triple_list) != 0:
         print(triple_list)
     triple_list = []
+
+
 def process_quads(btn, aref):
     quads_list.append(btn, aref)
     if len(quads_list) != 0:
         print(quads_list)
+
 
 def update_R1C1():
     print("691 R1C1 button pressed.")
@@ -1485,621 +1539,776 @@ def update_R1C1():
     update_cell(btn_R1C1, arrRef0)
     # update_cell(btn_R1C1, arrRef0, 1, 1, 1)
 
+
 def update_R1C2():
     print("R1C2 button pressed.")
     update_cell(btn_R1C2, arrRef1)
+
 
 def update_R1C3():
     print("R1C3 button pressed.")
     update_cell(btn_R1C3, arrRef2)
 
+
 def update_R1C4():
     print("R1C4 button pressed.")
     update_cell(btn_R1C4, arrRef3)
+
 
 def update_R1C5():
     print("R1C5 button pressed.")
     update_cell(btn_R1C5, arrRef4)
 
+
 def update_R1C6():
     print("R1C6 button pressed.")
     update_cell(btn_R1C6, arrRef5)
+
 
 def update_R1C7():
     print("R1C7 button pressed.")
     update_cell(btn_R1C7, arrRef6)
 
+
 def update_R1C8():
     print("R1C8 button pressed.")
     update_cell(btn_R1C8, arrRef7)
+
 
 def update_R1C9():
     print("R1C9 button pressed.")
     update_cell(btn_R1C9, arrRef8)
 
+
 def update_R1C10():
     print("R1C10 button pressed.")
     update_cell(btn_R1C10, arrRef9)
+
 
 def update_R1C11():
     print("R1C11 button pressed.")
     update_cell(btn_R1C11, arrRef10)
 
+
 def update_R1C12():
     print("R1C12 button pressed.")
     update_cell(btn_R1C12, arrRef11)
+
 
 def update_R1C13():
     print("R1C13 button pressed.")
     update_cell(btn_R1C13, arrRef12)
 
+
 def update_R1C14():
     print("R1C14 button pressed.")
     update_cell(btn_R1C14, arrRef13)
+
 
 def update_R1C15():
     print("R1C15 button pressed.")
     update_cell(btn_R1C15, arrRef14)
 
+
 def update_R1C16():
     print("R2C16 button pressed.")
     update_cell(btn_R1C16, arrRef15)
+
 
 def update_R2C1():
     print("R2C1 button pressed.")
     update_cell(btn_R2C1, arrRef16)
 
+
 def update_R2C2():
     print("R2C2 button pressed.")
     update_cell(btn_R2C2, arrRef17)
+
 
 def update_R2C3():
     print("R2C3 button pressed.")
     update_cell(btn_R2C3, arrRef18)
 
+
 def update_R2C4():
     print("R2C4 button pressed.")
     update_cell(btn_R2C4, arrRef19)
+
 
 def update_R2C5():
     print("R2C5 button pressed.")
     update_cell(btn_R2C5, arrRef20)
 
+
 def update_R2C6():
     print("R2C6 button pressed.")
     update_cell(btn_R2C6, arrRef21)
+
 
 def update_R2C7():
     print("R2C7 button pressed.")
     update_cell(btn_R2C7, arrRef22)
 
+
 def update_R2C8():
     print("R2C8 button pressed.")
     update_cell(btn_R2C8, arrRef23)
+
 
 def update_R2C9():
     print("R2C9 button pressed.")
     update_cell(btn_R2C9, arrRef24)
 
+
 def update_R2C10():
     print("R2C10 button pressed.")
     update_cell(btn_R2C10, arrRef25)
+
 
 def update_R2C11():
     print("R2C11 button pressed.")
     update_cell(btn_R2C11, arrRef26)
 
+
 def update_R2C12():
     print("R2C12 button pressed.")
     update_cell(btn_R2C12, arrRef27)
+
 
 def update_R2C13():
     print("R2C13 button pressed.")
     update_cell(btn_R2C13, arrRef28)
 
+
 def update_R2C14():
     print("R2C14 button pressed.")
     update_cell(btn_R2C14, arrRef29)
+
 
 def update_R2C15():
     print("R2C15 button pressed.")
     update_cell(btn_R2C15, arrRef30)
 
+
 def update_R2C16():
     print("R2C16 button pressed.")
     update_cell(btn_R2C16, arrRef31)
+
 
 def update_R3C1():
     print("R3C1 button pressed.")
     update_cell(btn_R3C1, arrRef32)
 
+
 def update_R3C2():
     print("R3C2 button pressed.")
     update_cell(btn_R3C2, arrRef33)
+
 
 def update_R3C3():
     print("R3C3 button pressed.")
     update_cell(btn_R3C3, arrRef34)
 
+
 def update_R3C4():
     print("R3C4 button pressed.")
     update_cell(btn_R3C4, arrRef35)
+
 
 def update_R3C5():
     print("R3C5 button pressed.")
     update_cell(btn_R3C5, arrRef36)
 
+
 def update_R3C6():
     print("R3C6 button pressed.")
     update_cell(btn_R3C6, arrRef37)
+
 
 def update_R3C7():
     print("R3C7 button pressed.")
     update_cell(btn_R3C7, arrRef38)
 
+
 def update_R3C8():
     print("R3C8 button pressed.")
     update_cell(btn_R3C8, arrRef39)
+
 
 def update_R3C9():
     print("R3C9 button pressed.")
     update_cell(btn_R3C9, arrRef40)
 
+
 def update_R3C10():
     print("R3C10 button pressed.")
     update_cell(btn_R3C10, arrRef41)
+
 
 def update_R3C11():
     print("R3C11 button pressed.")
     update_cell(btn_R3C11, arrRef42)
 
+
 def update_R3C12():
     print("R3C12 button pressed.")
     update_cell(btn_R3C12, arrRef43)
+
 
 def update_R3C13():
     print("R3C13 button pressed.")
     update_cell(btn_R3C13, arrRef44)
 
+
 def update_R3C14():
     print("R3C14 button pressed.")
     update_cell(btn_R3C14, arrRef45)
+
 
 def update_R3C15():
     print("R3C15 button pressed.")
     update_cell(btn_R3C15, arrRef46)
 
+
 def update_R3C16():
     print("R3C16 button pressed.")
     update_cell(btn_R3C16, arrRef47)
+
 
 def update_R4C1():
     print("R4C1 button pressed.")
     update_cell(btn_R4C1, arrRef48)
 
+
 def update_R4C2():
     print("R4C2 button pressed.")
     update_cell(btn_R4C2, arrRef49)
+
 
 def update_R4C3():
     print("R4C3 button pressed.")
     update_cell(btn_R4C3, arrRef50)
 
+
 def update_R4C4():
     print("R4C4 button pressed.")
     update_cell(btn_R4C4, arrRef51)
+
 
 def update_R4C5():
     print("R4C5 button pressed.")
     update_cell(btn_R4C5, arrRef52)
 
+
 def update_R4C6():
     print("R4C6 button pressed.")
     update_cell(btn_R4C6, arrRef53)
+
 
 def update_R4C7():
     print("R4C7 button pressed.")
     update_cell(btn_R4C7, arrRef54)
 
+
 def update_R4C8():
     print("R4C8 button pressed.")
     update_cell(btn_R4C8, arrRef55)
+
 
 def update_R4C9():
     print("R4C9 button pressed.")
     update_cell(btn_R4C9, arrRef56)
 
+
 def update_R4C10():
     print("R4C10 button pressed.")
     update_cell(btn_R4C10, arrRef57)
+
 
 def update_R4C11():
     print("R4C11 button pressed.")
     update_cell(btn_R4C11, arrRef58)
 
+
 def update_R4C12():
     print("R4C12 button pressed.")
     update_cell(btn_R4C12, arrRef59)
+
 
 def update_R4C13():
     print("R4C13 button pressed.")
     update_cell(btn_R4C13, arrRef60)
 
+
 def update_R4C14():
     print("R4C14 button pressed.")
     update_cell(btn_R4C14, arrRef61)
+
 
 def update_R4C15():
     print("R4C15 button pressed.")
     update_cell(btn_R4C15, arrRef62)
 
+
 def update_R4C16():
     print("R4C16 button pressed.")
     update_cell(btn_R4C16, arrRef63)
+
 
 def update_R5C1():
     print("R5C1 button pressed.")
     update_cell(btn_R5C1, arrRef64)
 
+
 def update_R5C2():
     print("R5C2 button pressed.")
     update_cell(btn_R5C2, arrRef65)
+
 
 def update_R5C3():
     print("R5C3 button pressed.")
     update_cell(btn_R5C3, arrRef66)
 
+
 def update_R5C4():
     print("R5C4 button pressed.")
     update_cell(btn_R5C4, arrRef67)
+
 
 def update_R5C5():
     print("R5C5 button pressed.")
     update_cell(btn_R5C5, arrRef68)
 
+
 def update_R5C6():
     print("R5C6 button pressed.")
     update_cell(btn_R5C6, arrRef69)
+
 
 def update_R5C7():
     print("R5C7 button pressed.")
     update_cell(btn_R5C7, arrRef70)
 
+
 def update_R5C8():
     print("R5C8 button pressed.")
     update_cell(btn_R5C8, arrRef71)
+
 
 def update_R5C9():
     print("R5C9 button pressed.")
     update_cell(btn_R5C9, arrRef72)
 
+
 def update_R5C10():
     print("R5C10 button pressed.")
     update_cell(btn_R5C10, arrRef73)
+
 
 def update_R5C11():
     print("R5C11 button pressed.")
     update_cell(btn_R5C11, arrRef74)
 
+
 def update_R5C12():
     print("R5C12 button pressed.")
     update_cell(btn_R5C12, arrRef75)
+
 
 def update_R5C13():
     print("R5C13 button pressed.")
     update_cell(btn_R5C13, arrRef76)
 
+
 def update_R5C14():
     print("R5C14 button pressed.")
     update_cell(btn_R5C14, arrRef77)
+
 
 def update_R5C15():
     print("R5C15 button pressed.")
     update_cell(btn_R5C15, arrRef78)
 
+
 def update_R5C16():
     print("R5C16 button pressed.")
     update_cell(btn_R5C16, arrRef79)
+
 
 def update_R6C1():
     print("R6C1 button pressed.")
     update_cell(btn_R6C1, arrRef80)
 
+
 def update_R6C2():
     print("R6C2 button pressed.")
     update_cell(btn_R6C2, arrRef81)
+
 
 def update_R6C3():
     print("R6C3 button pressed.")
     update_cell(btn_R6C3, arrRef82)
 
+
 def update_R6C4():
     print("R6C4 button pressed.")
     update_cell(btn_R6C4, arrRef83)
+
 
 def update_R6C5():
     print("R6C5 button pressed.")
     update_cell(btn_R6C5, arrRef84)
 
+
 def update_R6C6():
     print("R6C6 button pressed.")
     update_cell(btn_R6C6, arrRef85)
+
 
 def update_R6C7():
     print("R6C7 button pressed.")
     update_cell(btn_R6C7, arrRef86)
 
+
 def update_R6C8():
     print("R6C8 button pressed.")
     update_cell(btn_R6C8, arrRef87)
+
 
 def update_R6C9():
     print("R6C9 button pressed.")
     update_cell(btn_R6C9, arrRef88)
 
+
 def update_R6C10():
     print("R6C10 button pressed.")
     update_cell(btn_R6C10, arrRef89)
+
 
 def update_R6C11():
     print("R6C11 button pressed.")
     update_cell(btn_R6C11, arrRef90)
 
+
 def update_R6C12():
     print("R6C12 button pressed.")
     update_cell(btn_R6C12, arrRef91)
+
 
 def update_R6C13():
     print("R6C13 button pressed.")
     update_cell(btn_R6C13, arrRef92)
 
+
 def update_R6C14():
     print("R6C14 button pressed.")
     update_cell(btn_R6C14, arrRef93)
+
 
 def update_R6C15():
     print("R6C15 button pressed.")
     update_cell(btn_R6C15, arrRef94)
 
+
 def update_R6C16():
     print("R6C16 button pressed.")
     update_cell(btn_R6C16, arrRef95)
+
 
 def update_R7C1():
     print("R7C1 button pressed.")
     update_cell(btn_R7C1, arrRef96)
 
+
 def update_R7C2():
     print("R7C2 button pressed.")
     update_cell(btn_R7C2, arrRef97)
+
 
 def update_R7C3():
     print("R7C3 button pressed.")
     update_cell(btn_R7C3, arrRef98)
 
+
 def update_R7C4():
     print("R7C4 button pressed.")
     update_cell(btn_R7C4, arrRef99)
+
 
 def update_R7C5():
     print("R7C5 button pressed.")
     update_cell(btn_R7C5, arrRef100)
 
+
 def update_R7C6():
     print("R7C6 button pressed.")
     update_cell(btn_R7C6, arrRef101)
+
 
 def update_R7C7():
     print("R7C7 button pressed.")
     update_cell(btn_R7C7, arrRef102)
 
+
 def update_R7C8():
     print("R7C8 button pressed.")
     update_cell(btn_R7C8, arrRef103)
+
 
 def update_R7C9():
     print("R7C9 button pressed.")
     update_cell(btn_R7C9, arrRef104)
 
+
 def update_R7C10():
     print("R7C10 button pressed.")
     update_cell(btn_R7C10, arrRef105)
+
 
 def update_R7C11():
     print("R7C11 button pressed.")
     update_cell(btn_R7C11, arrRef106)
 
+
 def update_R7C12():
     print("R7C12 button pressed.")
     update_cell(btn_R7C12, arrRef107)
+
 
 def update_R7C13():
     print("R7C13 button pressed.")
     update_cell(btn_R7C13, arrRef108)
 
+
 def update_R7C14():
     print("R7C14 button pressed.")
     update_cell(btn_R7C14, arrRef109)
+
 
 def update_R7C15():
     print("R7C15 button pressed.")
     update_cell(btn_R7C15, arrRef110)
 
+
 def update_R7C16():
     print("R7C16 button pressed.")
     update_cell(btn_R7C16, arrRef111)
+
 
 def update_R8C1():
     print("R8C1 button pressed.")
     update_cell(btn_R8C1, arrRef112)
 
+
 def update_R8C2():
     print("R8C2 button pressed.")
     update_cell(btn_R8C2, arrRef113)
+
 
 def update_R8C3():
     print("R8C3 button pressed.")
     update_cell(btn_R8C3, arrRef114)
 
+
 def update_R8C4():
     print("R8C4 button pressed.")
     update_cell(btn_R8C4, arrRef115)
+
 
 def update_R8C5():
     print("R8C5 button pressed.")
     update_cell(btn_R8C5, arrRef116)
 
+
 def update_R8C6():
     print("R8C6 button pressed.")
     update_cell(btn_R8C6, arrRef117)
+
 
 def update_R8C7():
     print("R8C7 button pressed.")
     update_cell(btn_R8C7, arrRef118)
 
+
 def update_R8C8():
     print("R8C8 button pressed.")
     update_cell(btn_R8C8, arrRef119)
+
 
 def update_R8C9():
     print("R8C9 button pressed.")
     update_cell(btn_R8C9, arrRef120)
 
+
 def update_R8C10():
     print("R8C10 button pressed.")
     update_cell(btn_R8C10, arrRef121)
+
 
 def update_R8C11():
     print("R8C11 button pressed.")
     update_cell(btn_R8C11, arrRef122)
 
+
 def update_R8C12():
     print("R8C12 button pressed.")
     update_cell(btn_R8C12, arrRef123)
+
 
 def update_R8C13():
     print("R7C13 button pressed.")
     update_cell(btn_R8C13, arrRef124)
 
+
 def update_R8C14():
     print("R8C14 button pressed.")
     update_cell(btn_R8C14, arrRef125)
+
 
 def update_R8C15():
     print("R8C15 button pressed.")
     update_cell(btn_R8C15, arrRef126)
 
+
 def update_R8C16():
     print("R8C16 button pressed.")
     update_cell(btn_R8C16, arrRef127)
+
 
 def update_R9C1():
     print("R9C1 button pressed.")
     update_cell(btn_R9C1, arrRef128)
 
+
 def update_R9C2():
     print("R9C2 button pressed.")
     update_cell(btn_R9C2, arrRef129)
+
 
 def update_R9C3():
     print("R9C3 button pressed.")
     update_cell(btn_R9C3, arrRef130)
 
+
 def update_R9C4():
     print("R9C4 button pressed.")
     update_cell(btn_R9C4, arrRef131)
+
 
 def update_R9C5():
     print("R9C5 button pressed.")
     update_cell(btn_R9C5, arrRef132)
 
+
 def update_R9C6():
     print("R9C6 button pressed.")
     update_cell(btn_R9C6, arrRef133)
+
 
 def update_R9C7():
     print("R9C7 button pressed.")
     update_cell(btn_R9C7, arrRef134)
 
+
 def update_R9C8():
     print("R9C8 button pressed.")
     update_cell(btn_R9C8, arrRef135)
+
 
 def update_R9C9():
     print("R9C9 button pressed.")
     update_cell(btn_R9C9, arrRef136)
 
+
 def update_R9C10():
     print("R9C10 button pressed.")
     update_cell(btn_R9C10, arrRef137)
+
 
 def update_R9C11():
     print("R9C11 button pressed.")
     update_cell(btn_R9C11, arrRef138)
 
+
 def update_R9C12():
     print("R9C12 button pressed.")
     update_cell(btn_R9C12, arrRef139)
+
 
 def update_R9C13():
     print("R9C13 button pressed.")
     update_cell(btn_R9C13, arrRef140)
 
+
 def update_R9C14():
     print("R9C14 button pressed.")
     update_cell(btn_R9C14, arrRef141)
+
 
 def update_R9C15():
     print("R9C15 button pressed.")
     update_cell(btn_R9C15, arrRef142)
 
+
 def update_R9C16():
     print("R7C16 button pressed.")
     update_cell(btn_R9C16, arrRef143)
+
 
 def update_R10C1():
     print("R10C1 button pressed.")
     update_cell(btn_R10C1, arrRef144)
 
+
 def update_R10C2():
     print("R10C2 button pressed.")
     update_cell(btn_R10C2, arrRef145)
+
 
 def update_R10C3():
     print("R10C3 button pressed.")
     update_cell(btn_R10C3, arrRef146)
 
+
 def update_R10C4():
     print("R10C4 button pressed.")
     update_cell(btn_R10C4, arrRef147)
+
 
 def update_R10C5():
     print("R10C5 button pressed.")
     update_cell(btn_R10C5, arrRef148)
 
+
 def update_R10C6():
     print("R10C6 button pressed.")
     update_cell(btn_R10C6, arrRef149)
+
 
 def update_R10C7():
     print("R10C7 button pressed.")
     update_cell(btn_R10C7, arrRef150)
 
+
 def update_R10C8():
     print("R10C8 button pressed.")
     update_cell(btn_R10C8, arrRef151)
+
 
 def update_R10C9():
     print("R10C9 button pressed.")
     update_cell(btn_R10C9, arrRef152)
 
+
 def update_R10C10():
     print("R10C10 button pressed.")
     update_cell(btn_R10C10, arrRef153)
 
+
 def update_R10C11():
     print("R10C11 button pressed.")
     update_cell(btn_R10C11, arrRef154)
+
 
 def update_R10C12():
     print("R10C12 button pressed.")
@@ -2110,403 +2319,504 @@ def update_R10C13():
     print("R10C13 button pressed.")
     update_cell(btn_R10C13, arrRef156)
 
+
 def update_R10C14():
     print("R10C14 button pressed.")
     update_cell(btn_R10C14, arrRef157)
+
 
 def update_R10C15():
     print("R10C15 button pressed.")
     update_cell(btn_R10C15, arrRef158)
 
+
 def update_R10C16():
     print("R10C16 button pressed.")
     update_cell(btn_R10C16, arrRef159)
+
 
 def update_R11C1():
     print("R11C1 button pressed.")
     update_cell(btn_R11C1, arrRef160)
 
+
 def update_R11C2():
     print("R11C2 button pressed.")
     update_cell(btn_R11C2, arrRef161)
+
 
 def update_R11C3():
     print("R11C3 button pressed.")
     update_cell(btn_R11C3, arrRef162)
 
+
 def update_R11C4():
     update_cell(btn_R11C4, arrRef163)
+
 
 def update_R11C5():
     print("R11C5 button pressed.")
     update_cell(btn_R11C5, arrRef164)
 
+
 def update_R11C6():
     print("R11C6 button pressed.")
     update_cell(btn_R11C6, arrRef165)
+
 
 def update_R11C7():
     print("R11C7 button pressed.")
     update_cell(btn_R11C7, arrRef166)
 
+
 def update_R11C8():
     print("R11C8 button pressed.")
     update_cell(btn_R11C8, arrRef167)
+
 
 def update_R11C9():
     print("R11C9 button pressed.")
     update_cell(btn_R11C9, arrRef168)
 
+
 def update_R11C10():
     print("R11C10 button pressed.")
     update_cell(btn_R11C10, arrRef169)
+
 
 def update_R11C11():
     print("R11C11 button pressed.")
     update_cell(btn_R11C11, arrRef170)
 
+
 def update_R11C12():
     print("R11C12 button pressed.")
     update_cell(btn_R11C12, arrRef171)
+
 
 def update_R11C13():
     print("R11C13 button pressed.")
     update_cell(btn_R11C13, arrRef172)
 
+
 def update_R11C14():
     print("R11C14 button pressed.")
     update_cell(btn_R11C14, arrRef173)
+
 
 def update_R11C15():
     print("R11C15 button pressed.")
     update_cell(btn_R11C15, arrRef174)
 
+
 def update_R11C16():
     print("R11C16 button pressed.")
     update_cell(btn_R11C16, arrRef175)
+
 
 def update_R12C1():
     print("R12C1 button pressed.")
     update_cell(btn_R12C1, arrRef176)
 
+
 def update_R12C2():
     print("R12C2 button pressed.")
     update_cell(btn_R12C2, arrRef177)
+
 
 def update_R12C3():
     print("R12C3 button pressed.")
     update_cell(btn_R12C3, arrRef178)
 
+
 def update_R12C4():
     print("R12C4 button pressed.")
     update_cell(btn_R12C4, arrRef179)
+
 
 def update_R12C5():
     print("R12C5 button pressed.")
     update_cell(btn_R12C5, arrRef180)
 
+
 def update_R12C6():
     print("R12C6 button pressed.")
     update_cell(btn_R12C6, arrRef181)
+
 
 def update_R12C7():
     print("R12C7 button pressed.")
     update_cell(btn_R12C7, arrRef182)
 
+
 def update_R12C8():
     print("R12C8 button pressed.")
     update_cell(btn_R12C8, arrRef183)
+
 
 def update_R12C9():
     print("R12C9 button pressed.")
     update_cell(btn_R12C9, arrRef184)
 
+
 def update_R12C10():
     print("R11C10 button pressed.")
     update_cell(btn_R12C10, arrRef185)
+
 
 def update_R12C11():
     print("R12C11 button pressed.")
     update_cell(btn_R12C11, arrRef186)
 
+
 def update_R12C12():
     print("R12C12 button pressed.")
     update_cell(btn_R12C12, arrRef187)
+
 
 def update_R12C13():
     print("R12C13 button pressed.")
     update_cell(btn_R12C13, arrRef188)
 
+
 def update_R12C14():
     print("R12C14 button pressed.")
     update_cell(btn_R12C14, arrRef189)
+
 
 def update_R12C15():
     print("R12C15 button pressed.")
     update_cell(btn_R12C15, arrRef190)
 
+
 def update_R12C16():
     print("R12C16 button pressed.")
     update_cell(btn_R12C16, arrRef191)
+
 
 def update_R13C1():
     print("R13C1 button pressed.")
     update_cell(btn_R13C1, arrRef192)
 
+
 def update_R13C2():
     print("R13C2 button pressed.")
     update_cell(btn_R13C2, arrRef193)
+
 
 def update_R13C3():
     print("R13C3 button pressed.")
     update_cell(btn_R13C3, arrRef194)
 
+
 def update_R13C4():
     print("R13C4 button pressed.")
     update_cell(btn_R13C4, arrRef195)
+
 
 def update_R13C5():
     print("R13C5 button pressed.")
     update_cell(btn_R13C5, arrRef196)
 
+
 def update_R13C6():
     print("R13C6 button pressed.")
     update_cell(btn_R13C6, arrRef197)
+
 
 def update_R13C7():
     print("R13C7 button pressed.")
     update_cell(btn_R13C7, arrRef198)
 
+
 def update_R13C8():
     print("R13C8 button pressed.")
     update_cell(btn_R13C8, arrRef199)
+
 
 def update_R13C9():
     print("R13C9 button pressed.")
     update_cell(btn_R13C9, arrRef200)
 
+
 def update_R13C10():
     print("R13C10 button pressed.")
     update_cell(btn_R13C10, arrRef201)
+
 
 def update_R13C11():
     print("R13C11 button pressed.")
     update_cell(btn_R13C11, arrRef202)
 
+
 def update_R13C12():
     print("R13C12 button pressed.")
     update_cell(btn_R13C12, arrRef203)
+
 
 def update_R13C13():
     print("R13C13 button pressed.")
     update_cell(btn_R13C13, arrRef204)
 
+
 def update_R13C14():
     print("R13C14 button pressed.")
     update_cell(btn_R13C14, arrRef205)
+
 
 def update_R13C15():
     print("R13C15 button pressed.")
     update_cell(btn_R13C15, arrRef206)
 
+
 def update_R13C16():
     print("R13C16 button pressed.")
     update_cell(btn_R13C16, arrRef207)
+
 
 def update_R14C1():
     print("R14C1 button pressed.")
     update_cell(btn_R14C1, arrRef208)
 
+
 def update_R14C2():
     print("R14C2 button pressed.")
     update_cell(btn_R14C2, arrRef209)
+
 
 def update_R14C3():
     print("R14C3 button pressed.")
     update_cell(btn_R14C3, arrRef210)
 
+
 def update_R14C4():
     print("R14C4 button pressed.")
     update_cell(btn_R14C4, arrRef211)
+
 
 def update_R14C5():
     print("R14C5 button pressed.")
     update_cell(btn_R14C5, arrRef212)
 
+
 def update_R14C6():
     print("R14C6 button pressed.")
     update_cell(btn_R14C6, arrRef213)
+
 
 def update_R14C7():
     print("R14C7 button pressed.")
     update_cell(btn_R14C7, arrRef214)
 
+
 def update_R14C8():
     print("R14C8 button pressed.")
     update_cell(btn_R14C8, arrRef215)
+
 
 def update_R14C9():
     print("R14C9 button pressed.")
     update_cell(btn_R14C9, arrRef216)
 
+
 def update_R14C10():
     print("R14C10 button pressed.")
     update_cell(btn_R14C10, arrRef217)
+
 
 def update_R14C11():
     print("R14C11 button pressed.")
     update_cell(btn_R14C11, arrRef218)
 
+
 def update_R14C12():
     print("R14C12 button pressed.")
     update_cell(btn_R14C12, arrRef219)
+
 
 def update_R14C13():
     print("R14C13 button pressed.")
     update_cell(btn_R14C13, arrRef220)
 
+
 def update_R14C14():
     print("R14C14 button pressed.")
     update_cell(btn_R14C14, arrRef221)
+
 
 def update_R14C15():
     print("R14C15 button pressed.")
     update_cell(btn_R14C15, arrRef222)
 
+
 def update_R14C16():
     print("R14C16 button pressed.")
     update_cell(btn_R14C16, arrRef223)
+
 
 def update_R15C1():
     print("R15C1 button pressed.")
     update_cell(btn_R15C1, arrRef224)
 
+
 def update_R15C2():
     print("R15C2 button pressed.")
     update_cell(btn_R15C2, arrRef225)
+
 
 def update_R15C3():
     print("R15C3 button pressed.")
     update_cell(btn_R15C3, arrRef226)
 
+
 def update_R15C4():
     print("R15C4 button pressed.")
     update_cell(btn_R15C4, arrRef227)
+
 
 def update_R15C5():
     print("R15C5 button pressed.")
     update_cell(btn_R15C5, arrRef228)
 
+
 def update_R15C6():
     print("R15C6 button pressed.")
     update_cell(btn_R15C6, arrRef229)
+
 
 def update_R15C7():
     print("R15C7 button pressed.")
     update_cell(btn_R15C7, arrRef230)
 
+
 def update_R15C8():
     print("R15C8 button pressed.")
     update_cell(btn_R15C8, arrRef231)
+
 
 def update_R15C9():
     print("R15C9 button pressed.")
     update_cell(btn_R15C9, arrRef232)
 
+
 def update_R15C10():
     print("R15C10 button pressed.")
     update_cell(btn_R15C10, arrRef233)
+
 
 def update_R15C11():
     print("R15C11 button pressed.")
     update_cell(btn_R15C11, arrRef234)
 
+
 def update_R15C12():
     print("R15C12 button pressed.")
     update_cell(btn_R15C12, arrRef235)
+
 
 def update_R15C13():
     print("R15C13 button pressed.")
     update_cell(btn_R15C13, arrRef236)
 
+
 def update_R15C14():
     print("R15C14 button pressed.")
     update_cell(btn_R15C14, arrRef237)
+
 
 def update_R15C15():
     print("R15C15 button pressed.")
     update_cell(btn_R15C15, arrRef238)
 
+
 def update_R15C16():
     print("R15C16 button pressed.")
     update_cell(btn_R15C16, arrRef239)
+
 
 def update_R16C1():
     print("R16C1 button pressed.")
     update_cell(btn_R16C1, arrRef240)
 
+
 def update_R16C2():
     print("R16C2 button pressed.")
     update_cell(btn_R16C2, arrRef241)
+
 
 def update_R16C3():
     print("R16C3 button pressed.")
     update_cell(btn_R16C3, arrRef242)
 
+
 def update_R16C4():
     print("R16C4 button pressed.")
     update_cell(btn_R16C4, arrRef243)
+
 
 def update_R16C5():
     print("R16C5 button pressed.")
     update_cell(btn_R16C5, arrRef244)
 
+
 def update_R16C6():
     print("R16C6 button pressed.")
     update_cell(btn_R16C6, arrRef245)
+
 
 def update_R16C7():
     print("R16C7 button pressed.")
     update_cell(btn_R16C7, arrRef246)
 
+
 def update_R16C8():
     print("R16C8 button pressed.")
     update_cell(btn_R16C8, arrRef247)
+
 
 def update_R16C9():
     print("R16C9 button pressed.")
     update_cell(btn_R16C9, arrRef248)
 
+
 def update_R16C10():
     print("R16C10 button pressed.")
     update_cell(btn_R16C10, arrRef249)
+
 
 def update_R16C11():
     print("R16C11 button pressed.")
     update_cell(btn_R16C11, arrRef250)
 
+
 def update_R16C12():
     print("R16C12 button pressed.")
     update_cell(btn_R16C12, arrRef251)
+
 
 def update_R16C13():
     print("R16C13 button pressed.")
     update_cell(btn_R16C13, arrRef252)
 
+
 def update_R16C14():
     print("R16C14 button pressed.")
     update_cell(btn_R16C14, arrRef253)
+
 
 def update_R16C15():
     print("R16C15 button pressed.")
     update_cell(btn_R16C15, arrRef254)
 
+
 def update_R16C16():
     print("R16C16 button pressed.")
     update_cell(btn_R16C16, arrRef255)
 
-def ButtonRemoveANumber(): #sender As Object, e As EventArgs) Handles ButtonRemoveANumber.Click
-        bRemoveANumberFromACell = True
+
+def ButtonRemoveANumber():  # sender As Object, e As EventArgs) Handles ButtonRemoveANumber.Click
+    bRemoveANumberFromACell = True
+
 
 def cells_done():
     cells_done = 256 - len(not_done_arefs)
@@ -2535,13 +2845,13 @@ def cells_remaining():
 #                 char_Count = 0
 #             if len(aref['nums']) > 2 and aref['row'] == 1:
 #                print("aref info ", aref['btn'], len(aref['nums']), aref['nums'])
-            # if "5" in aref['nums']:
-            #     # if "secret" in raw_file_content:
-            #     print("aref info ", aref['nums'])
-        #     if item == arrRef0:
-        #         current_btn = item['btn']
-        #         print(item['text'])  # , item[3], item[4], item[5]
-        # print("2394 aref ", item)
+    # if "5" in aref['nums']:
+    #     # if "secret" in raw_file_content:
+    #     print("aref info ", aref['nums'])
+    #     if item == arrRef0:
+    #         current_btn = item['btn']
+    #         print(item['text'])  # , item[3], item[4], item[5]
+    # print("2394 aref ", item)
     #     Me.TextBox1.Text = Me.TextBox1.Text & "Entering CheckForOnlyOneNumber " & vbCrLf
     #     Dim i As Int16
     #     'Dim j As Int16
@@ -2577,16 +2887,19 @@ def cells_remaining():
 def CheckForOnlyNumberInARow():
     pass
 
+
 def create_record():
     pass
+
 
 def temp_Test():
     global currentNumber
     currentNumber = 'D'
     # update_cell(btn_R1C2, arrRef1)
     for aref in not_done_arefs:
-        temp_btn = aref['btn'] # ''' This works '''
-        temp_aref = eval(aref['aref']) # ''' This works when aref is a string'''
+        temp_btn = aref['btn']  # ''' This works '''
+        temp_aref = eval(
+            aref['aref'])  # ''' This works when aref is a string'''
         update_cell(temp_btn, temp_aref)
         # temp_btn = arrRef0['btn']  # ''' This works when aref is a string'''
         # temp_btn = eval(arrRef0['btn']) # TypeError: eval() arg 1 must be a string, bytes or code object
@@ -2596,18 +2909,20 @@ def temp_Test():
         print("1901 temp_aref ", temp_aref)
         print("1902 temp_aref ", type(temp_btn), temp_btn)
 
-
         break
 
+
 def btn_ShowAref():
-    aref_text ='aref=arrRef0, btn=btn_R1C1, \n' \
-    'row=1, col=1, sq=1, done=False,\n' \
-    'nums=0123456789ABCDEF,\n' \
-    'width=6, height=hit, font=labelfont, \n' \
-    'fg=black'
+    aref_text = 'aref=arrRef0, btn=btn_R1C1, \n' \
+        'row=1, col=1, sq=1, done=False,\n' \
+        'nums=0123456789ABCDEF,\n' \
+        'width=6, height=hit, font=labelfont, \n' \
+        'fg=black'
     txt_Other.insert(END, aref_text)
 
+
 solution_1 = {}
+
 
 def save_currentSolution():
     print("2764 Entered save_currentSolution")
@@ -2651,8 +2966,7 @@ def save_currentSolution():
         #     # print("2768 aref0['btn'] ", arefID,  aref['btn'], aref['done'], aref['nums'], aref['fg'])
         # i += 1
 
-
-                 # [aref1[btn='btn_R1C2', done=False, nums="0123\n4567\n89AB\nCDEF", fg="black"]]
+            # [aref1[btn='btn_R1C2', done=False, nums="0123\n4567\n89AB\nCDEF", fg="black"]]
     # print("2766 solution 1 ", solution_1)
 
     # arrRef0 = dict(btn='btn_R1C1', row=1, col=1, sq=1, done=False, nums="0123\n4567\n89AB\nCDEF", width=6, height=hit,
@@ -2661,6 +2975,7 @@ def save_currentSolution():
     #     json.dump(data, f)
     # aref0('done') = aref0('done')
     # aref0('nums') = aref0('nums')
+
 
 def load_currentSolution():
     # arc = dict{}
@@ -2951,11 +3266,227 @@ def load_solution_1(btn_R1C1=None):
     # arrRef0['fg'] = 'red'
     # btn_R1C1['text'] = arrRef0['nums']
 
-
     # for cell in not_done_arefs:
     #     current_button = cell['btn']
     #     aref = eval(btn_dict[current_button])
-        # aref0('done') = False
+    # aref0('done') = False
+
+
+def load_solution_2(btn_R1C1=None):
+    print("3274 Entered load_solution_2")
+    global currentNumber
+    currentNumber = '5'
+    update_cell(btn_R1C2, arrRef1)
+    currentNumber = '7'
+    update_cell(btn_R1C3, arrRef2)
+    currentNumber = 'F'
+    update_cell(btn_R1C5, arrRef4)
+    currentNumber = 'C'
+    update_cell(btn_R1C8, arrRef7)
+    currentNumber = '8'
+    update_cell(btn_R1C9, arrRef8)
+    currentNumber = '1'
+    update_cell(btn_R1C12, arrRef11)
+    currentNumber = '4'
+    update_cell(btn_R1C13, arrRef12)
+    currentNumber = '6'
+    update_cell(btn_R1C14, arrRef13)
+    currentNumber = '8'
+    update_cell(btn_R2C2, arrRef17)
+    currentNumber = '1'
+    update_cell(btn_R2C3, arrRef18)
+    currentNumber = '3'
+    update_cell(btn_R2C4, arrRef19)
+    currentNumber = 'A'
+    update_cell(btn_R2C5, arrRef20)
+    currentNumber = '9'
+    update_cell(btn_R2C7, arrRef22)
+    currentNumber = 'F'
+    update_cell(btn_R2C11, arrRef26)
+    currentNumber = '7'
+    update_cell(btn_R2C13, arrRef28)
+    currentNumber = '0'
+    update_cell(btn_R2C16, arrRef31)
+    currentNumber = '2'
+    update_cell(btn_R3C2, arrRef33)
+    currentNumber = 'E'
+    update_cell(btn_R3C4, arrRef35)
+    currentNumber = '5'
+    update_cell(btn_R3C8, arrRef39)
+    currentNumber = '7'
+    update_cell(btn_R3C12, arrRef43)
+    currentNumber = 'D'
+    update_cell(btn_R3C15, arrRef46)
+    currentNumber = '0'
+    update_cell(btn_R4C3, arrRef50)
+    currentNumber = '3'
+    update_cell(btn_R4C6, arrRef53)
+    currentNumber = '2'
+    update_cell(btn_R4C7, arrRef54)
+    currentNumber = 'D'
+    update_cell(btn_R4C8, arrRef55)
+    currentNumber = 'C'
+    update_cell(btn_R4C11, arrRef58)
+    currentNumber = '4'
+    update_cell(btn_R4C12, arrRef59)
+    currentNumber = '8'
+    update_cell(btn_R4C13, arrRef60)
+    currentNumber = 'C'
+    update_cell(btn_R5C7, arrRef70)
+    currentNumber = '6'
+    update_cell(btn_R5C9, arrRef72)
+    currentNumber = '4'
+    update_cell(btn_R5C10, arrRef73)
+    currentNumber = '5'
+    update_cell(btn_R5C13, arrRef76)
+    currentNumber = '9'
+    update_cell(btn_R5C14, arrRef77)
+    currentNumber = 'B'
+    update_cell(btn_R5C16, arrRef79)
+    currentNumber = 'F'
+    update_cell(btn_R6C3, arrRef82)
+    currentNumber = '7'
+    update_cell(btn_R6C6, arrRef85)
+    currentNumber = 'C'
+    update_cell(btn_R6C9, arrRef88)
+    currentNumber = '8'
+    update_cell(btn_R6C10, arrRef89)
+    currentNumber = '6'
+    update_cell(btn_R6C16, arrRef95)
+    currentNumber = '2'
+    update_cell(btn_R7C1, arrRef96)
+    currentNumber = 'C'
+    update_cell(btn_R7C2, arrRef97)
+    currentNumber = '5'
+    update_cell(btn_R7C3, arrRef98)
+    currentNumber = '4'
+    update_cell(btn_R7C6, arrRef101)
+    currentNumber = 'A'
+    update_cell(btn_R7C15, arrRef110)
+    currentNumber = '9'
+    update_cell(btn_R8C2, arrRef113)
+    currentNumber = 'B'
+    update_cell(btn_R8C3, arrRef114)
+    currentNumber = '5'
+    update_cell(btn_R8C7, arrRef118)
+    currentNumber = 'A'
+    update_cell(btn_R8C8, arrRef119)
+    currentNumber = 'D'
+    update_cell(btn_R8C9, arrRef120)
+    currentNumber = '3'
+    update_cell(btn_R8C12, arrRef123)
+    currentNumber = 'C'
+    update_cell(btn_R8C15, arrRef126)
+    currentNumber = 'E'
+    update_cell(btn_R9C2, arrRef129)
+    currentNumber = 'C'
+    update_cell(btn_R9C5, arrRef132)
+    currentNumber = '3'
+    update_cell(btn_R9C8, arrRef135)
+    currentNumber = 'F'
+    update_cell(btn_R9C9, arrRef136)
+    currentNumber = '5'
+    update_cell(btn_R9C10, arrRef137)
+    currentNumber = '0'
+    update_cell(btn_R9C14, arrRef141)
+    currentNumber = '1'
+    update_cell(btn_R9C15, arrRef142)
+    currentNumber = '1'
+    update_cell(btn_R10C2, arrRef145)
+    currentNumber = '0'
+    update_cell(btn_R10C11, arrRef154)
+    currentNumber = '3'
+    update_cell(btn_R10C14, arrRef157)
+    currentNumber = '4'
+    update_cell(btn_R10C15, arrRef158)
+    currentNumber = '5'
+    update_cell(btn_R10C16, arrRef159)
+    currentNumber = '5'
+    update_cell(btn_R11C1, arrRef160)
+    currentNumber = '4'
+    update_cell(btn_R11C7, arrRef166)
+    currentNumber = '8'
+    update_cell(btn_R11C8, arrRef167)
+    currentNumber = '1'
+    update_cell(btn_R11C11, arrRef170)
+    currentNumber = 'E'
+    update_cell(btn_R11C14, arrRef173)
+    # currentNumber = '3'
+    # update_cell(btn_R11C13, arrRef172)
+    # currentNumber = 'A'
+    # update_cell(btn_R11C14, arrRef173)
+    # currentNumber = 'E'
+    # update_cell(btn_R11C15, arrRef174)
+    currentNumber = '7'
+    update_cell(btn_R12C1, arrRef176)
+    currentNumber = '2'
+    update_cell(btn_R12C3, arrRef178)
+    currentNumber = 'A'
+    update_cell(btn_R12C4, arrRef179)
+    currentNumber = '1'
+    update_cell(btn_R12C7, arrRef182)
+    currentNumber = 'E'
+    update_cell(btn_R12C8, arrRef183)
+    currentNumber = 'B'
+    update_cell(btn_R12C10, arrRef185)
+    currentNumber = '5'
+    update_cell(btn_R13C4, arrRef195)
+    currentNumber = 'D'
+    update_cell(btn_R13C5, arrRef196)
+    currentNumber = 'A'
+    update_cell(btn_R13C6, arrRef197)
+    currentNumber = '0'
+    update_cell(btn_R13C9, arrRef200)
+    currentNumber = 'C'
+    update_cell(btn_R13C10, arrRef201)
+    currentNumber = 'E'
+    update_cell(btn_R13C11, arrRef202)
+    currentNumber = '2'
+    update_cell(btn_R13C14, arrRef205)
+    currentNumber = '6'
+    update_cell(btn_R14C2, arrRef209)
+    currentNumber = '1'
+    update_cell(btn_R14C5, arrRef212)
+    currentNumber = '2'
+    update_cell(btn_R14C9, arrRef216)
+    currentNumber = 'A'
+    update_cell(btn_R14C13, arrRef220)
+    currentNumber = '7'
+    update_cell(btn_R14C15, arrRef222)
+    currentNumber = '9'
+    update_cell(btn_R15C1, arrRef224)
+    currentNumber = '2'
+    update_cell(btn_R15C4, arrRef227)
+    currentNumber = '5'
+    update_cell(btn_R15C6, arrRef229)
+    currentNumber = '7'
+    update_cell(btn_R15C10, arrRef233)
+    currentNumber = 'F'
+    update_cell(btn_R15C12, arrRef235)
+    currentNumber = 'E'
+    update_cell(btn_R15C13, arrRef236)
+    currentNumber = '4'
+    update_cell(btn_R15C14, arrRef237)
+    currentNumber = '0'
+    update_cell(btn_R15C15, arrRef238)
+    currentNumber = 'E'
+    update_cell(btn_R16C3, arrRef242)
+    currentNumber = 'D'
+    update_cell(btn_R16C4, arrRef243)
+    currentNumber = '4'
+    update_cell(btn_R16C5, arrRef244)
+    currentNumber = '2'
+    update_cell(btn_R16C8, arrRef247)
+    currentNumber = '5'
+    update_cell(btn_R16C9, arrRef248)
+    currentNumber = 'A'
+    update_cell(btn_R16C12, arrRef251)
+    currentNumber = 'F'
+    update_cell(btn_R16C14, arrRef253)
+    currentNumber = 'B'
+    update_cell(btn_R16C15, arrRef254)
+    cells_done()
+    cells_remaining()
 
 
 lbl_Title = Label(main_canvas, text="Monster Sudoku Solver")
@@ -2966,459 +3497,459 @@ lbl_Title.config(font=titlefont)
 # lbl_LineSpace.config(font=titlefont)
 
 btn_R1C1 = tk.Button(F1_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R1C1, width=6, height=hit)
+                     command=update_R1C1, width=6, height=hit)
 btn_R1C1.grid(row=1, column=0, sticky='w')
 btn_R1C1.config(font=labelfont)
 # btn_R1C1.bind("<<ButtonPress>>", update_R1C1())
 btn_R1C2 = Button(F1_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R1C2, width=6, height=hit)
+                  command=update_R1C2, width=6, height=hit)
 btn_R1C2.grid(row=1, column=1, sticky='w')
 btn_R1C2.config(font=labelfont)
 # btn_R1C2.bind("<<ComboboxSelected>>", create_record())
 btn_R1C3 = Button(F1_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R1C3, width=6, height=hit)
+                  command=update_R1C3, width=6, height=hit)
 btn_R1C3.grid(row=1, column=2, sticky='w')
 btn_R1C3.config(font=labelfont)
 # btn_R1C3.bind("<<ComboboxSelected>>", create_record())
 btn_R1C4 = Button(F1_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R1C4, width=6, height=hit)
+                  command=update_R1C4, width=6, height=hit)
 btn_R1C4.grid(row=1, column=3, sticky='w')
 btn_R1C4.config(font=labelfont)
 btn_R1C4.bind("<<ComboboxSelected>>", create_record())
 
 btn_R1C5 = Button(F2_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R1C5, width=6, height=hit)
+                  command=update_R1C5, width=6, height=hit)
 btn_R1C5.grid(row=1, column=0, sticky='w')
 btn_R1C5.config(font=labelfont)
 # btn_R1C5.bind("<<ComboboxSelected>>", create_record())
 btn_R1C6 = Button(F2_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R1C6, width=6, height=hit)
+                  command=update_R1C6, width=6, height=hit)
 btn_R1C6.grid(row=1, column=1, sticky='w')
 btn_R1C6.config(font=labelfont)
 btn_R1C6.bind("<<ComboboxSelected>>", create_record())
 btn_R1C7 = Button(F2_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R1C7, width=6, height=hit)
+                  command=update_R1C7, width=6, height=hit)
 btn_R1C7.grid(row=1, column=2, sticky='w')
 btn_R1C7.config(font=labelfont)
 # btn_R1C7.bind("<<ComboboxSelected>>", create_record())
 btn_R1C8 = Button(F2_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R1C8, width=6, height=hit)
+                  command=update_R1C8, width=6, height=hit)
 btn_R1C8.grid(row=1, column=3, sticky='w')
 btn_R1C8.config(font=labelfont)
 # btn_R1C8.bind("<<ComboboxSelected>>", create_record())
 
 btn_R1C9 = Button(F3_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R1C9, width=6, height=hit)
+                  command=update_R1C9, width=6, height=hit)
 btn_R1C9.grid(row=1, column=0, sticky='w')
 btn_R1C9.config(font=labelfont)
 # btn_R1C9.bind("<<ComboboxSelected>>", create_record())
 btn_R1C10 = Button(F3_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R1C10, width=6, height=hit)
+                   command=update_R1C10, width=6, height=hit)
 btn_R1C10.grid(row=1, column=1, sticky='w')
 btn_R1C10.config(font=labelfont)
 # btn_R1C10.bind("<<ComboboxSelected>>", create_record())
 btn_R1C11 = Button(F3_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R1C11, width=6, height=hit)
+                   command=update_R1C11, width=6, height=hit)
 btn_R1C11.grid(row=1, column=2, sticky='w')
 btn_R1C11.config(font=labelfont)
 btn_R1C12 = Button(F3_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R1C12, width=6, height=hit)
+                   command=update_R1C12, width=6, height=hit)
 btn_R1C12.grid(row=1, column=3, sticky='w')
 btn_R1C12.config(font=labelfont)
 # btn_R1C12.bind("<<ComboboxSelected>>", create_record())
 btn_R1C13 = Button(F4_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R1C13, width=6, height=hit)
+                   command=update_R1C13, width=6, height=hit)
 btn_R1C13.grid(row=1, column=0, sticky='w')
 btn_R1C13.config(font=labelfont)
 # btn_R1C13.bind("<<ComboboxSelected>>", create_record())
 btn_R1C14 = Button(F4_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R1C14, width=6, height=hit)
+                   command=update_R1C14, width=6, height=hit)
 btn_R1C14.grid(row=1, column=1, sticky='w')
 btn_R1C14.config(font=labelfont)
 # btn_R1C14.bind("<<ComboboxSelected>>", create_record())
 btn_R1C15 = Button(F4_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R1C15, width=6, height=hit)
+                   command=update_R1C15, width=6, height=hit)
 btn_R1C15.grid(row=1, column=2, sticky='w')
 btn_R1C15.config(font=labelfont)
 btn_R1C16 = Button(F4_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R1C16, width=6, height=hit)
+                   command=update_R1C16, width=6, height=hit)
 btn_R1C16.grid(row=1, column=3, sticky='w')
 btn_R1C16.config(font=labelfont)
 # btn_R1C16.bind("<<ComboboxSelected>>", create_record())
 btn_0 = Button(sn_frame, wraplength=40, justify=LEFT, text='0',
-            command=set_current_num_to_0, width=6, height=hit)
+               command=set_current_num_to_0, width=6, height=hit)
 btn_0.grid(row=2, column=0, sticky='nw')
 btn_0.config(font=entryfont)
 btn_1 = Button(sn_frame, wraplength=40, justify=LEFT, text='1',
-            command=set_current_num_to_1, width=6, height=hit)
+               command=set_current_num_to_1, width=6, height=hit)
 btn_1.grid(row=2, column=1, sticky='nw')
 btn_1.config(font=labelfont)
 btn_2 = Button(sn_frame, wraplength=40, justify=LEFT, text='2',
-            command=set_current_num_to_2, width=6, height=hit)
+               command=set_current_num_to_2, width=6, height=hit)
 btn_2.grid(row=2, column=2, sticky='nw')
 btn_2.config(font=labelfont)
 btn_3 = Button(sn_frame, wraplength=40, justify=LEFT, text='3',
-            command=set_current_num_to_3, width=6, height=hit)
+               command=set_current_num_to_3, width=6, height=hit)
 btn_3.grid(row=2, column=3, sticky='nw')
 btn_3.config(font=labelfont)
 # ***********
 btn_R2C1 = Button(F1_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R2C1, width=6, height=hit)
+                  command=update_R2C1, width=6, height=hit)
 btn_R2C1.grid(row=2, column=0, sticky='w')
 btn_R2C1.config(font=labelfont)
 btn_R2C1.bind("<<ComboboxSelected>>", create_record())
 btn_R2C2 = Button(F1_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R2C2, width=6, height=hit)
+                  command=update_R2C2, width=6, height=hit)
 btn_R2C2.grid(row=2, column=1, sticky='w')
 btn_R2C2.config(font=labelfont)
 btn_R2C2.bind("<<ComboboxSelected>>", create_record())
 btn_R2C3 = Button(F1_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R2C3, width=6, height=hit)
+                  command=update_R2C3, width=6, height=hit)
 btn_R2C3.grid(row=2, column=2, sticky='w')
 btn_R2C3.config(font=labelfont)
 btn_R2C3.bind("<<ComboboxSelected>>", create_record())
 btn_R2C4 = Button(F1_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R2C4, width=6, height=hit)
+                  command=update_R2C4, width=6, height=hit)
 btn_R2C4.grid(row=2, column=3, sticky='w')
 btn_R2C4.config(font=labelfont)
 btn_R2C4.bind("<<ComboboxSelected>>", create_record())
 
 btn_R2C5 = Button(F2_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R2C5, width=6, height=hit)
+                  command=update_R2C5, width=6, height=hit)
 btn_R2C5.grid(row=2, column=0, sticky='w')
 btn_R2C5.config(font=labelfont)
 btn_R2C5.bind("<<ComboboxSelected>>", create_record())
 btn_R2C6 = Button(F2_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R2C6, width=6, height=hit)
+                  command=update_R2C6, width=6, height=hit)
 btn_R2C6.grid(row=2, column=1, sticky='w')
 btn_R2C6.config(font=labelfont)
 btn_R2C6.bind("<<ComboboxSelected>>", create_record())
 btn_R2C7 = Button(F2_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R2C7, width=6, height=hit)
+                  command=update_R2C7, width=6, height=hit)
 btn_R2C7.grid(row=2, column=2, sticky='w')
 btn_R2C7.config(font=labelfont)
 btn_R2C7.bind("<<ComboboxSelected>>", create_record())
 btn_R2C8 = Button(F2_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R2C8, width=6, height=hit)
+                  command=update_R2C8, width=6, height=hit)
 btn_R2C8.grid(row=2, column=3, sticky='w')
 btn_R2C8.config(font=labelfont)
 btn_R2C8.bind("<<ComboboxSelected>>", create_record())
 
 btn_R2C9 = Button(F3_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R2C9, width=6, height=hit)
+                  command=update_R2C9, width=6, height=hit)
 btn_R2C9.grid(row=2, column=0, sticky='w')
 btn_R2C9.config(font=labelfont)
 btn_R2C9.bind("<<ComboboxSelected>>", create_record())
 btn_R2C10 = Button(F3_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R2C10, width=6, height=hit)
+                   command=update_R2C10, width=6, height=hit)
 btn_R2C10.grid(row=2, column=1, sticky='w')
 btn_R2C10.config(font=labelfont)
 btn_R2C11 = Button(F3_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R2C11, width=6, height=hit)
+                   command=update_R2C11, width=6, height=hit)
 btn_R2C11.grid(row=2, column=2, sticky='w')
 btn_R2C11.config(font=labelfont)
 btn_R2C12 = Button(F3_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R2C12, width=6, height=hit)
+                   command=update_R2C12, width=6, height=hit)
 btn_R2C12.grid(row=2, column=3, sticky='w')
 btn_R2C12.config(font=labelfont)
 # btn_R2C12.bind("<<ComboboxSelected>>", create_record())
 btn_R2C13 = Button(F4_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R2C13, width=6, height=hit)
+                   command=update_R2C13, width=6, height=hit)
 btn_R2C13.grid(row=2, column=0, sticky='w')
 btn_R2C13.config(font=labelfont)
 # btn_R2C13.bind("<<ComboboxSelected>>", create_record())
 btn_R2C14 = Button(F4_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R2C14, width=6, height=hit)
+                   command=update_R2C14, width=6, height=hit)
 btn_R2C14.grid(row=2, column=1, sticky='w')
 btn_R2C14.config(font=labelfont)
 btn_R2C14.bind("<<ComboboxSelected>>", create_record())
 btn_R2C15 = Button(F4_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R2C15, width=6, height=hit)
+                   command=update_R2C15, width=6, height=hit)
 btn_R2C15.grid(row=2, column=2, sticky='w')
 btn_R2C15.config(font=labelfont)
 btn_R2C16 = Button(F4_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R2C16, width=6, height=hit)
+                   command=update_R2C16, width=6, height=hit)
 btn_R2C16.grid(row=2, column=3, sticky='w')
 btn_R2C16.config(font=labelfont)
 # btn_R2C16.bind("<<ComboboxSelected>>", create_record())
 btn_4 = Button(sn_frame, wraplength=40, justify=LEFT, text='4',
-            command=set_current_num_to_4, width=6, height=hit)
+               command=set_current_num_to_4, width=6, height=hit)
 btn_4.grid(row=3, column=0, sticky='nw')
 btn_4.config(font=entryfont)
 btn_5 = Button(sn_frame, wraplength=40, justify=LEFT, text='5',
-            command=set_current_num_to_5, width=6, height=hit)
+               command=set_current_num_to_5, width=6, height=hit)
 btn_5.grid(row=3, column=1, sticky='nw')
 btn_5.config(font=entryfont)
 btn_6 = Button(sn_frame, wraplength=40, justify=LEFT, text='6',
-            command=set_current_num_to_6, width=6, height=hit)
+               command=set_current_num_to_6, width=6, height=hit)
 btn_6.grid(row=3, column=2, sticky='nw')
 btn_6.config(font=entryfont)
 btn_7 = Button(sn_frame, wraplength=48, justify=LEFT, text='7',
-            command=set_current_num_to_7, width=6, height=hit)
+               command=set_current_num_to_7, width=6, height=hit)
 btn_7.grid(row=3, column=3, sticky='nw')
 btn_7.config(font=entryfont)
 btn_7.bind("<<ButtonPress>>", set_current_num_to_7)   # <<ButtonPress>>
 ######
 btn_R3C1 = Button(F1_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R3C1, width=6, height=hit)
+                  command=update_R3C1, width=6, height=hit)
 btn_R3C1.grid(row=3, column=0, sticky='w')
 btn_R3C1.config(font=labelfont)
 btn_R3C1.bind("<<ComboboxSelected>>", create_record())
 btn_R3C2 = Button(F1_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R3C2, width=6, height=hit)
+                  command=update_R3C2, width=6, height=hit)
 btn_R3C2.grid(row=3, column=1, sticky='w')
 btn_R3C2.config(font=labelfont)
 btn_R3C2.bind("<<ComboboxSelected>>", create_record())
 btn_R3C3 = Button(F1_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R3C3, width=6, height=hit)
+                  command=update_R3C3, width=6, height=hit)
 btn_R3C3.grid(row=3, column=2, sticky='w')
 btn_R3C3.config(font=labelfont)
 # btn_R3C3.bind("<<ComboboxSelected>>", create_record())
 btn_R3C4 = Button(F1_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R3C4, width=6, height=hit)
+                  command=update_R3C4, width=6, height=hit)
 btn_R3C4.grid(row=3, column=3, sticky='w')
 btn_R3C4.config(font=labelfont)
 # btn_R3C4.bind("<<ComboboxSelected>>", create_record())
 
 btn_R3C5 = Button(F2_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R3C5, width=6, height=hit)
+                  command=update_R3C5, width=6, height=hit)
 btn_R3C5.grid(row=3, column=0, sticky='w')
 btn_R3C5.config(font=labelfont)
 # btn_R3C5.bind("<<ComboboxSelected>>", create_record())
 btn_R3C6 = Button(F2_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R3C6, width=6, height=hit)
+                  command=update_R3C6, width=6, height=hit)
 btn_R3C6.grid(row=3, column=1, sticky='w')
 btn_R3C6.config(font=labelfont)
 # btn_R3C6.bind("<<ComboboxSelected>>", create_record())
 btn_R3C7 = Button(F2_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R3C7, width=6, height=hit)
+                  command=update_R3C7, width=6, height=hit)
 btn_R3C7.grid(row=3, column=2, sticky='w')
 btn_R3C7.config(font=labelfont)
 btn_R3C7.bind("<<ComboboxSelected>>", create_record())
 btn_R3C8 = Button(F2_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R3C8, width=6, height=hit)
+                  command=update_R3C8, width=6, height=hit)
 btn_R3C8.grid(row=3, column=3, sticky='w')
 btn_R3C8.config(font=labelfont)
 btn_R3C8.bind("<<ComboboxSelected>>", create_record())
 
 btn_R3C9 = Button(F3_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R3C9, width=6, height=hit)
+                  command=update_R3C9, width=6, height=hit)
 btn_R3C9.grid(row=3, column=0, sticky='w')
 btn_R3C9.config(font=labelfont)
 btn_R3C9.bind("<<ComboboxSelected>>", create_record())
 btn_R3C10 = Button(F3_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R3C10, width=6, height=hit)
+                   command=update_R3C10, width=6, height=hit)
 btn_R3C10.grid(row=3, column=1, sticky='w')
 btn_R3C10.config(font=labelfont)
 btn_R3C10.bind("<<ComboboxSelected>>", create_record())
 btn_R3C11 = Button(F3_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R3C11, width=6, height=hit)
+                   command=update_R3C11, width=6, height=hit)
 btn_R3C11.grid(row=3, column=2, sticky='w')
 btn_R3C11.config(font=labelfont)
 btn_R3C12 = Button(F3_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R3C12, width=6, height=hit)
+                   command=update_R3C12, width=6, height=hit)
 btn_R3C12.grid(row=3, column=3, sticky='w')
 btn_R3C12.config(font=labelfont)
 btn_R3C12.bind("<<ComboboxSelected>>", create_record())
 btn_R3C13 = Button(F4_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R3C13, width=6, height=hit)
+                   command=update_R3C13, width=6, height=hit)
 btn_R3C13.grid(row=3, column=0, sticky='w')
 btn_R3C13.config(font=labelfont)
 btn_R3C13.bind("<<ComboboxSelected>>", create_record())
 btn_R3C14 = Button(F4_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R3C14, width=6, height=hit)
+                   command=update_R3C14, width=6, height=hit)
 btn_R3C14.grid(row=3, column=1, sticky='w')
 btn_R3C14.config(font=labelfont)
 btn_R3C14.bind("<<ComboboxSelected>>", create_record())
 btn_R3C15 = Button(F4_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R3C15, width=6, height=hit)
+                   command=update_R3C15, width=6, height=hit)
 btn_R3C15.grid(row=3, column=2, sticky='w')
 btn_R3C15.config(font=labelfont)
 btn_R3C16 = Button(F4_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R3C16, width=6, height=hit)
+                   command=update_R3C16, width=6, height=hit)
 btn_R3C16.grid(row=3, column=3, sticky='w')
 btn_R3C16.config(font=labelfont)
 btn_8 = Button(sn_frame, wraplength=40, justify=LEFT, text='8',
-            command=set_current_num_to_8, width=6, height=hit)
+               command=set_current_num_to_8, width=6, height=hit)
 btn_8.grid(row=4, column=0, sticky='nw')
 btn_8.config(font=entryfont)
 btn_9 = Button(sn_frame, wraplength=40, justify=LEFT, text='9',
-            command=set_current_num_to_9, width=6, height=hit)
+               command=set_current_num_to_9, width=6, height=hit)
 btn_9.grid(row=4, column=1, sticky='nw')
 btn_9.config(font=entryfont)
 btn_A = Button(sn_frame, wraplength=40, justify=LEFT, text='A',
-            command=set_current_num_to_A, width=6, height=hit)
+               command=set_current_num_to_A, width=6, height=hit)
 btn_A.grid(row=4, column=2, sticky='nw')
 btn_A.config(font=entryfont)
 btn_B = Button(sn_frame, wraplength=40, justify=LEFT, text='B',
-            command=set_current_num_to_B, width=6, height=hit)
+               command=set_current_num_to_B, width=6, height=hit)
 btn_B.grid(row=4, column=3, sticky='nw')
 btn_B.config(font=entryfont)
 # ***********
 btn_R4C1 = Button(F1_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R4C1, width=6, height=hit)
+                  command=update_R4C1, width=6, height=hit)
 btn_R4C1.grid(row=4, column=0, sticky='nw')
 btn_R4C1.config(font=labelfont)
 btn_R4C1.bind("<<ComboboxSelected>>", create_record())
 btn_R4C2 = Button(F1_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R4C2, width=6, height=hit)
+                  command=update_R4C2, width=6, height=hit)
 btn_R4C2.grid(row=4, column=1, sticky='w')
 btn_R4C2.config(font=labelfont)
 btn_R4C2.bind("<<ComboboxSelected>>", create_record())
 btn_R4C3 = Button(F1_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R4C3, width=6, height=hit)
+                  command=update_R4C3, width=6, height=hit)
 btn_R4C3.grid(row=4, column=2, sticky='w')
 btn_R4C3.config(font=labelfont)
 btn_R4C3.bind("<<ComboboxSelected>>", create_record())
 btn_R4C4 = Button(F1_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R4C4, width=6, height=hit)
+                  command=update_R4C4, width=6, height=hit)
 btn_R4C4.grid(row=4, column=3, sticky='w')
 btn_R4C4.config(font=labelfont)
 btn_R4C4.bind("<<ComboboxSelected>>", create_record())
 
 btn_R4C5 = Button(F2_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R4C5, width=6, height=hit)
+                  command=update_R4C5, width=6, height=hit)
 btn_R4C5.grid(row=4, column=0, sticky='w')
 btn_R4C5.config(font=labelfont)
 btn_R4C5.bind("<<ComboboxSelected>>", create_record())
 btn_R4C6 = Button(F2_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R4C6, width=6, height=hit)
+                  command=update_R4C6, width=6, height=hit)
 btn_R4C6.grid(row=4, column=1, sticky='w')
 btn_R4C6.config(font=labelfont)
 btn_R4C7 = Button(F2_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R4C7, width=6, height=hit)
+                  command=update_R4C7, width=6, height=hit)
 btn_R4C7.grid(row=4, column=2, sticky='w')
 btn_R4C7.config(font=labelfont)
 btn_R4C8 = Button(F2_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R4C8, width=6, height=hit)
+                  command=update_R4C8, width=6, height=hit)
 btn_R4C8.grid(row=4, column=3, sticky='w')
 btn_R4C8.config(font=labelfont)
 btn_R4C9 = Button(F3_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R4C9, width=6, height=hit)
+                  command=update_R4C9, width=6, height=hit)
 btn_R4C9.grid(row=4, column=0, sticky='w')
 btn_R4C9.config(font=labelfont)
 btn_R4C10 = Button(F3_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R4C10, width=6, height=hit)
+                   command=update_R4C10, width=6, height=hit)
 btn_R4C10.grid(row=4, column=1, sticky='w')
 btn_R4C10.config(font=labelfont)
 btn_R4C11 = Button(F3_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R4C11, width=6, height=hit)
+                   command=update_R4C11, width=6, height=hit)
 btn_R4C11.grid(row=4, column=2, sticky='w')
 btn_R4C11.config(font=labelfont)
 btn_R4C12 = Button(F3_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R4C12, width=6, height=hit)
+                   command=update_R4C12, width=6, height=hit)
 btn_R4C12.grid(row=4, column=3, sticky='w')
 btn_R4C12.config(font=labelfont)
 btn_R4C13 = Button(F4_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R4C13, width=6, height=hit)
+                   command=update_R4C13, width=6, height=hit)
 btn_R4C13.grid(row=4, column=0, sticky='w')
 btn_R4C13.config(font=labelfont)
 btn_R4C14 = Button(F4_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R4C14, width=6, height=hit)
+                   command=update_R4C14, width=6, height=hit)
 btn_R4C14.grid(row=4, column=1, sticky='w')
 btn_R4C14.config(font=labelfont)
 btn_R4C15 = Button(F4_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R4C15, width=6, height=hit)
+                   command=update_R4C15, width=6, height=hit)
 btn_R4C15.grid(row=4, column=2, sticky='w')
 btn_R4C15.config(font=labelfont)
 btn_R4C16 = Button(F4_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R4C16, width=6, height=hit)
+                   command=update_R4C16, width=6, height=hit)
 btn_R4C16.grid(row=4, column=3, sticky='w')
 btn_R4C16.config(font=labelfont)
 btn_C = Button(sn_frame, wraplength=40, justify=LEFT, text='C',
-            command=set_current_num_to_C, width=6, height=hit)
+               command=set_current_num_to_C, width=6, height=hit)
 btn_C.grid(row=5, column=0, sticky='nw')
 btn_C.config(font=entryfont)
 btn_D = Button(sn_frame, wraplength=40, justify=LEFT, text='D',
-            command=set_current_num_to_D, width=6, height=hit)
+               command=set_current_num_to_D, width=6, height=hit)
 btn_D.grid(row=5, column=1, sticky='nw')
 btn_D.config(font=entryfont)
 btn_E = Button(sn_frame, wraplength=40, justify=LEFT, text='E',
-            command=set_current_num_to_E, width=6, height=hit)
+               command=set_current_num_to_E, width=6, height=hit)
 btn_E.grid(row=5, column=2, sticky='nw')
 btn_E.config(font=entryfont)
 btn_F = Button(sn_frame, wraplength=40, justify=LEFT, text='F',
-            command=set_current_num_to_F, width=6, height=hit)
+               command=set_current_num_to_F, width=6, height=hit)
 btn_F.grid(row=5, column=3, sticky='nw')
 btn_F.config(font=entryfont)
 # ########3333
 btn_R5C1 = tk.Button(F5_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R5C1, width=6, height=hit)
+                     command=update_R5C1, width=6, height=hit)
 btn_R5C1.grid(row=1, column=0, sticky='w')
 btn_R5C1.config(font=labelfont)
 # btn_R1C1.bind("<<ButtonPress>>", update_R1C1())
 btn_R5C2 = Button(F5_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R5C2, width=6, height=hit)
+                  command=update_R5C2, width=6, height=hit)
 btn_R5C2.grid(row=1, column=1, sticky='w')
 btn_R5C2.config(font=labelfont)
 btn_R5C2.bind("<<ComboboxSelected>>", create_record())
 btn_R5C3 = Button(F5_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R5C3, width=6, height=hit)
+                  command=update_R5C3, width=6, height=hit)
 btn_R5C3.grid(row=1, column=2, sticky='w')
 btn_R5C3.config(font=labelfont)
 btn_R5C3.bind("<<ComboboxSelected>>", create_record())
 btn_R5C4 = Button(F5_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R5C4, width=6, height=hit)
+                  command=update_R5C4, width=6, height=hit)
 btn_R5C4.grid(row=1, column=3, sticky='w')
 btn_R5C4.config(font=labelfont)
 btn_R5C4.bind("<<ComboboxSelected>>", create_record())
 
 btn_R5C5 = Button(F6_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R5C5, width=6, height=hit)
+                  command=update_R5C5, width=6, height=hit)
 btn_R5C5.grid(row=1, column=0, sticky='w')
 btn_R5C5.config(font=labelfont)
 btn_R5C5.bind("<<ComboboxSelected>>", create_record())
 btn_R5C6 = Button(F6_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R5C6, width=6, height=hit)
+                  command=update_R5C6, width=6, height=hit)
 btn_R5C6.grid(row=1, column=1, sticky='w')
 btn_R5C6.config(font=labelfont)
 btn_R5C6.bind("<<ComboboxSelected>>", create_record())
 btn_R5C7 = Button(F6_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R5C7, width=6, height=hit)
+                  command=update_R5C7, width=6, height=hit)
 btn_R5C7.grid(row=1, column=2, sticky='w')
 btn_R5C7.config(font=labelfont)
 btn_R5C7.bind("<<ComboboxSelected>>", create_record())
 btn_R5C8 = Button(F6_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R5C8, width=6, height=hit)
+                  command=update_R5C8, width=6, height=hit)
 btn_R5C8.grid(row=1, column=3, sticky='w')
 btn_R5C8.config(font=labelfont)
 btn_R5C8.bind("<<ComboboxSelected>>", create_record())
 
 btn_R5C9 = Button(F7_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R5C9, width=6, height=hit)
+                  command=update_R5C9, width=6, height=hit)
 btn_R5C9.grid(row=1, column=0, sticky='w')
 btn_R5C9.config(font=labelfont)
 btn_R5C9.bind("<<ComboboxSelected>>", create_record())
 btn_R5C10 = Button(F7_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R5C10, width=6, height=hit)
+                   command=update_R5C10, width=6, height=hit)
 btn_R5C10.grid(row=1, column=1, sticky='w')
 btn_R5C10.config(font=labelfont)
 btn_R5C10.bind("<<ComboboxSelected>>", create_record())
 btn_R5C11 = Button(F7_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R5C11, width=6, height=hit)
+                   command=update_R5C11, width=6, height=hit)
 btn_R5C11.grid(row=1, column=2, sticky='w')
 btn_R5C11.config(font=labelfont)
 btn_R5C12 = Button(F7_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R5C12, width=6, height=hit)
+                   command=update_R5C12, width=6, height=hit)
 btn_R5C12.grid(row=1, column=3, sticky='w')
 btn_R5C12.config(font=labelfont)
 btn_R5C12.bind("<<ComboboxSelected>>", create_record())
 btn_R5C13 = Button(F8_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R5C13, width=6, height=hit)
+                   command=update_R5C13, width=6, height=hit)
 btn_R5C13.grid(row=1, column=0, sticky='w')
 btn_R5C13.config(font=labelfont)
 btn_R5C13.bind("<<ComboboxSelected>>", create_record())
 btn_R5C14 = Button(F8_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R5C14, width=6, height=hit)
+                   command=update_R5C14, width=6, height=hit)
 btn_R5C14.grid(row=1, column=1, sticky='w')
 btn_R5C14.config(font=labelfont)
 btn_R5C14.bind("<<ComboboxSelected>>", create_record())
 btn_R5C15 = Button(F8_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R5C15, width=6, height=hit)
+                   command=update_R5C15, width=6, height=hit)
 btn_R5C15.grid(row=1, column=2, sticky='w')
 btn_R5C15.config(font=labelfont)
 btn_R5C16 = Button(F8_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R5C16, width=6, height=hit)
+                   command=update_R5C16, width=6, height=hit)
 btn_R5C16.grid(row=1, column=3, sticky='w')
 btn_R5C16.config(font=labelfont)
 # btn_R1C16.bind("<<ComboboxSelected>>", create_record())
@@ -3436,350 +3967,350 @@ btn_R5C16.config(font=labelfont)
 # btn_z.grid(row=1, column=3, sticky='n')
 # btn_z.config(font=entryfont)
 btn_R6C1 = tk.Button(F5_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R6C1, width=6, height=hit)
+                     command=update_R6C1, width=6, height=hit)
 btn_R6C1.grid(row=2, column=0, sticky='w')
 btn_R6C1.config(font=labelfont)
 # btn_R6C1.bind("<<ButtonPress>>", update_R1C1())
 btn_R6C2 = Button(F5_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R6C2, width=6, height=hit)
+                  command=update_R6C2, width=6, height=hit)
 btn_R6C2.grid(row=2, column=1, sticky='w')
 btn_R6C2.config(font=labelfont)
 btn_R6C2.bind("<<ComboboxSelected>>", create_record())
 btn_R6C3 = Button(F5_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R6C3, width=6, height=hit)
+                  command=update_R6C3, width=6, height=hit)
 btn_R6C3.grid(row=2, column=2, sticky='w')
 btn_R6C3.config(font=labelfont)
 btn_R6C3.bind("<<ComboboxSelected>>", create_record())
 btn_R6C4 = Button(F5_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R6C4, width=6, height=hit)
+                  command=update_R6C4, width=6, height=hit)
 btn_R6C4.grid(row=2, column=3, sticky='w')
 btn_R6C4.config(font=labelfont)
 btn_R6C4.bind("<<ComboboxSelected>>", create_record())
 
 btn_R6C5 = Button(F6_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R6C5, width=6, height=hit)
+                  command=update_R6C5, width=6, height=hit)
 btn_R6C5.grid(row=2, column=0, sticky='w')
 btn_R6C5.config(font=labelfont)
 btn_R6C5.bind("<<ComboboxSelected>>", create_record())
 btn_R6C6 = Button(F6_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R6C6, width=6, height=hit)
+                  command=update_R6C6, width=6, height=hit)
 btn_R6C6.grid(row=2, column=1, sticky='w')
 btn_R6C6.config(font=labelfont)
 btn_R6C6.bind("<<ComboboxSelected>>", create_record())
 btn_R6C7 = Button(F6_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R6C7, width=6, height=hit)
+                  command=update_R6C7, width=6, height=hit)
 btn_R6C7.grid(row=2, column=2, sticky='w')
 btn_R6C7.config(font=labelfont)
 btn_R6C7.bind("<<ComboboxSelected>>", create_record())
 btn_R6C8 = Button(F6_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R6C8, width=6, height=hit)
+                  command=update_R6C8, width=6, height=hit)
 btn_R6C8.grid(row=2, column=3, sticky='w')
 btn_R6C8.config(font=labelfont)
 btn_R6C8.bind("<<ComboboxSelected>>", create_record())
 
 btn_R6C9 = Button(F7_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R6C9, width=6, height=hit)
+                  command=update_R6C9, width=6, height=hit)
 btn_R6C9.grid(row=2, column=0, sticky='w')
 btn_R6C9.config(font=labelfont)
 btn_R6C9.bind("<<ComboboxSelected>>", create_record())
 btn_R6C10 = Button(F7_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R6C10, width=6, height=hit)
+                   command=update_R6C10, width=6, height=hit)
 btn_R6C10.grid(row=2, column=1, sticky='w')
 btn_R6C10.config(font=labelfont)
 btn_R6C10.bind("<<ComboboxSelected>>", create_record())
 btn_R6C11 = Button(F7_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R6C11, width=6, height=hit)
+                   command=update_R6C11, width=6, height=hit)
 btn_R6C11.grid(row=2, column=2, sticky='w')
 btn_R6C11.config(font=labelfont)
 btn_R6C12 = Button(F7_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R6C12, width=6, height=hit)
+                   command=update_R6C12, width=6, height=hit)
 btn_R6C12.grid(row=2, column=3, sticky='w')
 btn_R6C12.config(font=labelfont)
 btn_R6C12.bind("<<ComboboxSelected>>", create_record())
 btn_R6C13 = Button(F8_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R6C13, width=6, height=hit)
+                   command=update_R6C13, width=6, height=hit)
 btn_R6C13.grid(row=2, column=0, sticky='w')
 btn_R6C13.config(font=labelfont)
 btn_R6C13.bind("<<ComboboxSelected>>", create_record())
 btn_R6C14 = Button(F8_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R6C14, width=6, height=hit)
+                   command=update_R6C14, width=6, height=hit)
 btn_R6C14.grid(row=2, column=1, sticky='w')
 btn_R6C14.config(font=labelfont)
 btn_R6C14.bind("<<ComboboxSelected>>", create_record())
 btn_R6C15 = Button(F8_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R6C15, width=6, height=hit)
+                   command=update_R6C15, width=6, height=hit)
 btn_R6C15.grid(row=2, column=2, sticky='w')
 btn_R6C15.config(font=labelfont)
 btn_R6C16 = Button(F8_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R6C16, width=6, height=hit)
+                   command=update_R6C16, width=6, height=hit)
 btn_R6C16.grid(row=2, column=3, sticky='w')
 btn_R6C16.config(font=labelfont)
 # ***********
 btn_R7C1 = tk.Button(F5_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R7C1, width=6, height=hit)
+                     command=update_R7C1, width=6, height=hit)
 btn_R7C1.grid(row=3, column=0, sticky='w')
 btn_R7C1.config(font=labelfont)
 btn_R7C2 = Button(F5_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R7C2, width=6, height=hit)
+                  command=update_R7C2, width=6, height=hit)
 btn_R7C2.grid(row=3, column=1, sticky='w')
 btn_R7C2.config(font=labelfont)
 btn_R7C2.bind("<<ComboboxSelected>>", create_record())
 btn_R7C3 = Button(F5_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R7C3, width=6, height=hit)
+                  command=update_R7C3, width=6, height=hit)
 btn_R7C3.grid(row=3, column=2, sticky='w')
 btn_R7C3.config(font=labelfont)
 btn_R7C3.bind("<<ComboboxSelected>>", create_record())
 btn_R7C4 = Button(F5_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R7C4, width=6, height=hit)
+                  command=update_R7C4, width=6, height=hit)
 btn_R7C4.grid(row=3, column=3, sticky='w')
 btn_R7C4.config(font=labelfont)
 btn_R7C4.bind("<<ComboboxSelected>>", create_record())
 
 btn_R7C5 = Button(F6_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R7C5, width=6, height=hit)
+                  command=update_R7C5, width=6, height=hit)
 btn_R7C5.grid(row=3, column=0, sticky='w')
 btn_R7C5.config(font=labelfont)
 btn_R7C5.bind("<<ComboboxSelected>>", create_record())
 btn_R7C6 = Button(F6_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R7C6, width=6, height=hit)
+                  command=update_R7C6, width=6, height=hit)
 btn_R7C6.grid(row=3, column=1, sticky='w')
 btn_R7C6.config(font=labelfont)
 btn_R7C6.bind("<<ComboboxSelected>>", create_record())
 btn_R7C7 = Button(F6_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R7C7, width=6, height=hit)
+                  command=update_R7C7, width=6, height=hit)
 btn_R7C7.grid(row=3, column=2, sticky='w')
 btn_R7C7.config(font=labelfont)
 btn_R7C7.bind("<<ComboboxSelected>>", create_record())
 btn_R7C8 = Button(F6_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R7C8, width=6, height=hit)
+                  command=update_R7C8, width=6, height=hit)
 btn_R7C8.grid(row=3, column=3, sticky='w')
 btn_R7C8.config(font=labelfont)
 btn_R7C8.bind("<<ComboboxSelected>>", create_record())
 
 btn_R7C9 = Button(F7_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R7C9, width=6, height=hit)
+                  command=update_R7C9, width=6, height=hit)
 btn_R7C9.grid(row=3, column=0, sticky='w')
 btn_R7C9.config(font=labelfont)
 btn_R7C9.bind("<<ComboboxSelected>>", create_record())
 btn_R7C10 = Button(F7_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R7C10, width=6, height=hit)
+                   command=update_R7C10, width=6, height=hit)
 btn_R7C10.grid(row=3, column=1, sticky='w')
 btn_R7C10.config(font=labelfont)
 btn_R7C10.bind("<<ComboboxSelected>>", create_record())
 btn_R7C11 = Button(F7_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R7C11, width=6, height=hit)
+                   command=update_R7C11, width=6, height=hit)
 btn_R7C11.grid(row=3, column=2, sticky='w')
 btn_R7C11.config(font=labelfont)
 btn_R7C12 = Button(F7_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R7C12, width=6, height=hit)
+                   command=update_R7C12, width=6, height=hit)
 btn_R7C12.grid(row=3, column=3, sticky='w')
 btn_R7C12.config(font=labelfont)
 btn_R7C12.bind("<<ComboboxSelected>>", create_record())
 btn_R7C13 = Button(F8_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R7C13, width=6, height=hit)
+                   command=update_R7C13, width=6, height=hit)
 btn_R7C13.grid(row=3, column=0, sticky='w')
 btn_R7C13.config(font=labelfont)
 btn_R7C13.bind("<<ComboboxSelected>>", create_record())
 btn_R7C14 = Button(F8_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R7C14, width=6, height=hit)
+                   command=update_R7C14, width=6, height=hit)
 btn_R7C14.grid(row=3, column=1, sticky='w')
 btn_R7C14.config(font=labelfont)
 btn_R7C14.bind("<<ComboboxSelected>>", create_record())
 btn_R7C15 = Button(F8_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R7C15, width=6, height=hit)
+                   command=update_R7C15, width=6, height=hit)
 btn_R7C15.grid(row=3, column=2, sticky='w')
 btn_R7C15.config(font=labelfont)
 btn_R7C16 = Button(F8_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R7C16, width=6, height=hit)
+                   command=update_R7C16, width=6, height=hit)
 btn_R7C16.grid(row=3, column=3, sticky='w')
 btn_R7C16.config(font=labelfont)
 # btn_R1C16.bind("<<ComboboxSelected>>", create_record())
 btn_only_one_num = Button(fn_frame, wraplength=40, justify=LEFT, text='Find\nSingle',
-            command=CheckForOnlyOneNumber, width=6, height=3)
+                          command=CheckForOnlyOneNumber, width=6, height=3)
 btn_only_one_num.grid(row=0, column=0, sticky='nw')
 btn_only_one_num.config(font=labelfont)
 btn_find_duple = Button(fn_frame, wraplength=40, justify=LEFT, text='Find\nDuple',
-            command=find_Duple, width=6, height=hit)
+                        command=find_Duple, width=6, height=hit)
 btn_find_duple.grid(row=0, column=1, sticky='nw')
 btn_find_duple.config(font=entryfont)
 btn_find_triple = Button(fn_frame, wraplength=40, justify=LEFT, text='Find\nTriple',
-            command=find_Triple, width=6, height=hit)
+                         command=find_Triple, width=6, height=hit)
 btn_find_triple.grid(row=0, column=2, sticky='nw')
 btn_find_triple.config(font=entryfont)
 btn_find_quad = Button(fn_frame, wraplength=40, justify=LEFT, text='Find\nQuad',
-            command=find_Quad, width=6, height=hit)
+                       command=find_Quad, width=6, height=hit)
 btn_find_quad.grid(row=0, column=3, sticky='nw')
 btn_find_quad.config(font=entryfont)
 btn_R8C1 = tk.Button(F5_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R8C1, width=6, height=hit)
+                     command=update_R8C1, width=6, height=hit)
 btn_R8C1.grid(row=4, column=0, sticky='w')
 btn_R8C1.config(font=labelfont)
 btn_R8C2 = Button(F5_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R8C2, width=6, height=hit)
+                  command=update_R8C2, width=6, height=hit)
 btn_R8C2.grid(row=4, column=1, sticky='w')
 btn_R8C2.config(font=labelfont)
 btn_R8C2.bind("<<ComboboxSelected>>", create_record())
 btn_R8C3 = Button(F5_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R8C3, width=6, height=hit)
+                  command=update_R8C3, width=6, height=hit)
 btn_R8C3.grid(row=4, column=2, sticky='w')
 btn_R8C3.config(font=labelfont)
 btn_R8C3.bind("<<ComboboxSelected>>", create_record())
 btn_R8C4 = Button(F5_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R8C4, width=6, height=hit)
+                  command=update_R8C4, width=6, height=hit)
 btn_R8C4.grid(row=4, column=3, sticky='w')
 btn_R8C4.config(font=labelfont)
 btn_R8C4.bind("<<ComboboxSelected>>", create_record())
 
 btn_R8C5 = Button(F6_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R8C5, width=6, height=hit)
+                  command=update_R8C5, width=6, height=hit)
 btn_R8C5.grid(row=4, column=0, sticky='w')
 btn_R8C5.config(font=labelfont)
 btn_R8C5.bind("<<ComboboxSelected>>", create_record())
 btn_R8C6 = Button(F6_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R8C6, width=6, height=hit)
+                  command=update_R8C6, width=6, height=hit)
 btn_R8C6.grid(row=4, column=1, sticky='w')
 btn_R8C6.config(font=labelfont)
 btn_R8C6.bind("<<ComboboxSelected>>", create_record())
 btn_R8C7 = Button(F6_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R8C7, width=6, height=hit)
+                  command=update_R8C7, width=6, height=hit)
 btn_R8C7.grid(row=4, column=2, sticky='w')
 btn_R8C7.config(font=labelfont)
 btn_R8C7.bind("<<ComboboxSelected>>", create_record())
 btn_R8C8 = Button(F6_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R8C8, width=6, height=hit)
+                  command=update_R8C8, width=6, height=hit)
 btn_R8C8.grid(row=4, column=3, sticky='w')
 btn_R8C8.config(font=labelfont)
 btn_R8C8.bind("<<ComboboxSelected>>", create_record())
 
 btn_R8C9 = Button(F7_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R8C9, width=6, height=hit)
+                  command=update_R8C9, width=6, height=hit)
 btn_R8C9.grid(row=4, column=0, sticky='w')
 btn_R8C9.config(font=labelfont)
 btn_R8C9.bind("<<ComboboxSelected>>", create_record())
 btn_R8C10 = Button(F7_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R8C10, width=6, height=hit)
+                   command=update_R8C10, width=6, height=hit)
 btn_R8C10.grid(row=4, column=1, sticky='w')
 btn_R8C10.config(font=labelfont)
 btn_R8C10.bind("<<ComboboxSelected>>", create_record())
 btn_R8C11 = Button(F7_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R8C11, width=6, height=hit)
+                   command=update_R8C11, width=6, height=hit)
 btn_R8C11.grid(row=4, column=2, sticky='w')
 btn_R8C11.config(font=labelfont)
 btn_R8C12 = Button(F7_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R8C12, width=6, height=hit)
+                   command=update_R8C12, width=6, height=hit)
 btn_R8C12.grid(row=4, column=3, sticky='w')
 btn_R8C12.config(font=labelfont)
 btn_R8C12.bind("<<ComboboxSelected>>", create_record())
 btn_R8C13 = Button(F8_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R8C13, width=6, height=hit)
+                   command=update_R8C13, width=6, height=hit)
 btn_R8C13.grid(row=4, column=0, sticky='w')
 btn_R8C13.config(font=labelfont)
 btn_R8C13.bind("<<ComboboxSelected>>", create_record())
 btn_R8C14 = Button(F8_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R8C14, width=6, height=hit)
+                   command=update_R8C14, width=6, height=hit)
 btn_R8C14.grid(row=4, column=1, sticky='w')
 btn_R8C14.config(font=labelfont)
 btn_R8C14.bind("<<ComboboxSelected>>", create_record())
 btn_R8C15 = Button(F8_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R8C15, width=6, height=hit)
+                   command=update_R8C15, width=6, height=hit)
 btn_R8C15.grid(row=4, column=2, sticky='w')
 btn_R8C15.config(font=labelfont)
 btn_R8C16 = Button(F8_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R8C16, width=6, height=hit)
+                   command=update_R8C16, width=6, height=hit)
 btn_R8C16.grid(row=4, column=3, sticky='w')
 btn_R8C16.config(font=labelfont)
 
 ################
 
 btn_R9C1 = Button(F9_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R9C1, width=6, height=hit)
+                  command=update_R9C1, width=6, height=hit)
 btn_R9C1.grid(row=1, column=0, sticky='w')
 btn_R9C1.config(font=labelfont)
 btn_R9C1.bind("<<ComboboxSelected>>", create_record())
 btn_R9C2 = Button(F9_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R9C2, width=6, height=hit)
+                  command=update_R9C2, width=6, height=hit)
 btn_R9C2.grid(row=1, column=1, sticky='w')
 btn_R9C2.config(font=labelfont)
 btn_R9C2.bind("<<ComboboxSelected>>", create_record())
 btn_R9C3 = Button(F9_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R9C3, width=6, height=hit)
+                  command=update_R9C3, width=6, height=hit)
 btn_R9C3.grid(row=1, column=2, sticky='w')
 btn_R9C3.config(font=labelfont)
 btn_R9C3.bind("<<ComboboxSelected>>", create_record())
 btn_R9C4 = Button(F9_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R9C4, width=6, height=hit)
+                  command=update_R9C4, width=6, height=hit)
 btn_R9C4.grid(row=1, column=3, sticky='w')
 btn_R9C4.config(font=labelfont)
 btn_R9C4.bind("<<ComboboxSelected>>", create_record())
 
 btn_R9C5 = Button(F10_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R9C5, width=6, height=hit)
+                  command=update_R9C5, width=6, height=hit)
 btn_R9C5.grid(row=1, column=0, sticky='w')
 btn_R9C5.config(font=labelfont)
 btn_R9C5.bind("<<ComboboxSelected>>", create_record())
 btn_R9C6 = Button(F10_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R9C6, width=6, height=hit)
+                  command=update_R9C6, width=6, height=hit)
 btn_R9C6.grid(row=1, column=1, sticky='w')
 btn_R9C6.config(font=labelfont)
 btn_R9C6.bind("<<ComboboxSelected>>", create_record())
 btn_R9C7 = Button(F10_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R9C7, width=6, height=hit)
+                  command=update_R9C7, width=6, height=hit)
 btn_R9C7.grid(row=1, column=2, sticky='w')
 btn_R9C7.config(font=labelfont)
 btn_R9C7.bind("<<ComboboxSelected>>", create_record())
 btn_R9C8 = Button(F10_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R9C8, width=6, height=hit)
+                  command=update_R9C8, width=6, height=hit)
 btn_R9C8.grid(row=1, column=3, sticky='w')
 btn_R9C8.config(font=labelfont)
 btn_R9C8.bind("<<ComboboxSelected>>", create_record())
 
 btn_R9C9 = Button(F11_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R9C9, width=6, height=hit)
+                  command=update_R9C9, width=6, height=hit)
 btn_R9C9.grid(row=1, column=0, sticky='w')
 btn_R9C9.config(font=labelfont)
 btn_R9C10 = Button(F11_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R9C10, width=6, height=hit)
+                   command=update_R9C10, width=6, height=hit)
 btn_R9C10.grid(row=1, column=1, sticky='w')
 btn_R9C10.config(font=labelfont)
 btn_R9C10.bind("<<ComboboxSelected>>", create_record())
 btn_R9C11 = Button(F11_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R9C11, width=6, height=hit)
+                   command=update_R9C11, width=6, height=hit)
 btn_R9C11.grid(row=1, column=2, sticky='w')
 btn_R9C11.config(font=labelfont)
 btn_R9C12 = Button(F11_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R9C12, width=6, height=hit)
+                   command=update_R9C12, width=6, height=hit)
 btn_R9C12.grid(row=1, column=3, sticky='w')
 btn_R9C12.config(font=labelfont)
 btn_R9C12.bind("<<ComboboxSelected>>", create_record())
 btn_R9C13 = Button(F12_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R9C13, width=6, height=hit)
+                   command=update_R9C13, width=6, height=hit)
 btn_R9C13.grid(row=1, column=0, sticky='w')
 btn_R9C13.config(font=labelfont)
 btn_R9C13.bind("<<ComboboxSelected>>", create_record())
 btn_R9C14 = Button(F12_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R9C14, width=6, height=hit)
+                   command=update_R9C14, width=6, height=hit)
 btn_R9C14.grid(row=1, column=1, sticky='w')
 btn_R9C14.config(font=labelfont)
 btn_R9C14.bind("<<ComboboxSelected>>", create_record())
 btn_R9C15 = Button(F12_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R9C15, width=6, height=hit)
+                   command=update_R9C15, width=6, height=hit)
 btn_R9C15.grid(row=1, column=2, sticky='w')
 btn_R9C15.config(font=labelfont)
 btn_R9C16 = Button(F12_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R9C16, width=6, height=hit)
+                   command=update_R9C16, width=6, height=hit)
 btn_R9C16.grid(row=1, column=3, sticky='w')
 btn_R9C16.config(font=labelfont)
 # btn_R2C16.bind("<<ComboboxSelected>>", create_record())
 btn_solve_singles = Button(fn_frame, wraplength=40, justify=LEFT, text='Solve\nRCS',
-            command=solve_row_singles, width=6, height=hit)
+                           command=solve_row_singles, width=6, height=hit)
 btn_solve_singles.grid(row=2, column=0, sticky='nw')
 btn_solve_singles.config(font=entryfont)
 btn_IDDuples = Button(fn_frame, wraplength=40, justify=LEFT, text='ID\nduples',
-            command=ID_Duples, width=6, height=hit)
+                      command=ID_Duples, width=6, height=hit)
 btn_IDDuples.grid(row=2, column=1, sticky='nw')
 btn_IDDuples.config(font=entryfont)
 btn_IDTriples = Button(fn_frame, wraplength=40, justify=LEFT, text='ID\ntriples',
-            command=ID_Triples, width=6, height=hit)
+                       command=ID_Triples, width=6, height=hit)
 btn_IDTriples.grid(row=2, column=2, sticky='nw')
 btn_IDTriples.config(font=entryfont)
 # btn_y = Button(fn_frame, wraplength=40, justify=LEFT, text='y',
@@ -3787,12 +4318,12 @@ btn_IDTriples.config(font=entryfont)
 # btn_y.grid(row=2, column=2, sticky='nw')
 # btn_y.config(font=entryfont)
 btn_IDQuads = Button(fn_frame, wraplength=48, justify=LEFT, text='ID\nquads',
-            command=ID_Quads, width=6, height=hit)
+                     command=ID_Quads, width=6, height=hit)
 btn_IDQuads.grid(row=2, column=3, sticky='nw')
 btn_IDQuads.config(font=entryfont)
 
 btn_del_num = Button(fn_frame, wraplength=40, justify=LEFT, text='Del\nnum\nfrom\ncell',
-            command=set_bRemoveANumberFromACell, width=6, height=hit)
+                     command=set_bRemoveANumberFromACell, width=6, height=hit)
 btn_del_num.grid(row=3, column=0, sticky='nw')
 btn_del_num.config(font=entryfont)
 # btn_a = Button(fn_frame, wraplength=40, justify=LEFT, text='a',
@@ -3800,535 +4331,558 @@ btn_del_num.config(font=entryfont)
 # btn_a.grid(row=3, column=0, sticky='nw')
 # btn_a.config(font=entryfont)
 btn_ShowAref = Button(fn_frame, wraplength=40, justify=LEFT, text='Show\nData\nStruct',
-            command=btn_ShowAref, width=6, height=hit)
+                      command=btn_ShowAref, width=6, height=hit)
 btn_ShowAref.grid(row=3, column=1, sticky='nw')
 btn_ShowAref.config(font=entryfont)
 btn_done = Button(fn_frame, wraplength=40, justify=LEFT, text='Cells\nDone',
-            command=cells_done, width=6, height=hit)
+                  command=cells_done, width=6, height=hit)
 btn_done.grid(row=3, column=2, sticky='nw')
 btn_done.config(font=entryfont)
 btn_remaining = Button(fn_frame, wraplength=48, justify=LEFT, text='Cells\nRemain',
-            command=cells_remaining, width=6, height=hit)
+                       command=cells_remaining, width=6, height=hit)
 btn_remaining.grid(row=3, column=3, sticky='nw')
 btn_remaining.config(font=entryfont)
 
 btn_e = Button(fn_frame, wraplength=40, justify=LEFT, text='Temp\ntest',
-            command=temp_Test, width=6, height=hit)
+               command=temp_Test, width=6, height=hit)
 btn_e.grid(row=4, column=0, sticky='nw')
 btn_e.config(font=entryfont)
 btn_load = Button(fn_frame, wraplength=40, justify=LEFT, text='Load\nsoln',
-            command=load_solution_1, width=6, height=hit)
+                  command=load_solution_1, width=6, height=hit)
 btn_load.grid(row=4, column=1, sticky='nw')
 btn_load.config(font=entryfont)
-btn_g = Button(fn_frame, wraplength=40, justify=LEFT, text='Make\nRCS\nSets',
-            command=find_Triple, width=6, height=hit)
-btn_g.grid(row=4, column=2, sticky='nw')
-btn_g.config(font=entryfont)
+btn_load_2 = Button(fn_frame, wraplength=40, justify=LEFT, text='Load\nsoln\n2',
+                    command=load_solution_2, width=6, height=hit)
+btn_load_2.grid(row=4, column=2, sticky='nw')
+btn_load_2.config(font=entryfont)
+# btn_g = Button(fn_frame, wraplength=40, justify=LEFT, text='Make\nRCS\nSets',
+#                command=find_Triple, width=6, height=hit)
+# btn_g.grid(row=4, column=2, sticky='nw')
+# btn_g.config(font=entryfont)
 btn_h = Button(fn_frame, wraplength=48, justify=LEFT, text='save\nsol\n1',
-            command=save_currentSolution, width=6, height=hit)
+               command=save_currentSolution, width=6, height=hit)
 btn_h.grid(row=4, column=3, sticky='nw')
 btn_h.config(font=entryfont)
 
 
 btn_R10C1 = Button(F9_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R10C1, width=6, height=hit)
+                   command=update_R10C1, width=6, height=hit)
 btn_R10C1.grid(row=2, column=0, sticky='w')
 btn_R10C1.config(font=labelfont)
 btn_R10C2 = Button(F9_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R10C2, width=6, height=hit)
+                   command=update_R10C2, width=6, height=hit)
 btn_R10C2.grid(row=2, column=1, sticky='w')
 btn_R10C2.config(font=labelfont)
 btn_R10C3 = Button(F9_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R10C3, width=6, height=hit)
+                   command=update_R10C3, width=6, height=hit)
 btn_R10C3.grid(row=2, column=2, sticky='w')
 btn_R10C3.config(font=labelfont)
 btn_R10C4 = Button(F9_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R10C4, width=6, height=hit)
+                   command=update_R10C4, width=6, height=hit)
 btn_R10C4.grid(row=2, column=3, sticky='w')
 btn_R10C4.config(font=labelfont)
 btn_R10C5 = Button(F10_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R10C5, width=6, height=hit)
+                   command=update_R10C5, width=6, height=hit)
 btn_R10C5.grid(row=2, column=0, sticky='w')
 btn_R10C5.config(font=labelfont)
 btn_R10C6 = Button(F10_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R10C6, width=6, height=hit)
+                   command=update_R10C6, width=6, height=hit)
 btn_R10C6.grid(row=2, column=1, sticky='w')
 btn_R10C6.config(font=labelfont)
 btn_R10C7 = Button(F10_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R10C7, width=6, height=hit)
+                   command=update_R10C7, width=6, height=hit)
 btn_R10C7.grid(row=2, column=2, sticky='w')
 btn_R10C7.config(font=labelfont)
 btn_R10C8 = Button(F10_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R10C8, width=6, height=hit)
+                   command=update_R10C8, width=6, height=hit)
 btn_R10C8.grid(row=2, column=3, sticky='w')
 btn_R10C8.config(font=labelfont)
 btn_R10C9 = Button(F11_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R10C9, width=6, height=hit)
+                   command=update_R10C9, width=6, height=hit)
 btn_R10C9.grid(row=2, column=0, sticky='w')
 btn_R10C9.config(font=labelfont)
 btn_R10C10 = Button(F11_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R10C10, width=6, height=hit)
+                    command=update_R10C10, width=6, height=hit)
 btn_R10C10.grid(row=2, column=1, sticky='w')
 btn_R10C10.config(font=labelfont)
 btn_R10C11 = Button(F11_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R10C11, width=6, height=hit)
+                    command=update_R10C11, width=6, height=hit)
 btn_R10C11.grid(row=2, column=2, sticky='w')
 btn_R10C11.config(font=labelfont)
 btn_R10C12 = Button(F11_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R10C12, width=6, height=hit)
+                    command=update_R10C12, width=6, height=hit)
 btn_R10C12.grid(row=2, column=3, sticky='w')
 btn_R10C12.config(font=labelfont)
 btn_R10C13 = Button(F12_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R10C13, width=6, height=hit)
+                    command=update_R10C13, width=6, height=hit)
 btn_R10C13.grid(row=2, column=0, sticky='w')
 btn_R10C13.config(font=labelfont)
 btn_R10C14 = Button(F12_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R10C14, width=6, height=hit)
+                    command=update_R10C14, width=6, height=hit)
 btn_R10C14.grid(row=2, column=1, sticky='w')
 btn_R10C14.config(font=labelfont)
 btn_R10C15 = Button(F12_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R10C15, width=6, height=hit)
+                    command=update_R10C15, width=6, height=hit)
 btn_R10C15.grid(row=2, column=2, sticky='w')
 btn_R10C15.config(font=labelfont)
 btn_R10C16 = Button(F12_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R10C16, width=6, height=hit)
+                    command=update_R10C16, width=6, height=hit)
 btn_R10C16.grid(row=2, column=3, sticky='w')
 btn_R10C16.config(font=labelfont)
 
 btn_R11C1 = Button(F9_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R11C1, width=6, height=hit)
+                   command=update_R11C1, width=6, height=hit)
 btn_R11C1.grid(row=3, column=0, sticky='w')
 btn_R11C1.config(font=labelfont)
 btn_R11C2 = Button(F9_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R11C2, width=6, height=hit)
+                   command=update_R11C2, width=6, height=hit)
 btn_R11C2.grid(row=3, column=1, sticky='w')
 btn_R11C2.config(font=labelfont)
 btn_R11C3 = Button(F9_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R11C3, width=6, height=hit)
+                   command=update_R11C3, width=6, height=hit)
 btn_R11C3.grid(row=3, column=2, sticky='w')
 btn_R11C3.config(font=labelfont)
 btn_R11C4 = Button(F9_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R11C4, width=6, height=hit)
+                   command=update_R11C4, width=6, height=hit)
 btn_R11C4.grid(row=3, column=3, sticky='w')
 btn_R11C4.config(font=labelfont)
 btn_R11C5 = Button(F10_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R11C5, width=6, height=hit)
+                   command=update_R11C5, width=6, height=hit)
 btn_R11C5.grid(row=3, column=0, sticky='w')
 btn_R11C5.config(font=labelfont)
 btn_R11C6 = Button(F10_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R11C6, width=6, height=hit)
+                   command=update_R11C6, width=6, height=hit)
 btn_R11C6.grid(row=3, column=1, sticky='w')
 btn_R11C6.config(font=labelfont)
 btn_R11C7 = Button(F10_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R11C7, width=6, height=hit)
+                   command=update_R11C7, width=6, height=hit)
 btn_R11C7.grid(row=3, column=2, sticky='w')
 btn_R11C7.config(font=labelfont)
 btn_R11C8 = Button(F10_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R11C8, width=6, height=hit)
+                   command=update_R11C8, width=6, height=hit)
 btn_R11C8.grid(row=3, column=3, sticky='w')
 btn_R11C8.config(font=labelfont)
 btn_R11C9 = Button(F11_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R11C9, width=6, height=hit)
+                   command=update_R11C9, width=6, height=hit)
 btn_R11C9.grid(row=3, column=0, sticky='w')
 btn_R11C9.config(font=labelfont)
 btn_R11C10 = Button(F11_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R11C10, width=6, height=hit)
+                    command=update_R11C10, width=6, height=hit)
 btn_R11C10.grid(row=3, column=1, sticky='w')
 btn_R11C10.config(font=labelfont)
 btn_R11C11 = Button(F11_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R11C11, width=6, height=hit)
+                    command=update_R11C11, width=6, height=hit)
 btn_R11C11.grid(row=3, column=2, sticky='w')
 btn_R11C11.config(font=labelfont)
 btn_R11C12 = Button(F11_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R11C12, width=6, height=hit)
+                    command=update_R11C12, width=6, height=hit)
 btn_R11C12.grid(row=3, column=3, sticky='w')
 btn_R11C12.config(font=labelfont)
 btn_R11C13 = Button(F12_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R11C13, width=6, height=hit)
+                    command=update_R11C13, width=6, height=hit)
 btn_R11C13.grid(row=3, column=0, sticky='w')
 btn_R11C13.config(font=labelfont)
 btn_R11C14 = Button(F12_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R11C14, width=6, height=hit)
+                    command=update_R11C14, width=6, height=hit)
 btn_R11C14.grid(row=3, column=1, sticky='w')
 btn_R11C14.config(font=labelfont)
 btn_R11C15 = Button(F12_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R11C15, width=6, height=hit)
+                    command=update_R11C15, width=6, height=hit)
 btn_R11C15.grid(row=3, column=2, sticky='w')
 btn_R11C15.config(font=labelfont)
 btn_R11C16 = Button(F12_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R11C16, width=6, height=hit)
+                    command=update_R11C16, width=6, height=hit)
 btn_R11C16.grid(row=3, column=3, sticky='w')
 btn_R11C16.config(font=labelfont)
 btn_R12C1 = Button(F9_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R12C1, width=6, height=hit)
+                   command=update_R12C1, width=6, height=hit)
 btn_R12C1.grid(row=4, column=0, sticky='w')
 btn_R12C1.config(font=labelfont)
 btn_R12C2 = Button(F9_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R12C2, width=6, height=hit)
+                   command=update_R12C2, width=6, height=hit)
 btn_R12C2.grid(row=4, column=1, sticky='w')
 btn_R12C2.config(font=labelfont)
 btn_R12C3 = Button(F9_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R12C3, width=6, height=hit)
+                   command=update_R12C3, width=6, height=hit)
 btn_R12C3.grid(row=4, column=2, sticky='w')
 btn_R12C3.config(font=labelfont)
 btn_R12C4 = Button(F9_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R12C4, width=6, height=hit)
+                   command=update_R12C4, width=6, height=hit)
 btn_R12C4.grid(row=4, column=3, sticky='w')
 btn_R12C4.config(font=labelfont)
 btn_R12C5 = Button(F10_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R12C5, width=6, height=hit)
+                   command=update_R12C5, width=6, height=hit)
 btn_R12C5.grid(row=4, column=0, sticky='w')
 btn_R12C5.config(font=labelfont)
 btn_R12C6 = Button(F10_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R12C6, width=6, height=hit)
+                   command=update_R12C6, width=6, height=hit)
 btn_R12C6.grid(row=4, column=1, sticky='w')
 btn_R12C6.config(font=labelfont)
 btn_R12C7 = Button(F10_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R12C7, width=6, height=hit)
+                   command=update_R12C7, width=6, height=hit)
 btn_R12C7.grid(row=4, column=2, sticky='w')
 btn_R12C7.config(font=labelfont)
 btn_R12C8 = Button(F10_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R12C8, width=6, height=hit)
+                   command=update_R12C8, width=6, height=hit)
 btn_R12C8.grid(row=4, column=3, sticky='w')
 btn_R12C8.config(font=labelfont)
 btn_R12C9 = Button(F11_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R12C9, width=6, height=hit)
+                   command=update_R12C9, width=6, height=hit)
 btn_R12C9.grid(row=4, column=0, sticky='w')
 btn_R12C9.config(font=labelfont)
 btn_R12C10 = Button(F11_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R12C10, width=6, height=hit)
+                    command=update_R12C10, width=6, height=hit)
 btn_R12C10.grid(row=4, column=1, sticky='w')
 btn_R12C10.config(font=labelfont)
 btn_R12C11 = Button(F11_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R12C11, width=6, height=hit)
+                    command=update_R12C11, width=6, height=hit)
 btn_R12C11.grid(row=4, column=2, sticky='w')
 btn_R12C11.config(font=labelfont)
 btn_R12C12 = Button(F11_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R12C12, width=6, height=hit)
+                    command=update_R12C12, width=6, height=hit)
 btn_R12C12.grid(row=4, column=3, sticky='w')
 btn_R12C12.config(font=labelfont)
 btn_R12C13 = Button(F12_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R12C13, width=6, height=hit)
+                    command=update_R12C13, width=6, height=hit)
 btn_R12C13.grid(row=4, column=0, sticky='w')
 btn_R12C13.config(font=labelfont)
 btn_R12C14 = Button(F12_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R12C14, width=6, height=hit)
+                    command=update_R12C14, width=6, height=hit)
 btn_R12C14.grid(row=4, column=1, sticky='w')
 btn_R12C14.config(font=labelfont)
 btn_R12C15 = Button(F12_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R12C15, width=6, height=hit)
+                    command=update_R12C15, width=6, height=hit)
 btn_R12C15.grid(row=4, column=2, sticky='w')
 btn_R12C15.config(font=labelfont)
 btn_R12C16 = Button(F12_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R12C16, width=6, height=hit)
+                    command=update_R12C16, width=6, height=hit)
 btn_R12C16.grid(row=4, column=3, sticky='w')
 btn_R12C16.config(font=labelfont)
 btn_R13C1 = Button(F13_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R13C1, width=6, height=hit)
+                   command=update_R13C1, width=6, height=hit)
 btn_R13C1.grid(row=0, column=0, sticky='w')
 btn_R13C1.config(font=labelfont)
 btn_R13C2 = Button(F13_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R13C2, width=6, height=hit)
+                   command=update_R13C2, width=6, height=hit)
 btn_R13C2.grid(row=0, column=1, sticky='w')
 btn_R13C2.config(font=labelfont)
 btn_R13C3 = Button(F13_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R13C3, width=6, height=hit)
+                   command=update_R13C3, width=6, height=hit)
 btn_R13C3.grid(row=0, column=2, sticky='w')
 btn_R13C3.config(font=labelfont)
 btn_R13C4 = Button(F13_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R13C4, width=6, height=hit)
+                   command=update_R13C4, width=6, height=hit)
 btn_R13C4.grid(row=0, column=3, sticky='w')
 btn_R13C4.config(font=labelfont)
 btn_R13C5 = Button(F14_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R13C5, width=6, height=hit)
+                   command=update_R13C5, width=6, height=hit)
 btn_R13C5.grid(row=0, column=0, sticky='w')
 btn_R13C5.config(font=labelfont)
 btn_R13C6 = Button(F14_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R13C6, width=6, height=hit)
+                   command=update_R13C6, width=6, height=hit)
 btn_R13C6.grid(row=0, column=1, sticky='w')
 btn_R13C6.config(font=labelfont)
 btn_R13C7 = Button(F14_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R13C7, width=6, height=hit)
+                   command=update_R13C7, width=6, height=hit)
 btn_R13C7.grid(row=0, column=2, sticky='w')
 btn_R13C7.config(font=labelfont)
 btn_R13C8 = Button(F14_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R13C8, width=6, height=hit)
+                   command=update_R13C8, width=6, height=hit)
 btn_R13C8.grid(row=0, column=3, sticky='w')
 btn_R13C8.config(font=labelfont)
 btn_R13C9 = Button(F15_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R13C9, width=6, height=hit)
+                   command=update_R13C9, width=6, height=hit)
 btn_R13C9.grid(row=0, column=0, sticky='w')
 btn_R13C9.config(font=labelfont)
 btn_R13C10 = Button(F15_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R13C10, width=6, height=hit)
+                    command=update_R13C10, width=6, height=hit)
 btn_R13C10.grid(row=0, column=1, sticky='w')
 btn_R13C10.config(font=labelfont)
 btn_R13C11 = Button(F15_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R13C11, width=6, height=hit)
+                    command=update_R13C11, width=6, height=hit)
 btn_R13C11.grid(row=0, column=2, sticky='w')
 btn_R13C11.config(font=labelfont)
 btn_R13C12 = Button(F15_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R13C12, width=6, height=hit)
+                    command=update_R13C12, width=6, height=hit)
 btn_R13C12.grid(row=0, column=3, sticky='w')
 btn_R13C12.config(font=labelfont)
 btn_R13C13 = Button(F16_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R13C13, width=6, height=hit)
+                    command=update_R13C13, width=6, height=hit)
 btn_R13C13.grid(row=0, column=0, sticky='w')
 btn_R13C13.config(font=labelfont)
 btn_R13C14 = Button(F16_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R13C14, width=6, height=hit)
+                    command=update_R13C14, width=6, height=hit)
 btn_R13C14.grid(row=0, column=1, sticky='w')
 btn_R13C14.config(font=labelfont)
 btn_R13C15 = Button(F16_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R13C15, width=6, height=hit)
+                    command=update_R13C15, width=6, height=hit)
 btn_R13C15.grid(row=0, column=2, sticky='w')
 btn_R13C15.config(font=labelfont)
 btn_R13C16 = Button(F16_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R13C16, width=6, height=hit)
+                    command=update_R13C16, width=6, height=hit)
 btn_R13C16.grid(row=0, column=3, sticky='w')
 btn_R13C16.config(font=labelfont)
 
 btn_R14C1 = Button(F13_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R14C1, width=6, height=hit)
+                   command=update_R14C1, width=6, height=hit)
 btn_R14C1.grid(row=1, column=0, sticky='w')
 btn_R14C1.config(font=labelfont)
 btn_R14C2 = Button(F13_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R14C2, width=6, height=hit)
+                   command=update_R14C2, width=6, height=hit)
 btn_R14C2.grid(row=1, column=1, sticky='w')
 btn_R14C2.config(font=labelfont)
 btn_R14C3 = Button(F13_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R14C3, width=6, height=hit)
+                   command=update_R14C3, width=6, height=hit)
 btn_R14C3.grid(row=1, column=2, sticky='w')
 btn_R14C3.config(font=labelfont)
 btn_R14C4 = Button(F13_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R14C4, width=6, height=hit)
+                   command=update_R14C4, width=6, height=hit)
 btn_R14C4.grid(row=1, column=3, sticky='w')
 btn_R14C4.config(font=labelfont)
 btn_R14C5 = Button(F14_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R14C5, width=6, height=hit)
+                   command=update_R14C5, width=6, height=hit)
 btn_R14C5.grid(row=1, column=0, sticky='w')
 btn_R14C5.config(font=labelfont)
 btn_R14C6 = Button(F14_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R14C6, width=6, height=hit)
+                   command=update_R14C6, width=6, height=hit)
 btn_R14C6.grid(row=1, column=1, sticky='w')
 btn_R14C6.config(font=labelfont)
 btn_R14C7 = Button(F14_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R14C7, width=6, height=hit)
+                   command=update_R14C7, width=6, height=hit)
 btn_R14C7.grid(row=1, column=2, sticky='w')
 btn_R14C7.config(font=labelfont)
 btn_R14C8 = Button(F14_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R14C8, width=6, height=hit)
+                   command=update_R14C8, width=6, height=hit)
 btn_R14C8.grid(row=1, column=3, sticky='w')
 btn_R14C8.config(font=labelfont)
 btn_R14C9 = Button(F15_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R14C9, width=6, height=hit)
+                   command=update_R14C9, width=6, height=hit)
 btn_R14C9.grid(row=1, column=0, sticky='w')
 btn_R14C9.config(font=labelfont)
 btn_R14C10 = Button(F15_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R14C10, width=6, height=hit)
+                    command=update_R14C10, width=6, height=hit)
 btn_R14C10.grid(row=1, column=1, sticky='w')
 btn_R14C10.config(font=labelfont)
 btn_R14C11 = Button(F15_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R14C11, width=6, height=hit)
+                    command=update_R14C11, width=6, height=hit)
 btn_R14C11.grid(row=1, column=2, sticky='w')
 btn_R14C11.config(font=labelfont)
 btn_R14C12 = Button(F15_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R14C12, width=6, height=hit)
+                    command=update_R14C12, width=6, height=hit)
 btn_R14C12.grid(row=1, column=3, sticky='w')
 btn_R14C12.config(font=labelfont)
 btn_R14C13 = Button(F16_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R14C13, width=6, height=hit)
+                    command=update_R14C13, width=6, height=hit)
 btn_R14C13.grid(row=1, column=0, sticky='w')
 btn_R14C13.config(font=labelfont)
 btn_R14C14 = Button(F16_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R14C14, width=6, height=hit)
+                    command=update_R14C14, width=6, height=hit)
 btn_R14C14.grid(row=1, column=1, sticky='w')
 btn_R14C14.config(font=labelfont)
 btn_R14C15 = Button(F16_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R14C15, width=6, height=hit)
+                    command=update_R14C15, width=6, height=hit)
 btn_R14C15.grid(row=1, column=2, sticky='w')
 btn_R14C15.config(font=labelfont)
 btn_R14C16 = Button(F16_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R14C16, width=6, height=hit)
+                    command=update_R14C16, width=6, height=hit)
 btn_R14C16.grid(row=1, column=3, sticky='w')
 btn_R14C16.config(font=labelfont)
 btn_R15C1 = Button(F13_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R15C1, width=6, height=hit)
+                   command=update_R15C1, width=6, height=hit)
 btn_R15C1.grid(row=2, column=0, sticky='w')
 btn_R15C1.config(font=labelfont)
 btn_R15C2 = Button(F13_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R15C2, width=6, height=hit)
+                   command=update_R15C2, width=6, height=hit)
 btn_R15C2.grid(row=2, column=1, sticky='w')
 btn_R15C2.config(font=labelfont)
 btn_R15C3 = Button(F13_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R15C3, width=6, height=hit)
+                   command=update_R15C3, width=6, height=hit)
 btn_R15C3.grid(row=2, column=2, sticky='w')
 btn_R15C3.config(font=labelfont)
 btn_R15C4 = Button(F13_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R15C4, width=6, height=hit)
+                   command=update_R15C4, width=6, height=hit)
 btn_R15C4.grid(row=2, column=3, sticky='w')
 btn_R15C4.config(font=labelfont)
 btn_R15C5 = Button(F14_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R15C5, width=6, height=hit)
+                   command=update_R15C5, width=6, height=hit)
 btn_R15C5.grid(row=2, column=0, sticky='w')
 btn_R15C5.config(font=labelfont)
 btn_R15C6 = Button(F14_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R15C6, width=6, height=hit)
+                   command=update_R15C6, width=6, height=hit)
 btn_R15C6.grid(row=2, column=1, sticky='w')
 btn_R15C6.config(font=labelfont)
 btn_R15C7 = Button(F14_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R15C7, width=6, height=hit)
+                   command=update_R15C7, width=6, height=hit)
 btn_R15C7.grid(row=2, column=2, sticky='w')
 btn_R15C7.config(font=labelfont)
 btn_R15C8 = Button(F14_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R15C8, width=6, height=hit)
+                   command=update_R15C8, width=6, height=hit)
 btn_R15C8.grid(row=2, column=3, sticky='w')
 btn_R15C8.config(font=labelfont)
 btn_R15C9 = Button(F15_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R15C9, width=6, height=hit)
+                   command=update_R15C9, width=6, height=hit)
 btn_R15C9.grid(row=2, column=0, sticky='w')
 btn_R15C9.config(font=labelfont)
 btn_R15C10 = Button(F15_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R15C10, width=6, height=hit)
+                    command=update_R15C10, width=6, height=hit)
 btn_R15C10.grid(row=2, column=1, sticky='w')
 btn_R15C10.config(font=labelfont)
 btn_R15C11 = Button(F15_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R15C11, width=6, height=hit)
+                    command=update_R15C11, width=6, height=hit)
 btn_R15C11.grid(row=2, column=2, sticky='w')
 btn_R15C11.config(font=labelfont)
 btn_R15C12 = Button(F15_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R15C12, width=6, height=hit)
+                    command=update_R15C12, width=6, height=hit)
 btn_R15C12.grid(row=2, column=3, sticky='w')
 btn_R15C12.config(font=labelfont)
 btn_R15C13 = Button(F16_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R15C13, width=6, height=hit)
+                    command=update_R15C13, width=6, height=hit)
 btn_R15C13.grid(row=2, column=0, sticky='w')
 btn_R15C13.config(font=labelfont)
 btn_R15C14 = Button(F16_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R15C14, width=6, height=hit)
+                    command=update_R15C14, width=6, height=hit)
 btn_R15C14.grid(row=2, column=1, sticky='w')
 btn_R15C14.config(font=labelfont)
 btn_R15C15 = Button(F16_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R15C15, width=6, height=hit)
+                    command=update_R15C15, width=6, height=hit)
 btn_R15C15.grid(row=2, column=2, sticky='w')
 btn_R15C15.config(font=labelfont)
 btn_R15C16 = Button(F16_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R15C16, width=6, height=hit)
+                    command=update_R15C16, width=6, height=hit)
 btn_R15C16.grid(row=2, column=3, sticky='w')
 btn_R15C16.config(font=labelfont)
 
 btn_R16C1 = Button(F13_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R16C1, width=6, height=hit)
+                   command=update_R16C1, width=6, height=hit)
 btn_R16C1.grid(row=3, column=0, sticky='w')
 btn_R16C1.config(font=labelfont)
 btn_R16C2 = Button(F13_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R16C2, width=6, height=hit)
+                   command=update_R16C2, width=6, height=hit)
 btn_R16C2.grid(row=3, column=1, sticky='w')
 btn_R16C2.config(font=labelfont)
 btn_R16C3 = Button(F13_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R16C3, width=6, height=hit)
+                   command=update_R16C3, width=6, height=hit)
 btn_R16C3.grid(row=3, column=2, sticky='w')
 btn_R16C3.config(font=labelfont)
 btn_R16C4 = Button(F13_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R16C4, width=6, height=hit)
+                   command=update_R16C4, width=6, height=hit)
 btn_R16C4.grid(row=3, column=3, sticky='w')
 btn_R16C4.config(font=labelfont)
 btn_R16C5 = Button(F14_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R16C5, width=6, height=hit)
+                   command=update_R16C5, width=6, height=hit)
 btn_R16C5.grid(row=3, column=0, sticky='w')
 btn_R16C5.config(font=labelfont)
 btn_R16C6 = Button(F14_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R16C6, width=6, height=hit)
+                   command=update_R16C6, width=6, height=hit)
 btn_R16C6.grid(row=3, column=1, sticky='w')
 btn_R16C6.config(font=labelfont)
 btn_R16C7 = Button(F14_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R16C7, width=6, height=hit)
+                   command=update_R16C7, width=6, height=hit)
 btn_R16C7.grid(row=3, column=2, sticky='w')
 btn_R16C7.config(font=labelfont)
 btn_R16C8 = Button(F14_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R16C8, width=6, height=hit)
+                   command=update_R16C8, width=6, height=hit)
 btn_R16C8.grid(row=3, column=3, sticky='w')
 btn_R16C8.config(font=labelfont)
 btn_R16C9 = Button(F15_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R16C9, width=6, height=hit)
+                   command=update_R16C9, width=6, height=hit)
 btn_R16C9.grid(row=3, column=0, sticky='w')
 btn_R16C9.config(font=labelfont)
 btn_R16C10 = Button(F15_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R16C10, width=6, height=hit)
+                    command=update_R16C10, width=6, height=hit)
 btn_R16C10.grid(row=3, column=1, sticky='w')
 btn_R16C10.config(font=labelfont)
 btn_R16C11 = Button(F15_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R16C11, width=6, height=hit)
+                    command=update_R16C11, width=6, height=hit)
 btn_R16C11.grid(row=3, column=2, sticky='w')
 btn_R16C11.config(font=labelfont)
 btn_R16C12 = Button(F15_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R16C12, width=6, height=hit)
+                    command=update_R16C12, width=6, height=hit)
 btn_R16C12.grid(row=3, column=3, sticky='w')
 btn_R16C12.config(font=labelfont)
 btn_R16C13 = Button(F16_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R16C13, width=6, height=hit)
+                    command=update_R16C13, width=6, height=hit)
 btn_R16C13.grid(row=3, column=0, sticky='w')
 btn_R16C13.config(font=labelfont)
 btn_R16C14 = Button(F16_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R16C14, width=6, height=hit)
+                    command=update_R16C14, width=6, height=hit)
 btn_R16C14.grid(row=3, column=1, sticky='w')
 btn_R16C14.config(font=labelfont)
 btn_R16C15 = Button(F16_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R16C15, width=6, height=hit)
+                    command=update_R16C15, width=6, height=hit)
 btn_R16C15.grid(row=3, column=2, sticky='w')
 btn_R16C15.config(font=labelfont)
 btn_R16C16 = Button(F16_frame, wraplength=48, justify=LEFT, text=startingString,
-            command=update_R16C16, width=6, height=hit)
+                    command=update_R16C16, width=6, height=hit)
 btn_R16C16.grid(row=3, column=3, sticky='w')
 btn_R16C16.config(font=labelfont)
 txt_Explain = Text(ex_frame, width=30, height=15)
-txt_Explain.grid(row=0, column=0, rowspan=4, sticky='w')  #, columnspan=4, sticky='nw'
+# , columnspan=4, sticky='nw'
+txt_Explain.grid(row=0, column=0, rowspan=4, sticky='w')
 txt_Explain.config(font=labelfont)
 txt_Explain.insert(END, 'Explanatory text goes below.\n')
 # txt_Explain.insert(END, startingString)
 
 txt_Other = Text(txt_frame, width=32, height=15)
-txt_Other.grid(row=0, column=0, rowspan=4, sticky='w')  #, columnspan=4, sticky='nw'
+# , columnspan=4, sticky='nw'
+txt_Other.grid(row=0, column=0, rowspan=4, sticky='w')
 txt_Other.config(font=labelfont)
 txt_Other.insert(END, "Hints\n")
 txt_Other.insert(END, "Load solution\n")
 txt_Other.insert(END, "Find and solve Done = 123 \n")
 txt_Other.insert(END, "Duple C14\n")
-txt_Other.insert(END, "Triple C16\n") #  = 59C : 14,16 = 6; 2,16 D 9; 3,16 D 9; 12,16 Del C 
+# = 59C : 14,16 = 6; 2,16 D 9; 3,16 D 9; 12,16 Del C
+txt_Other.insert(END, "Triple C16\n")
 txt_Other.insert(END, "Find and solve Done = 142\n")
 txt_Other.insert(END, "Duple S3\n")
-txt_Other.insert(END, "Duple S8 = BF : 8,13 Del F  Duple S8 = 9C Del Cs from row\n")
-txt_Other.insert(END, "Quad S14\n") # Quad S14 39AD : 16,5 = 5; D = 143 15,5 Del 3; 15,8 Del AD
-txt_Other.insert(END, "Duple S13\n")  # S13 Duple 7C 
-txt_Other.insert(END, "Triple S15\n")  # triple S15  359 : 15,11 = 1; 13,12 Del 5; 14,5 Del 5
-txt_Other.insert(END, "Triple S15\n")  # triple S15 triple ACD : 16,13 = 5; D = 145
-txt_Other.insert(END, "S15, C12 has only Cs\n") # S15, C12 has only Cs in S, 6,112 Del C
-txt_Other.insert(END, "Triple R9\n") # Triple R9  14A : Del 1,4,A from other cells
+txt_Other.insert(
+    END, "Duple S8 = BF : 8,13 Del F  Duple S8 = 9C Del Cs from row\n")
+# Quad S14 39AD : 16,5 = 5; D = 143 15,5 Del 3; 15,8 Del AD
+txt_Other.insert(END, "Quad S14\n")
+txt_Other.insert(END, "Duple S13\n")  # S13 Duple 7C
+# triple S15  359 : 15,11 = 1; 13,12 Del 5; 14,5 Del 5
 txt_Other.insert(END, "Triple S15\n")
-txt_Other.insert(END, "S7 R6 has only 5s in row\n") # S7 R6 has only 5s in row, so 5,11 Del 5  8
+# triple S15 triple ACD : 16,13 = 5; D = 145
+txt_Other.insert(END, "Triple S15\n")
+# S15, C12 has only Cs in S, 6,112 Del C
+txt_Other.insert(END, "S15, C12 has only Cs\n")
+# Triple R9  14A : Del 1,4,A from other cells
+txt_Other.insert(END, "Triple R9\n")
+txt_Other.insert(END, "Triple S15\n")
+# S7 R6 has only 5s in row, so 5,11 Del 5  8
+txt_Other.insert(END, "S7 R6 has only 5s in row\n")
 txt_Other.insert(END, "Find and solve Done = 165\n")
-txt_Other.insert(END, "Duple S15\n") # Duple S15 R14 AD : 14,4 = 0, 14,1 Del 1; 14,2 Del AD
-txt_Other.insert(END, "Duple S12\n") # Duple S12 C15 Duple 14 : 4,15 Del 4
-txt_Other.insert(END, "5,6 = 0 no auto complete\n") # 5,6 = 0 no auto complete with find and solve
-txt_Other.insert(END, "Duple S15\n") # S15 Duple 39 : 6,10 Del 3, 7,10, Del 3
-txt_Other.insert(END, "S14 C7 has only 9A\n") # S14 C7 has only 9A in square : duple : del from col, also, 13,6 = 3
+# Duple S15 R14 AD : 14,4 = 0, 14,1 Del 1; 14,2 Del AD
+txt_Other.insert(END, "Duple S15\n")
+txt_Other.insert(END, "Duple S12\n")  # Duple S12 C15 Duple 14 : 4,15 Del 4
+# 5,6 = 0 no auto complete with find and solve
+txt_Other.insert(END, "5,6 = 0 no auto complete\n")
+txt_Other.insert(END, "Duple S15\n")  # S15 Duple 39 : 6,10 Del 3, 7,10, Del 3
+# S14 C7 has only 9A in square : duple : del from col, also, 13,6 = 3
+txt_Other.insert(END, "S14 C7 has only 9A\n")
 # txt_Other.insert(END, "4,2 = 4 no auto complete\n")
 # txt_Other.insert(END, "5,2 = 2 no auto complete\n")
 
-txt_Other.insert(END, "S1 C4 has the only 7s\n") # S1 C4 has the only 7s in the column, so 3,1 del 7 and 3,3 del 7
-txt_Other.insert(END, "Quad C3\n") # 13AD  ?Wrong Quad S1 39AE so 2,4 del 3 ; 12,4 del 8
-txt_Other.insert(END, "Duple S5\n") # Duple 7C so 5,1 = 1 Triple C3 13A, del 1,3A,  duple 7C  5,1 = 1
+# S1 C4 has the only 7s in the column, so 3,1 del 7 and 3,3 del 7
+txt_Other.insert(END, "S1 C4 has the only 7s\n")
+# 13AD  ?Wrong Quad S1 39AE so 2,4 del 3 ; 12,4 del 8
+txt_Other.insert(END, "Quad C3\n")
+# Duple 7C so 5,1 = 1 Triple C3 13A, del 1,3A,  duple 7C  5,1 = 1
+txt_Other.insert(END, "Duple S5\n")
 
 txt_Other.insert(END, "11,2 = 0 no auto complete\n")
 txt_Other.insert(END, "5,2 = 2 no auto complete\n")
 txt_Other.insert(END, "6,7 = E no auto complete\n")
-txt_Other.insert(END, "Duple S5\n") # Duple 3D
-txt_Other.insert(END, "Quad S1\n") # 349A  ?Wrong Quad S1 39AE so 2,4 del 3 ; 12,4 del 8
-txt_Other.insert(END, "Duple S1\n") # Duple 78
-txt_Other.insert(END, "Find and solve\n") # Find and solve * ?  finished!.\n")
+txt_Other.insert(END, "Duple S5\n")  # Duple 3D
+# 349A  ?Wrong Quad S1 39AE so 2,4 del 3 ; 12,4 del 8
+txt_Other.insert(END, "Quad S1\n")
+txt_Other.insert(END, "Duple S1\n")  # Duple 78
+# Find and solve * ?  finished!.\n")
+txt_Other.insert(END, "Find and solve\n")
 
 # EventText=tk.Text(root, height=10, width=50)
-EventScrollBar = tk.Scrollbar(ex_frame, command=txt_Explain.yview, orient="vertical")
+EventScrollBar = tk.Scrollbar(
+    ex_frame, command=txt_Explain.yview, orient="vertical")
 EventScrollBar.grid(row=0, column=1, sticky="ns")
 # txt_Explain.grid(row=0,column=0)
 txt_Explain.configure(yscrollcommand=EventScrollBar.set)
@@ -4336,266 +4890,521 @@ txt_Explain.configure(yscrollcommand=EventScrollBar.set)
 # txt_Explain.insert(tk.END, Quote)
 
 
-
 # arrRef0 = dict(btn=btn_R1C1)
 
 btn_dict = {}
-arrRef0 = dict(aref='arrRef0', btn=btn_R1C1, row=1, col=1, sq=1, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef1 = dict(aref='arrRef1', btn=btn_R1C2, row=1, col=2, sq=1, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef2 = dict(aref='arrRef2', btn=btn_R1C3, row=1, col=3, sq=1, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef3 = dict(aref='arrRef3', btn=btn_R1C4, row=1, col=4, sq=1, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef4 = dict(aref='arrRef4', btn=btn_R1C5, row=1, col=5, sq=2, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef5 = dict(aref='arrRef5', btn=btn_R1C6, row=1, col=6, sq=2, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef6 = dict(aref='arrRef6', btn=btn_R1C7, row=1, col=7, sq=2, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef7 = dict(aref='arrRef7', btn=btn_R1C8, row=1, col=8, sq=2, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef8 = dict(aref='arrRef8', btn=btn_R1C9, row=1, col=9, sq=3, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef9 = dict(aref='arrRef9', btn=btn_R1C10, row=1, col=10, sq=3, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef10 = dict(aref='arrRef10', btn=btn_R1C11, row=1, col=11, sq=3, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef11 = dict(aref='arrRef11', btn=btn_R1C12, row=1, col=12, sq=3, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef12 = dict(aref='arrRef12', btn=btn_R1C13, row=1, col=13, sq=4, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef13 = dict(aref='arrRef13', btn=btn_R1C14, row=1, col=14, sq=4, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef14 = dict(aref='arrRef14', btn=btn_R1C15, row=1, col=15, sq=4, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef15 = dict(aref='arrRef15', btn=btn_R1C16, row=1, col=16, sq=4, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef16 = dict(aref='arrRef16', btn=btn_R2C1, row=2, col=1, sq=1, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef17 = dict(aref='arrRef17', btn=btn_R2C2, row=2, col=2, sq=1, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef18 = dict(aref='arrRef18', btn=btn_R2C3, row=2, col=3, sq=1, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef19 = dict(aref='arrRef19', btn=btn_R2C4, row=2, col=4, sq=1, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef20 = dict(aref='arrRef20', btn=btn_R2C5, row=2, col=5, sq=2, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef21 = dict(aref='arrRef21', btn=btn_R2C6, row=2, col=6, sq=2, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef22 = dict(aref='arrRef22', btn=btn_R2C7, row=2, col=7, sq=2, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef23 = dict(aref='arrRef23', btn=btn_R2C8, row=2, col=8, sq=2, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef24 = dict(aref='arrRef24', btn=btn_R2C9, row=2, col=9, sq=3, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef25 = dict(aref='arrRef25', btn=btn_R2C10, row=2, col=10, sq=3, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef26 = dict(aref='arrRef26', btn=btn_R2C11, row=2, col=11, sq=3, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef27 = dict(aref='arrRef27', btn=btn_R2C12, row=2, col=12, sq=3, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef28 = dict(aref='arrRef28', btn=btn_R2C13, row=2, col=13, sq=4, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef29 = dict(aref='arrRef29', btn=btn_R2C14, row=2, col=14, sq=4, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef30 = dict(aref='arrRef30', btn=btn_R2C15, row=2, col=15, sq=4, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef31 = dict(aref='arrRef31', btn=btn_R2C16, row=2, col=16, sq=4, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef32 = dict(aref='arrRef32', btn=btn_R3C1, row=3, col=1, sq=1, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef33 = dict(aref='arrRef33', btn=btn_R3C2, row=3, col=2, sq=1, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef34 = dict(aref='arrRef34', btn=btn_R3C3, row=3, col=3, sq=1, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef35 = dict(aref='arrRef35', btn=btn_R3C4, row=3, col=4, sq=1, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef36 = dict(aref='arrRef36', btn=btn_R3C5, row=3, col=5, sq=2, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef37 = dict(aref='arrRef37', btn=btn_R3C6, row=3, col=6, sq=2, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef38 = dict(aref='arrRef38', btn=btn_R3C7, row=3, col=7, sq=2, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef39 = dict(aref='arrRef39', btn=btn_R3C8, row=3, col=8, sq=2, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef40 = dict(aref='arrRef40', btn=btn_R3C9, row=3, col=9, sq=3, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef41 = dict(aref='arrRef41', btn=btn_R3C10, row=3, col=10, sq=3, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef42 = dict(aref='arrRef41', btn=btn_R3C11, row=3, col=11, sq=3, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef43 = dict(aref='arrRef43', btn=btn_R3C12, row=3, col=12, sq=3, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef44 = dict(aref='arrRef44', btn=btn_R3C13, row=3, col=13, sq=4, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef45 = dict(aref='arrRef45', btn=btn_R3C14, row=3, col=14, sq=4, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef46 = dict(aref='arrRef46', btn=btn_R3C15, row=3, col=15, sq=4, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef47 = dict(aref='arrRef47', btn=btn_R3C16, row=3, col=16, sq=4, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef48 = dict(aref='arrRef48', btn=btn_R4C1, row=4, col=1, sq=1, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef49 = dict(aref='arrRef49', btn=btn_R4C2, row=4, col=2, sq=1, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef50 = dict(aref='arrRef50', btn=btn_R4C3, row=4, col=3, sq=1, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef51 = dict(aref='arrRef51', btn=btn_R4C4, row=4, col=4, sq=1, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef52 = dict(aref='arrRef52', btn=btn_R4C5, row=4, col=5, sq=2, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef53 = dict(aref='arrRef53', btn=btn_R4C6, row=4, col=6, sq=2, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef54 = dict(aref='arrRef54', btn=btn_R4C7, row=4, col=7, sq=2, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef55 = dict(aref='arrRef55', btn=btn_R4C8, row=4, col=8, sq=2, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef56 = dict(aref='arrRef56', btn=btn_R4C9, row=4, col=9, sq=3, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef57 = dict(aref='arrRef57', btn=btn_R4C10, row=4, col=10, sq=3, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef58 = dict(aref='arrRef58', btn=btn_R4C11, row=4, col=11, sq=3, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef59 = dict(aref='arrRef59', btn=btn_R4C12, row=4, col=12, sq=3, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef60 = dict(aref='arrRef60', btn=btn_R4C13, row=4, col=13, sq=4, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef61 = dict(aref='arrRef61', btn=btn_R4C14, row=4, col=14, sq=4, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef62 = dict(aref='arrRef62', btn=btn_R4C15, row=4, col=15, sq=4, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef63 = dict(aref='arrRef63', btn=btn_R4C16, row=4, col=16, sq=4, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef64 = dict(aref='arrRef64', btn=btn_R5C1, row=5, col=1, sq=5, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef65 = dict(aref='arrRef65', btn=btn_R5C2, row=5, col=2, sq=5, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef66 = dict(aref='arrRef66', btn=btn_R5C3, row=5, col=3, sq=5, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef67 = dict(aref='arrRef67', btn=btn_R5C4, row=5, col=4, sq=5, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef68 = dict(aref='arrRef68', btn=btn_R5C5, row=5, col=5, sq=6, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef69 = dict(aref='arrRef69', btn=btn_R5C6, row=5, col=6, sq=6, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef70 = dict(aref='arrRef70', btn=btn_R5C7, row=5, col=7, sq=6, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef71 = dict(aref='arrRef71', btn=btn_R5C8, row=5, col=8, sq=6, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef72 = dict(aref='arrRef72', btn=btn_R5C9, row=5, col=9, sq=7, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef73 = dict(aref='arrRef73', btn=btn_R5C10, row=5, col=10, sq=7, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef74 = dict(aref='arrRef74', btn=btn_R5C11, row=5, col=11, sq=7, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef75 = dict(aref='arrRef75', btn=btn_R5C12, row=5, col=12, sq=7, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef76 = dict(aref='arrRef76', btn=btn_R5C13, row=5, col=13, sq=8, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef77 = dict(aref='arrRef77', btn=btn_R5C14, row=5, col=14, sq=8, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef78 = dict(aref='arrRef78', btn=btn_R5C15, row=5, col=15, sq=8, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef79 = dict(aref='arrRef79', btn=btn_R5C16, row=5, col=16, sq=8, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef80 = dict(aref='arrRef80', btn=btn_R6C1, row=6, col=1, sq=5, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef81 = dict(aref='arrRef81', btn=btn_R6C2, row=6, col=2, sq=5, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef82 = dict(aref='arrRef82', btn=btn_R6C3, row=6, col=3, sq=5, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef83 = dict(aref='arrRef83', btn=btn_R6C4, row=6, col=4, sq=5, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef84 = dict(aref='arrRef84', btn=btn_R6C5, row=6, col=5, sq=6, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef85 = dict(aref='arrRef85', btn=btn_R6C6, row=6, col=6, sq=6, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef86 = dict(aref='arrRef86', btn=btn_R6C7, row=6, col=7, sq=6, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef87 = dict(aref='arrRef87', btn=btn_R6C8, row=6, col=8, sq=6, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef88 = dict(aref='arrRef88', btn=btn_R6C9, row=6, col=9, sq=7, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef89 = dict(aref='arrRef89', btn=btn_R6C10, row=6, col=10, sq=7, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef90 = dict(aref='arrRef90', btn=btn_R6C11, row=6, col=11, sq=7, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef91 = dict(aref='arrRef91', btn=btn_R6C12, row=6, col=12, sq=7, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef92 = dict(aref='arrRef92', btn=btn_R6C13, row=6, col=13, sq=8, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef93 = dict(aref='arrRef93', btn=btn_R6C14, row=6, col=14, sq=8, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef94 = dict(aref='arrRef94', btn=btn_R6C15, row=6, col=15, sq=8, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef95 = dict(aref='arrRef95', btn=btn_R6C16, row=6, col=16, sq=8, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef96 = dict(aref='arrRef96', btn=btn_R7C1, row=7, col=1, sq=5, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef97 = dict(aref='arrRef97', btn=btn_R7C2, row=7, col=2, sq=5, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef98 = dict(aref='arrRef98', btn=btn_R7C3, row=7, col=3, sq=5, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef99 = dict(aref='arrRef99', btn=btn_R7C4, row=7, col=4, sq=5, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef100 = dict(aref='arrRef100', btn=btn_R7C5, row=7, col=5, sq=6, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef101 = dict(aref='arrRef101', btn=btn_R7C6, row=7, col=6, sq=6, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef102 = dict(aref='arrRef102', btn=btn_R7C7, row=7, col=7, sq=6, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef103 = dict(aref='arrRef103', btn=btn_R7C8, row=7, col=8, sq=6, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef104 = dict(aref='arrRef104', btn=btn_R7C9, row=7, col=9, sq=7, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef105 = dict(aref='arrRef105', btn=btn_R7C10, row=7, col=10, sq=7, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef106 = dict(aref='arrRef106', btn=btn_R7C11, row=7, col=11, sq=7, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef107 = dict(aref='arrRef107', btn=btn_R7C12, row=7, col=12, sq=7, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef108 = dict(aref='arrRef108', btn=btn_R7C13, row=7, col=13, sq=8, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef109 = dict(aref='arrRef109', btn=btn_R7C14, row=7, col=14, sq=8, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef110 = dict(aref='arrRef110', btn=btn_R7C15, row=7, col=15, sq=8, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef111 = dict(aref='arrRef111', btn=btn_R7C16, row=7, col=16, sq=8, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef112 = dict(aref='arrRef112', btn=btn_R8C1, row=8, col=1, sq=5, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef113 = dict(aref='arrRef113', btn=btn_R8C2, row=8, col=2, sq=5, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef114 = dict(aref='arrRef114', btn=btn_R8C3, row=8, col=3, sq=5, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef115 = dict(aref='arrRef115', btn=btn_R8C4, row=8, col=4, sq=5, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef116 = dict(aref='arrRef116', btn=btn_R8C5, row=8, col=5, sq=6, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef117 = dict(aref='arrRef117', btn=btn_R8C6, row=8, col=6, sq=6, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef118 = dict(aref='arrRef118', btn=btn_R8C7, row=8, col=7, sq=6, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef119 = dict(aref='arrRef119', btn=btn_R8C8, row=8, col=8, sq=6, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef120 = dict(aref='arrRef120', btn=btn_R8C9, row=8, col=9, sq=7, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef121 = dict(aref='arrRef121', btn=btn_R8C10, row=8, col=10, sq=7, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef122 = dict(aref='arrRef122', btn=btn_R8C11, row=8, col=11, sq=7, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef123 = dict(aref='arrRef123', btn=btn_R8C12, row=8, col=12, sq=7, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef124 = dict(aref='arrRef124', btn=btn_R8C13, row=8, col=13, sq=8, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef125 = dict(aref='arrRef125', btn=btn_R8C14, row=8, col=14, sq=8, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef126 = dict(aref='arrRef126', btn=btn_R8C15, row=8, col=15, sq=8, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef127 = dict(aref='arrRef127', btn=btn_R8C16, row=8, col=16, sq=8, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef128 = dict(aref='arrRef128', btn=btn_R9C1, row=9, col=1, sq=9, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef129 = dict(aref='arrRef129', btn=btn_R9C2, row=9, col=2, sq=9, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef130 = dict(aref='arrRef130', btn=btn_R9C3, row=9, col=3, sq=9, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef131 = dict(aref='arrRef131', btn=btn_R9C4, row=9, col=4, sq=9, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef132 = dict(aref='arrRef132', btn=btn_R9C5, row=9, col=5, sq=10, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef133 = dict(aref='arrRef133', btn=btn_R9C6, row=9, col=6, sq=10, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef134 = dict(aref='arrRef134', btn=btn_R9C7, row=9, col=7, sq=10, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef135 = dict(aref='arrRef135', btn=btn_R9C8, row=9, col=8, sq=10, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef136 = dict(aref='arrRef136', btn=btn_R9C9, row=9, col=9, sq=11, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef137 = dict(aref='arrRef137', btn=btn_R9C10, row=9, col=10, sq=11, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef138 = dict(aref='arrRef138', btn=btn_R9C11, row=9, col=11, sq=11, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef139 = dict(aref='arrRef139', btn=btn_R9C12, row=9, col=12, sq=11, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef140 = dict(aref='arrRef140', btn=btn_R9C13, row=9, col=13, sq=12, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef141 = dict(aref='arrRef141', btn=btn_R9C14, row=9, col=14, sq=12, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef142 = dict(aref='arrRef142', btn=btn_R9C15, row=9, col=15, sq=12, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef143 = dict(aref='arrRef143', btn=btn_R9C16, row=9, col=16, sq=12, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef144 = dict(aref='arrRef144', btn=btn_R10C1, row=10, col=1, sq=9, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef145 = dict(aref='arrRef145', btn=btn_R10C2, row=10, col=2, sq=9, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef146 = dict(aref='arrRef146', btn=btn_R10C3, row=10, col=3, sq=9, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef147 = dict(aref='arrRef147', btn=btn_R10C4, row=10, col=4, sq=9, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef148 = dict(aref='arrRef148', btn=btn_R10C5, row=10, col=5, sq=10, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef149 = dict(aref='arrRef149', btn=btn_R10C6, row=10, col=6, sq=10, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef150 = dict(aref='arrRef150', btn=btn_R10C7, row=10, col=7, sq=10, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef151 = dict(aref='arrRef151', btn=btn_R10C8, row=10, col=8, sq=10, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef152 = dict(aref='arrRef152', btn=btn_R10C9, row=10, col=9, sq=11, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef153 = dict(aref='arrRef153', btn=btn_R10C10, row=10, col=10, sq=11, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef154 = dict(aref='arrRef154', btn=btn_R10C11, row=10, col=11, sq=11, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef155 = dict(aref='arrRef155', btn=btn_R10C12, row=10, col=12, sq=11, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef156 = dict(aref='arrRef156', btn=btn_R10C13, row=10, col=13, sq=12, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef157 = dict(aref='arrRef157', btn=btn_R10C14, row=10, col=14, sq=12, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef158 = dict(aref='arrRef158', btn=btn_R10C15, row=10, col=15, sq=12, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef159 = dict(aref='arrRef159', btn=btn_R10C16, row=10, col=16, sq=12, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef160 = dict(aref='arrRef160', btn=btn_R11C1, row=11, col=1, sq=9, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef161 = dict(aref='arrRef161', btn=btn_R11C2, row=11, col=2, sq=9, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef162 = dict(aref='arrRef162', btn=btn_R11C3, row=11, col=3, sq=9, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef163 = dict(aref='arrRef163', btn=btn_R11C4, row=11, col=4, sq=9, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef164 = dict(aref='arrRef164', btn=btn_R11C5, row=11, col=5, sq=10, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef165 = dict(aref='arrRef165', btn=btn_R11C6, row=11, col=6, sq=10, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef166 = dict(aref='arrRef166', btn=btn_R11C7, row=11, col=7, sq=10, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef167 = dict(aref='arrRef167', btn=btn_R11C8, row=11, col=8, sq=10, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef168 = dict(aref='arrRef168', btn=btn_R11C9, row=11, col=9, sq=11, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef169 = dict(aref='arrRef169', btn=btn_R11C10, row=11, col=10, sq=11, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef170 = dict(aref='arrRef170', btn=btn_R11C11, row=11, col=11, sq=11, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef171 = dict(aref='arrRef171', btn=btn_R11C12, row=11, col=12, sq=11, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef172 = dict(aref='arrRef172', btn=btn_R11C13, row=11, col=13, sq=12, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef173 = dict(aref='arrRef173', btn=btn_R11C14, row=11, col=14, sq=12, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef174 = dict(aref='arrRef174', btn=btn_R11C15, row=11, col=15, sq=12, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef175 = dict(aref='arrRef175', btn=btn_R11C16, row=11, col=16, sq=12, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef176 = dict(aref='arrRef176', btn=btn_R12C1, row=12, col=1, sq=9, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef177 = dict(aref='arrRef177', btn=btn_R12C2, row=12, col=2, sq=9, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef178 = dict(aref='arrRef178', btn=btn_R12C3, row=12, col=3, sq=9, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef179 = dict(aref='arrRef179', btn=btn_R12C4, row=12, col=4, sq=9, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef180 = dict(aref='arrRef180', btn=btn_R12C5, row=12, col=5, sq=10, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef181 = dict(aref='arrRef181', btn=btn_R12C6, row=12, col=6, sq=10, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef182 = dict(aref='arrRef182', btn=btn_R12C7, row=12, col=7, sq=10, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef183 = dict(aref='arrRef183', btn=btn_R12C8, row=12, col=8, sq=10, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef184 = dict(aref='arrRef184', btn=btn_R12C9, row=12, col=9, sq=11, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef185 = dict(aref='arrRef185', btn=btn_R12C10, row=12, col=10, sq=11, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef186 = dict(aref='arrRef186', btn=btn_R12C11, row=12, col=11, sq=11, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef187 = dict(aref='arrRef187', btn=btn_R12C12, row=12, col=12, sq=11, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef188 = dict(aref='arrRef188', btn=btn_R12C13, row=12, col=13, sq=12, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef189 = dict(aref='arrRef189', btn=btn_R12C14, row=12, col=14, sq=12, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef190 = dict(aref='arrRef190', btn=btn_R12C15, row=12, col=15, sq=12, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef191 = dict(aref='arrRef191', btn=btn_R12C16, row=12, col=16, sq=12, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef192 = dict(aref='arrRef192', btn=btn_R13C1, row=13, col=1, sq=13, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef193 = dict(aref='arrRef193', btn=btn_R13C2, row=13, col=2, sq=13, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef194 = dict(aref='arrRef194', btn=btn_R13C3, row=13, col=3, sq=13, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef195 = dict(aref='arrRef195', btn=btn_R13C4, row=13, col=4, sq=13, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef196 = dict(aref='arrRef196', btn=btn_R13C5, row=13, col=5, sq=14, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef197 = dict(aref='arrRef197', btn=btn_R13C6, row=13, col=6, sq=14, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef198 = dict(aref='arrRef198', btn=btn_R13C7, row=13, col=7, sq=14, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef199 = dict(aref='arrRef199', btn=btn_R13C8, row=13, col=8, sq=14, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef200 = dict(aref='arrRef200', btn=btn_R13C9, row=13, col=9, sq=15, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef201 = dict(aref='arrRef201', btn=btn_R13C10, row=13, col=10, sq=15, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef202 = dict(aref='arrRef202', btn=btn_R13C11, row=13, col=11, sq=15, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef203 = dict(aref='arrRef203', btn=btn_R13C12, row=13, col=12, sq=15, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef204 = dict(aref='arrRef204', btn=btn_R13C13, row=13, col=13, sq=16, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef205 = dict(aref='arrRef205', btn=btn_R13C14, row=13, col=14, sq=16, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef206 = dict(aref='arrRef206', btn=btn_R13C15, row=13, col=15, sq=16, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef207 = dict(aref='arrRef207', btn=btn_R13C16, row=13, col=16, sq=16, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef208 = dict(aref='arrRef208', btn=btn_R14C1, row=14, col=1, sq=13, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef209 = dict(aref='arrRef209', btn=btn_R14C2, row=14, col=2, sq=13, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef210 = dict(aref='arrRef210', btn=btn_R14C3, row=14, col=3, sq=13, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef211 = dict(aref='arrRef211', btn=btn_R14C4, row=14, col=4, sq=13, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef212 = dict(aref='arrRef212', btn=btn_R14C5, row=14, col=5, sq=14, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef213 = dict(aref='arrRef213', btn=btn_R14C6, row=14, col=6, sq=14, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef214 = dict(aref='arrRef214', btn=btn_R14C7, row=14, col=7, sq=14, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef215 = dict(aref='arrRef215', btn=btn_R14C8, row=14, col=8, sq=14, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef216 = dict(aref='arrRef216', btn=btn_R14C9, row=14, col=9, sq=15, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef217 = dict(aref='arrRef217', btn=btn_R14C10, row=14, col=10, sq=15, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef218 = dict(aref='arrRef218', btn=btn_R14C11, row=14, col=11, sq=15, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef219 = dict(aref='arrRef219', btn=btn_R14C12, row=14, col=12, sq=15, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef220 = dict(aref='arrRef220', btn=btn_R14C13, row=14, col=13, sq=16, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef221 = dict(aref='arrRef221', btn=btn_R14C14, row=14, col=14, sq=16, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef222 = dict(aref='arrRef222', btn=btn_R14C15, row=14, col=15, sq=16, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef223 = dict(aref='arrRef223', btn=btn_R14C16, row=14, col=16, sq=16, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef224 = dict(aref='arrRef224', btn=btn_R15C1, row=15, col=1, sq=13, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef225 = dict(aref='arrRef225', btn=btn_R15C2, row=15, col=2, sq=13, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef226 = dict(aref='arrRef226', btn=btn_R15C3, row=15, col=3, sq=13, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef227 = dict(aref='arrRef227', btn=btn_R15C4, row=15, col=4, sq=13, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef228 = dict(aref='arrRef228', btn=btn_R15C5, row=15, col=5, sq=14, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef229 = dict(aref='arrRef229', btn=btn_R15C6, row=15, col=6, sq=14, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef230 = dict(aref='arrRef230', btn=btn_R15C7, row=15, col=7, sq=14, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef231 = dict(aref='arrRef231', btn=btn_R15C8, row=15, col=8, sq=14, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef232 = dict(aref='arrRef232', btn=btn_R15C9, row=15, col=9, sq=15, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef233 = dict(aref='arrRef233', btn=btn_R15C10, row=15, col=10, sq=15, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef234 = dict(aref='arrRef234', btn=btn_R15C11, row=15, col=11, sq=15, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef235 = dict(aref='arrRef235', btn=btn_R15C12, row=15, col=12, sq=15, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef236 = dict(aref='arrRef236', btn=btn_R15C13, row=15, col=13, sq=16, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef237 = dict(aref='arrRef237', btn=btn_R15C14, row=15, col=14, sq=16, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef238 = dict(aref='arrRef238', btn=btn_R15C15, row=15, col=15, sq=16, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef239 = dict(aref='arrRef239', btn=btn_R15C16, row=15, col=16, sq=16, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef240 = dict(aref='arrRef240', btn=btn_R16C1, row=16, col=1, sq=13, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef241 = dict(aref='arrRef241', btn=btn_R16C2, row=16, col=2, sq=13, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef242 = dict(aref='arrRef242', btn=btn_R16C3, row=16, col=3, sq=13, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef243 = dict(aref='arrRef243', btn=btn_R16C4, row=16, col=4, sq=13, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef244 = dict(aref='arrRef244', btn=btn_R16C5, row=16, col=5, sq=14, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef245 = dict(aref='arrRef245', btn=btn_R16C6, row=16, col=6, sq=14, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef246 = dict(aref='arrRef246', btn=btn_R16C7, row=16, col=7, sq=14, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef247 = dict(aref='arrRef247', btn=btn_R16C8, row=16, col=8, sq=14, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef248 = dict(aref='arrRef248', btn=btn_R16C9, row=16, col=9, sq=15, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef249 = dict(aref='arrRef249', btn=btn_R16C10, row=16, col=10, sq=15, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef250 = dict(aref='arrRef250', btn=btn_R16C11, row=16, col=11, sq=15, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef251 = dict(aref='arrRef251', btn=btn_R16C12, row=16, col=12, sq=15, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef252 = dict(aref='arrRef252', btn=btn_R16C13, row=16, col=13, sq=16, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef253 = dict(aref='arrRef253', btn=btn_R16C14, row=16, col=14, sq=16, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef254 = dict(aref='arrRef254', btn=btn_R16C15, row=16, col=15, sq=16, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
-arrRef255 = dict(aref='arrRef255', btn=btn_R16C16, row=16, col=16, sq=16, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef0 = dict(aref='arrRef0', btn=btn_R1C1, row=1, col=1, sq=1, done=False,
+               nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef1 = dict(aref='arrRef1', btn=btn_R1C2, row=1, col=2, sq=1, done=False,
+               nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef2 = dict(aref='arrRef2', btn=btn_R1C3, row=1, col=3, sq=1, done=False,
+               nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef3 = dict(aref='arrRef3', btn=btn_R1C4, row=1, col=4, sq=1, done=False,
+               nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef4 = dict(aref='arrRef4', btn=btn_R1C5, row=1, col=5, sq=2, done=False,
+               nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef5 = dict(aref='arrRef5', btn=btn_R1C6, row=1, col=6, sq=2, done=False,
+               nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef6 = dict(aref='arrRef6', btn=btn_R1C7, row=1, col=7, sq=2, done=False,
+               nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef7 = dict(aref='arrRef7', btn=btn_R1C8, row=1, col=8, sq=2, done=False,
+               nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef8 = dict(aref='arrRef8', btn=btn_R1C9, row=1, col=9, sq=3, done=False,
+               nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef9 = dict(aref='arrRef9', btn=btn_R1C10, row=1, col=10, sq=3, done=False,
+               nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef10 = dict(aref='arrRef10', btn=btn_R1C11, row=1, col=11, sq=3, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef11 = dict(aref='arrRef11', btn=btn_R1C12, row=1, col=12, sq=3, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef12 = dict(aref='arrRef12', btn=btn_R1C13, row=1, col=13, sq=4, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef13 = dict(aref='arrRef13', btn=btn_R1C14, row=1, col=14, sq=4, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef14 = dict(aref='arrRef14', btn=btn_R1C15, row=1, col=15, sq=4, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef15 = dict(aref='arrRef15', btn=btn_R1C16, row=1, col=16, sq=4, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef16 = dict(aref='arrRef16', btn=btn_R2C1, row=2, col=1, sq=1, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef17 = dict(aref='arrRef17', btn=btn_R2C2, row=2, col=2, sq=1, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef18 = dict(aref='arrRef18', btn=btn_R2C3, row=2, col=3, sq=1, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef19 = dict(aref='arrRef19', btn=btn_R2C4, row=2, col=4, sq=1, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef20 = dict(aref='arrRef20', btn=btn_R2C5, row=2, col=5, sq=2, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef21 = dict(aref='arrRef21', btn=btn_R2C6, row=2, col=6, sq=2, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef22 = dict(aref='arrRef22', btn=btn_R2C7, row=2, col=7, sq=2, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef23 = dict(aref='arrRef23', btn=btn_R2C8, row=2, col=8, sq=2, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef24 = dict(aref='arrRef24', btn=btn_R2C9, row=2, col=9, sq=3, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef25 = dict(aref='arrRef25', btn=btn_R2C10, row=2, col=10, sq=3, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef26 = dict(aref='arrRef26', btn=btn_R2C11, row=2, col=11, sq=3, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef27 = dict(aref='arrRef27', btn=btn_R2C12, row=2, col=12, sq=3, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef28 = dict(aref='arrRef28', btn=btn_R2C13, row=2, col=13, sq=4, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef29 = dict(aref='arrRef29', btn=btn_R2C14, row=2, col=14, sq=4, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef30 = dict(aref='arrRef30', btn=btn_R2C15, row=2, col=15, sq=4, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef31 = dict(aref='arrRef31', btn=btn_R2C16, row=2, col=16, sq=4, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef32 = dict(aref='arrRef32', btn=btn_R3C1, row=3, col=1, sq=1, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef33 = dict(aref='arrRef33', btn=btn_R3C2, row=3, col=2, sq=1, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef34 = dict(aref='arrRef34', btn=btn_R3C3, row=3, col=3, sq=1, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef35 = dict(aref='arrRef35', btn=btn_R3C4, row=3, col=4, sq=1, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef36 = dict(aref='arrRef36', btn=btn_R3C5, row=3, col=5, sq=2, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef37 = dict(aref='arrRef37', btn=btn_R3C6, row=3, col=6, sq=2, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef38 = dict(aref='arrRef38', btn=btn_R3C7, row=3, col=7, sq=2, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef39 = dict(aref='arrRef39', btn=btn_R3C8, row=3, col=8, sq=2, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef40 = dict(aref='arrRef40', btn=btn_R3C9, row=3, col=9, sq=3, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef41 = dict(aref='arrRef41', btn=btn_R3C10, row=3, col=10, sq=3, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef42 = dict(aref='arrRef41', btn=btn_R3C11, row=3, col=11, sq=3, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef43 = dict(aref='arrRef43', btn=btn_R3C12, row=3, col=12, sq=3, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef44 = dict(aref='arrRef44', btn=btn_R3C13, row=3, col=13, sq=4, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef45 = dict(aref='arrRef45', btn=btn_R3C14, row=3, col=14, sq=4, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef46 = dict(aref='arrRef46', btn=btn_R3C15, row=3, col=15, sq=4, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef47 = dict(aref='arrRef47', btn=btn_R3C16, row=3, col=16, sq=4, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef48 = dict(aref='arrRef48', btn=btn_R4C1, row=4, col=1, sq=1, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef49 = dict(aref='arrRef49', btn=btn_R4C2, row=4, col=2, sq=1, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef50 = dict(aref='arrRef50', btn=btn_R4C3, row=4, col=3, sq=1, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef51 = dict(aref='arrRef51', btn=btn_R4C4, row=4, col=4, sq=1, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef52 = dict(aref='arrRef52', btn=btn_R4C5, row=4, col=5, sq=2, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef53 = dict(aref='arrRef53', btn=btn_R4C6, row=4, col=6, sq=2, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef54 = dict(aref='arrRef54', btn=btn_R4C7, row=4, col=7, sq=2, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef55 = dict(aref='arrRef55', btn=btn_R4C8, row=4, col=8, sq=2, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef56 = dict(aref='arrRef56', btn=btn_R4C9, row=4, col=9, sq=3, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef57 = dict(aref='arrRef57', btn=btn_R4C10, row=4, col=10, sq=3, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef58 = dict(aref='arrRef58', btn=btn_R4C11, row=4, col=11, sq=3, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef59 = dict(aref='arrRef59', btn=btn_R4C12, row=4, col=12, sq=3, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef60 = dict(aref='arrRef60', btn=btn_R4C13, row=4, col=13, sq=4, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef61 = dict(aref='arrRef61', btn=btn_R4C14, row=4, col=14, sq=4, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef62 = dict(aref='arrRef62', btn=btn_R4C15, row=4, col=15, sq=4, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef63 = dict(aref='arrRef63', btn=btn_R4C16, row=4, col=16, sq=4, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef64 = dict(aref='arrRef64', btn=btn_R5C1, row=5, col=1, sq=5, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef65 = dict(aref='arrRef65', btn=btn_R5C2, row=5, col=2, sq=5, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef66 = dict(aref='arrRef66', btn=btn_R5C3, row=5, col=3, sq=5, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef67 = dict(aref='arrRef67', btn=btn_R5C4, row=5, col=4, sq=5, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef68 = dict(aref='arrRef68', btn=btn_R5C5, row=5, col=5, sq=6, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef69 = dict(aref='arrRef69', btn=btn_R5C6, row=5, col=6, sq=6, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef70 = dict(aref='arrRef70', btn=btn_R5C7, row=5, col=7, sq=6, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef71 = dict(aref='arrRef71', btn=btn_R5C8, row=5, col=8, sq=6, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef72 = dict(aref='arrRef72', btn=btn_R5C9, row=5, col=9, sq=7, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef73 = dict(aref='arrRef73', btn=btn_R5C10, row=5, col=10, sq=7, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef74 = dict(aref='arrRef74', btn=btn_R5C11, row=5, col=11, sq=7, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef75 = dict(aref='arrRef75', btn=btn_R5C12, row=5, col=12, sq=7, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef76 = dict(aref='arrRef76', btn=btn_R5C13, row=5, col=13, sq=8, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef77 = dict(aref='arrRef77', btn=btn_R5C14, row=5, col=14, sq=8, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef78 = dict(aref='arrRef78', btn=btn_R5C15, row=5, col=15, sq=8, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef79 = dict(aref='arrRef79', btn=btn_R5C16, row=5, col=16, sq=8, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef80 = dict(aref='arrRef80', btn=btn_R6C1, row=6, col=1, sq=5, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef81 = dict(aref='arrRef81', btn=btn_R6C2, row=6, col=2, sq=5, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef82 = dict(aref='arrRef82', btn=btn_R6C3, row=6, col=3, sq=5, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef83 = dict(aref='arrRef83', btn=btn_R6C4, row=6, col=4, sq=5, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef84 = dict(aref='arrRef84', btn=btn_R6C5, row=6, col=5, sq=6, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef85 = dict(aref='arrRef85', btn=btn_R6C6, row=6, col=6, sq=6, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef86 = dict(aref='arrRef86', btn=btn_R6C7, row=6, col=7, sq=6, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef87 = dict(aref='arrRef87', btn=btn_R6C8, row=6, col=8, sq=6, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef88 = dict(aref='arrRef88', btn=btn_R6C9, row=6, col=9, sq=7, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef89 = dict(aref='arrRef89', btn=btn_R6C10, row=6, col=10, sq=7, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef90 = dict(aref='arrRef90', btn=btn_R6C11, row=6, col=11, sq=7, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef91 = dict(aref='arrRef91', btn=btn_R6C12, row=6, col=12, sq=7, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef92 = dict(aref='arrRef92', btn=btn_R6C13, row=6, col=13, sq=8, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef93 = dict(aref='arrRef93', btn=btn_R6C14, row=6, col=14, sq=8, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef94 = dict(aref='arrRef94', btn=btn_R6C15, row=6, col=15, sq=8, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef95 = dict(aref='arrRef95', btn=btn_R6C16, row=6, col=16, sq=8, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef96 = dict(aref='arrRef96', btn=btn_R7C1, row=7, col=1, sq=5, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef97 = dict(aref='arrRef97', btn=btn_R7C2, row=7, col=2, sq=5, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef98 = dict(aref='arrRef98', btn=btn_R7C3, row=7, col=3, sq=5, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef99 = dict(aref='arrRef99', btn=btn_R7C4, row=7, col=4, sq=5, done=False,
+                nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef100 = dict(aref='arrRef100', btn=btn_R7C5, row=7, col=5, sq=6, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef101 = dict(aref='arrRef101', btn=btn_R7C6, row=7, col=6, sq=6, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef102 = dict(aref='arrRef102', btn=btn_R7C7, row=7, col=7, sq=6, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef103 = dict(aref='arrRef103', btn=btn_R7C8, row=7, col=8, sq=6, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef104 = dict(aref='arrRef104', btn=btn_R7C9, row=7, col=9, sq=7, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef105 = dict(aref='arrRef105', btn=btn_R7C10, row=7, col=10, sq=7, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef106 = dict(aref='arrRef106', btn=btn_R7C11, row=7, col=11, sq=7, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef107 = dict(aref='arrRef107', btn=btn_R7C12, row=7, col=12, sq=7, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef108 = dict(aref='arrRef108', btn=btn_R7C13, row=7, col=13, sq=8, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef109 = dict(aref='arrRef109', btn=btn_R7C14, row=7, col=14, sq=8, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef110 = dict(aref='arrRef110', btn=btn_R7C15, row=7, col=15, sq=8, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef111 = dict(aref='arrRef111', btn=btn_R7C16, row=7, col=16, sq=8, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef112 = dict(aref='arrRef112', btn=btn_R8C1, row=8, col=1, sq=5, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef113 = dict(aref='arrRef113', btn=btn_R8C2, row=8, col=2, sq=5, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef114 = dict(aref='arrRef114', btn=btn_R8C3, row=8, col=3, sq=5, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef115 = dict(aref='arrRef115', btn=btn_R8C4, row=8, col=4, sq=5, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef116 = dict(aref='arrRef116', btn=btn_R8C5, row=8, col=5, sq=6, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef117 = dict(aref='arrRef117', btn=btn_R8C6, row=8, col=6, sq=6, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef118 = dict(aref='arrRef118', btn=btn_R8C7, row=8, col=7, sq=6, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef119 = dict(aref='arrRef119', btn=btn_R8C8, row=8, col=8, sq=6, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef120 = dict(aref='arrRef120', btn=btn_R8C9, row=8, col=9, sq=7, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef121 = dict(aref='arrRef121', btn=btn_R8C10, row=8, col=10, sq=7, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef122 = dict(aref='arrRef122', btn=btn_R8C11, row=8, col=11, sq=7, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef123 = dict(aref='arrRef123', btn=btn_R8C12, row=8, col=12, sq=7, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef124 = dict(aref='arrRef124', btn=btn_R8C13, row=8, col=13, sq=8, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef125 = dict(aref='arrRef125', btn=btn_R8C14, row=8, col=14, sq=8, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef126 = dict(aref='arrRef126', btn=btn_R8C15, row=8, col=15, sq=8, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef127 = dict(aref='arrRef127', btn=btn_R8C16, row=8, col=16, sq=8, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef128 = dict(aref='arrRef128', btn=btn_R9C1, row=9, col=1, sq=9, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef129 = dict(aref='arrRef129', btn=btn_R9C2, row=9, col=2, sq=9, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef130 = dict(aref='arrRef130', btn=btn_R9C3, row=9, col=3, sq=9, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef131 = dict(aref='arrRef131', btn=btn_R9C4, row=9, col=4, sq=9, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef132 = dict(aref='arrRef132', btn=btn_R9C5, row=9, col=5, sq=10, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef133 = dict(aref='arrRef133', btn=btn_R9C6, row=9, col=6, sq=10, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef134 = dict(aref='arrRef134', btn=btn_R9C7, row=9, col=7, sq=10, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef135 = dict(aref='arrRef135', btn=btn_R9C8, row=9, col=8, sq=10, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef136 = dict(aref='arrRef136', btn=btn_R9C9, row=9, col=9, sq=11, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef137 = dict(aref='arrRef137', btn=btn_R9C10, row=9, col=10, sq=11, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef138 = dict(aref='arrRef138', btn=btn_R9C11, row=9, col=11, sq=11, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef139 = dict(aref='arrRef139', btn=btn_R9C12, row=9, col=12, sq=11, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef140 = dict(aref='arrRef140', btn=btn_R9C13, row=9, col=13, sq=12, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef141 = dict(aref='arrRef141', btn=btn_R9C14, row=9, col=14, sq=12, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef142 = dict(aref='arrRef142', btn=btn_R9C15, row=9, col=15, sq=12, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef143 = dict(aref='arrRef143', btn=btn_R9C16, row=9, col=16, sq=12, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef144 = dict(aref='arrRef144', btn=btn_R10C1, row=10, col=1, sq=9, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef145 = dict(aref='arrRef145', btn=btn_R10C2, row=10, col=2, sq=9, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef146 = dict(aref='arrRef146', btn=btn_R10C3, row=10, col=3, sq=9, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef147 = dict(aref='arrRef147', btn=btn_R10C4, row=10, col=4, sq=9, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef148 = dict(aref='arrRef148', btn=btn_R10C5, row=10, col=5, sq=10, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef149 = dict(aref='arrRef149', btn=btn_R10C6, row=10, col=6, sq=10, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef150 = dict(aref='arrRef150', btn=btn_R10C7, row=10, col=7, sq=10, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef151 = dict(aref='arrRef151', btn=btn_R10C8, row=10, col=8, sq=10, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef152 = dict(aref='arrRef152', btn=btn_R10C9, row=10, col=9, sq=11, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef153 = dict(aref='arrRef153', btn=btn_R10C10, row=10, col=10, sq=11, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef154 = dict(aref='arrRef154', btn=btn_R10C11, row=10, col=11, sq=11, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef155 = dict(aref='arrRef155', btn=btn_R10C12, row=10, col=12, sq=11, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef156 = dict(aref='arrRef156', btn=btn_R10C13, row=10, col=13, sq=12, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef157 = dict(aref='arrRef157', btn=btn_R10C14, row=10, col=14, sq=12, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef158 = dict(aref='arrRef158', btn=btn_R10C15, row=10, col=15, sq=12, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef159 = dict(aref='arrRef159', btn=btn_R10C16, row=10, col=16, sq=12, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef160 = dict(aref='arrRef160', btn=btn_R11C1, row=11, col=1, sq=9, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef161 = dict(aref='arrRef161', btn=btn_R11C2, row=11, col=2, sq=9, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef162 = dict(aref='arrRef162', btn=btn_R11C3, row=11, col=3, sq=9, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef163 = dict(aref='arrRef163', btn=btn_R11C4, row=11, col=4, sq=9, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef164 = dict(aref='arrRef164', btn=btn_R11C5, row=11, col=5, sq=10, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef165 = dict(aref='arrRef165', btn=btn_R11C6, row=11, col=6, sq=10, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef166 = dict(aref='arrRef166', btn=btn_R11C7, row=11, col=7, sq=10, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef167 = dict(aref='arrRef167', btn=btn_R11C8, row=11, col=8, sq=10, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef168 = dict(aref='arrRef168', btn=btn_R11C9, row=11, col=9, sq=11, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef169 = dict(aref='arrRef169', btn=btn_R11C10, row=11, col=10, sq=11, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef170 = dict(aref='arrRef170', btn=btn_R11C11, row=11, col=11, sq=11, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef171 = dict(aref='arrRef171', btn=btn_R11C12, row=11, col=12, sq=11, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef172 = dict(aref='arrRef172', btn=btn_R11C13, row=11, col=13, sq=12, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef173 = dict(aref='arrRef173', btn=btn_R11C14, row=11, col=14, sq=12, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef174 = dict(aref='arrRef174', btn=btn_R11C15, row=11, col=15, sq=12, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef175 = dict(aref='arrRef175', btn=btn_R11C16, row=11, col=16, sq=12, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef176 = dict(aref='arrRef176', btn=btn_R12C1, row=12, col=1, sq=9, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef177 = dict(aref='arrRef177', btn=btn_R12C2, row=12, col=2, sq=9, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef178 = dict(aref='arrRef178', btn=btn_R12C3, row=12, col=3, sq=9, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef179 = dict(aref='arrRef179', btn=btn_R12C4, row=12, col=4, sq=9, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef180 = dict(aref='arrRef180', btn=btn_R12C5, row=12, col=5, sq=10, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef181 = dict(aref='arrRef181', btn=btn_R12C6, row=12, col=6, sq=10, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef182 = dict(aref='arrRef182', btn=btn_R12C7, row=12, col=7, sq=10, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef183 = dict(aref='arrRef183', btn=btn_R12C8, row=12, col=8, sq=10, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef184 = dict(aref='arrRef184', btn=btn_R12C9, row=12, col=9, sq=11, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef185 = dict(aref='arrRef185', btn=btn_R12C10, row=12, col=10, sq=11, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef186 = dict(aref='arrRef186', btn=btn_R12C11, row=12, col=11, sq=11, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef187 = dict(aref='arrRef187', btn=btn_R12C12, row=12, col=12, sq=11, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef188 = dict(aref='arrRef188', btn=btn_R12C13, row=12, col=13, sq=12, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef189 = dict(aref='arrRef189', btn=btn_R12C14, row=12, col=14, sq=12, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef190 = dict(aref='arrRef190', btn=btn_R12C15, row=12, col=15, sq=12, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef191 = dict(aref='arrRef191', btn=btn_R12C16, row=12, col=16, sq=12, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef192 = dict(aref='arrRef192', btn=btn_R13C1, row=13, col=1, sq=13, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef193 = dict(aref='arrRef193', btn=btn_R13C2, row=13, col=2, sq=13, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef194 = dict(aref='arrRef194', btn=btn_R13C3, row=13, col=3, sq=13, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef195 = dict(aref='arrRef195', btn=btn_R13C4, row=13, col=4, sq=13, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef196 = dict(aref='arrRef196', btn=btn_R13C5, row=13, col=5, sq=14, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef197 = dict(aref='arrRef197', btn=btn_R13C6, row=13, col=6, sq=14, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef198 = dict(aref='arrRef198', btn=btn_R13C7, row=13, col=7, sq=14, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef199 = dict(aref='arrRef199', btn=btn_R13C8, row=13, col=8, sq=14, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef200 = dict(aref='arrRef200', btn=btn_R13C9, row=13, col=9, sq=15, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef201 = dict(aref='arrRef201', btn=btn_R13C10, row=13, col=10, sq=15, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef202 = dict(aref='arrRef202', btn=btn_R13C11, row=13, col=11, sq=15, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef203 = dict(aref='arrRef203', btn=btn_R13C12, row=13, col=12, sq=15, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef204 = dict(aref='arrRef204', btn=btn_R13C13, row=13, col=13, sq=16, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef205 = dict(aref='arrRef205', btn=btn_R13C14, row=13, col=14, sq=16, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef206 = dict(aref='arrRef206', btn=btn_R13C15, row=13, col=15, sq=16, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef207 = dict(aref='arrRef207', btn=btn_R13C16, row=13, col=16, sq=16, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef208 = dict(aref='arrRef208', btn=btn_R14C1, row=14, col=1, sq=13, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef209 = dict(aref='arrRef209', btn=btn_R14C2, row=14, col=2, sq=13, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef210 = dict(aref='arrRef210', btn=btn_R14C3, row=14, col=3, sq=13, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef211 = dict(aref='arrRef211', btn=btn_R14C4, row=14, col=4, sq=13, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef212 = dict(aref='arrRef212', btn=btn_R14C5, row=14, col=5, sq=14, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef213 = dict(aref='arrRef213', btn=btn_R14C6, row=14, col=6, sq=14, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef214 = dict(aref='arrRef214', btn=btn_R14C7, row=14, col=7, sq=14, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef215 = dict(aref='arrRef215', btn=btn_R14C8, row=14, col=8, sq=14, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef216 = dict(aref='arrRef216', btn=btn_R14C9, row=14, col=9, sq=15, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef217 = dict(aref='arrRef217', btn=btn_R14C10, row=14, col=10, sq=15, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef218 = dict(aref='arrRef218', btn=btn_R14C11, row=14, col=11, sq=15, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef219 = dict(aref='arrRef219', btn=btn_R14C12, row=14, col=12, sq=15, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef220 = dict(aref='arrRef220', btn=btn_R14C13, row=14, col=13, sq=16, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef221 = dict(aref='arrRef221', btn=btn_R14C14, row=14, col=14, sq=16, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef222 = dict(aref='arrRef222', btn=btn_R14C15, row=14, col=15, sq=16, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef223 = dict(aref='arrRef223', btn=btn_R14C16, row=14, col=16, sq=16, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef224 = dict(aref='arrRef224', btn=btn_R15C1, row=15, col=1, sq=13, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef225 = dict(aref='arrRef225', btn=btn_R15C2, row=15, col=2, sq=13, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef226 = dict(aref='arrRef226', btn=btn_R15C3, row=15, col=3, sq=13, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef227 = dict(aref='arrRef227', btn=btn_R15C4, row=15, col=4, sq=13, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef228 = dict(aref='arrRef228', btn=btn_R15C5, row=15, col=5, sq=14, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef229 = dict(aref='arrRef229', btn=btn_R15C6, row=15, col=6, sq=14, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef230 = dict(aref='arrRef230', btn=btn_R15C7, row=15, col=7, sq=14, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef231 = dict(aref='arrRef231', btn=btn_R15C8, row=15, col=8, sq=14, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef232 = dict(aref='arrRef232', btn=btn_R15C9, row=15, col=9, sq=15, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef233 = dict(aref='arrRef233', btn=btn_R15C10, row=15, col=10, sq=15, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef234 = dict(aref='arrRef234', btn=btn_R15C11, row=15, col=11, sq=15, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef235 = dict(aref='arrRef235', btn=btn_R15C12, row=15, col=12, sq=15, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef236 = dict(aref='arrRef236', btn=btn_R15C13, row=15, col=13, sq=16, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef237 = dict(aref='arrRef237', btn=btn_R15C14, row=15, col=14, sq=16, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef238 = dict(aref='arrRef238', btn=btn_R15C15, row=15, col=15, sq=16, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef239 = dict(aref='arrRef239', btn=btn_R15C16, row=15, col=16, sq=16, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef240 = dict(aref='arrRef240', btn=btn_R16C1, row=16, col=1, sq=13, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef241 = dict(aref='arrRef241', btn=btn_R16C2, row=16, col=2, sq=13, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef242 = dict(aref='arrRef242', btn=btn_R16C3, row=16, col=3, sq=13, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef243 = dict(aref='arrRef243', btn=btn_R16C4, row=16, col=4, sq=13, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef244 = dict(aref='arrRef244', btn=btn_R16C5, row=16, col=5, sq=14, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef245 = dict(aref='arrRef245', btn=btn_R16C6, row=16, col=6, sq=14, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef246 = dict(aref='arrRef246', btn=btn_R16C7, row=16, col=7, sq=14, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef247 = dict(aref='arrRef247', btn=btn_R16C8, row=16, col=8, sq=14, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef248 = dict(aref='arrRef248', btn=btn_R16C9, row=16, col=9, sq=15, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef249 = dict(aref='arrRef249', btn=btn_R16C10, row=16, col=10, sq=15, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef250 = dict(aref='arrRef250', btn=btn_R16C11, row=16, col=11, sq=15, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef251 = dict(aref='arrRef251', btn=btn_R16C12, row=16, col=12, sq=15, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef252 = dict(aref='arrRef252', btn=btn_R16C13, row=16, col=13, sq=16, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef253 = dict(aref='arrRef253', btn=btn_R16C14, row=16, col=14, sq=16, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef254 = dict(aref='arrRef254', btn=btn_R16C15, row=16, col=15, sq=16, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
+arrRef255 = dict(aref='arrRef255', btn=btn_R16C16, row=16, col=16, sq=16, done=False,
+                 nums=startingString, width=6, height=hit, font=labelfont, fg="black")
 
 arrRefs_List = [arrRef0, arrRef1, arrRef2, arrRef3, arrRef4, arrRef5, arrRef6, arrRef7,
                 arrRef8, arrRef9, arrRef10, arrRef11, arrRef12, arrRef13, arrRef14,

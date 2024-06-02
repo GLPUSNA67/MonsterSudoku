@@ -1,0 +1,54 @@
+# file is Models.py
+import numpy as np
+import sys
+import pickle
+# import pint
+import json
+import ctypes
+from tkinter import *  # get widget classes
+import tkinter as tk
+import numpy as np
+# import matplotlib as mpl
+# import matplotlib.pyplot as plt
+# from scipy import *
+# from scipy import constants
+# from sqlite3 import *
+# from sqlite3 import Error
+# import SQL_tables_to_dict_str as sq
+# import pdb
+# from tkinter import messagebox as mb #*  # get standard dialogs
+# from MessageBoxes import *
+# from tkinter import messagebox as mb
+# from tkinter import font
+root = Tk()
+# root.config(text="Monster Sudoku Solver")
+screen_width = root.winfo_screenwidth()
+screen_height = root.winfo_screenheight()
+print("42 screen_width screen_height", screen_width, screen_height)
+root.geometry("1400x1100")
+# root.size()
+titlefont = ('Ariel', 12, 'bold')
+donefont = ('Ariel', 16, 'bold')
+labelfont = ('Ariel', 10)
+buttonfont = ('Ariel', 10)
+entryfont = ('Ariel', 10)
+exlanationfont = ('Ariel', 10)
+size8font = ('Ariel', 8)
+size9font = ('Ariel', 9)
+main_frame = Frame(root)
+main_frame.grid(row=0, column=0, columnspan=10)
+main_frame.config(highlightbackground="red", highlightthickness=2)
+# #Create a Canvas
+main_canvas = Canvas(main_frame)
+main_canvas.grid(row=0, column=0, columnspan=10)
+# F1_frame = Frame(main_canvas)
+# F1_frame.grid(row=2, column=0, sticky="nw")
+# F1_frame.config(highlightbackground="blue", highlightthickness=2)
+# from pint import UnitRegistry
+g = 9.8
+t = 3.4
+v = g*t
+print(v)
+if __name__ == '__main__':
+    root.mainloop()
+    print(v)
