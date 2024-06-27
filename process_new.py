@@ -13,7 +13,7 @@ from tkinter import *  # get widget classes
 #     level    = logging.WARNING,      # Logging level (DEBUG, INFO, WARNING, ERROR, or CRITICAL)
 # )
 import tkinter as tk
-import numpy as np
+# import numpy as np
 #import matplotlib as mpl
 #import matplotlib.pyplot as plt
 #from scipy import *
@@ -1118,12 +1118,75 @@ def process_duple_list(duple_list):
     duple_done_list.append(duple_first, duple_second)
     print("1126 duple_done_list is ", duple_done_list)
 
+
+def make_nples_lists(n):
+    print("1123 entering make_make_nples_lists. ")
+    R_1_nums = []
+    R_2_nums = []
+    R_3_nums = []
+    R_4_nums = []
+    R_5_nums = []
+    R_6_nums = []
+    R_7_nums = []
+    R_8_nums = []
+    R_9_nums = []
+    R_10_nums = []
+    R_11_nums = []
+    R_12_nums = []
+    R_13_nums = []
+    R_14_nums = []
+    R_15_nums = []
+    R_16_nums = []
+    
+    # ex_text = "Empty start\n"
+    for cell in not_done_arefs:
+        current_button = cell['btn']
+        #print(current_button)
+        # print("400 btn is ", eval(cell['btn']))
+        l = len(cell['nums'])
+        if l == n or l == n-1 or l == 2:
+            if cell['row'] == 1:
+                R_1_nums.append(cell['nums'])
+            elif cell['row'] == 2:
+                R_2_nums.append(cell['nums'])
+            elif cell['row'] == 3:
+                R_3_nums.append(cell['nums'])
+            elif cell['row'] == 4:
+                R_4_nums.append(cell['nums'])
+            elif cell['row'] == 5:
+                R_5_nums.append(cell['nums'])
+            elif cell['row'] == 6:
+                R_6_nums.append(cell['nums'])
+            elif cell['row'] == 7:
+                R_7_nums.append(cell['nums'])
+            elif cell['row'] == 8:
+                R_8_nums.append(cell['nums'])
+            elif cell['row'] == 9:
+                R_9_nums.append(cell['nums'])
+            elif cell['row'] == 10:
+                R_10_nums.append(cell['nums'])
+            elif cell['row'] == 11:
+                R_11_nums.append(cell['nums'])
+            elif cell['row'] == 12:
+                R_12_nums.append(cell['nums'])
+            elif cell['row'] == 13:
+                R_13_nums.append(cell['nums'])
+            elif cell['row'] == 14:
+                R_14_nums.append(cell['nums'])
+            elif cell['row'] == 15:
+                R_15_nums.append(cell['nums'])
+            elif cell['row'] == 16:
+                R_16_nums.append(cell['nums'])
+    print("1138 R_X_nums are ", R_1_nums, R_2_nums, R_3_nums, R_4_nums, R_5_nums, R_6_nums, R_7_nums, R_8_nums, 
+          R_9_nums, R_10_nums, R_11_nums, R_12_nums, R_13_nums, R_14_nums, R_15_nums, R_16_nums)
+
 def find_Triple():
     print("1131 Entering find_Triple")
     txt_Explain.insert(END, "1132 potential triples are \n")
-    triple_candidate_list = make_triple_candidate_list()
+    # triple_candidate_list = make_triple_candidate_list()
     # print("1146 triple_candidate_list ", triple_candidate_list)
-    id_triples(triple_candidate_list)
+    make_nples_lists(3)
+    # id_triples(triple_candidate_list)
 
 def make_triple_candidate_list():
     print("1129 enter make_triple_candidate_list")
@@ -4299,7 +4362,7 @@ txt_Other.insert(END, "Find and solve Done = 142\n")
 txt_Other.insert(END, "Duple S3\n")
 txt_Other.insert(END, "Duple S8 = BF : 8,13 Del F  Duple S8 = 9C Del Cs from row\n")
 txt_Other.insert(END, "Quad S14\n") # Quad S14 39AD : 16,5 = 5; D = 143 15,5 Del 3; 15,8 Del AD
-txt_Other.insert(END, "Duple S13\n")  # S13 Duple 7C 
+txt_Other.insert(END, "Duple S14\n")  # S13 Duple 7C 
 txt_Other.insert(END, "Triple S15\n")  # triple S15  359 : 15,11 = 1; 13,12 Del 5; 14,5 Del 5
 txt_Other.insert(END, "Triple S15\n")  # triple S15 triple ACD : 16,13 = 5; D = 145
 txt_Other.insert(END, "S15, C12 has only Cs\n") # S15, C12 has only Cs in S, 6,112 Del C
