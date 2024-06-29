@@ -4,6 +4,7 @@ import pickle
 import json
 import ctypes
 from tkinter import *  # get widget classes
+# Path is C:\PythonProjects\MonsterSudoku\MonsterSudoku.py
 # import sets
 # from tkinter import Combobox, Entry, Label, font
 # *** path is C:\Users\Owner\AppData\Roaming\JetBrains\PyCharmCE2022.2\scratches
@@ -64,13 +65,18 @@ bIDDuples = False
 bIDTriples = False
 bIDQuads = False
 duples_list = []
+
 triples_list = []
 quads_list = []
 # duple_done_list = []
 completed_duples_list = []
+completed_triples_list = []
 D = 0
 R = 0
 NullValue = "Null"
+
+history = "Empty start\n"
+# print("77 history type is ", type(history))
 
 
 r_1_nums = ""
@@ -876,8 +882,8 @@ def find_Duple():
 
 def id_duples(duple_candidate_list):
     ''' sort the list to identify duples that haven't yet been processed '''
-    duple_list = []
-    print("878 Entering id_Duple")
+    duples_list = []
+    print("878 Entering id_duples")
     print("879 duple_candidate_list is ", duple_candidate_list)
     for item in duple_candidate_list:
         if item:
@@ -908,23 +914,41 @@ def id_duples(duple_candidate_list):
                     duple_second = f"{c_row}, {c_col}, {c_sq}, {c_pair}"
                     duple_second = duple_second.split(',')
                     current_duple = [duple_first, duple_second]
-                    print("909 duple_first is ", duple_first)
-                    print("910 duple_second is ", duple_second)
-                    # completed_duples_list.append(duple_first)
-                    # completed_duples_list.append(duple_second)
-                    print("911 completed_duples_list is ",
-                          completed_duples_list)
+                    print("912 duple_first is ", duple_first)
+                    print("913 duple_second is ", duple_second)
+                    print("914 current_duple is ", current_duple)
+                    if duples_list == []:
+                        # duples_list = duples_list.append(duple_first[0])
+                        print("917 duples_list is ", duples_list)
                     if current_duple in completed_duples_list:
-                        completed_duples_list.remove(current_duple)
-                        print("918 completed_duples_list is ",
-                              completed_duples_list)
-                    elif not current_duple in completed_duples_list:
-                        completed_duples_list.append(current_duple)
+                        pass
+                    elif not current_duple in duples_list:
+                        # duple_first, duple_second
+                        duples_list.append(current_duple)
+                        print("921 duples_list is ",
+                              duples_list)
                     # if duple_second in completed_duples_list:
                     #     completed_duples_list.remove(duple_second)
-                    if current_duple in completed_duples_list:
-                        print("923 completed_duples_list is ",
-                              completed_duples_list)
+                    elif current_duple in duples_list:
+                        print("926 current_duple is in duples_list ",
+                              duples_list)
+                    # completed_duples_list.append(duple_first)
+                    # completed_duples_list.append(duple_second)
+                    # print("925 completed_duples_list is ",
+                        #   completed_duples_list)
+                    # if current_duple in completed_duples_list:
+                    #     completed_duples_list.remove(current_duple)
+                    # print("918 current_duple in completed_duples_list is ",
+                    #       completed_duples_list)
+                    # if not current_duple in completed_duples_list:
+                    #     completed_duples_list.append(current_duple)
+                    #     print("924 completed_duples_list is ",
+                    #           completed_duples_list)
+                    # if duple_second in completed_duples_list:
+                    #     completed_duples_list.remove(duple_second)
+                    # if current_duple in completed_duples_list:
+                    #     print("929 completed_duples_list is ",
+                    #           completed_duples_list)
                     # print("917 duple_list is ", duple_list)
                     # print("747 duple_first is ", duple_first, duple_second)
                     # print("748 duple_list is ", list(duple_first, duple_second))
@@ -934,20 +958,22 @@ def id_duples(duple_candidate_list):
                     txt_Explain.insert(END, ex_text)
                     txt_Explain.insert(END, "\n")
                     # duple_list_1 = duple_first.split(',')
-                    print("917 duple_list is ", duple_list)
-                    if duple_list == []:
-                        print("919 duple_list is [] ", duple_list)
-                        duple_list = [duple_first, duple_second]
+                    print("940 duples_list is ", duples_list)
+                    if duples_list == []:
+                        print("942 duples_list is [] ", duples_list)
+                        duples_list = duples_list.append(
+                            duple_first, duple_second)
+                        print("944 duples_list is [] ", duples_list)
                     # duple_list_2 = duple_second.split(',')
-                    else:
+                    elif not current_duple in duples_list:
                         duple_list = duple_list.append(current_duple)
-                    print("924 duple_list is ", duple_list)
+                        print("948 duples_list is ", duples_list)
                     # if duple_candidate_list != []:
                     #     duples_list.append(duple_candidate_list)
                     #     ex_text = f"908 duples_list is {duples_list}"
                     #     txt_Explain.insert(END, ex_text)
                     #     print("908 duples_list is ", duples_list)
-            process_duple_list(duple_list)
+            process_duple_list(duples_list)
             # process_duple_list(duple_first, duple_second)
 
         except Exception as e:
@@ -1080,37 +1106,206 @@ def find_Duple1():
                         ex_text = f"1058 duples_list is {duples_list}"
                         txt_Explain.insert(END, ex_text)
                         print("1060 duples_list is ", duples_list)
-                        process_duple_list(duple_first, duple_second)
+                        # duple_first, duple_second
+                        process_duple_list(duples_list)
                         # process_duple_list(duple_first, duple_second)
 
         except Exception as e:
             print("1065 e", e)
             # print(e)
-
-        # start with item 1 duple e.g. item[3]
-        # if item item[3] == item[3] in any item in the rest of the list,
         # it is a potential duple, so check to see if it is in the same RCS
 
 
-def process_duple_list(duple_list):
-    print("1095 duples_list is ", duple_list)
-    duple_first = duple_list[0]
-    duple_second = duple_list[1]
-    print("1077 duple parts are ", duple_first, duple_second)
+def process_duple_list(duples_list):
+    print("1116 duples_list is ", duples_list)
+    list_of_duples = []
+    for duple in duples_list:
+        list_of_duples = list_of_duples.append(duple)
+        print("1121 list of duples is ", list_of_duples)
+        print("1122 duple is ", duple)
+        duple_first = duples_list[0][0]
+        duple_second = duples_list[0][1]
+        print("1124  parts are ", duple_first)
+        print("1125  parts are ", duple_second)
+        first_row = duple_first[0]
+        print("1127 first_row is ", first_row)
+        first_col = int(duple_first[1])
+        print("1129 first_col is ", first_col)
+        first_sq = int(duple_first[2])
+        print("1131 first_sq is ", first_sq)
+        first_nums = str(duple_first[3])
+        print("1133 first_nums are ", first_nums)
+        first_chr_1 = first_nums[-2]
+        second_chr_1 = first_nums[-1]
+        print("1136 duple parts, first_row, etc, are ", first_row,
+              first_col, first_sq, first_nums, first_chr_1, second_chr_1)
+        second_row = int(duple_second[0])
+        second_col = int(duple_second[1])
+        second_sq = int(duple_second[2])
+        second_nums = str(duple_second[3])
+        duple_row = 0
+        duple_col = 0
+        duple_sq = 0
+        print("1145 duple_first  ", duple_first)
+        print("1146 duple_second  ", duple_second)
+        print("1147 duples_list  ", duples_list)
+        print("1148 completed_duples_list ", completed_duples_list)
+        # if duple_first and duple_second in completed_duples_list:
+        #     print("1250 in remove ", duple_first)
+        #     print("1251 in remove ", duples_list)
+        #     duples_list.remove(duple_first)
+        #     duples_list.remove(duple_second)
+        #     print("1254 in remove ", duples_list)
+        #     for sublist in duples_list:
+        #         if duple_first in sublist:
+        #             sublist.remove(duple_first)
+        #             duples_list = duples_list.remove(list(duple_first))
+        #             print("1255 duples_list after remove ",
+        #                   duples_list)
+        #         if duple_second in sublist:
+        #             sublist.remove(duple_first)
+        #             duples_list = duples_list.remove(list(duple_second))
+        #             print("1255 duples_list after remove ",
+        #                   duples_list)
+        # if duple_second in completed_duples_list:
+        #     duples_list = duples_list.remove(list(duple_second))
+        #         print("1256 duples_list and completed_duples_list ",
+        #               duple_first, duple_second, duples_list, completed_duples_list)
+        #         print("1142 duple parts, second_row, etc, are ",
+        #               second_row, second_col, second_sq, second_nums, second_chr_1)
+        if first_row == second_row:
+            duple_row = first_row
+            # print("791 duple row is ", first_row, second_row, duple_row)
+        if first_col == second_col:
+            duple_col = first_col
+            # print("794 duple col is ", first_col, second_col, duple_col)
+        if first_sq == second_sq:
+            duple_sq = first_sq
+        for aref in not_done_arefs:
+            current_btn = aref['btn']
+            a_row = aref['row']
+            a_col = aref['col']
+            a_sq = aref['sq']
+            a_nums = aref['nums']
+            # print("1155 aref parts are ", a_row, a_col, a_sq, a_nums)
+            if (a_row == duple_row and a_col == duple_col and a_sq == duple_sq) or (a_row == second_row and a_col == second_col and a_sq == second_sq) or (a_nums == first_nums):
+                ''' The cell is being compared with itself.'''
+                print("1162 cells are the same ", a_row, first_row,
+                      second_row, a_col, first_col, second_col, a_sq, first_sq, second_sq, first_nums)
+            elif duple_row == a_row:
+                print("1165 partial match in aref", duple_row, duple_col,
+                      duple_sq, first_row, a_row, first_chr_1, a_nums)
+                if a_nums in first_nums or first_nums in a_nums:
+                    print("1170 a_nums ~= first_nums ", a_nums, first_nums)
+                    pass
+                elif first_chr_1 in a_nums:
+                    new_nums = aref['nums'].replace(first_chr_1, "")
+                    # print("723 new_nums ", new_nums)
+                    aref['nums'] = new_nums
+                    current_btn['text'] = aref['nums']
+                elif second_chr_1 in a_nums:
+                    new_nums = aref['nums'].replace(second_chr_1, "")
+                    print("1170 new_nums ", new_nums)
+                    aref['nums'] = new_nums
+                    current_btn['text'] = aref['nums']
+            elif duple_col == a_col:
+                if a_nums in first_nums or first_nums in a_nums:
+                    print("1184 a_nums ~= first_nums ", a_nums, first_nums)
+                    pass
+                elif first_chr_1 in a_nums:
+                    new_nums = aref['nums'].replace(first_chr_1, "")
+                    print("1178 new_nums ", new_nums)
+                    aref['nums'] = new_nums
+                    current_btn['text'] = aref['nums']
+                elif second_chr_1 in a_nums:
+                    new_nums = aref['nums'].replace(second_chr_1, "")
+                    print("1183 new_nums ", new_nums)
+                    aref['nums'] = new_nums
+                    current_btn['text'] = aref['nums']
+            elif duple_sq == a_sq:
+                if a_nums in first_nums or first_nums in a_nums:
+                    print("1198 a_nums ~= first_nums ", a_nums, first_nums)
+                    pass
+                elif first_chr_1 in a_nums:
+                    new_nums = aref['nums'].replace(first_chr_1, "")
+                    print("1191 new_nums ", new_nums)
+                    aref['nums'] = new_nums
+                    current_btn['text'] = aref['nums']
+                elif second_chr_1 in a_nums:
+                    new_nums = aref['nums'].replace(second_chr_1, "")
+                    print("1196 new_nums ", new_nums)
+                    aref['nums'] = new_nums
+                    current_btn['text'] = aref['nums']
+            #     print("1150")
+            # print("1151")
+        print("1237 duples_list is ",
+              duples_list)  # , completed_duples_list and
+        add_duples_to_completed_duples_list(duple_first, duple_second)
+
+
+def add_duples_to_completed_duples_list(duple_first, duple_second):
+    print("1243 entered add_duples_to_completed_duples_list ")
+    print("1244 duple_first, duple_second ", duple_first, duple_second)
+    print("1245 completed_duples_list ")
+    print(completed_duples_list)
+    if duple_first or duple_second in completed_duples_list:
+        pass
+    else:
+        print("1249 before cdl append ", completed_duples_list)
+        completed_duples_list = completed_duples_list.append(
+            duple_first, duple_second)
+        print("1252 after cdl append ", completed_duples_list)
+
+
+def process_duple_list1(duples_list):
+    print("1216 old process_duple_list duples_list is ", duples_list)
     global not_done_arefs
     global currentNumber
-    first_row = int(duple_first[0])
+    duple_first = duples_list[0][0]
+    print("1223 duple_first is ", duple_first)
+    duple_second = duples_list[0][1]
+    print("1225 duple_second is ", duple_second)
+    first_row = duple_first[0]
+    print("1227 duple parts first_row, is ", first_row)
     first_col = int(duple_first[1])
+    print("1231 duple parts first_col is ", first_col)
     first_sq = int(duple_first[2])
-    first_nums = duple_first[3]
-    first_chr_1 = first_nums[1]
-    second_chr_1 = first_nums[2]
+    print("1233 duple parts first_sq is ", first_sq)
+    first_nums = str(duple_first[3])
+    print("1235 duple parts, first_nums are ", first_nums)
+    print("1234 duple parts, first_row, etc, are ",
+          first_row, first_col, first_sq, first_nums)
+    first_chr_1 = first_nums[-2]
+    second_chr_1 = first_nums[-1]
+    print("1238 duple parts, first_row, etc, are ",
+          first_row, first_col, first_sq, first_nums, first_chr_1)  #
     second_row = int(duple_second[0])
+    # print("1137 duple parts, first_row, etc, are ", second_row)
     second_col = int(duple_second[1])
     second_sq = int(duple_second[2])
+    second_nums = str(duple_second[3])
     duple_row = 0
     duple_col = 0
     duple_sq = 0
+    print("1250 duples_list and completed_duples_list ", duple_first,
+          duple_second, duples_list, completed_duples_list)
+    if duple_first in completed_duples_list:
+        print("1252 in remove ", duple_first)
+        print("1253 in remove ", duples_list)
+        for sublist in completed_duples_list:
+            if duple_first in sublist:
+                sublist.remove(duple_first)
+        # duples_list = duples_list.remove(list(duple_first))
+        print("1255 completed_duples_list after remove ", completed_duples_list)
+    if duple_second in completed_duples_list:
+        duples_list = duples_list.remove(list(duple_second))
+    print("1256 duples_list and completed_duples_list ", duple_first,
+          duple_second, duples_list, completed_duples_list)
+    # process_duple_list(duples_list)
+    # , first_row, first_col) #,
+    print("1249 duple parts, second_row, etc, are ",
+          second_row, second_col, second_sq, second_nums, second_chr_1)
+    # first_sq, first_nums, second_row, second_col, second_sq, second_nums)
     if first_row == second_row:
         duple_row = first_row
         # print("791 duple row is ", first_row, second_row, duple_row)
@@ -1124,58 +1319,75 @@ def process_duple_list(duple_list):
         a_row = aref['row']
         a_col = aref['col']
         a_sq = aref['sq']
-        a_nums = aref['nums']
-        if (a_row == first_row and a_col == first_col and a_sq == first_sq) or \
-                (a_row == second_row and a_col == second_col and a_sq == second_sq):
+        a_nums = str(aref['nums'])
+        # print("1266 aref parts are ", a_row, a_col, a_sq, a_nums)
+        duple_sq = first_sq
+        if (a_row == duple_row and a_col == duple_col and a_sq == duple_sq) or (a_row == second_row and a_col == second_col and a_sq == second_sq):
             ''' The cell is being compared with itself.'''
             pass
-        elif duple_row != 0 and first_row == a_row:
-            print("1110 partial match in aref", duple_row, duple_col,
+        elif duple_row == a_row:
+            print("1272 partial match row", duple_row, duple_col,
                   duple_sq, first_row, a_row, first_chr_1, a_nums)
-            if first_chr_1 in a_nums:
+            if a_nums in first_nums or first_nums in a_nums:
+                print("1290 a_nums ~= first_nums ", a_nums, first_nums)
+                pass
+            elif first_chr_1 in a_nums:
                 new_nums = aref['nums'].replace(first_chr_1, "")
                 # print("723 new_nums ", new_nums)
                 aref['nums'] = new_nums
                 current_btn['text'] = aref['nums']
-            if second_chr_1 in a_nums:
+            elif second_chr_1 in a_nums:
                 new_nums = aref['nums'].replace(second_chr_1, "")
-                print("1121 new_nums ", new_nums)
+                print("1170 new_nums ", new_nums)
                 aref['nums'] = new_nums
                 current_btn['text'] = aref['nums']
-        elif duple_col != 0 and first_col == a_col:
-            print("1125 partial match in aref", duple_row, duple_col,
-                  duple_sq, first_row, a_row, first_chr_1, a_nums)
-            if first_chr_1 in a_nums:
+        elif duple_col == a_col:  # duple_col != 0 and
+            print("1285 partial match in col", duple_row, duple_col)
+            #       duple_sq, first_row, a_row, first_chr_1, a_nums)
+            print("1287 a_nums and first_nums ", a_nums, first_nums)
+            print("1288 a_nums and first_nums types",
+                  type(a_nums), type(first_nums))
+            if a_nums in first_nums or first_nums in a_nums:
+                print("1290 a_nums ~= first_nums ", a_nums, first_nums)
+                pass
+            elif first_chr_1 in a_nums:
+                print("1292 a_nums are ", a_nums)
                 new_nums = aref['nums'].replace(first_chr_1, "")
-                print("1129 new_nums ", new_nums)
+                print("1292 new_nums ", new_nums)
                 aref['nums'] = new_nums
                 current_btn['text'] = aref['nums']
-            if second_chr_1 in a_nums:
+            elif second_chr_1 in a_nums:
                 new_nums = aref['nums'].replace(second_chr_1, "")
-                print("1132 new_nums ", new_nums)
+                print("1299 new_nums ", new_nums)
                 aref['nums'] = new_nums
                 current_btn['text'] = aref['nums']
-        elif duple_sq != 0 and first_sq == a_sq:
-            print("1136 partial match in aref", duple_row, duple_col,
-                  duple_sq, first_row, a_row, first_chr_1, second_chr_1, a_nums)
-            if first_chr_1 in a_nums:
+        elif duple_sq == a_sq:
+            if a_nums in first_nums or first_nums in a_nums:
+                print("1309 a_nums ~= first_nums ", a_nums, first_nums)
+                pass
+            # print("1187 partial match in aref", duple_row, duple_col,
+            #       duple_sq, first_row, a_row, first_chr_1, second_chr_1, a_nums)
+            elif first_chr_1 in a_nums:
                 new_nums = aref['nums'].replace(first_chr_1, "")
-                print("1140 new_nums ", new_nums)
+                print("1191 new_nums ", new_nums)
                 aref['nums'] = new_nums
                 current_btn['text'] = aref['nums']
-            if second_chr_1 in a_nums:
+            elif second_chr_1 in a_nums:
                 new_nums = aref['nums'].replace(second_chr_1, "")
-                print("1145 new_nums ", new_nums)
+                print("1196 new_nums ", new_nums)
                 aref['nums'] = new_nums
                 current_btn['text'] = aref['nums']
         #     print("1150")
         # print("1151")
-    print("1152 duple_list and completed_duples_list are ",
-          duple_list, completed_duples_list)
-    completed_duples_list.append(duple_list)
-    print("1155 duple_list is ", duple_list)
-    duple_list = []
-    print("1156 completed_duples_list is ", completed_duples_list)
+    print("1201 duples_list is ",
+          duples_list)  # , completed_duples_list and completed_duples_list are
+    if not duple_first in completed_duples_list:
+        completed_duples_list.append(duple_first)
+    if not duple_second in completed_duples_list:
+        completed_duples_list.append(duple_second)
+    # print("1205 duple_list is ", duples_list)
+    # duples_list = []
+    print("1332 completed_duples_list is ", completed_duples_list)
 
 
 def find_Triple():
@@ -1856,16 +2068,29 @@ def remove_aref_from_not_done_arefs(aref):
 # def update_cell(btn, aref, row, col, sq):
 
 
-def update_cell(btn, aref):
+def update_cell(btn, aref, btn_ID, aref_ID):
     # print("705 Entered update_cell.", type(btn), btn, type(aref), aref)
-    print("1743 Entered update_cell.", btn, aref)
+    # print("2070 Entered update_cell.", btn_ID, aref_ID)
+    # print("2071 current number is ", currentNumber)
     # arrRef0 = dict(btn='btn_R1C1', row=1, col=1, sq=1,
     global bRemoveANumberFromACell
     global bIDDuples
     global bIDTriples
     global bIDQuads
-    print("1756 bRemoveANumberFromACell ", bRemoveANumberFromACell)
-    print("1757 bIDDuples ", bIDDuples, bIDTriples, bIDQuads)
+    # global history
+    # print("2078 history type is ", type(history))
+    if not btn_ID == "" and bRemoveANumberFromACell == "False":
+        # pass    # Uncomment the following lines
+        history = f"{currentNumber}, {btn_ID}, {aref_ID}, \'{btn_ID}\', \'{aref_ID}\'"
+        txt_Explain.insert(END, history)
+        txt_Explain.insert(END, "\n")
+        # global history
+        # history = history.append(list[currentNumber, args, aref])
+        # print("2080 history is ", history)
+        # print("2081 button is ", *args, currentNumber)
+
+    # print("1756 bRemoveANumberFromACell ", bRemoveANumberFromACell)
+    # print("1757 bIDDuples ", bIDDuples, bIDTriples, bIDQuads)
     # print("720 ", btn1, type(btn1))
     row = aref["row"]
     col = aref["col"]
@@ -1879,11 +2104,11 @@ def update_cell(btn, aref):
     elif bIDQuads == True:
         process_quads(btn, aref)
         # continue
-    print("1771 test")
+    # print("1771 test")
     # print("724 ", btn, row, col, sq)
     # reset_cell_values(current_btn, aref)
     if bRemoveANumberFromACell == "False":
-        print("1775 Entered bRemoveANumberFromACell.")
+        # print("1775 Entered bRemoveANumberFromACell.")
         reset_cell_values(btn, aref)
         remove_aref_from_not_done_arefs(aref)
         update_puzzle(row, col, sq)
@@ -1937,1282 +2162,1282 @@ def update_R1C1():
         either set that number as the value of the cell in aref['nums'],
         or, if bRemoveANumberFromACell == True, 
         remove the number from the current numbers.'''
-    update_cell(btn_R1C1, arrRef0)
+    update_cell(btn_R1C1, arrRef0, 'btn_R1C1', 'arrRef0')
     # update_cell(btn_R1C1, arrRef0, 1, 1, 1)
 
 
 def update_R1C2():
     print("R1C2 button pressed.")
-    update_cell(btn_R1C2, arrRef1)
+    update_cell(btn_R1C2, arrRef1, 'btn_R1C2', 'arrRef1')
 
 
 def update_R1C3():
     print("R1C3 button pressed.")
-    update_cell(btn_R1C3, arrRef2)
+    update_cell(btn_R1C3, arrRef2, 'btn_R1C3', 'arrRef2')
 
 
 def update_R1C4():
     print("R1C4 button pressed.")
-    update_cell(btn_R1C4, arrRef3)
+    update_cell(btn_R1C4, arrRef3, 'btn_R1C4', 'arrRef3')
 
 
 def update_R1C5():
     print("R1C5 button pressed.")
-    update_cell(btn_R1C5, arrRef4)
+    update_cell(btn_R1C5, arrRef4, 'btn_R1C5', 'arrRef4')
 
 
 def update_R1C6():
     print("R1C6 button pressed.")
-    update_cell(btn_R1C6, arrRef5)
+    update_cell(btn_R1C6, arrRef5, 'btn_R1C6', 'arrRef5')
 
 
 def update_R1C7():
     print("R1C7 button pressed.")
-    update_cell(btn_R1C7, arrRef6)
+    update_cell(btn_R1C7, arrRef6, 'btn_R1C7', 'arrRef6')
 
 
 def update_R1C8():
     print("R1C8 button pressed.")
-    update_cell(btn_R1C8, arrRef7)
+    update_cell(btn_R1C8, arrRef7, 'btn_R1C8', 'arrRef7')
 
 
 def update_R1C9():
     print("R1C9 button pressed.")
-    update_cell(btn_R1C9, arrRef8)
+    update_cell(btn_R1C9, arrRef8, 'btn_R1C9', 'arrRef8')
 
 
 def update_R1C10():
     print("R1C10 button pressed.")
-    update_cell(btn_R1C10, arrRef9)
+    update_cell(btn_R1C10, arrRef9, 'btn_R1C10', 'arrRef9')
 
 
 def update_R1C11():
     print("R1C11 button pressed.")
-    update_cell(btn_R1C11, arrRef10)
+    update_cell(btn_R1C11, arrRef10, 'btn_R1C11', 'arrRef10')
 
 
 def update_R1C12():
     print("R1C12 button pressed.")
-    update_cell(btn_R1C12, arrRef11)
+    update_cell(btn_R1C12, arrRef11, 'btn_R1C12', 'arrRef11')
 
 
 def update_R1C13():
     print("R1C13 button pressed.")
-    update_cell(btn_R1C13, arrRef12)
+    update_cell(btn_R1C13, arrRef12, 'btn_R1C13', 'arrRef12')
 
 
 def update_R1C14():
     print("R1C14 button pressed.")
-    update_cell(btn_R1C14, arrRef13)
+    update_cell(btn_R1C14, arrRef13, 'btn_R1C14', 'arrRef13')
 
 
 def update_R1C15():
     print("R1C15 button pressed.")
-    update_cell(btn_R1C15, arrRef14)
+    update_cell(btn_R1C15, arrRef14, 'btn_R1C15', 'arrRef14')
 
 
 def update_R1C16():
     print("R2C16 button pressed.")
-    update_cell(btn_R1C16, arrRef15)
+    update_cell(btn_R1C16, arrRef15, 'btn_R1C16', 'arrRef15')
 
 
 def update_R2C1():
     print("R2C1 button pressed.")
-    update_cell(btn_R2C1, arrRef16)
+    update_cell(btn_R2C1, arrRef16, 'btn_R2C1', 'arrRef16')
 
 
 def update_R2C2():
     print("R2C2 button pressed.")
-    update_cell(btn_R2C2, arrRef17)
+    update_cell(btn_R2C2, arrRef17, 'btn_R2C2', 'arrRef17')
 
 
 def update_R2C3():
     print("R2C3 button pressed.")
-    update_cell(btn_R2C3, arrRef18)
+    update_cell(btn_R2C3, arrRef18, 'btn_R2C3', 'arrRef18')
 
 
 def update_R2C4():
     print("R2C4 button pressed.")
-    update_cell(btn_R2C4, arrRef19)
+    update_cell(btn_R2C4, arrRef19, 'btn_R2C4', 'arrRef19')
 
 
 def update_R2C5():
     print("R2C5 button pressed.")
-    update_cell(btn_R2C5, arrRef20)
+    update_cell(btn_R2C5, arrRef20, 'btn_R2C5', 'arrRef20')
 
 
 def update_R2C6():
     print("R2C6 button pressed.")
-    update_cell(btn_R2C6, arrRef21)
+    update_cell(btn_R2C6, arrRef21, 'btn_R2C6', 'arrRef21')
 
 
 def update_R2C7():
     print("R2C7 button pressed.")
-    update_cell(btn_R2C7, arrRef22)
+    update_cell(btn_R2C7, arrRef22, 'btn_R2C7', 'arrRef22')
 
 
 def update_R2C8():
     print("R2C8 button pressed.")
-    update_cell(btn_R2C8, arrRef23)
+    update_cell(btn_R2C8, arrRef23, 'btn_R2C8', 'arrRef23')
 
 
 def update_R2C9():
     print("R2C9 button pressed.")
-    update_cell(btn_R2C9, arrRef24)
+    update_cell(btn_R2C9, arrRef24, 'btn_R2C9', 'arrRef24')
 
 
 def update_R2C10():
     print("R2C10 button pressed.")
-    update_cell(btn_R2C10, arrRef25)
+    update_cell(btn_R2C10, arrRef25, 'btn_R2C10', 'arrRef25')
 
 
 def update_R2C11():
     print("R2C11 button pressed.")
-    update_cell(btn_R2C11, arrRef26)
+    update_cell(btn_R2C11, arrRef26, 'btn_R2C11', 'arrRef26')
 
 
 def update_R2C12():
     print("R2C12 button pressed.")
-    update_cell(btn_R2C12, arrRef27)
+    update_cell(btn_R2C12, arrRef27, 'btn_R2C12', 'arrRef27')
 
 
 def update_R2C13():
     print("R2C13 button pressed.")
-    update_cell(btn_R2C13, arrRef28)
+    update_cell(btn_R2C13, arrRef28, 'btn_R2C13', 'arrRef28')
 
 
 def update_R2C14():
     print("R2C14 button pressed.")
-    update_cell(btn_R2C14, arrRef29)
+    update_cell(btn_R2C14, arrRef29, 'btn_R2C14', 'arrRef29')
 
 
 def update_R2C15():
     print("R2C15 button pressed.")
-    update_cell(btn_R2C15, arrRef30)
+    update_cell(btn_R2C15, arrRef30, 'btn_R2C15', 'arrRef30')
 
 
 def update_R2C16():
     print("R2C16 button pressed.")
-    update_cell(btn_R2C16, arrRef31)
+    update_cell(btn_R2C16, arrRef31, 'btn_R2C16', 'arrRef31')
 
 
 def update_R3C1():
     print("R3C1 button pressed.")
-    update_cell(btn_R3C1, arrRef32)
+    update_cell(btn_R3C1, arrRef32, 'btn_R3C1', 'arrRef32')
 
 
 def update_R3C2():
     print("R3C2 button pressed.")
-    update_cell(btn_R3C2, arrRef33)
+    update_cell(btn_R3C2, arrRef33, 'btn_R3C2', 'arrRef33')
 
 
 def update_R3C3():
     print("R3C3 button pressed.")
-    update_cell(btn_R3C3, arrRef34)
+    update_cell(btn_R3C3, arrRef34, 'btn_R3C3', 'arrRef34')
 
 
 def update_R3C4():
     print("R3C4 button pressed.")
-    update_cell(btn_R3C4, arrRef35)
+    update_cell(btn_R3C4, arrRef35, 'btn_R3C4', 'arrRef35')
 
 
 def update_R3C5():
     print("R3C5 button pressed.")
-    update_cell(btn_R3C5, arrRef36)
+    update_cell(btn_R3C5, arrRef36, 'btn_R3C5', 'arrRef36')
 
 
 def update_R3C6():
     print("R3C6 button pressed.")
-    update_cell(btn_R3C6, arrRef37)
+    update_cell(btn_R3C6, arrRef37, 'btn_R3C6', 'arrRef37')
 
 
 def update_R3C7():
     print("R3C7 button pressed.")
-    update_cell(btn_R3C7, arrRef38)
+    update_cell(btn_R3C7, arrRef38, 'btn_R3C7', 'arrRef38')
 
 
 def update_R3C8():
     print("R3C8 button pressed.")
-    update_cell(btn_R3C8, arrRef39)
+    update_cell(btn_R3C8, arrRef39, 'btn_R3C8', 'arrRef39')
 
 
 def update_R3C9():
     print("R3C9 button pressed.")
-    update_cell(btn_R3C9, arrRef40)
+    update_cell(btn_R3C9, arrRef40, 'btn_R3C9', 'arrRef40')
 
 
 def update_R3C10():
     print("R3C10 button pressed.")
-    update_cell(btn_R3C10, arrRef41)
+    update_cell(btn_R3C10, arrRef41, 'btn_R3C10', 'arrRef41')
 
 
 def update_R3C11():
     print("R3C11 button pressed.")
-    update_cell(btn_R3C11, arrRef42)
+    update_cell(btn_R3C11, arrRef42, 'btn_R3C11', 'arrRef42')
 
 
 def update_R3C12():
     print("R3C12 button pressed.")
-    update_cell(btn_R3C12, arrRef43)
+    update_cell(btn_R3C12, arrRef43, 'btn_R3C12', 'arrRef43')
 
 
 def update_R3C13():
     print("R3C13 button pressed.")
-    update_cell(btn_R3C13, arrRef44)
+    update_cell(btn_R3C13, arrRef44, 'btn_R3C13', 'arrRef44')
 
 
 def update_R3C14():
     print("R3C14 button pressed.")
-    update_cell(btn_R3C14, arrRef45)
+    update_cell(btn_R3C14, arrRef45, 'btn_R3C14', 'arrRef45')
 
 
 def update_R3C15():
     print("R3C15 button pressed.")
-    update_cell(btn_R3C15, arrRef46)
+    update_cell(btn_R3C15, arrRef46, 'btn_R3C15', 'arrRef46')
 
 
 def update_R3C16():
     print("R3C16 button pressed.")
-    update_cell(btn_R3C16, arrRef47)
+    update_cell(btn_R3C16, arrRef47, 'btn_R3C16', 'arrRef47')
 
 
 def update_R4C1():
     print("R4C1 button pressed.")
-    update_cell(btn_R4C1, arrRef48)
+    update_cell(btn_R4C1, arrRef48, 'btn_R4C1', 'arrRef48')
 
 
 def update_R4C2():
     print("R4C2 button pressed.")
-    update_cell(btn_R4C2, arrRef49)
+    update_cell(btn_R4C2, arrRef49, 'btn_R4C2', 'arrRef49')
 
 
 def update_R4C3():
     print("R4C3 button pressed.")
-    update_cell(btn_R4C3, arrRef50)
+    update_cell(btn_R4C3, arrRef50, 'btn_R4C3', 'arrRef50')
 
 
 def update_R4C4():
     print("R4C4 button pressed.")
-    update_cell(btn_R4C4, arrRef51)
+    update_cell(btn_R4C4, arrRef51, 'btn_R4C4', 'arrRef51')
 
 
 def update_R4C5():
     print("R4C5 button pressed.")
-    update_cell(btn_R4C5, arrRef52)
+    update_cell(btn_R4C5, arrRef52, 'btn_R4C5', 'arrRef52')
 
 
 def update_R4C6():
     print("R4C6 button pressed.")
-    update_cell(btn_R4C6, arrRef53)
+    update_cell(btn_R4C6, arrRef53, 'btn_R4C6', 'arrRef53')
 
 
 def update_R4C7():
     print("R4C7 button pressed.")
-    update_cell(btn_R4C7, arrRef54)
+    update_cell(btn_R4C7, arrRef54, 'btn_R4C7', 'arrRef54')
 
 
 def update_R4C8():
     print("R4C8 button pressed.")
-    update_cell(btn_R4C8, arrRef55)
+    update_cell(btn_R4C8, arrRef55, 'btn_R4C8', 'arrRef55')
 
 
 def update_R4C9():
     print("R4C9 button pressed.")
-    update_cell(btn_R4C9, arrRef56)
+    update_cell(btn_R4C9, arrRef56, 'btn_R4C9', 'arrRef56')
 
 
 def update_R4C10():
     print("R4C10 button pressed.")
-    update_cell(btn_R4C10, arrRef57)
+    update_cell(btn_R4C10, arrRef57, 'btn_R4C10', 'arrRef57')
 
 
 def update_R4C11():
     print("R4C11 button pressed.")
-    update_cell(btn_R4C11, arrRef58)
+    update_cell(btn_R4C11, arrRef58, 'btn_R4C11', 'arrRef58')
 
 
 def update_R4C12():
     print("R4C12 button pressed.")
-    update_cell(btn_R4C12, arrRef59)
+    update_cell(btn_R4C12, arrRef59, 'btn_R4C12', 'arrRef59')
 
 
 def update_R4C13():
     print("R4C13 button pressed.")
-    update_cell(btn_R4C13, arrRef60)
+    update_cell(btn_R4C13, arrRef60, 'btn_R4C13', 'arrRef60')
 
 
 def update_R4C14():
     print("R4C14 button pressed.")
-    update_cell(btn_R4C14, arrRef61)
+    update_cell(btn_R4C14, arrRef61, 'btn_R4C14', 'arrRef61')
 
 
 def update_R4C15():
     print("R4C15 button pressed.")
-    update_cell(btn_R4C15, arrRef62)
+    update_cell(btn_R4C15, arrRef62, 'btn_R4C15', 'arrRef62')
 
 
 def update_R4C16():
     print("R4C16 button pressed.")
-    update_cell(btn_R4C16, arrRef63)
+    update_cell(btn_R4C16, arrRef63, 'btn_R4C16', 'arrRef63')
 
 
 def update_R5C1():
     print("R5C1 button pressed.")
-    update_cell(btn_R5C1, arrRef64)
+    update_cell(btn_R5C1, arrRef64, 'btn_R5C1', 'arrRef64')
 
 
 def update_R5C2():
     print("R5C2 button pressed.")
-    update_cell(btn_R5C2, arrRef65)
+    update_cell(btn_R5C2, arrRef65, 'btn_R5C2', 'arrRef65')
 
 
 def update_R5C3():
     print("R5C3 button pressed.")
-    update_cell(btn_R5C3, arrRef66)
+    update_cell(btn_R5C3, arrRef66, 'btn_R5C3', 'arrRef66')
 
 
 def update_R5C4():
     print("R5C4 button pressed.")
-    update_cell(btn_R5C4, arrRef67)
+    update_cell(btn_R5C4, arrRef67, 'btn_R5C4', 'arrRef67')
 
 
 def update_R5C5():
     print("R5C5 button pressed.")
-    update_cell(btn_R5C5, arrRef68)
+    update_cell(btn_R5C5, arrRef68, 'btn_R5C5', 'arrRef68')
 
 
 def update_R5C6():
     print("R5C6 button pressed.")
-    update_cell(btn_R5C6, arrRef69)
+    update_cell(btn_R5C6, arrRef69, 'btn_R5C6', 'arrRef69')
 
 
 def update_R5C7():
     print("R5C7 button pressed.")
-    update_cell(btn_R5C7, arrRef70)
+    update_cell(btn_R5C7, arrRef70, 'btn_R5C7', 'arrRef70')
 
 
 def update_R5C8():
     print("R5C8 button pressed.")
-    update_cell(btn_R5C8, arrRef71)
+    update_cell(btn_R5C8, arrRef71, 'btn_R5C8', 'arrRef71')
 
 
 def update_R5C9():
     print("R5C9 button pressed.")
-    update_cell(btn_R5C9, arrRef72)
+    update_cell(btn_R5C9, arrRef72, 'btn_R5C9', 'arrRef72')
 
 
 def update_R5C10():
     print("R5C10 button pressed.")
-    update_cell(btn_R5C10, arrRef73)
+    update_cell(btn_R5C10, arrRef73, 'btn_R5C10', 'arrRef73')
 
 
 def update_R5C11():
     print("R5C11 button pressed.")
-    update_cell(btn_R5C11, arrRef74)
+    update_cell(btn_R5C11, arrRef74, 'btn_R5C11', 'arrRef74')
 
 
 def update_R5C12():
     print("R5C12 button pressed.")
-    update_cell(btn_R5C12, arrRef75)
+    update_cell(btn_R5C12, arrRef75, 'btn_R5C12', 'arrRef75')
 
 
 def update_R5C13():
     print("R5C13 button pressed.")
-    update_cell(btn_R5C13, arrRef76)
+    update_cell(btn_R5C13, arrRef76, 'btn_R5C13', 'arrRef76')
 
 
 def update_R5C14():
     print("R5C14 button pressed.")
-    update_cell(btn_R5C14, arrRef77)
+    update_cell(btn_R5C14, arrRef77, 'btn_R5C14', 'arrRef77')
 
 
 def update_R5C15():
     print("R5C15 button pressed.")
-    update_cell(btn_R5C15, arrRef78)
+    update_cell(btn_R5C15, arrRef78, 'btn_R5C15', 'arrRef78')
 
 
 def update_R5C16():
     print("R5C16 button pressed.")
-    update_cell(btn_R5C16, arrRef79)
+    update_cell(btn_R5C16, arrRef79), 'btn_R5C16', 'arrRef79'
 
 
 def update_R6C1():
     print("R6C1 button pressed.")
-    update_cell(btn_R6C1, arrRef80)
+    update_cell(btn_R6C1, arrRef80, 'btn_R6C1', 'arrRef80')
 
 
 def update_R6C2():
     print("R6C2 button pressed.")
-    update_cell(btn_R6C2, arrRef81)
+    update_cell(btn_R6C2, arrRef81, 'btn_R6C2', 'arrRef81')
 
 
 def update_R6C3():
     print("R6C3 button pressed.")
-    update_cell(btn_R6C3, arrRef82)
+    update_cell(btn_R6C3, arrRef82, 'btn_R6C3', 'arrRef82')
 
 
 def update_R6C4():
     print("R6C4 button pressed.")
-    update_cell(btn_R6C4, arrRef83)
+    update_cell(btn_R6C4, arrRef83, 'btn_R6C4', 'arrRef83')
 
 
 def update_R6C5():
     print("R6C5 button pressed.")
-    update_cell(btn_R6C5, arrRef84)
+    update_cell(btn_R6C5, arrRef84, 'btn_R6C5', 'arrRef84')
 
 
 def update_R6C6():
     print("R6C6 button pressed.")
-    update_cell(btn_R6C6, arrRef85)
+    update_cell(btn_R6C6, arrRef85, 'btn_R6C6', 'arrRef85')
 
 
 def update_R6C7():
     print("R6C7 button pressed.")
-    update_cell(btn_R6C7, arrRef86)
+    update_cell(btn_R6C7, arrRef86, 'btn_R6C7', 'arrRef86')
 
 
 def update_R6C8():
     print("R6C8 button pressed.")
-    update_cell(btn_R6C8, arrRef87)
+    update_cell(btn_R6C8, arrRef87, 'btn_R6C8', 'arrRef87')
 
 
 def update_R6C9():
     print("R6C9 button pressed.")
-    update_cell(btn_R6C9, arrRef88)
+    update_cell(btn_R6C9, arrRef88, 'btn_R6C9', 'arrRef88')
 
 
 def update_R6C10():
     print("R6C10 button pressed.")
-    update_cell(btn_R6C10, arrRef89)
+    update_cell(btn_R6C10, arrRef89, 'btn_R6C10', 'arrRef89')
 
 
 def update_R6C11():
     print("R6C11 button pressed.")
-    update_cell(btn_R6C11, arrRef90)
+    update_cell(btn_R6C11, arrRef90, 'btn_R6C11', 'arrRef90')
 
 
 def update_R6C12():
     print("R6C12 button pressed.")
-    update_cell(btn_R6C12, arrRef91)
+    update_cell(btn_R6C12, arrRef91, 'btn_R6C12', 'arrRef91')
 
 
 def update_R6C13():
     print("R6C13 button pressed.")
-    update_cell(btn_R6C13, arrRef92)
+    update_cell(btn_R6C13, arrRef92, 'btn_R6C13', 'arrRef92')
 
 
 def update_R6C14():
     print("R6C14 button pressed.")
-    update_cell(btn_R6C14, arrRef93)
+    update_cell(btn_R6C14, arrRef93, 'btn_R6C14', 'arrRef93')
 
 
 def update_R6C15():
     print("R6C15 button pressed.")
-    update_cell(btn_R6C15, arrRef94)
+    update_cell(btn_R6C15, arrRef94, 'btn_R6C15', 'arrRef94')
 
 
 def update_R6C16():
     print("R6C16 button pressed.")
-    update_cell(btn_R6C16, arrRef95)
+    update_cell(btn_R6C16, arrRef95, 'btn_R6C16', 'arrRef95')
 
 
 def update_R7C1():
     print("R7C1 button pressed.")
-    update_cell(btn_R7C1, arrRef96)
+    update_cell(btn_R7C1, arrRef96, 'btn_R7C1', 'arrRef96')
 
 
 def update_R7C2():
     print("R7C2 button pressed.")
-    update_cell(btn_R7C2, arrRef97)
+    update_cell(btn_R7C2, arrRef97, 'btn_R7C2', 'arrRef97')
 
 
 def update_R7C3():
     print("R7C3 button pressed.")
-    update_cell(btn_R7C3, arrRef98)
+    update_cell(btn_R7C3, arrRef98, 'btn_R7C3', 'arrRef98')
 
 
 def update_R7C4():
     print("R7C4 button pressed.")
-    update_cell(btn_R7C4, arrRef99)
+    update_cell(btn_R7C4, arrRef99, 'btn_R7C4', 'arrRef99')
 
 
 def update_R7C5():
     print("R7C5 button pressed.")
-    update_cell(btn_R7C5, arrRef100)
+    update_cell(btn_R7C5, arrRef100, 'btn_R7C5', 'arrRef100')
 
 
 def update_R7C6():
     print("R7C6 button pressed.")
-    update_cell(btn_R7C6, arrRef101)
+    update_cell(btn_R7C6, arrRef101, 'btn_R7C6', 'arrRef101')
 
 
 def update_R7C7():
     print("R7C7 button pressed.")
-    update_cell(btn_R7C7, arrRef102)
+    update_cell(btn_R7C7, arrRef102, 'btn_R7C7', 'arrRef102')
 
 
 def update_R7C8():
     print("R7C8 button pressed.")
-    update_cell(btn_R7C8, arrRef103)
+    update_cell(btn_R7C8, arrRef103, 'btn_R7C8', 'arrRef103')
 
 
 def update_R7C9():
     print("R7C9 button pressed.")
-    update_cell(btn_R7C9, arrRef104)
+    update_cell(btn_R7C9, arrRef104, 'btn_R7C9', 'arrRef104')
 
 
 def update_R7C10():
     print("R7C10 button pressed.")
-    update_cell(btn_R7C10, arrRef105)
+    update_cell(btn_R7C10, arrRef105, 'btn_R7C10', 'arrRef105')
 
 
 def update_R7C11():
     print("R7C11 button pressed.")
-    update_cell(btn_R7C11, arrRef106)
+    update_cell(btn_R7C11, arrRef106, 'btn_R7C11', 'arrRef106')
 
 
 def update_R7C12():
     print("R7C12 button pressed.")
-    update_cell(btn_R7C12, arrRef107)
+    update_cell(btn_R7C12, arrRef107, 'btn_R7C12', 'arrRef107')
 
 
 def update_R7C13():
     print("R7C13 button pressed.")
-    update_cell(btn_R7C13, arrRef108)
+    update_cell(btn_R7C13, arrRef108, 'btn_R7C13', 'arrRef108')
 
 
 def update_R7C14():
     print("R7C14 button pressed.")
-    update_cell(btn_R7C14, arrRef109)
+    update_cell(btn_R7C14, arrRef109, 'btn_R7C14', 'arrRef109')
 
 
 def update_R7C15():
     print("R7C15 button pressed.")
-    update_cell(btn_R7C15, arrRef110)
+    update_cell(btn_R7C15, arrRef110, 'btn_R7C15', 'arrRef110')
 
 
 def update_R7C16():
     print("R7C16 button pressed.")
-    update_cell(btn_R7C16, arrRef111)
+    update_cell(btn_R7C16, arrRef111, 'btn_R7C16', 'arrRef111')
 
 
 def update_R8C1():
     print("R8C1 button pressed.")
-    update_cell(btn_R8C1, arrRef112)
+    update_cell(btn_R8C1, arrRef112, 'btn_R8C1', 'arrRef112')
 
 
 def update_R8C2():
     print("R8C2 button pressed.")
-    update_cell(btn_R8C2, arrRef113)
+    update_cell(btn_R8C2, arrRef113, 'btn_R8C2', 'arrRef113')
 
 
 def update_R8C3():
     print("R8C3 button pressed.")
-    update_cell(btn_R8C3, arrRef114)
+    update_cell(btn_R8C3, arrRef114, 'btn_R8C3', 'arrRef114')
 
 
 def update_R8C4():
     print("R8C4 button pressed.")
-    update_cell(btn_R8C4, arrRef115)
+    update_cell(btn_R8C4, arrRef115, 'btn_R8C4', 'arrRef115')
 
 
 def update_R8C5():
     print("R8C5 button pressed.")
-    update_cell(btn_R8C5, arrRef116)
+    update_cell(btn_R8C5, arrRef116, 'btn_R8C5', 'arrRef116')
 
 
 def update_R8C6():
     print("R8C6 button pressed.")
-    update_cell(btn_R8C6, arrRef117)
+    update_cell(btn_R8C6, arrRef117, 'btn_R8C6', 'arrRef117')
 
 
 def update_R8C7():
     print("R8C7 button pressed.")
-    update_cell(btn_R8C7, arrRef118)
+    update_cell(btn_R8C7, arrRef118, 'btn_R8C7', 'arrRef118')
 
 
 def update_R8C8():
     print("R8C8 button pressed.")
-    update_cell(btn_R8C8, arrRef119)
+    update_cell(btn_R8C8, arrRef119, 'btn_R8C8', 'arrRef119')
 
 
 def update_R8C9():
     print("R8C9 button pressed.")
-    update_cell(btn_R8C9, arrRef120)
+    update_cell(btn_R8C9, arrRef120, 'btn_R8C9', 'arrRef120')
 
 
 def update_R8C10():
     print("R8C10 button pressed.")
-    update_cell(btn_R8C10, arrRef121)
+    update_cell(btn_R8C10, arrRef121, 'btn_R8C10', 'arrRef121')
 
 
 def update_R8C11():
     print("R8C11 button pressed.")
-    update_cell(btn_R8C11, arrRef122)
+    update_cell(btn_R8C11, arrRef122, 'btn_R8C11', 'arrRef122')
 
 
 def update_R8C12():
     print("R8C12 button pressed.")
-    update_cell(btn_R8C12, arrRef123)
+    update_cell(btn_R8C12, arrRef123, 'btn_R8C12', 'arrRef123')
 
 
 def update_R8C13():
     print("R7C13 button pressed.")
-    update_cell(btn_R8C13, arrRef124)
+    update_cell(btn_R8C13, arrRef124, 'btn_R8C13', 'arrRef124')
 
 
 def update_R8C14():
     print("R8C14 button pressed.")
-    update_cell(btn_R8C14, arrRef125)
+    update_cell(btn_R8C14, arrRef125, 'btn_R8C14', 'arrRef125')
 
 
 def update_R8C15():
     print("R8C15 button pressed.")
-    update_cell(btn_R8C15, arrRef126)
+    update_cell(btn_R8C15, arrRef126, 'btn_R8C15', 'arrRef126')
 
 
 def update_R8C16():
     print("R8C16 button pressed.")
-    update_cell(btn_R8C16, arrRef127)
+    update_cell(btn_R8C16, arrRef127, 'btn_R8C16', 'arrRef127')
 
 
 def update_R9C1():
     print("R9C1 button pressed.")
-    update_cell(btn_R9C1, arrRef128)
+    update_cell(btn_R9C1, arrRef128, 'btn_R9C1', 'arrRef128')
 
 
 def update_R9C2():
     print("R9C2 button pressed.")
-    update_cell(btn_R9C2, arrRef129)
+    update_cell(btn_R9C2, arrRef129, 'btn_R9C2', 'arrRef129')
 
 
 def update_R9C3():
     print("R9C3 button pressed.")
-    update_cell(btn_R9C3, arrRef130)
+    update_cell(btn_R9C3, arrRef130, 'btn_R9C3', 'arrRef130')
 
 
 def update_R9C4():
     print("R9C4 button pressed.")
-    update_cell(btn_R9C4, arrRef131)
+    update_cell(btn_R9C4, arrRef131, 'btn_R9C4', 'arrRef131')
 
 
 def update_R9C5():
     print("R9C5 button pressed.")
-    update_cell(btn_R9C5, arrRef132)
+    update_cell(btn_R9C5, arrRef132, 'btn_R9C5', 'arrRef132')
 
 
 def update_R9C6():
     print("R9C6 button pressed.")
-    update_cell(btn_R9C6, arrRef133)
+    update_cell(btn_R9C6, arrRef133, 'btn_R9C6', 'arrRef133')
 
 
 def update_R9C7():
     print("R9C7 button pressed.")
-    update_cell(btn_R9C7, arrRef134)
+    update_cell(btn_R9C7, arrRef134, 'btn_R9C7', 'arrRef134')
 
 
 def update_R9C8():
     print("R9C8 button pressed.")
-    update_cell(btn_R9C8, arrRef135)
+    update_cell(btn_R9C8, arrRef135, 'btn_R9C8', 'arrRef135')
 
 
 def update_R9C9():
     print("R9C9 button pressed.")
-    update_cell(btn_R9C9, arrRef136)
+    update_cell(btn_R9C9, arrRef136, 'btn_R9C9', 'arrRef136')
 
 
 def update_R9C10():
     print("R9C10 button pressed.")
-    update_cell(btn_R9C10, arrRef137)
+    update_cell(btn_R9C10, arrRef137, 'btn_R9C10', 'arrRef137')
 
 
 def update_R9C11():
     print("R9C11 button pressed.")
-    update_cell(btn_R9C11, arrRef138)
+    update_cell(btn_R9C11, arrRef138, 'btn_R9C11', 'arrRef138')
 
 
 def update_R9C12():
     print("R9C12 button pressed.")
-    update_cell(btn_R9C12, arrRef139)
+    update_cell(btn_R9C12, arrRef139, 'btn_R9C12', 'arrRef139')
 
 
 def update_R9C13():
     print("R9C13 button pressed.")
-    update_cell(btn_R9C13, arrRef140)
+    update_cell(btn_R9C13, arrRef140, 'btn_R9C13', 'arrRef140')
 
 
 def update_R9C14():
     print("R9C14 button pressed.")
-    update_cell(btn_R9C14, arrRef141)
+    update_cell(btn_R9C14, arrRef141, 'btn_R9C14', 'arrRef141')
 
 
 def update_R9C15():
     print("R9C15 button pressed.")
-    update_cell(btn_R9C15, arrRef142)
+    update_cell(btn_R9C15, arrRef142, 'btn_R9C15', 'arrRef142')
 
 
 def update_R9C16():
     print("R7C16 button pressed.")
-    update_cell(btn_R9C16, arrRef143)
+    update_cell(btn_R9C16, arrRef143, 'btn_R9C16', 'arrRef143')
 
 
 def update_R10C1():
     print("R10C1 button pressed.")
-    update_cell(btn_R10C1, arrRef144)
+    update_cell(btn_R10C1, arrRef144, 'btn_R10C1', 'arrRef144')
 
 
 def update_R10C2():
     print("R10C2 button pressed.")
-    update_cell(btn_R10C2, arrRef145)
+    update_cell(btn_R10C2, arrRef145, 'btn_R10C2', 'arrRef145')
 
 
 def update_R10C3():
     print("R10C3 button pressed.")
-    update_cell(btn_R10C3, arrRef146)
+    update_cell(btn_R10C3, arrRef146, 'btn_R10C3', 'arrRef146')
 
 
 def update_R10C4():
     print("R10C4 button pressed.")
-    update_cell(btn_R10C4, arrRef147)
+    update_cell(btn_R10C4, arrRef147, 'btn_R10C4', 'arrRef147')
 
 
 def update_R10C5():
     print("R10C5 button pressed.")
-    update_cell(btn_R10C5, arrRef148)
+    update_cell(btn_R10C5, arrRef148, 'btn_R10C5', 'arrRef148')
 
 
 def update_R10C6():
     print("R10C6 button pressed.")
-    update_cell(btn_R10C6, arrRef149)
+    update_cell(btn_R10C6, arrRef149, 'btn_R10C6', 'arrRef149')
 
 
 def update_R10C7():
     print("R10C7 button pressed.")
-    update_cell(btn_R10C7, arrRef150)
+    update_cell(btn_R10C7, arrRef150, 'btn_R10C7', 'arrRef150')
 
 
 def update_R10C8():
     print("R10C8 button pressed.")
-    update_cell(btn_R10C8, arrRef151)
+    update_cell(btn_R10C8, arrRef151, 'btn_R10C8', 'arrRef151')
 
 
 def update_R10C9():
     print("R10C9 button pressed.")
-    update_cell(btn_R10C9, arrRef152)
+    update_cell(btn_R10C9, arrRef152, 'btn_R10C9', 'arrRef152')
 
 
 def update_R10C10():
     print("R10C10 button pressed.")
-    update_cell(btn_R10C10, arrRef153)
+    update_cell(btn_R10C10, arrRef153, 'btn_R10C10', 'arrRef153')
 
 
 def update_R10C11():
     print("R10C11 button pressed.")
-    update_cell(btn_R10C11, arrRef154)
+    update_cell(btn_R10C11, arrRef154, 'btn_R10C11', 'arrRef154')
 
 
 def update_R10C12():
     print("R10C12 button pressed.")
-    update_cell(btn_R10C12, arrRef155)
+    update_cell(btn_R10C12, arrRef155, 'btn_R10C12', 'arrRef155')
 
 
 def update_R10C13():
     print("R10C13 button pressed.")
-    update_cell(btn_R10C13, arrRef156)
+    update_cell(btn_R10C13, arrRef156, 'btn_R10C13', 'arrRef156')
 
 
 def update_R10C14():
     print("R10C14 button pressed.")
-    update_cell(btn_R10C14, arrRef157)
+    update_cell(btn_R10C14, arrRef157, 'btn_R10C14', 'arrRef157')
 
 
 def update_R10C15():
     print("R10C15 button pressed.")
-    update_cell(btn_R10C15, arrRef158)
+    update_cell(btn_R10C15, arrRef158, 'btn_R10C15', 'arrRef158')
 
 
 def update_R10C16():
     print("R10C16 button pressed.")
-    update_cell(btn_R10C16, arrRef159)
+    update_cell(btn_R10C16, arrRef159, 'btn_R10C16', 'arrRef159')
 
 
 def update_R11C1():
     print("R11C1 button pressed.")
-    update_cell(btn_R11C1, arrRef160)
+    update_cell(btn_R11C1, arrRef160, 'btn_R11C1', 'arrRef160')
 
 
 def update_R11C2():
     print("R11C2 button pressed.")
-    update_cell(btn_R11C2, arrRef161)
+    update_cell(btn_R11C2, arrRef161, 'btn_R11C2', 'arrRef161')
 
 
 def update_R11C3():
     print("R11C3 button pressed.")
-    update_cell(btn_R11C3, arrRef162)
+    update_cell(btn_R11C3, arrRef162, 'btn_R11C3', 'arrRef162')
 
 
 def update_R11C4():
-    update_cell(btn_R11C4, arrRef163)
+    update_cell(btn_R11C4, arrRef163, 'btn_R11C4', 'arrRef')
 
 
 def update_R11C5():
     print("R11C5 button pressed.")
-    update_cell(btn_R11C5, arrRef164)
+    update_cell(btn_R11C5, arrRef164, 'btn_R11C5', 'arrRef164')
 
 
 def update_R11C6():
     print("R11C6 button pressed.")
-    update_cell(btn_R11C6, arrRef165)
+    update_cell(btn_R11C6, arrRef165, 'btn_R11C6', 'arrRef165')
 
 
 def update_R11C7():
     print("R11C7 button pressed.")
-    update_cell(btn_R11C7, arrRef166)
+    update_cell(btn_R11C7, arrRef166, 'btn_R11C7', 'arrRef166')
 
 
 def update_R11C8():
     print("R11C8 button pressed.")
-    update_cell(btn_R11C8, arrRef167)
+    update_cell(btn_R11C8, arrRef167, 'btn_R11C8', 'arrRef167')
 
 
 def update_R11C9():
     print("R11C9 button pressed.")
-    update_cell(btn_R11C9, arrRef168)
+    update_cell(btn_R11C9, arrRef168, 'btn_R11C9', 'arrRef168')
 
 
 def update_R11C10():
     print("R11C10 button pressed.")
-    update_cell(btn_R11C10, arrRef169)
+    update_cell(btn_R11C10, arrRef169, 'btn_R11C10', 'arrRef169')
 
 
 def update_R11C11():
     print("R11C11 button pressed.")
-    update_cell(btn_R11C11, arrRef170)
+    update_cell(btn_R11C11, arrRef170, 'btn_R11C11', 'arrRef170')
 
 
 def update_R11C12():
     print("R11C12 button pressed.")
-    update_cell(btn_R11C12, arrRef171)
+    update_cell(btn_R11C12, arrRef171, 'btn_R11C12', 'arrRef171')
 
 
 def update_R11C13():
     print("R11C13 button pressed.")
-    update_cell(btn_R11C13, arrRef172)
+    update_cell(btn_R11C13, arrRef172, 'btn_R11C13', 'arrRef172')
 
 
 def update_R11C14():
     print("R11C14 button pressed.")
-    update_cell(btn_R11C14, arrRef173)
+    update_cell(btn_R11C14, arrRef173, 'btn_R11C14', 'arrRef173')
 
 
 def update_R11C15():
     print("R11C15 button pressed.")
-    update_cell(btn_R11C15, arrRef174)
+    update_cell(btn_R11C15, arrRef174, 'btn_R11C15', 'arrRef174')
 
 
 def update_R11C16():
     print("R11C16 button pressed.")
-    update_cell(btn_R11C16, arrRef175)
+    update_cell(btn_R11C16, arrRef175, 'btn_R11C16', 'arrRef175')
 
 
 def update_R12C1():
     print("R12C1 button pressed.")
-    update_cell(btn_R12C1, arrRef176)
+    update_cell(btn_R12C1, arrRef176, 'btn_R12C1', 'arrRef176')
 
 
 def update_R12C2():
     print("R12C2 button pressed.")
-    update_cell(btn_R12C2, arrRef177)
+    update_cell(btn_R12C2, arrRef177, 'btn_R12C2', 'arrRef177')
 
 
 def update_R12C3():
     print("R12C3 button pressed.")
-    update_cell(btn_R12C3, arrRef178)
+    update_cell(btn_R12C3, arrRef178, 'btn_R12C3', 'arrRef178')
 
 
 def update_R12C4():
     print("R12C4 button pressed.")
-    update_cell(btn_R12C4, arrRef179)
+    update_cell(btn_R12C4, arrRef179, 'btn_R12C4', 'arrRef179')
 
 
 def update_R12C5():
     print("R12C5 button pressed.")
-    update_cell(btn_R12C5, arrRef180)
+    update_cell(btn_R12C5, arrRef180, 'btn_R12C5', 'arrRef180')
 
 
 def update_R12C6():
     print("R12C6 button pressed.")
-    update_cell(btn_R12C6, arrRef181)
+    update_cell(btn_R12C6, arrRef181, 'btn_R12C6', 'arrRef181')
 
 
 def update_R12C7():
     print("R12C7 button pressed.")
-    update_cell(btn_R12C7, arrRef182)
+    update_cell(btn_R12C7, arrRef182, 'btn_R12C7', 'arrRef182')
 
 
 def update_R12C8():
     print("R12C8 button pressed.")
-    update_cell(btn_R12C8, arrRef183)
+    update_cell(btn_R12C8, arrRef183, 'btn_R12C8', 'arrRef183')
 
 
 def update_R12C9():
     print("R12C9 button pressed.")
-    update_cell(btn_R12C9, arrRef184)
+    update_cell(btn_R12C9, arrRef184, 'btn_R12C9', 'arrRef184')
 
 
 def update_R12C10():
     print("R11C10 button pressed.")
-    update_cell(btn_R12C10, arrRef185)
+    update_cell(btn_R12C10, arrRef185, 'btn_R12C10', 'arrRef185')
 
 
 def update_R12C11():
     print("R12C11 button pressed.")
-    update_cell(btn_R12C11, arrRef186)
+    update_cell(btn_R12C11, arrRef186, 'btn_R12C11', 'arrRef186')
 
 
 def update_R12C12():
     print("R12C12 button pressed.")
-    update_cell(btn_R12C12, arrRef187)
+    update_cell(btn_R12C12, arrRef187, 'btn_R12C12', 'arrRef187')
 
 
 def update_R12C13():
     print("R12C13 button pressed.")
-    update_cell(btn_R12C13, arrRef188)
+    update_cell(btn_R12C13, arrRef188, 'btn_R12C13', 'arrRef188')
 
 
 def update_R12C14():
     print("R12C14 button pressed.")
-    update_cell(btn_R12C14, arrRef189)
+    update_cell(btn_R12C14, arrRef189, 'btn_R12C14', 'arrRef189')
 
 
 def update_R12C15():
     print("R12C15 button pressed.")
-    update_cell(btn_R12C15, arrRef190)
+    update_cell(btn_R12C15, arrRef190, 'btn_R12C15', 'arrRef190')
 
 
 def update_R12C16():
     print("R12C16 button pressed.")
-    update_cell(btn_R12C16, arrRef191)
+    update_cell(btn_R12C16, arrRef191, 'btn_R12C16', 'arrRef191')
 
 
 def update_R13C1():
     print("R13C1 button pressed.")
-    update_cell(btn_R13C1, arrRef192)
+    update_cell(btn_R13C1, arrRef192, 'btn_R13C1', 'arrRef192')
 
 
 def update_R13C2():
     print("R13C2 button pressed.")
-    update_cell(btn_R13C2, arrRef193)
+    update_cell(btn_R13C2, arrRef193, 'btn_R13C2', 'arrRef193')
 
 
 def update_R13C3():
     print("R13C3 button pressed.")
-    update_cell(btn_R13C3, arrRef194)
+    update_cell(btn_R13C3, arrRef194, 'btn_R13C3', 'arrRef194')
 
 
 def update_R13C4():
     print("R13C4 button pressed.")
-    update_cell(btn_R13C4, arrRef195)
+    update_cell(btn_R13C4, arrRef195, 'btn_R13C4', 'arrRef195')
 
 
 def update_R13C5():
     print("R13C5 button pressed.")
-    update_cell(btn_R13C5, arrRef196)
+    update_cell(btn_R13C5, arrRef196, 'btn_R13C5', 'arrRef196')
 
 
 def update_R13C6():
     print("R13C6 button pressed.")
-    update_cell(btn_R13C6, arrRef197)
+    update_cell(btn_R13C6, arrRef197, 'btn_R13C6', 'arrRef197')
 
 
 def update_R13C7():
     print("R13C7 button pressed.")
-    update_cell(btn_R13C7, arrRef198)
+    update_cell(btn_R13C7, arrRef198, 'btn_R13C7', 'arrRef198')
 
 
 def update_R13C8():
     print("R13C8 button pressed.")
-    update_cell(btn_R13C8, arrRef199)
+    update_cell(btn_R13C8, arrRef199, 'btn_R13C8', 'arrRef199')
 
 
 def update_R13C9():
     print("R13C9 button pressed.")
-    update_cell(btn_R13C9, arrRef200)
+    update_cell(btn_R13C9, arrRef200, 'btn_R13C9', 'arrRef200')
 
 
 def update_R13C10():
     print("R13C10 button pressed.")
-    update_cell(btn_R13C10, arrRef201)
+    update_cell(btn_R13C10, arrRef201, 'btn_R13C10', 'arrRef201')
 
 
 def update_R13C11():
     print("R13C11 button pressed.")
-    update_cell(btn_R13C11, arrRef202)
+    update_cell(btn_R13C11, arrRef202, 'btn_R13C11', 'arrRef202')
 
 
 def update_R13C12():
     print("R13C12 button pressed.")
-    update_cell(btn_R13C12, arrRef203)
+    update_cell(btn_R13C12, arrRef203, 'btn_R13C12', 'arrRef203')
 
 
 def update_R13C13():
     print("R13C13 button pressed.")
-    update_cell(btn_R13C13, arrRef204)
+    update_cell(btn_R13C13, arrRef204, 'btn_R13C13', 'arrRef204')
 
 
 def update_R13C14():
     print("R13C14 button pressed.")
-    update_cell(btn_R13C14, arrRef205)
+    update_cell(btn_R13C14, arrRef205, 'btn_R13C14', 'arrRef205')
 
 
 def update_R13C15():
     print("R13C15 button pressed.")
-    update_cell(btn_R13C15, arrRef206)
+    update_cell(btn_R13C15, arrRef206, 'btn_R13C15', 'arrRef206')
 
 
 def update_R13C16():
     print("R13C16 button pressed.")
-    update_cell(btn_R13C16, arrRef207)
+    update_cell(btn_R13C16, arrRef207, 'btn_R13C16', 'arrRef207')
 
 
 def update_R14C1():
     print("R14C1 button pressed.")
-    update_cell(btn_R14C1, arrRef208)
+    update_cell(btn_R14C1, arrRef208, 'btn_R14C1', 'arrRef208')
 
 
 def update_R14C2():
     print("R14C2 button pressed.")
-    update_cell(btn_R14C2, arrRef209)
+    update_cell(btn_R14C2, arrRef209, 'btn_R14C2', 'arrRef209')
 
 
 def update_R14C3():
     print("R14C3 button pressed.")
-    update_cell(btn_R14C3, arrRef210)
+    update_cell(btn_R14C3, arrRef210, 'btn_R14C3', 'arrRef210')
 
 
 def update_R14C4():
     print("R14C4 button pressed.")
-    update_cell(btn_R14C4, arrRef211)
+    update_cell(btn_R14C4, arrRef211, 'btn_R14C4', 'arrRef211')
 
 
 def update_R14C5():
     print("R14C5 button pressed.")
-    update_cell(btn_R14C5, arrRef212)
+    update_cell(btn_R14C5, arrRef212, 'btn_R14C5', 'arrRef212')
 
 
 def update_R14C6():
     print("R14C6 button pressed.")
-    update_cell(btn_R14C6, arrRef213)
+    update_cell(btn_R14C6, arrRef213, 'btn_R14C6', 'arrRef213')
 
 
 def update_R14C7():
     print("R14C7 button pressed.")
-    update_cell(btn_R14C7, arrRef214)
+    update_cell(btn_R14C7, arrRef214, 'btn_R14C7', 'arrRef214')
 
 
 def update_R14C8():
     print("R14C8 button pressed.")
-    update_cell(btn_R14C8, arrRef215)
+    update_cell(btn_R14C8, arrRef215, 'btn_R14C8', 'arrRef215')
 
 
 def update_R14C9():
     print("R14C9 button pressed.")
-    update_cell(btn_R14C9, arrRef216)
+    update_cell(btn_R14C9, arrRef216, 'btn_R14C9', 'arrRef216')
 
 
 def update_R14C10():
     print("R14C10 button pressed.")
-    update_cell(btn_R14C10, arrRef217)
+    update_cell(btn_R14C10, arrRef217, 'btn_R14C10', 'arrRef217')
 
 
 def update_R14C11():
     print("R14C11 button pressed.")
-    update_cell(btn_R14C11, arrRef218)
+    update_cell(btn_R14C11, arrRef218, 'btn_R14C11', 'arrRef218')
 
 
 def update_R14C12():
     print("R14C12 button pressed.")
-    update_cell(btn_R14C12, arrRef219)
+    update_cell(btn_R14C12, arrRef219, 'btn_R14C12', 'arrRef219')
 
 
 def update_R14C13():
     print("R14C13 button pressed.")
-    update_cell(btn_R14C13, arrRef220)
+    update_cell(btn_R14C13, arrRef220, 'btn_R14C13', 'arrRef220')
 
 
 def update_R14C14():
     print("R14C14 button pressed.")
-    update_cell(btn_R14C14, arrRef221)
+    update_cell(btn_R14C14, arrRef221, 'btn_R14C14', 'arrRef221')
 
 
 def update_R14C15():
     print("R14C15 button pressed.")
-    update_cell(btn_R14C15, arrRef222)
+    update_cell(btn_R14C15, arrRef222, 'btn_R14C15', 'arrRef222')
 
 
 def update_R14C16():
     print("R14C16 button pressed.")
-    update_cell(btn_R14C16, arrRef223)
+    update_cell(btn_R14C16, arrRef223, 'btn_R14C16', 'arrRef223')
 
 
 def update_R15C1():
     print("R15C1 button pressed.")
-    update_cell(btn_R15C1, arrRef224)
+    update_cell(btn_R15C1, arrRef224, 'btn_R15C1', 'arrRef224')
 
 
 def update_R15C2():
     print("R15C2 button pressed.")
-    update_cell(btn_R15C2, arrRef225)
+    update_cell(btn_R15C2, arrRef225, 'btn_R15C2', 'arrRef225')
 
 
 def update_R15C3():
     print("R15C3 button pressed.")
-    update_cell(btn_R15C3, arrRef226)
+    update_cell(btn_R15C3, arrRef226, 'btn_R15C3', 'arrRef226')
 
 
 def update_R15C4():
     print("R15C4 button pressed.")
-    update_cell(btn_R15C4, arrRef227)
+    update_cell(btn_R15C4, arrRef227, 'btn_R15C4', 'arrRef227')
 
 
 def update_R15C5():
     print("R15C5 button pressed.")
-    update_cell(btn_R15C5, arrRef228)
+    update_cell(btn_R15C5, arrRef228, 'btn_R15C5', 'arrRef228')
 
 
 def update_R15C6():
     print("R15C6 button pressed.")
-    update_cell(btn_R15C6, arrRef229)
+    update_cell(btn_R15C6, arrRef229, 'btn_R15C6', 'arrRef229')
 
 
 def update_R15C7():
     print("R15C7 button pressed.")
-    update_cell(btn_R15C7, arrRef230)
+    update_cell(btn_R15C7, arrRef230, 'btn_R15C9', 'arrRef230')
 
 
 def update_R15C8():
     print("R15C8 button pressed.")
-    update_cell(btn_R15C8, arrRef231)
+    update_cell(btn_R15C8, arrRef231, 'btn_R15C8', 'arrRef231')
 
 
 def update_R15C9():
     print("R15C9 button pressed.")
-    update_cell(btn_R15C9, arrRef232)
+    update_cell(btn_R15C9, arrRef232, 'btn_R15C9', 'arrRef232')
 
 
 def update_R15C10():
     print("R15C10 button pressed.")
-    update_cell(btn_R15C10, arrRef233)
+    update_cell(btn_R15C10, arrRef233, 'btn_R15C10', 'arrRef233')
 
 
 def update_R15C11():
     print("R15C11 button pressed.")
-    update_cell(btn_R15C11, arrRef234)
+    update_cell(btn_R15C11, arrRef234, 'btn_R15C11', 'arrRef234')
 
 
 def update_R15C12():
     print("R15C12 button pressed.")
-    update_cell(btn_R15C12, arrRef235)
+    update_cell(btn_R15C12, arrRef235, 'btn_R15C12', 'arrRef235')
 
 
 def update_R15C13():
     print("R15C13 button pressed.")
-    update_cell(btn_R15C13, arrRef236)
+    update_cell(btn_R15C13, arrRef236, 'btn_R15C13', 'arrRef236')
 
 
 def update_R15C14():
     print("R15C14 button pressed.")
-    update_cell(btn_R15C14, arrRef237)
+    update_cell(btn_R15C14, arrRef237, 'btn_R15C14', 'arrRef237')
 
 
 def update_R15C15():
     print("R15C15 button pressed.")
-    update_cell(btn_R15C15, arrRef238)
+    update_cell(btn_R15C15, arrRef238, 'btn_R15C15', 'arrRef238')
 
 
 def update_R15C16():
     print("R15C16 button pressed.")
-    update_cell(btn_R15C16, arrRef239)
+    update_cell(btn_R15C16, arrRef239, 'btn_R15C16', 'arrRef239')
 
 
 def update_R16C1():
     print("R16C1 button pressed.")
-    update_cell(btn_R16C1, arrRef240)
+    update_cell(btn_R16C1, arrRef240, 'btn_R16C1', 'arrRef240')
 
 
 def update_R16C2():
     print("R16C2 button pressed.")
-    update_cell(btn_R16C2, arrRef241)
+    update_cell(btn_R16C2, arrRef241, 'btn_R16C2', 'arrRef241')
 
 
 def update_R16C3():
     print("R16C3 button pressed.")
-    update_cell(btn_R16C3, arrRef242)
+    update_cell(btn_R16C3, arrRef242, 'btn_R16C3', 'arrRef242')
 
 
 def update_R16C4():
     print("R16C4 button pressed.")
-    update_cell(btn_R16C4, arrRef243)
+    update_cell(btn_R16C4, arrRef243, 'btn_R16C4', 'arrRef243')
 
 
 def update_R16C5():
     print("R16C5 button pressed.")
-    update_cell(btn_R16C5, arrRef244)
+    update_cell(btn_R16C5, arrRef244, 'btn_R16C5', 'arrRef244')
 
 
 def update_R16C6():
     print("R16C6 button pressed.")
-    update_cell(btn_R16C6, arrRef245)
+    update_cell(btn_R16C6, arrRef245, 'btn_R16C6', 'arrRef245')
 
 
 def update_R16C7():
     print("R16C7 button pressed.")
-    update_cell(btn_R16C7, arrRef246)
+    update_cell(btn_R16C7, arrRef246, 'btn_R16C7', 'arrRef246')
 
 
 def update_R16C8():
     print("R16C8 button pressed.")
-    update_cell(btn_R16C8, arrRef247)
+    update_cell(btn_R16C8, arrRef247, 'btn_R16C8', 'arrRef247')
 
 
 def update_R16C9():
     print("R16C9 button pressed.")
-    update_cell(btn_R16C9, arrRef248)
+    update_cell(btn_R16C9, arrRef248, 'btn_R16C9', 'arrRef248')
 
 
 def update_R16C10():
     print("R16C10 button pressed.")
-    update_cell(btn_R16C10, arrRef249)
+    update_cell(btn_R16C10, arrRef249, 'btn_R16C10', 'arrRef249')
 
 
 def update_R16C11():
     print("R16C11 button pressed.")
-    update_cell(btn_R16C11, arrRef250)
+    update_cell(btn_R16C11, arrRef250, 'btn_R16C11', 'arrRef250')
 
 
 def update_R16C12():
     print("R16C12 button pressed.")
-    update_cell(btn_R16C12, arrRef251)
+    update_cell(btn_R16C12, arrRef251, 'btn_R16C12', 'arrRef251')
 
 
 def update_R16C13():
     print("R16C13 button pressed.")
-    update_cell(btn_R16C13, arrRef252)
+    update_cell(btn_R16C13, arrRef252, 'btn_R16C13', 'arrRef252')
 
 
 def update_R16C14():
     print("R16C14 button pressed.")
-    update_cell(btn_R16C14, arrRef253)
+    update_cell(btn_R16C14, arrRef253, 'btn_R16C14', 'arrRef253')
 
 
 def update_R16C15():
     print("R16C15 button pressed.")
-    update_cell(btn_R16C15, arrRef254)
+    update_cell(btn_R16C15, arrRef254, 'btn_R16C15', 'arrRef254')
 
 
 def update_R16C16():
     print("R16C16 button pressed.")
-    update_cell(btn_R16C16, arrRef255)
+    update_cell(btn_R16C16, arrRef255, 'btn_R16C16', 'arrRef255')
 
 
 def ButtonRemoveANumber():  # sender As Object, e As EventArgs) Handles ButtonRemoveANumber.Click
@@ -3389,8 +3614,10 @@ def load_currentSolution():
     # for item in currentSolution:
     #     print("2304 load item ", item)
     #     item
-    # currentNumber = 'A'
-    # update_cell(btn_R1C1, arrRef0)
+    currentNumber = 'A'
+    update_cell(btn_R1C1, arrRef0)
+    # currentNumber = 'D'
+    # update_cell(.!frame.!canvas.!frame.!button , arrRef0)
     # currentNumber = 'B'
     # update_cell(btn_R1C2, arrRef1)
     # currentNumber = '9'
@@ -3422,220 +3649,220 @@ def load_currentSolution():
 def load_solution_1(btn_R1C1=None):
     print("3043 Entered load_solution_1")
     global currentNumber
+    # currentNumber = '0123456789ABCDEF'
+    # update_cell(btn_R1C1, arrRef0)
     currentNumber = 'B'
-    update_cell(btn_R1C2, arrRef1)
+    update_cell(btn_R1C2, arrRef1, 'btn_R1C2', 'arrRef1')
     currentNumber = '2'
-    update_cell(btn_R1C3, arrRef2)
+    update_cell(btn_R1C3, arrRef2, 'btn_R1C3', 'arrRef2')
     currentNumber = '1'
-    update_cell(btn_R1C4, arrRef3)
+    update_cell(btn_R1C4, arrRef3, 'btn_R1C4', 'arrRef3')
     currentNumber = '3'
-    update_cell(btn_R1C8, arrRef7)
+    update_cell(btn_R1C8, arrRef7, 'btn_R1C8', 'arrRef7')
     currentNumber = '9'
-    update_cell(btn_R1C11, arrRef10)
+    update_cell(btn_R1C11, arrRef10, 'btn_R1C11', 'arrRef10')
     currentNumber = '0'
-    update_cell(btn_R1C15, arrRef14)
+    update_cell(btn_R1C15, arrRef14, 'btn_R1C15', 'arrRef14')
     currentNumber = '7'
-    update_cell(btn_R1C16, arrRef15)
+    update_cell(btn_R1C16, arrRef15, 'btn_R1C16', 'arrRef15')
     currentNumber = 'F'
-    update_cell(btn_R2C1, arrRef16)
+    update_cell(btn_R2C1, arrRef16, 'btn_R2C1', 'arrRef16')
     currentNumber = '5'
-    update_cell(btn_R2C3, arrRef18)
+    update_cell(btn_R2C3, arrRef18, 'btn_R2C3', 'arrRef18')
     currentNumber = 'D'
-    update_cell(btn_R2C5, arrRef20)
+    update_cell(btn_R2C5, arrRef20, 'btn_R2C5', 'arrRef20')
     currentNumber = '4'
-    update_cell(btn_R2C11, arrRef26)
+    update_cell(btn_R2C11, arrRef26, 'btn_R2C11', 'arrRef26')
     currentNumber = 'B'
-    update_cell(btn_R2C13, arrRef28)
+    update_cell(btn_R2C13, arrRef28, 'btn_R2C13', 'arrRef28')
     currentNumber = 'C'
-    update_cell(btn_R2C14, arrRef29)
+    update_cell(btn_R2C14, arrRef29, 'btn_R2C14', 'arrRef29')
     currentNumber = 'B'
-    update_cell(btn_R3C6, arrRef37)
+    update_cell(btn_R3C6, arrRef37, 'btn_R3C6', 'arrRef37')
     currentNumber = '6'
-    update_cell(btn_R3C7, arrRef38)
+    update_cell(btn_R3C7, arrRef38, 'btn_R3C7', 'arrRef38')
     currentNumber = '5'
-    update_cell(btn_R3C9, arrRef40)
+    update_cell(btn_R3C9, arrRef40, 'btn_R3C9', 'arrRef40')
     currentNumber = '1'
-    update_cell(btn_R3C10, arrRef41)
+    update_cell(btn_R3C10, arrRef41, 'btn_R3C10', 'arrRef41')
     currentNumber = 'D'
-    update_cell(btn_R3C14, arrRef45)
+    update_cell(btn_R3C14, arrRef45, 'btn_R3C14', 'arrRef45')
     currentNumber = '0'
-    update_cell(btn_R4C3, arrRef50)
-    currentNumber = '0'
-    update_cell(btn_R4C3, arrRef50)
+    update_cell(btn_R4C3, arrRef50, 'btn_R4C4', 'arrRef50')
     currentNumber = '1'
-    update_cell(btn_R4C7, arrRef54)
+    update_cell(btn_R4C7, arrRef54, 'btn_R4C7', 'arrRef54')
     currentNumber = '5'
-    update_cell(btn_R4C8, arrRef55)
+    update_cell(btn_R4C8, arrRef55, 'btn_R4C8', 'arrRef55')
     currentNumber = 'C'
-    update_cell(btn_R4C9, arrRef56)
+    update_cell(btn_R4C9, arrRef56, 'btn_R4C9', 'arrRef56')
     currentNumber = 'D'
-    update_cell(btn_R4C10, arrRef57)
+    update_cell(btn_R4C10, arrRef57, 'btn_R4C10', 'arrRef57')
     currentNumber = 'F'
-    update_cell(btn_R4C12, arrRef59)
+    update_cell(btn_R4C12, arrRef59, 'btn_R4C12', 'arrRef59')
     currentNumber = 'E'
-    update_cell(btn_R4C14, arrRef61)
+    update_cell(btn_R4C14, arrRef61, 'btn_R4C14', 'arrRef61')
     currentNumber = 'A'
-    update_cell(btn_R4C16, arrRef63)
+    update_cell(btn_R4C16, arrRef63, 'btn_R4C16', 'arrRef63')
     currentNumber = 'A'
-    update_cell(btn_R5C5, arrRef68)
+    update_cell(btn_R5C5, arrRef68, 'btn_R5C5', 'arrRef68')
     currentNumber = 'D'
-    update_cell(btn_R5C7, arrRef70)
+    update_cell(btn_R5C7, arrRef70, 'btn_R5C7', 'arrRef70')
     currentNumber = '4'
-    update_cell(btn_R5C10, arrRef73)
+    update_cell(btn_R5C10, arrRef73, 'btn_R5C10', 'arrRef73')
     currentNumber = '3'
-    update_cell(btn_R5C16, arrRef79)
+    update_cell(btn_R5C16, arrRef79, 'btn_R5C16', 'arrRef79')
     currentNumber = 'B'
-    update_cell(btn_R6C1, arrRef80)
+    update_cell(btn_R6C1, arrRef80, 'btn_R6C1', 'arrRef80')
     currentNumber = '8'
-    update_cell(btn_R6C2, arrRef81)
+    update_cell(btn_R6C2, arrRef81, 'btn_R6C2', 'arrRef81')
     currentNumber = 'F'
-    update_cell(btn_R6C3, arrRef82)
+    update_cell(btn_R6C3, arrRef82, 'btn_R6C3', 'arrRef82')
     currentNumber = '4'
-    update_cell(btn_R6C4, arrRef83)
+    update_cell(btn_R6C4, arrRef83, 'btn_R6C4', 'arrRef83')
     currentNumber = '6'
-    update_cell(btn_R6C6, arrRef85)
+    update_cell(btn_R6C6, arrRef85, 'btn_R6C6', 'arrRef85')
     currentNumber = '9'
-    update_cell(btn_R6C8, arrRef87)
+    update_cell(btn_R6C8, arrRef87, 'btn_R6C8', 'arrRef87')
     currentNumber = '2'
-    update_cell(btn_R6C11, arrRef90)
+    update_cell(btn_R6C11, arrRef90, 'btn_R6C11', 'arrRef90')
     currentNumber = 'D'
-    update_cell(btn_R6C13, arrRef92)
+    update_cell(btn_R6C13, arrRef92, 'btn_R6C13', 'arrRef92')
     currentNumber = '7'
-    update_cell(btn_R6C14, arrRef93)
+    update_cell(btn_R6C14, arrRef93, 'btn_R6C14', 'arrRef93')
     currentNumber = 'E'
-    update_cell(btn_R7C1, arrRef96)
+    update_cell(btn_R7C1, arrRef96, 'btn_R7C1', 'arrRef96')
     currentNumber = '9'
-    update_cell(btn_R7C4, arrRef99)
+    update_cell(btn_R7C4, arrRef99, 'btn_R7C4', 'arrRef99')
     currentNumber = '6'
-    update_cell(btn_R7C11, arrRef106)
+    update_cell(btn_R7C11, arrRef106, 'btn_R7C11', 'arrRef106')
     currentNumber = '0'
-    update_cell(btn_R7C12, arrRef107)
+    update_cell(btn_R7C12, arrRef107, 'btn_R7C12', 'arrRef107')
     currentNumber = '1'
-    update_cell(btn_R7C13, arrRef108)
+    update_cell(btn_R7C13, arrRef108, 'btn_R7C13', 'arrRef108')
     currentNumber = '2'
-    update_cell(btn_R7C15, arrRef110)
+    update_cell(btn_R7C15, arrRef110, 'btn_R7C15', 'arrRef110')
     currentNumber = '0'
-    update_cell(btn_R8C1, arrRef112)
+    update_cell(btn_R8C1, arrRef112, 'btn_R8C1', 'arrRef112')
     currentNumber = '6'
-    update_cell(btn_R8C4, arrRef115)
+    update_cell(btn_R8C4, arrRef115, 'btn_R8C4', 'arrRef115')
     currentNumber = '7'
-    update_cell(btn_R8C6, arrRef117)
+    update_cell(btn_R8C6, arrRef117, 'btn_R8C6', 'arrRef117')
     currentNumber = '5'
-    update_cell(btn_R8C7, arrRef118)
+    update_cell(btn_R8C7, arrRef118, 'btn_R8C7', 'arrRef118')
     currentNumber = 'E'
-    update_cell(btn_R8C10, arrRef121)
+    update_cell(btn_R8C10, arrRef121, 'btn_R8C10', 'arrRef121')
     currentNumber = 'A'
-    update_cell(btn_R8C11, arrRef122)
+    update_cell(btn_R8C11, arrRef122, 'btn_R8C11', 'arrRef122')
     currentNumber = '4'
-    update_cell(btn_R8C14, arrRef125)
+    update_cell(btn_R8C14, arrRef125, 'btn_R8C14', 'arrRef125')
     currentNumber = '8'
-    update_cell(btn_R8C15, arrRef126)
+    update_cell(btn_R8C15, arrRef126, 'btn_R8C15', 'arrRef126')
     currentNumber = '6'
-    update_cell(btn_R9C2, arrRef129)
+    update_cell(btn_R9C2, arrRef129, 'btn_R9C2', 'arrRef129')
     currentNumber = 'B'
-    update_cell(btn_R9C3, arrRef130)
+    update_cell(btn_R9C3, arrRef130, 'btn_R9C3', 'arrRef130')
     currentNumber = '5'
-    update_cell(btn_R9C6, arrRef133)
+    update_cell(btn_R9C6, arrRef133, 'btn_R9C6', 'arrRef133')
     currentNumber = 'C'
-    update_cell(btn_R9C7, arrRef134)
+    update_cell(btn_R9C7, arrRef134, 'btn_R9C7', 'arrRef134')
     currentNumber = '2'
-    update_cell(btn_R9C10, arrRef137)
+    update_cell(btn_R9C10, arrRef137, 'btn_R9C10', 'arrRef137')
     currentNumber = 'D'
-    update_cell(btn_R9C11, arrRef138)
+    update_cell(btn_R9C11, arrRef138, 'btn_R9C11', 'arrRef138')
     currentNumber = '0'
-    update_cell(btn_R9C13, arrRef140)
+    update_cell(btn_R9C13, arrRef140, 'btn_R9C13', 'arrRef140')
     currentNumber = 'F'
-    update_cell(btn_R9C16, arrRef143)
+    update_cell(btn_R9C16, arrRef143, 'btn_R9C16', 'arrRef143')
     currentNumber = 'C'
-    update_cell(btn_R10C2, arrRef145)
+    update_cell(btn_R10C2, arrRef145, 'btn_R10C2', 'arrRef145')
     currentNumber = 'F'
-    update_cell(btn_R10C4, arrRef147)
+    update_cell(btn_R10C4, arrRef147, 'btn_R10C4', 'arrRef147')
     currentNumber = '9'
-    update_cell(btn_R10C5, arrRef148)
+    update_cell(btn_R10C5, arrRef148, 'btn_R10C5', 'arrRef148')
     currentNumber = 'E'
-    update_cell(btn_R10C6, arrRef149)
+    update_cell(btn_R10C6, arrRef149, 'btn_R10C6', 'arrRef149')
     currentNumber = '7'
-    update_cell(btn_R10C13, arrRef156)
+    update_cell(btn_R10C13, arrRef156, 'btn_R10C13', 'arrRef156')
     currentNumber = 'B'
-    update_cell(btn_R10C16, arrRef159)
+    update_cell(btn_R10C16, arrRef159, 'btn_R10C10', 'arrRef159')
     currentNumber = '4'
-    update_cell(btn_R11C3, arrRef162)
+    update_cell(btn_R11C3, arrRef162, 'btn_R11C3', 'arrRef162')
     currentNumber = '2'
-    update_cell(btn_R11C4, arrRef163)
+    update_cell(btn_R11C4, arrRef163, 'btn_R11C4', 'arrRef163')
     currentNumber = 'F'
-    update_cell(btn_R11C6, arrRef165)
+    update_cell(btn_R11C6, arrRef165, 'btn_R11C6', 'arrRef165')
     currentNumber = '9'
-    update_cell(btn_R11C9, arrRef168)
+    update_cell(btn_R11C9, arrRef168, 'btn_R11C9', 'arrRef168')
     currentNumber = 'C'
-    update_cell(btn_R11C11, arrRef170)
+    update_cell(btn_R11C11, arrRef170, 'btn_R11C11', 'arrRef170')
     currentNumber = '3'
-    update_cell(btn_R11C13, arrRef172)
+    update_cell(btn_R11C13, arrRef172, 'btn_R11C13', 'arrRef172')
     currentNumber = 'A'
-    update_cell(btn_R11C14, arrRef173)
+    update_cell(btn_R11C14, arrRef173, 'btn_R11C14', 'arrRef173')
     currentNumber = 'E'
-    update_cell(btn_R11C15, arrRef174)
+    update_cell(btn_R11C15, arrRef174, 'btn_R11C15', 'arrRef174')
     currentNumber = 'D'
-    update_cell(btn_R11C16, arrRef175)
+    update_cell(btn_R11C16, arrRef175, 'btn_R11C16', 'arrRef175')
     currentNumber = '5'
-    update_cell(btn_R12C1, arrRef176)
+    update_cell(btn_R12C1, arrRef176, 'btn_R12C1', 'arrRef176')
     currentNumber = '7'
-    update_cell(btn_R12C7, arrRef182)
+    update_cell(btn_R12C7, arrRef182, 'btn_R12C7', 'arrRef182')
     currentNumber = 'F'
-    update_cell(btn_R12C10, arrRef185)
+    update_cell(btn_R12C10, arrRef185, 'btn_R12C10', 'arrRef185')
     currentNumber = '6'
-    update_cell(btn_R12C12, arrRef187)
+    update_cell(btn_R12C12, arrRef187, 'btn_R12C12', 'arrRef187')
     currentNumber = '2'
-    update_cell(btn_R13C1, arrRef192)
+    update_cell(btn_R13C1, arrRef192, 'btn_R13C1', 'arrRef192')
     currentNumber = 'E'
-    update_cell(btn_R13C3, arrRef194)
+    update_cell(btn_R13C3, arrRef194, 'btn_R13C3', 'arrRef194')
     currentNumber = '6'
-    update_cell(btn_R13C5, arrRef196)
+    update_cell(btn_R13C5, arrRef196, 'btn_R13C5', 'arrRef196')
     currentNumber = '0'
-    update_cell(btn_R13C7, arrRef198)
+    update_cell(btn_R13C7, arrRef198, 'btn_R13C7', 'arrRef198')
     currentNumber = '8'
-    update_cell(btn_R13C8, arrRef199)
+    update_cell(btn_R13C8, arrRef199, 'btn_R13C8', 'arrRef199')
     currentNumber = '4'
-    update_cell(btn_R13C9, arrRef200)
+    update_cell(btn_R13C9, arrRef200, 'btn_R13C9', 'arrRef200')
     currentNumber = 'B'
-    update_cell(btn_R13C10, arrRef201)
+    update_cell(btn_R13C10, arrRef201, 'btn_R13C10', 'arrRef201')
     currentNumber = '1'
-    update_cell(btn_R13C14, arrRef205)
+    update_cell(btn_R13C14, arrRef205, 'btn_R13C14', 'arrRef205')
     currentNumber = '9'
-    update_cell(btn_R14C3, arrRef210)
+    update_cell(btn_R14C3, arrRef210, 'btn_R14C3', 'arrRef210')
     currentNumber = 'F'
-    update_cell(btn_R14C7, arrRef214)
+    update_cell(btn_R14C7, arrRef214, 'btn_R14C7', 'arrRef214')
     currentNumber = 'E'
-    update_cell(btn_R14C8, arrRef215)
+    update_cell(btn_R14C8, arrRef215, 'btn_R14C8', 'arrRef215')
     currentNumber = '8'
-    update_cell(btn_R14C10, arrRef217)
+    update_cell(btn_R14C10, arrRef217, 'btn_R14C10', 'arrRef217')
     currentNumber = '7'
-    update_cell(btn_R14C11, arrRef218)
+    update_cell(btn_R14C11, arrRef218, 'btn_R14C11', 'arrRef218')
     currentNumber = '8'
-    update_cell(btn_R15C3, arrRef226)
+    update_cell(btn_R15C3, arrRef226, 'btn_R15C3', 'arrRef226')
     currentNumber = 'B'
-    update_cell(btn_R15C4, arrRef227)
+    update_cell(btn_R15C4, arrRef227, 'btn_R15C4', 'arrRef227')
     currentNumber = '4'
-    update_cell(btn_R15C6, arrRef229)
+    update_cell(btn_R15C6, arrRef229, 'btn_R15C6', 'arrRef229')
     currentNumber = '2'
-    update_cell(btn_R15C12, arrRef235)
+    update_cell(btn_R15C12, arrRef235, 'btn_R15C12', 'arrRef235')
     currentNumber = '0'
-    update_cell(btn_R15C14, arrRef237)
+    update_cell(btn_R15C14, arrRef237, 'btn_R15C14', 'arrRef237')
     currentNumber = 'E'
-    update_cell(btn_R15C16, arrRef239)
+    update_cell(btn_R15C16, arrRef239, 'btn_R15C16', 'arrRef239')
     currentNumber = 'C'
-    update_cell(btn_R16C1, arrRef240)
+    update_cell(btn_R16C1, arrRef240, 'btn_R16C1', 'arrRef240')
     currentNumber = '7'
-    update_cell(btn_R16C2, arrRef241)
+    update_cell(btn_R16C2, arrRef241, 'btn_R16C2', 'arrRef241')
     currentNumber = '1'
-    update_cell(btn_R16C6, arrRef245)
+    update_cell(btn_R16C6, arrRef245, 'btn_R16C6', 'arrRef245')
     currentNumber = '0'
-    update_cell(btn_R16C9, arrRef248)
+    update_cell(btn_R16C9, arrRef248, 'btn_R16C9', 'arrRef248')
     currentNumber = '8'
-    update_cell(btn_R16C13, arrRef252)
+    update_cell(btn_R16C13, arrRef252, 'btn_R16C13', 'arrRef252')
     currentNumber = '2'
-    update_cell(btn_R16C14, arrRef253)
+    update_cell(btn_R16C14, arrRef253, 'btn_R16C14', 'arrRef253')
     currentNumber = 'B'
-    update_cell(btn_R16C15, arrRef254)
+    update_cell(btn_R16C15, arrRef254, 'btn_R16C15', 'arrRef254')
     cells_done()
     cells_remaining()
     # aref['nums'] = currentNumber
@@ -3673,7 +3900,7 @@ def load_solution_1(btn_R1C1=None):
     # aref0('done') = False
 
 
-lbl_Title = Label(main_canvas, text="Monster Sudoku Solver")
+lbl_Title = Label(main_canvas, text="Monster Sudoku Solver Helper")
 lbl_Title.grid(row=0, sticky='n')
 lbl_Title.config(font=titlefont)
 # lbl_LineSpace = Label(main_canvas, text="")
@@ -4502,9 +4729,11 @@ btn_IDTriples.config(font=entryfont)
 # btn_y.grid(row=2, column=2, sticky='nw')
 # btn_y.config(font=entryfont)
 btn_IDQuads = Button(fn_frame, wraplength=48, justify=LEFT, text='ID\nquads',
-                     command=id_quads, width=6, height=hit)
+                     command=save_currentSolution, width=6, height=hit)
 btn_IDQuads.grid(row=2, column=3, sticky='nw')
-btn_IDQuads.config(font=entryfont)
+btn_IDQuads.config(font=entryfont)  #
+# btn_IDQuads = Button(fn_frame, wraplength=40, justify=LEFT,
+#                      text='Save\nCurrent\nSolution', command=save_currentSolution, width=6, height=hit)
 
 btn_del_num = Button(fn_frame, wraplength=40, justify=LEFT, text='Del\nnum\nfrom\ncell',
                      command=set_bRemoveANumberFromACell, width=6, height=hit)
@@ -4515,7 +4744,7 @@ btn_del_num.config(font=entryfont)
 # btn_a.grid(row=3, column=0, sticky='nw')
 # btn_a.config(font=entryfont)
 btn_ShowAref = Button(fn_frame, wraplength=40, justify=LEFT, text='Show\nData\nStruct',
-                      command=btn_ShowAref, width=6, height=hit)
+                      command=load_currentSolution, width=6, height=hit)
 btn_ShowAref.grid(row=3, column=1, sticky='nw')
 btn_ShowAref.config(font=entryfont)
 btn_done = Button(fn_frame, wraplength=40, justify=LEFT, text='Cells\nDone',
@@ -5021,6 +5250,10 @@ txt_Other.insert(END, "Triple can help identify a triple, but doesn't ")
 txt_Other.insert(END, "remove numbers from cells the way Duples does.\n")
 txt_Other.insert(END, "Cells Done = 142\n")
 txt_Other.insert(END, "Duple S3\n")
+txt_Other.insert(END, "Look for duples, triples.\n")
+# txt_Other.insert(END, "Check S7 for 5s.\n")
+txt_Other.insert(END, "S7 R6 has only 5s in row\n")
+txt_Other.insert(END, "S9 C1 has only 7s in Col and Sq.\n")
 txt_Other.insert(END, "Note Duple only solved the first duple found.\n")
 txt_Other.insert(END, "So Duple will ID duples, but not simplify puzzle.\n")
 txt_Other.insert(
@@ -5040,7 +5273,7 @@ txt_Other.insert(END, "S15, C12 has only Cs\n")
 txt_Other.insert(END, "Triple R9\n")
 txt_Other.insert(END, "Triple S15\n")
 # S7 R6 has only 5s in row, so 5,11 Del 5  8
-txt_Other.insert(END, "S7 R6 has only 5s in row\n")
+
 txt_Other.insert(END, "Cells Done = 165\n")
 # Duple S15 R14 AD : 14,4 = 0, 14,1 Del 1; 14,2 Del AD
 txt_Other.insert(END, "Duple S15\n")
