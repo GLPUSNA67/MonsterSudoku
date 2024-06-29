@@ -1,8 +1,9 @@
 import sys
-# import pickle
+import pickle
 import json
 import ctypes
 from tkinter import *  # get widget classes
+# import sets
 # from tkinter import Combobox, Entry, Label, font
 # *** path is C:\Users\Owner\AppData\Roaming\JetBrains\PyCharmCE2022.2\scratches
 # import ttk
@@ -908,14 +909,22 @@ def id_duples(duple_candidate_list):
                     current_duple = [duple_first, duple_second]
                     print("909 duple_first is ", duple_first)
                     print("910 duple_second is ", duple_second)
+                    # completed_duples_list.append(duple_first)
+                    # completed_duples_list.append(duple_second)
                     print("911 completed_duples_list is ",
                           completed_duples_list)
-                    if duple_first in completed_duples_list:
-                        duple_list.remove(duple_first)
-                        print("914 duple_list is ", duple_list)
-                    if duple_second in completed_duples_list:
-                        duple_list.remove(duple_second)
-                        # print("917 duple_list is ", duple_list)
+                    if current_duple in completed_duples_list:
+                        completed_duples_list.remove(current_duple)
+                        print("918 completed_duples_list is ",
+                              completed_duples_list)
+                    elif not current_duple in completed_duples_list:
+                        completed_duples_list.append(current_duple)
+                    # if duple_second in completed_duples_list:
+                    #     completed_duples_list.remove(duple_second)
+                    if current_duple in completed_duples_list:
+                        print("923 completed_duples_list is ",
+                              completed_duples_list)
+                    # print("917 duple_list is ", duple_list)
                     # print("747 duple_first is ", duple_first, duple_second)
                     # print("748 duple_list is ", list(duple_first, duple_second))
                     # txt_Explain.delete(0, END)
@@ -1083,7 +1092,7 @@ def find_Duple1():
 
 
 def process_duple_list(duple_list):
-    # print("1074 duples_list is ", duple_list)
+    print("1095 duples_list is ", duple_list)
     duple_first = duple_list[0]
     duple_second = duple_list[1]
     print("1077 duple parts are ", duple_first, duple_second)
@@ -1117,6 +1126,7 @@ def process_duple_list(duple_list):
         a_nums = aref['nums']
         if (a_row == first_row and a_col == first_col and a_sq == first_sq) or \
                 (a_row == second_row and a_col == second_col and a_sq == second_sq):
+            ''' The cell is being compared with itself.'''
             pass
         elif duple_row != 0 and first_row == a_row:
             print("1110 partial match in aref", duple_row, duple_col,
@@ -1198,20 +1208,332 @@ def make_triple_candidate_list():
             # print("1169 temp_list is ", temp_list)
             # temp_list = "[" + str(cell['row']) + ", " + str(cell['col']) + ", " + str(cell['sq']) + ", " + str(cell['nums']) + "]"
             txt_Explain.insert(END, ex_text)
-            txt_Explain.insert(END, temp_list)
-            txt_Explain.insert(END, "\n")
+            # txt_Explain.insert(END, temp_list)
+            # txt_Explain.insert(END, "\n")
             triple_candidate_list.append(temp_list)
             # print("1227 triple_candidate_list ", triple_candidate_list)
             temp_list = []
-    txt_Explain.insert(END, "1188\n")
-    txt_Explain.insert(END, triple_candidate_list)
+    # txt_Explain.insert(END, "1188\n")
+    # txt_Explain.insert(END, triple_candidate_list)
     return triple_candidate_list
 
 
 def id_triples(triple_candidate_list):
-    print("1194 enter id_triples")
+    print("1220 enter id_triples")
+    print("1221 triple_candidate_list is ", triple_candidate_list)
     # tl_set = set()
     for item in triple_candidate_list:
+        print("1224 triple item is ", item)
+        num_cells = 1
+        tcl_set0 = set()
+        temp_set = set()
+        row0 = item[0]
+        col0 = item[1]
+        sq0 = item[2]
+        nums0 = item[3]
+        l0 = len(nums0)
+        n1 = nums0[0]
+        tcl_set0.add(n1)
+        n2 = nums0[1]
+        tcl_set0.add(n2)
+        if l0 == 3:
+            n3 = nums0[2]
+            tcl_set0.add(n3)
+        print("1239 ", row0, col0, sq0, nums0, tcl_set0)
+        for item1 in triple_candidate_list:
+            row1 = item1[0]
+            col1 = item1[1]
+            sq1 = item1[2]
+            # nums1 = item1[3]
+            # print("1231 triple item and item1 are ", item, item1)
+            if item1 == item:
+                pass
+            elif item1 != item and (row0 == row1 or col0 == col1 or sq0 == sq1):
+                num_cells = 2
+                # print(
+                #     "1249 triple item not equal to item1 and RCS are the same", item, item1)
+                temp_set = tcl_set0.copy()
+                # print("1251  sets are ", tcl_set0, temp_set)
+                ''' The correct cells are being checked!'''
+                """ Now check for triples by checking for a 'set' of 3 nums"""
+                """ Each set of numbers must have at least 2 and at most 3 numbers."""
+                nums1 = item1[3]
+                l1 = len(nums1)
+                ns1 = nums1[0]
+                temp_set.add(ns1)
+                ns2 = nums1[1]
+                temp_set.add(ns2)
+                if l1 == 3:
+                    ns3 = nums1[2]
+                    temp_set.add(ns3)
+                # print("1264 sets are ", tcl_set0, temp_set)
+                if len(temp_set) > 3:
+                    num_cells = 1
+                    temp_set = tcl_set0.copy()
+                    continue
+                    # print("1266 sets exceeds size. No triple. ",
+                    #       tcl_set0, temp_set)
+                elif len(temp_set) <= 3:
+                    # print("1268 Two parts of Triple found. ", tcl_set0, temp_set)
+                    for item2 in triple_candidate_list:
+                        num_cells = 3
+                        row2 = item2[0]
+                        col2 = item2[1]
+                        sq2 = item2[2]
+                        nums2 = item2[3]
+                        # print("1231 triple item and item1 are ", item, item1)
+                        if item2 == item or item2 == item1:
+                            num_cells = 1
+                            continue
+                        elif item2 != item and ((row0 == row1 == row2) or (col0 == col1 == col2) or (sq0 == sq1 == sq2)):
+                            print(
+                                "1281 triple item not equal to item2 and RCS are the same", item, item2)
+                            # num_cells = 2
+                            # nums2 = item2[3]
+                            l2 = len(nums2)
+                            nt1 = nums2[0]
+                            temp_set.add(nt1)
+                            nt2 = nums2[1]
+                            temp_set.add(nt2)
+                            if l2 == 3:
+                                nt3 = nums2[2]
+                                temp_set.add(nt3)
+                            print("1291 sets are ", tcl_set0, temp_set)
+                            if len(temp_set) > 3:
+                                num_cells = 1
+                                temp_set = tcl_set0.copy()
+                                # continue
+                                # print("1266 sets exceeds size. No triple. ",
+                                #       tcl_set0, temp_set)
+                            elif len(temp_set) == 3 and num_cells == 3:
+                                print("1297 Triple found. ",
+                                      tcl_set0, temp_set, item, item1, item2)
+                                ex_text = f"{item}, {item1}, {item2}"
+                                # ex_text = item + " " + item1 + " " + item2
+                                txt_Explain.insert(
+                                    END, "A triple is \n")
+                                txt_Explain.insert(
+                                    END, ex_text)
+                                process_triple_list(
+                                    temp_set, item, item1, item2)
+                                tcl_set0 = {}
+                                temp_set = {}
+                                num_cells = 1
+                            # temp_set = tcl_set0.copy()
+
+                # print(
+                #     "1240 triple item not equal to item1 and rows are the same", item, item1)
+            else:
+                pass
+                # print("1241 In else statement.")
+
+
+def process_triple_list(temp_set, item, item1, item2):
+    print("1331 process_triple_list ", temp_set, item, item1, item2)
+    # for item, item1, item2 in triple_candidate_list:
+    # print("1336 ", item, item1, item2)
+    row0 = item[0]
+    col0 = item[1]
+    sq0 = item[2]
+    nums0 = item[3]
+    row1 = item1[0]
+    col1 = item1[1]
+    sq1 = item1[2]
+    nums1 = item1[3]
+    row2 = item2[0]
+    col2 = item2[1]
+    sq2 = item2[2]
+    nums2 = item2[3]
+    print("1346 ", row0, col0, sq0, nums0, row1,
+          col1, sq1, nums1, row2, col2, sq2, nums2)
+    if row0 == row1 == row2:
+        process_row_triple(row0, item, item1, item2, temp_set)
+
+    if col0 == col1 == col2:
+        process_column_triple(col0, item, item1, item2, temp_set)
+
+    if sq0 == sq1 == sq2:
+        process_square_triple(sq0, item, item1, item2, temp_set)
+
+
+def process_row_triple(row0, item, item1, item2, temp_set):
+    print("1359 Process_row_triple ", row0, item, item1, item2, temp_set)
+    for aref in not_done_arefs:
+        current_btn = aref['btn']
+        a_row = aref['row']
+        a_col = aref['col']
+        a_sq = aref['sq']
+        a_nums = aref['nums']
+        row0 = item[0]
+        col0 = item[1]
+        sq0 = item[2]
+        nums0 = item[3]
+        row1 = item1[0]
+        col1 = item1[1]
+        sq1 = item1[2]
+        nums1 = item1[3]
+        row2 = item2[0]
+        col2 = item2[1]
+        sq2 = item2[2]
+        nums2 = item2[3]
+        if (a_row == row0 and a_col == col0 and a_sq == sq0) or (a_row == row1 and a_col == col1 and a_sq == sq1) or (a_row == row2 and a_col == col2 and a_sq == sq2):
+            ''' The cell is being compared with itself.'''
+            print("1381 Process_row_triple ", a_row, a_col, a_sq)
+        elif a_row == row0:
+            print("1434 process_column_triple else clause",
+                  aref, a_row, a_col, a_sq, a_nums)
+            for num in temp_set:
+                print("1437 ", num, temp_set)
+                if num in a_nums:
+                    print("1439 ", num, a_nums)
+                    new_nums = aref['nums'].replace(num, "")
+                    print("1441 ", new_nums)
+                    aref['nums'] = new_nums
+                    print("1443 ", aref['nums'])
+                    print("1444 ", current_btn['text'])
+                    # aref['nums'].replace(num, "")  # Remove num from a_nums
+                    # # current_button = aref['btn']
+                    print("1446 ", current_btn, aref)
+                    # bRemoveANumberFromACell = True
+                    current_btn['text'] = aref['nums']
+
+                    # currentNumber = ""
+                    # update_cell(current_btn, aref)
+                    print("1448 aref['nums'], a_nums ", aref['nums'], a_nums)
+                else:
+                    print("1450 Else fall through in triple remove number.")
+        # elif duple_row != 0 and first_row == a_row:
+        #     print("1110 partial match in aref", duple_row, duple_col,
+        #           duple_sq, first_row, a_row, first_chr_1, a_nums)
+        #     if first_chr_1 in a_nums:
+        #         new_nums = aref['nums'].replace(first_chr_1, "")
+        #         # print("723 new_nums ", new_nums)
+        #         aref['nums'] = new_nums
+        #         current_btn['text'] = aref['nums']
+        #     if second_chr_1 in a_nums:
+        #         new_nums = aref['nums'].replace(second_chr_1, "")
+        #         print("1121 new_nums ", new_nums)
+        #         aref['nums'] = new_nums
+        #         current_btn['text'] = aref['nums']
+        # elif duple_col != 0 and first_col == a_col:
+        #     print("1125 partial match in aref", duple_row, duple_col,
+        #           duple_sq, first_row, a_row, first_chr_1, a_nums)
+        #     if first_chr_1 in a_nums:
+        #         new_nums = aref['nums'].replace(first_chr_1, "")
+        #         print("1129 new_nums ", new_nums)
+        #         aref['nums'] = new_nums
+        #         current_btn['text'] = aref['nums']
+        #     if second_chr_1 in a_nums:
+        #         new_nums = aref['nums'].replace(second_chr_1, "")
+        #         print("1132 new_nums ", new_nums)
+        #         aref['nums'] = new_nums
+        #         current_btn['text'] = aref['nums']
+
+
+def process_column_triple(col0, item, item1, item2, temp_set):
+    print("1411 process_column_triple ", col0, item, item1, item2, temp_set)
+    # global currentNumber
+    for aref in not_done_arefs:
+        current_btn = aref['btn']
+        a_row = aref['row']
+        a_col = aref['col']
+        a_sq = aref['sq']
+        a_nums = aref['nums']
+        row0 = item[0]
+        col0 = item[1]
+        sq0 = item[2]
+        nums0 = item[3]
+        row1 = item1[0]
+        col1 = item1[1]
+        sq1 = item1[2]
+        nums1 = item1[3]
+        row2 = item2[0]
+        col2 = item2[1]
+        sq2 = item2[2]
+        nums2 = item2[3]
+        if (a_row == row0 and a_col == col0 and a_sq == sq0) or (a_row == row1 and a_col == col1 and a_sq == sq1) or (a_row == row2 and a_col == col2 and a_sq == sq2):
+            ''' The cell is being compared with itself.'''
+            print("1432 process_column_triple ", a_row, a_col, a_sq)
+        elif a_col == col0:
+            print("1434 process_column_triple else clause",
+                  aref, a_row, a_col, a_sq, a_nums)
+            for num in temp_set:
+                print("1437 ", num, temp_set)
+                if num in a_nums:
+                    print("1439 ", num, a_nums)
+                    new_nums = aref['nums'].replace(num, "")
+                    print("1441 ", new_nums)
+                    aref['nums'] = new_nums
+                    print("1443 ", aref['nums'])
+                    print("1444 ", current_btn['text'])
+                    # aref['nums'].replace(num, "")  # Remove num from a_nums
+                    # # current_button = aref['btn']
+                    print("1446 ", current_btn, aref)
+                    # bRemoveANumberFromACell = True
+                    current_btn['text'] = aref['nums']
+
+                    # currentNumber = ""
+                    # update_cell(current_btn, aref)
+                    print("1448 aref['nums'], a_nums ", aref['nums'], a_nums)
+                else:
+                    print("1450 Else fall through in triple remove number.")
+
+
+def process_square_triple(sq0, item, item1, item2, temp_set):
+    print("1460 process_square_triple ", sq0, item, item1, item2, temp_set)
+    for aref in not_done_arefs:
+        current_btn = aref['btn']
+        a_row = aref['row']
+        a_col = aref['col']
+        a_sq = aref['sq']
+        a_nums = aref['nums']
+        row0 = item[0]
+        col0 = item[1]
+        sq0 = item[2]
+        nums0 = item[3]
+        row1 = item1[0]
+        col1 = item1[1]
+        sq1 = item1[2]
+        nums1 = item1[3]
+        row2 = item2[0]
+        col2 = item2[1]
+        sq2 = item2[2]
+        nums2 = item2[3]
+        if (a_row == row0 and a_col == col0 and a_sq == sq0) or (a_row == row1 and a_col == col1 and a_sq == sq1) or (a_row == row2 and a_col == col2 and a_sq == sq2):
+            ''' The cell is being compared with itself.'''
+            print("1432 process_square_triple ", a_row, a_col, a_sq)
+        elif a_sq == sq0:
+            print("1434 process_square_triple else clause",
+                  aref, a_row, a_col, a_sq, a_nums)
+            for num in temp_set:
+                print("1437 ", num, temp_set)
+                if num in a_nums:
+                    print("1439 ", num, a_nums)
+                    new_nums = aref['nums'].replace(num, "")
+                    print("1441 ", new_nums)
+                    aref['nums'] = new_nums
+                    print("1443 ", aref['nums'])
+                    print("1444 ", current_btn['text'])
+                    # aref['nums'].replace(num, "")  # Remove num from a_nums
+                    # # current_button = aref['btn']
+                    print("1446 ", current_btn, aref)
+                    # bRemoveANumberFromACell = True
+                    current_btn['text'] = aref['nums']
+
+                    # currentNumber = ""
+                    # update_cell(current_btn, aref)
+                    print("1448 aref['nums'], a_nums ", aref['nums'], a_nums)
+                else:
+                    print("1450 Else fall through in triple remove number.")
+
+
+def id_triples_1(triple_candidate_list):
+    print("1220 enter id_triples")
+    print("1221 triple_candidate_list is ", triple_candidate_list)
+
+    # tl_set = set()
+    for item in triple_candidate_list:
+        print("1224 triple item is ", item)
         tcl_set0 = set()
         row0 = item[0]
         col0 = item[1]
@@ -1225,7 +1547,7 @@ def id_triples(triple_candidate_list):
         if l0 == 3:
             n3 = nums0[2]
             tcl_set0.add(n3)
-        print("1210 ", row0, col0, sq0, nums0, tcl_set0)
+        print("1238 ", row0, col0, sq0, nums0, tcl_set0)
         # tcl_set1 = tcl_set0
         for item in triple_candidate_list:
             # tcl_set1 = tcl_set0
@@ -1235,11 +1557,11 @@ def id_triples(triple_candidate_list):
             col1 = item[1]
             sq1 = item[2]
             nums1 = item[3]
-            print("1220 ", row1, col1, sq1, nums1, tcl_set1)
+            # print("1248 ", row1, col1, sq1, nums1, tcl_set1)
             # print("1172 ", row1, col1, sq1, nums1)
             if nums0 == nums1 and row0 == row1 and sq0 == sq1 and nums0 == nums0:
                 pass  # the items/cells are the same
-            else:
+            elif row0 == row1 or col0 == col1 or sq0 == sq1:
                 # tcl_set1 = tcl_set0
                 l1 = len(nums1)
                 n4 = nums1[0]
@@ -1252,10 +1574,10 @@ def id_triples(triple_candidate_list):
                 tcl_len = len(tcl_set1)
                 if tcl_len > 3:
                     tcl_set1 = tcl_set0.copy()
-                    print("1237 ", tcl_set0, tcl_set1)
-                    print("1238 tcl_set1 length > 3", nums1, tcl_set1)
-                else:
-                    print("1240 ", row1, col1, sq1, nums1, tcl_set1)
+                #     print("1265 ", tcl_set0, tcl_set1)
+                #     print("1266 tcl_set1 length > 3", nums1, tcl_set1)
+                # else:
+                #     print("1268 ", row1, col1, sq1, nums1, tcl_set1)
                     for item in triple_candidate_list:
                         tcl_set2 = tcl_set1.copy()
                         row2 = item[0]
@@ -1265,7 +1587,7 @@ def id_triples(triple_candidate_list):
                         # print("1172 ", row1, col1, sq1, nums1)
                         if nums1 == nums2 and row1 == row2 and sq1 == sq2 and nums1 == nums2:
                             pass  # the items/cells are the same
-                        else:
+                        elif row0 == row1 or col0 == col1 or sq0 == sq1:
                             l2 = len(nums2)
                             n7 = nums2[0]
                             tcl_set2.add(n7)
@@ -1381,7 +1703,50 @@ def ID_Quads():
 
 
 def find_Quad():
-    print("1366 Entering find_Quad")
+    print("1706 Entering find_Quad")
+    txt_Explain.insert(END, "Find Quads is not functinal.\n")
+    print("1153 Entering find_Triple")
+    txt_Explain.insert(END, "Potential quads are \n")
+    quad_candidate_list = make_quad_candidate_list()
+    # print("1146 triple_candidate_list ", triple_candidate_list)
+    id_quads(quad_candidate_list)
+
+
+def make_quad_candidate_list():
+    print("1716 entered make_quad_candidate_list")
+    ex_text = ""
+    temp_list = []
+    temp_list_1 = []
+    quad_candidate_list = []
+    quad_list = []
+    for cell in not_done_arefs:
+        if len(cell['nums']) <= 4:
+            # print("1011 potential triple ", cell['row'], cell['col'], cell['sq'], cell['nums'])
+            ex_text = str(cell['row']) + ", " + str(cell['col']) + \
+                ", " + str(cell['sq']) + ", " + str(cell['nums']) + "\n "
+            list_ex_text = list[str(cell['row']), str(
+                cell['col']), str(cell['sq']), str(cell['nums'])]
+            row = cell['row']
+            col = cell['col']
+            sq = cell['sq']
+            nums = str(cell['nums'])
+            # temp_list = [row, col, sq, nums]
+            temp_list = [row, col, sq, nums]
+            # print("1169 temp_list is ", temp_list)
+            # temp_list = "[" + str(cell['row']) + ", " + str(cell['col']) + ", " + str(cell['sq']) + ", " + str(cell['nums']) + "]"
+            txt_Explain.insert(END, ex_text)
+            # txt_Explain.insert(END, temp_list)
+            # txt_Explain.insert(END, "\n")
+            quad_candidate_list.append(temp_list)
+            # print("1227 triple_candidate_list ", triple_candidate_list)
+            temp_list = []
+    # txt_Explain.insert(END, "1188\n")
+    # txt_Explain.insert(END, triple_candidate_list)
+    return quad_candidate_list
+
+
+def id_quads(quad_candidate_list):
+    txt_Explain.insert(END, "Find Quads is not functinal.\n")
 
 
 def update_RCS(current_button, aref):  # Row, Column, Square):
@@ -1431,7 +1796,7 @@ def update_puzzle(row, column, square):
 
 
 def reset_cell_values(current_btn, aref):
-    print("1412 Entered reset_cell_values")
+    # print("1412 Entered reset_cell_values")
     # , type(
     #     current_btn), current_btn, type(aref), aref)
     '''A single number has been selected, so reset the cell values.'''
@@ -1445,7 +1810,7 @@ def reset_cell_values(current_btn, aref):
     current_btn['width'] = aref['width']
     current_btn['text'] = aref['nums']
     current_btn['fg'] = aref['fg']
-    print("1447 aref values", aref['done'], aref['nums'], aref)
+    # print("1447 aref values", aref['done'], aref['nums'], aref)
     # print("723 Entered reset_cell_values", current_btn, aref)
     # current_btn['font'] = aref['font']
     # current_btn['height'] = aref['height']
@@ -1470,11 +1835,11 @@ def set_bRemoveANumberFromACell():
     else:
         bRemoveANumberFromACell = "False"
         btn_del_num['text'] = 'Del\nnum\nfrom\ncell'
-    print("695 bRemoveANumberFromACell is ", bRemoveANumberFromACell)
+    print("1728 bRemoveANumberFromACell is ", bRemoveANumberFromACell)
 
 
 def remove_num_from_cell(current_btn, aref):
-    print("701 Entered remove_num_from_cell.")
+    print("1727 Entered remove_num_from_cell.")
     global currentNumber
     new_nums = aref['nums'].replace(currentNumber, "")
     print("723 new_nums ", new_nums)
@@ -1492,14 +1857,14 @@ def remove_aref_from_not_done_arefs(aref):
 
 def update_cell(btn, aref):
     # print("705 Entered update_cell.", type(btn), btn, type(aref), aref)
-    # print("705 Entered update_cell.", btn, aref)
+    print("1743 Entered update_cell.", btn, aref)
     # arrRef0 = dict(btn='btn_R1C1', row=1, col=1, sq=1,
     global bRemoveANumberFromACell
     global bIDDuples
     global bIDTriples
     global bIDQuads
-
-    # btn1 = aref["btn"]
+    print("1756 bRemoveANumberFromACell ", bRemoveANumberFromACell)
+    print("1757 bIDDuples ", bIDDuples, bIDTriples, bIDQuads)
     # print("720 ", btn1, type(btn1))
     row = aref["row"]
     col = aref["col"]
@@ -1508,37 +1873,42 @@ def update_cell(btn, aref):
         process_duples(btn, aref)
         # continue
     elif bIDTriples == True:
-        process_duples(btn, aref)
+        process_triples(btn, aref)
         # continue
     elif bIDQuads == True:
-        process_duples(btn, aref)
+        process_quads(btn, aref)
         # continue
-
+    print("1771 test")
     # print("724 ", btn, row, col, sq)
     # reset_cell_values(current_btn, aref)
-    elif bRemoveANumberFromACell == "False":
-        # print("707 Entered bRemoveANumberFromACell.")
+    if bRemoveANumberFromACell == "False":
+        print("1775 Entered bRemoveANumberFromACell.")
         reset_cell_values(btn, aref)
         remove_aref_from_not_done_arefs(aref)
         update_puzzle(row, col, sq)
         cells_done()
         cells_remaining()
-        # print(f"currentNumber = '{currentNumber}'")
-        # print(f"update_cell'{btn}, {aref}")
-    elif bRemoveANumberFromACell == "True":
-        # print("712 Entered bRemoveANumberFromACell.")
+
+    # print("1782 test")
+    # print(f"currentNumber = '{currentNumber}'")
+    # print(f"update_cell'{btn}, {aref}")
+    # print("1785 bRemoveANumberFromACell ", bRemoveANumberFromACell)
+    if bRemoveANumberFromACell == "True":
+        print("1783 Entered bRemoveANumberFromACell.")
         remove_num_from_cell(btn, aref)
         set_bRemoveANumberFromACell()
         # print(f"currentNumber = '{currentNumber}'")
         # print(f"update_cell'{btn}, {aref}")
+    # print("1791 test")
     print_problem_cells()
 
 
 def print_problem_cells():  # aref['done']
-    print("1537 values ", arrRef65['done'], arrRef65['nums'],
-          arrRef69['done'], arrRef69['nums'], arrRef86['done'],
-          arrRef86['nums'], arrRef161['done'], arrRef161['nums'],
-          len(not_done_arefs), not_done_arefs)
+    pass
+    # print("1537 values ", arrRef65['done'], arrRef65['nums']),
+    #       arrRef69['done'], arrRef69['nums'], arrRef86['done'],
+    #       arrRef86['nums'], arrRef161['done'], arrRef161['nums'],
+    #       len(not_done_arefs), not_done_arefs)
 
 
 def process_duples(btn, aref):
@@ -2845,7 +3215,7 @@ def update_R16C16():
 
 
 def ButtonRemoveANumber():  # sender As Object, e As EventArgs) Handles ButtonRemoveANumber.Click
-    bRemoveANumberFromACell = True
+    bRemoveANumberFromACell = "True"
 
 
 def cells_done():
@@ -4114,7 +4484,7 @@ btn_R9C16 = Button(F12_frame, wraplength=48, justify=LEFT, text=startingString,
 btn_R9C16.grid(row=1, column=3, sticky='w')
 btn_R9C16.config(font=labelfont)
 # btn_R2C16.bind("<<ComboboxSelected>>", create_record())
-btn_solve_singles = Button(fn_frame, wraplength=40, justify=LEFT, text='Solve\nRCS',
+btn_solve_singles = Button(fn_frame, wraplength=40, justify=LEFT, text='Solve\nsingles',
                            command=solve_row_singles, width=6, height=hit)
 btn_solve_singles.grid(row=2, column=0, sticky='nw')
 btn_solve_singles.config(font=entryfont)
@@ -4123,7 +4493,7 @@ btn_IDDuples = Button(fn_frame, wraplength=40, justify=LEFT, text='ID\nduples',
 btn_IDDuples.grid(row=2, column=1, sticky='nw')
 btn_IDDuples.config(font=entryfont)
 btn_IDTriples = Button(fn_frame, wraplength=40, justify=LEFT, text='ID\ntriples',
-                       command=ID_Triples, width=6, height=hit)
+                       command=id_triples, width=6, height=hit)
 btn_IDTriples.grid(row=2, column=2, sticky='nw')
 btn_IDTriples.config(font=entryfont)
 # btn_y = Button(fn_frame, wraplength=40, justify=LEFT, text='y',
@@ -4131,7 +4501,7 @@ btn_IDTriples.config(font=entryfont)
 # btn_y.grid(row=2, column=2, sticky='nw')
 # btn_y.config(font=entryfont)
 btn_IDQuads = Button(fn_frame, wraplength=48, justify=LEFT, text='ID\nquads',
-                     command=ID_Quads, width=6, height=hit)
+                     command=id_quads, width=6, height=hit)
 btn_IDQuads.grid(row=2, column=3, sticky='nw')
 btn_IDQuads.config(font=entryfont)
 
@@ -4642,13 +5012,13 @@ txt_Other.insert(END, "Deleting numbers until there is only one number ")
 txt_Other.insert(
     END, "in a cell does not correctly update the cell contents. ")
 txt_Other.insert(END, "So Find Single doesn't find that single number cell.\n")
-txt_Other.insert(END, "Find and solve Done = 123 \n")
+txt_Other.insert(END, "Cells Done = 123 \n")
 txt_Other.insert(END, "Duple C14\n")
 # = 59C : 14,16 = 6; 2,16 D 9; 3,16 D 9; 12,16 Del C
 txt_Other.insert(END, "Triple C16\n")
 txt_Other.insert(END, "Triple can help identify a triple, but doesn't ")
 txt_Other.insert(END, "remove numbers from cells the way Duples does.\n")
-txt_Other.insert(END, "Find and solve Done = 142\n")
+txt_Other.insert(END, "Cells Done = 142\n")
 txt_Other.insert(END, "Duple S3\n")
 txt_Other.insert(END, "Note Duple only solved the first duple found.\n")
 txt_Other.insert(END, "So Duple will ID duples, but not simplify puzzle.\n")
@@ -4670,7 +5040,7 @@ txt_Other.insert(END, "Triple R9\n")
 txt_Other.insert(END, "Triple S15\n")
 # S7 R6 has only 5s in row, so 5,11 Del 5  8
 txt_Other.insert(END, "S7 R6 has only 5s in row\n")
-txt_Other.insert(END, "Find and solve Done = 165\n")
+txt_Other.insert(END, "Cells Done = 165\n")
 # Duple S15 R14 AD : 14,4 = 0, 14,1 Del 1; 14,2 Del AD
 txt_Other.insert(END, "Duple S15\n")
 txt_Other.insert(END, "Duple S12\n")  # Duple S12 C15 Duple 14 : 4,15 Del 4
