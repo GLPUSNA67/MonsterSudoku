@@ -3618,8 +3618,6 @@ def btn_ShowAref():
     txt_Other.insert(END, aref_text)
 
 
-# solution_1 = {}
-
 
 def save_currentSolution():
     print("2764 Entered save_currentSolution")
@@ -3678,13 +3676,18 @@ def load_currentSolution():
     pass
 
 
-def load_solution():
-    pass
-
-    # btn_R1C1['text'] = D
-    # current_btn = btn_R1C1
-    # update_R1C1()
-    # reset_cell_values(current_btn, aref)
+def load_solution_1(btn_R1C1=None):
+    print("3043 Entered load_solution_1")
+    global currentNumber
+    file = open("MS_4Star_1.txt", "r")
+    print("File opened")
+    for line in file:
+        print("line is ", line)
+        eval(line)
+    file.close()
+    print("File closed.")
+    cells_done()
+    cells_remaining()
 
     # print("2919 solution_1", currentNumber)
     #
