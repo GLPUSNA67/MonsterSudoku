@@ -1,3 +1,5 @@
+''' This new format works with the latest MonsterSudoku 
+file - open - read - load solution code. '''
 set_current_num_to_B()
 update_cell(btn_R1C2, arrRef1, 'btn_R1C2', 'arrRef1')
 set_current_num_to_2()
