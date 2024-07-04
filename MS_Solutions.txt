@@ -1,0 +1,215 @@
+set_current_num_to_B()
+update_cell(btn_R1C2, arrRef1, 'btn_R1C2', 'arrRef1')
+set_current_num_to_2()
+update_cell(btn_R1C3, arrRef2, 'btn_R1C3', 'arrRef2')
+set_current_num_to_1()
+update_cell(btn_R1C4, arrRef3, 'btn_R1C4', 'arrRef3')
+set_current_num_to_3()
+update_cell(btn_R1C8, arrRef7, 'btn_R1C8', 'arrRef7')
+set_current_num_to_9()
+update_cell(btn_R1C11, arrRef10, 'btn_R1C11', 'arrRef10')
+set_current_num_to_0()
+update_cell(btn_R1C15, arrRef14, 'btn_R1C15', 'arrRef14')
+set_current_num_to_7()
+update_cell(btn_R1C16, arrRef15, 'btn_R1C16', 'arrRef15')
+set_current_num_to_F()
+update_cell(btn_R2C1, arrRef16, 'btn_R2C1', 'arrRef16')
+set_current_num_to_5()
+update_cell(btn_R2C3, arrRef18, 'btn_R2C3', 'arrRef18')
+set_current_num_to_D()
+update_cell(btn_R2C5, arrRef20, 'btn_R2C5', 'arrRef20')
+set_current_num_to_4()
+update_cell(btn_R2C11, arrRef26, 'btn_R2C11', 'arrRef26')
+set_current_num_to_B()
+update_cell(btn_R2C13, arrRef28, 'btn_R2C13', 'arrRef28')
+set_current_num_to_C()
+update_cell(btn_R2C14, arrRef29, 'btn_R2C14', 'arrRef29')
+set_current_num_to_B()
+update_cell(btn_R3C6, arrRef37, 'btn_R3C6', 'arrRef37')
+set_current_num_to_6()
+update_cell(btn_R3C7, arrRef38, 'btn_R3C7', 'arrRef38')
+set_current_num_to_5()
+update_cell(btn_R3C9, arrRef40, 'btn_R3C9', 'arrRef40')
+set_current_num_to_1()
+update_cell(btn_R3C10, arrRef41, 'btn_R3C10', 'arrRef41')
+set_current_num_to_D()
+update_cell(btn_R3C14, arrRef45, 'btn_R3C14', 'arrRef45')
+set_current_num_to_0()
+update_cell(btn_R4C3, arrRef50, 'btn_R4C4', 'arrRef50')
+set_current_num_to_1()
+update_cell(btn_R4C7, arrRef54, 'btn_R4C7', 'arrRef54')
+set_current_num_to_5()
+update_cell(btn_R4C8, arrRef55, 'btn_R4C8', 'arrRef55')
+set_current_num_to_C()
+update_cell(btn_R4C9, arrRef56, 'btn_R4C9', 'arrRef56')
+set_current_num_to_D()
+update_cell(btn_R4C10, arrRef57, 'btn_R4C10', 'arrRef57')
+set_current_num_to_F()
+update_cell(btn_R4C12, arrRef59, 'btn_R4C12', 'arrRef59')
+set_current_num_to_E()
+update_cell(btn_R4C14, arrRef61, 'btn_R4C14', 'arrRef61')
+set_current_num_to_A()
+update_cell(btn_R4C16, arrRef63, 'btn_R4C16', 'arrRef63')
+set_current_num_to_A()
+update_cell(btn_R5C5, arrRef68, 'btn_R5C5', 'arrRef68')
+set_current_num_to_D()
+update_cell(btn_R5C7, arrRef70, 'btn_R5C7', 'arrRef70')
+set_current_num_to_4()
+update_cell(btn_R5C10, arrRef73, 'btn_R5C10', 'arrRef73')
+set_current_num_to_3()
+update_cell(btn_R5C16, arrRef79, 'btn_R5C16', 'arrRef79')
+set_current_num_to_B()
+update_cell(btn_R6C1, arrRef80, 'btn_R6C1', 'arrRef80')
+set_current_num_to_8()
+update_cell(btn_R6C2, arrRef81, 'btn_R6C2', 'arrRef81')
+set_current_num_to_F()
+update_cell(btn_R6C3, arrRef82, 'btn_R6C3', 'arrRef82')
+set_current_num_to_4()
+update_cell(btn_R6C4, arrRef83, 'btn_R6C4', 'arrRef83')
+set_current_num_to_6()
+update_cell(btn_R6C6, arrRef85, 'btn_R6C6', 'arrRef85')
+set_current_num_to_9()
+update_cell(btn_R6C8, arrRef87, 'btn_R6C8', 'arrRef87')
+set_current_num_to_2()
+update_cell(btn_R6C11, arrRef90, 'btn_R6C11', 'arrRef90')
+set_current_num_to_D()
+update_cell(btn_R6C13, arrRef92, 'btn_R6C13', 'arrRef92')
+set_current_num_to_7()
+update_cell(btn_R6C14, arrRef93, 'btn_R6C14', 'arrRef93')
+set_current_num_to_E()
+update_cell(btn_R7C1, arrRef96, 'btn_R7C1', 'arrRef96')
+set_current_num_to_9()
+update_cell(btn_R7C4, arrRef99, 'btn_R7C4', 'arrRef99')
+set_current_num_to_6()
+update_cell(btn_R7C11, arrRef106, 'btn_R7C11', 'arrRef106')
+set_current_num_to_0()
+update_cell(btn_R7C12, arrRef107, 'btn_R7C12', 'arrRef107')
+set_current_num_to_1()
+update_cell(btn_R7C13, arrRef108, 'btn_R7C13', 'arrRef108')
+set_current_num_to_2()
+update_cell(btn_R7C15, arrRef110, 'btn_R7C15', 'arrRef110')
+set_current_num_to_0()
+update_cell(btn_R8C1, arrRef112, 'btn_R8C1', 'arrRef112')
+set_current_num_to_6()
+update_cell(btn_R8C4, arrRef115, 'btn_R8C4', 'arrRef115')
+set_current_num_to_7()
+update_cell(btn_R8C6, arrRef117, 'btn_R8C6', 'arrRef117')
+set_current_num_to_5()
+update_cell(btn_R8C7, arrRef118, 'btn_R8C7', 'arrRef118')
+set_current_num_to_E()
+update_cell(btn_R8C10, arrRef121, 'btn_R8C10', 'arrRef121')
+set_current_num_to_A()
+update_cell(btn_R8C11, arrRef122, 'btn_R8C11', 'arrRef122')
+set_current_num_to_4()
+update_cell(btn_R8C14, arrRef125, 'btn_R8C14', 'arrRef125')
+set_current_num_to_8()
+update_cell(btn_R8C15, arrRef126, 'btn_R8C15', 'arrRef126')
+set_current_num_to_6()
+update_cell(btn_R9C2, arrRef129, 'btn_R9C2', 'arrRef129')
+currentNumber = 'B'
+update_cell(btn_R9C3, arrRef130, 'btn_R9C3', 'arrRef130')
+currentNumber = '5'
+update_cell(btn_R9C6, arrRef133, 'btn_R9C6', 'arrRef133')
+currentNumber = 'C'
+update_cell(btn_R9C7, arrRef134, 'btn_R9C7', 'arrRef134')
+currentNumber = '2'
+update_cell(btn_R9C10, arrRef137, 'btn_R9C10', 'arrRef137')
+currentNumber = 'D'
+update_cell(btn_R9C11, arrRef138, 'btn_R9C11', 'arrRef138')
+currentNumber = '0'
+update_cell(btn_R9C13, arrRef140, 'btn_R9C13', 'arrRef140')
+currentNumber = 'F'
+update_cell(btn_R9C16, arrRef143, 'btn_R9C16', 'arrRef143')
+currentNumber = 'C'
+update_cell(btn_R10C2, arrRef145, 'btn_R10C2', 'arrRef145')
+currentNumber = 'F'
+update_cell(btn_R10C4, arrRef147, 'btn_R10C4', 'arrRef147')
+currentNumber = '9'
+update_cell(btn_R10C5, arrRef148, 'btn_R10C5', 'arrRef148')
+currentNumber = 'E'
+update_cell(btn_R10C6, arrRef149, 'btn_R10C6', 'arrRef149')
+currentNumber = '7'
+update_cell(btn_R10C13, arrRef156, 'btn_R10C13', 'arrRef156')
+currentNumber = 'B'
+update_cell(btn_R10C16, arrRef159, 'btn_R10C10', 'arrRef159')
+currentNumber = '4'
+update_cell(btn_R11C3, arrRef162, 'btn_R11C3', 'arrRef162')
+currentNumber = '2'
+update_cell(btn_R11C4, arrRef163, 'btn_R11C4', 'arrRef163')
+currentNumber = 'F'
+update_cell(btn_R11C6, arrRef165, 'btn_R11C6', 'arrRef165')
+currentNumber = '9'
+update_cell(btn_R11C9, arrRef168, 'btn_R11C9', 'arrRef168')
+currentNumber = 'C'
+update_cell(btn_R11C11, arrRef170, 'btn_R11C11', 'arrRef170')
+currentNumber = '3'
+update_cell(btn_R11C13, arrRef172, 'btn_R11C13', 'arrRef172')
+currentNumber = 'A'
+update_cell(btn_R11C14, arrRef173, 'btn_R11C14', 'arrRef173')
+currentNumber = 'E'
+update_cell(btn_R11C15, arrRef174, 'btn_R11C15', 'arrRef174')
+currentNumber = 'D'
+update_cell(btn_R11C16, arrRef175, 'btn_R11C16', 'arrRef175')
+currentNumber = '5'
+update_cell(btn_R12C1, arrRef176, 'btn_R12C1', 'arrRef176')
+currentNumber = '7'
+update_cell(btn_R12C7, arrRef182, 'btn_R12C7', 'arrRef182')
+currentNumber = 'F'
+update_cell(btn_R12C10, arrRef185, 'btn_R12C10', 'arrRef185')
+currentNumber = '6'
+update_cell(btn_R12C12, arrRef187, 'btn_R12C12', 'arrRef187')
+currentNumber = '2'
+update_cell(btn_R13C1, arrRef192, 'btn_R13C1', 'arrRef192')
+currentNumber = 'E'
+update_cell(btn_R13C3, arrRef194, 'btn_R13C3', 'arrRef194')
+currentNumber = '6'
+update_cell(btn_R13C5, arrRef196, 'btn_R13C5', 'arrRef196')
+currentNumber = '0'
+update_cell(btn_R13C7, arrRef198, 'btn_R13C7', 'arrRef198')
+currentNumber = '8'
+update_cell(btn_R13C8, arrRef199, 'btn_R13C8', 'arrRef199')
+currentNumber = '4'
+update_cell(btn_R13C9, arrRef200, 'btn_R13C9', 'arrRef200')
+currentNumber = 'B'
+update_cell(btn_R13C10, arrRef201, 'btn_R13C10', 'arrRef201')
+currentNumber = '1'
+update_cell(btn_R13C14, arrRef205, 'btn_R13C14', 'arrRef205')
+currentNumber = '9'
+update_cell(btn_R14C3, arrRef210, 'btn_R14C3', 'arrRef210')
+currentNumber = 'F'
+update_cell(btn_R14C7, arrRef214, 'btn_R14C7', 'arrRef214')
+currentNumber = 'E'
+update_cell(btn_R14C8, arrRef215, 'btn_R14C8', 'arrRef215')
+currentNumber = '8'
+update_cell(btn_R14C10, arrRef217, 'btn_R14C10', 'arrRef217')
+currentNumber = '7'
+update_cell(btn_R14C11, arrRef218, 'btn_R14C11', 'arrRef218')
+currentNumber = '8'
+update_cell(btn_R15C3, arrRef226, 'btn_R15C3', 'arrRef226')
+currentNumber = 'B'
+update_cell(btn_R15C4, arrRef227, 'btn_R15C4', 'arrRef227')
+currentNumber = '4'
+update_cell(btn_R15C6, arrRef229, 'btn_R15C6', 'arrRef229')
+currentNumber = '2'
+update_cell(btn_R15C12, arrRef235, 'btn_R15C12', 'arrRef235')
+currentNumber = '0'
+update_cell(btn_R15C14, arrRef237, 'btn_R15C14', 'arrRef237')
+currentNumber = 'E'
+update_cell(btn_R15C16, arrRef239, 'btn_R15C16', 'arrRef239')
+currentNumber = 'C'
+update_cell(btn_R16C1, arrRef240, 'btn_R16C1', 'arrRef240')
+currentNumber = '7'
+update_cell(btn_R16C2, arrRef241, 'btn_R16C2', 'arrRef241')
+currentNumber = '1'
+update_cell(btn_R16C6, arrRef245, 'btn_R16C6', 'arrRef245')
+currentNumber = '0'
+update_cell(btn_R16C9, arrRef248, 'btn_R16C9', 'arrRef248')
+currentNumber = '8'
+update_cell(btn_R16C13, arrRef252, 'btn_R16C13', 'arrRef252')
+currentNumber = '2'
+update_cell(btn_R16C14, arrRef253, 'btn_R16C14', 'arrRef253')
+currentNumber = 'B'
+update_cell(btn_R16C15, arrRef254, 'btn_R16C15', 'arrRef254')
+
+
+# [["F", 1 , 2, 1], ["A", 1, 5, 2], ["9", 8, 9, 8]]

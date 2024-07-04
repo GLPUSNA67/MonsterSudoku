@@ -232,6 +232,7 @@ txt_frame.config(highlightbackground="red", highlightthickness=2)
 def set_current_num_to_0():
     global currentNumber
     currentNumber = "0"
+    txt_Explain.insert(END, "set_current_num_to_0())\n")
     print("227 Current number is ", currentNumber)
 
 
@@ -2081,7 +2082,7 @@ def update_cell(btn, aref, btn_ID, aref_ID):
     # print("2078 history type is ", type(history))
     if not btn_ID == "" and bRemoveANumberFromACell == "False":
         # pass    # Uncomment the following lines
-        history = f"{currentNumber}, {btn_ID}, {aref_ID}, \'{btn_ID}\', \'{aref_ID}\'"
+        history = f"update_cell({btn_ID}, {aref_ID}, \'{btn_ID}\', \'{aref_ID})\n'"
         txt_Explain.insert(END, history)
         txt_Explain.insert(END, "\n")
         # global history
@@ -3646,7 +3647,20 @@ def load_currentSolution():
     # update_cell(btn_R2C1, arrRef16)
 
 
+
 def load_solution_1(btn_R1C1=None):
+    print("3651 Entered load_solution_1")
+    global currentNumber
+    file = open("MS_Solutions.txt", "r")
+    print("3654 file opened")
+    for line in file:
+        print("3656 line is ", line)
+        # line
+        # solution = solution +  line
+        eval(line)
+    file.close()
+
+def load_solution_1a(btn_R1C1=None):
     print("3043 Entered load_solution_1")
     global currentNumber
     # currentNumber = '0123456789ABCDEF'
