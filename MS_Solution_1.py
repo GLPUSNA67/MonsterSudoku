@@ -1,3 +1,6 @@
+''' This solution format did not work. 
+See the latest version of MonsterSudoku.
+And MS_....txt files for the current solutions. '''
 print("3043 Entered load_solution_1")
 global currentNumber
 currentNumber = 'B'
