@@ -1,4 +1,7 @@
-
+''' This solution format did not work. 
+See the latest version of MonsterSudoku.
+And MS_....txt files for the current solutions. '''
+print("3043 Entered load_solution_1")
 # import MS_Solutions_data as solution
 solution = [["F", 1, 2, 1], ["A", 1, 5, 2], ["9", 8, 9, 8]]
 solutionText = ""
