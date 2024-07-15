@@ -3,6 +3,7 @@ import pickle
 import json
 import ctypes
 from tkinter import *  # get widget classes
+# from tkinter import Combobox, Entry, Label, font
 # import ttk
 # import logging
 # logging.basicConfig(
@@ -34,7 +35,6 @@ puzzle_width = puzzle_height
 # screen_height = root.winfo_screenheight()
 print("33 puzzle_width screen_height", puzzle_width, screen_height)
 root.geometry(f"{puzzle_width}x{puzzle_height}")
-# root.geometry("1400x1100")
 # root.size()
 titlefont = ('Ariel', 12, 'bold')
 donefont = ('Ariel', 16, 'bold')
@@ -77,7 +77,7 @@ R = 0
 NullValue = "Null"
 
 history = ""
-current_solution_file = 'C:\PythonProjects\MonsterSudoku\MS_Current_Solution.txt'
+# current_solution_file = 'C:\PythonProjects\MonsterSudoku\MS_Current_Solution.txt'
 
 row_nums = [[1, ""], [2, ""], [3, ""], [4, ""], [5, ""], [6, ""], [7, ""], [
     8, ""], [9, ""], [10, ''], [11, ''], [12, ""], [13, ""], [14, ""], [15, ''], [16, '']]
@@ -196,17 +196,76 @@ s_13_nums = ""
 s_14_nums = ""
 s_15_nums = ""
 s_16_nums = ""
-row_nums_list = ['r_1_nums', 'r_2_nums', 'r_3_nums', 'r_4_nums', 'r_5_nums', 'r_6_nums', 'r_7_nums', 'r_8_nums',
-                 'r_9_nums', 'r_10_nums', 'r_11_nums', 'r_12_nums', 'r_13_nums', 'r_14_nums', 'r_15_nums', 'r_16_nums']
-col_nums_list = ['c_1_nums', 'c_2_nums', 'c_3_nums', 'c_4_nums', 'c_5_nums', 'c_6_nums', 'c_7_nums', 'c_8_nums',
-                 'c_9_nums', 'c_10_nums', 'c_11_nums', 'c_12_nums', 'c_13_nums', 'c_14_nums', 'c_15_nums', 'c_16_nums']
+r_nums_list = ['r_1_nums', 'r_2_nums', 'r_3_nums', 'r_4_nums', 'r_5_nums', 'r_6_nums', 'r_7_nums', 'r_8_nums',
+               'r_9_nums', 'r_10_nums', 'r_11_nums', 'r_12_nums', 'r_13_nums', 'r_14_nums', 'r_15_nums', 'r_16_nums']
+c_nums_list = ['c_1_nums', 'c_2_nums', 'c_3_nums', 'c_4_nums', 'c_5_nums', 'c_6_nums', 'c_7_nums', 'c_8_nums',
+               'c_9_nums', 'c_10_nums', 'c_11_nums', 'c_12_nums', 'c_13_nums', 'c_14_nums', 'c_15_nums', 'c_16_nums']
 sq_nums_list = ['s_1_nums', 's_2_nums', 's_3_nums', 's_4_nums', 's_5_nums', 's_6_nums', 's_7_nums', 's_8_nums',
                 's_9_nums', 's_10_nums', 's_11_nums', 's_12_nums', 's_13_nums', 's_14_nums', 's_15_nums', 's_16_nums']
+
+row_1_nums = "0123456789ABCDEF"
+row_2_nums = "0123456789ABCDEF"
+row_3_nums = "0123456789ABCDEF"
+row_4_nums = "0123456789ABCDEF"
+row_5_nums = "0123456789ABCDEF"
+row_6_nums = "0123456789ABCDEF"
+row_7_nums = "0123456789ABCDEF"
+row_8_nums = "0123456789ABCDEF"
+row_9_nums = "0123456789ABCDEF"
+row_10_nums = "0123456789ABCDEF"
+row_11_nums = "0123456789ABCDEF"
+row_12_nums = "0123456789ABCDEF"
+row_13_nums = "0123456789ABCDEF"
+row_14_nums = "0123456789ABCDEF"
+row_15_nums = "0123456789ABCDEF"
+row_16_nums = "0123456789ABCDEF"
+col_1_nums = "0123456789ABCDEF"
+col_2_nums = "0123456789ABCDEF"
+col_3_nums = "0123456789ABCDEF"
+col_4_nums = "0123456789ABCDEF"
+col_5_nums = "0123456789ABCDEF"
+col_6_nums = "0123456789ABCDEF"
+col_7_nums = "0123456789ABCDEF"
+col_8_nums = "0123456789ABCDEF"
+col_9_nums = "0123456789ABCDEF"
+col_10_nums = "0123456789ABCDEF"
+col_11_nums = "0123456789ABCDEF"
+col_12_nums = "0123456789ABCDEF"
+col_13_nums = "0123456789ABCDEF"
+col_14_nums = "0123456789ABCDEF"
+col_15_nums = "0123456789ABCDEF"
+col_16_nums = "0123456789ABCDEF"
+sq_1_nums = "0123456789ABCDEF"
+sq_2_nums = "0123456789ABCDEF"
+sq_3_nums = "0123456789ABCDEF"
+sq_4_nums = "0123456789ABCDEF"
+sq_5_nums = "0123456789ABCDEF"
+sq_6_nums = "0123456789ABCDEF"
+sq_7_nums = "0123456789ABCDEF"
+sq_8_nums = "0123456789ABCDEF"
+sq_9_nums = "0123456789ABCDEF"
+sq_10_nums = "0123456789ABCDEF"
+sq_11_nums = "0123456789ABCDEF"
+sq_12_nums = "0123456789ABCDEF"
+sq_13_nums = "0123456789ABCDEF"
+sq_14_nums = "0123456789ABCDEF"
+sq_15_nums = "0123456789ABCDEF"
+sq_16_nums = "0123456789ABCDEF"
+row_nums_list = ['row_1_nums', 'row_2_nums', 'row_3_nums', 'row_4_nums', 'row_5_nums', 'row_6_nums', 'row_7_nums', 'row_8_nums',
+                 'row_9_nums', 'row_10_nums', 'row_11_nums', 'row_12_nums', 'row_13_nums', 'row_14_nums', 'row_15_nums', 'row_16_nums']
+col_nums_list = ['col_1_nums', 'col_2_nums', 'col_3_nums', 'col_4_nums', 'col_5_nums', 'col_6_nums', 'col_7_nums', 'col_8_nums',
+                 'col_9_nums', 'col_10_nums', 'col_11_nums', 'col_12_nums', 'col_13_nums', 'col_14_nums', 'col_15_nums', 'col_16_nums']
+sqr_nums_list = ['sq_1_nums', 'sq_2_nums', 'sq_3_nums', 'sq_4_nums', 'sq_5_nums', 'sq_6_nums', 'sq_7_nums', 'sq_8_nums',
+                 'sq_9_nums', 'sq_10_nums', 'sq_11_nums', 'sq_12_nums', 'sq_13_nums', 'sq_14_nums', 'sq_15_nums', 'sq_16_nums']
+
 delete_singles_row_list = []
 delete_singles_col_list = []
 delete_singles_sq_list = []
 sq_nums_lst = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 nums = ""
+done_arefs_list = []
+
+""" The following function isn't used."""
 
 
 def update_done_arefs_list(aref):
@@ -214,6 +273,9 @@ def update_done_arefs_list(aref):
     for aref in arrRefs_List:
         if aref['done'] == True:
             not_done_arefs.remove(aref)
+            done_arefs_list.append(aref)
+    print("219 not_done_arefs ", not_done_arefs)
+    print("220 done_arefs_list ", done_arefs_list)
 
 
 btn_ref = {}
@@ -225,6 +287,7 @@ bShow = False
 main_frame = Frame(root)
 main_frame.grid(row=0, column=0, columnspan=10)
 main_frame.config(highlightbackground="red", highlightthickness=2)
+# Create a Canvas
 main_canvas = Canvas(main_frame)
 main_canvas.grid(row=0, column=0, columnspan=10)
 # Add a Scrollbar to the Canvas
@@ -247,7 +310,7 @@ F4_frame = Frame(main_canvas)
 F4_frame.grid(row=2, column=12, sticky="nw")
 F4_frame.config(highlightbackground="blue", highlightthickness=2)
 sn_frame = Frame(main_canvas)
-sn_frame.grid(row=2, column=16, sticky="nw")  # sn is for select a number
+sn_frame.grid(row=2, column=16, sticky="nw")
 sn_frame.config(highlightbackground="green", highlightthickness=2)
 F5_frame = Frame(main_canvas)
 F5_frame.grid(row=3, column=0, sticky="nw")
@@ -601,15 +664,10 @@ def only_1_num_in_cell():
             eval(f"set_current_num_to_{num}()")
             # current_number = num
             update_cell(btn, cell, btn_name, str(cell))
-            # cell['done'] = True
-            # cells_done()
-            # cells_remaining()
-            # if num == 0:
-            #     set_current_num_to_0()
 
 
 def CheckForOnlyOneNumber():
-    print("606 Entered CheckForOnlyOneNumber")
+    print("670 Entered CheckForOnlyOneNumber")
     global r_1_nums
     global r_2_nums
     global r_3_nums
@@ -706,15 +764,13 @@ def CheckForOnlyOneNumber():
     s_14_nums = ""
     s_15_nums = ""
     s_16_nums = ""
-    ex_text = "Empty start\n"
-    # print("396 len(not_done_arefs) is ", len(not_done_arefs))
+    ex_text = ""
 
     for cell in not_done_arefs:
         current_button = cell['btn']
         btn_name = cell['btn_str']
         print("709 ", cell, current_button)
         print("710 ", btn_name)
-        # print("400 btn is ", eval(cell['btn']))
         if cell['row'] == 1:
             r_1_nums += cell['nums']
         elif cell['row'] == 2:
@@ -811,12 +867,10 @@ def CheckForOnlyOneNumber():
             s_15_nums += cell['nums']
         elif cell['sq'] == 16:
             s_16_nums += cell['nums']
-    # print("495 row_1_nums are ", r_1_nums)
-    # print("497 btn is ", cell['btn'])
+
     temp_list = []
-    for row in row_nums_list:
+    for row in r_nums_list:
         row_nums = eval(row)
-        # print("811 row and row_nums ", row, row_nums)
         for char in startingString:
             if char in row_nums:
                 if row_nums.count(char) == 1:
@@ -824,7 +878,6 @@ def CheckForOnlyOneNumber():
                     row_num = row_num.strip('_nums')
                     temp_list = [row_num, char]
                     delete_singles_row_list.append(temp_list)
-                    # deletedelete_singles_row_list_singles_list.append(list(row_num))
                     ex_text = char + " only occurs once in row " + row_num + "\n"
                     txt_Explain.insert(END, ex_text)
                     if bSolve_singles == True:
@@ -834,11 +887,9 @@ def CheckForOnlyOneNumber():
                         # aref = btn_dict[btn]
                         update_cell(btn, cell)
 
-    for col in col_nums_list:
+    for col in c_nums_list:
         col_nums = eval(col)
-        # print("761 row_nums are ", row_nums)
         for char in startingString:
-            # print("763 char is ", char)
             if char in col_nums:
                 if col_nums.count(char) == 1:
                     col_num = col.strip('c_')
@@ -848,16 +899,12 @@ def CheckForOnlyOneNumber():
                     ex_text = char + " only occurs once in col " + col_num + "\n"
                     txt_Explain.insert(END, ex_text)
                     if bSolve_singles == True:
-                        # print("514 bSolve_singles == True")
                         currentNumber = char
                         btn = cell['btn']
-                        # aref = btn_dict[btn]
                         update_cell(btn, cell)
     for sq in sq_nums_list:
         sq_nums = eval(sq)
-        # print("749 row_nums are ", row_nums)
         for char in startingString:
-            # print("751 char is ", char)
             if char in sq_nums:
                 if sq_nums.count(char) == 1:
                     sq_num = sq.strip('r_')
@@ -867,14 +914,11 @@ def CheckForOnlyOneNumber():
                     ex_text = char + " only occurs once in square " + sq_num + "\n"
                     txt_Explain.insert(END, ex_text)
                     if bSolve_singles == True:
-                        # print("514 bSolve_singles == True")
                         currentNumber = char
                         btn = cell['btn']
-                        # aref = btn_dict[btn]
                         update_cell(btn, cell)
     cells_done()
     cells_remaining()
-    # print("550 delete_singles_row_list is ", delete_singles_row_list)
 
 
 def solve_row_singles():
@@ -882,20 +926,14 @@ def solve_row_singles():
     bSolve_singles = True
     print("877 delete_singles_row_list is ", delete_singles_row_list)
     for cell in not_done_arefs:
-        # print("559 cell is ", cell)
-        # current_button = cell['btn']
         nums = cell['nums']
         row = cell['row']
         col = cell['col']
         sq = cell['sq']
         for item in delete_singles_row_list:
-            # print("885 row item ", row, item[0], type(int(item[0])), item[1])
             if row == int(item[0]) and item[1] in nums:
-                # print("580 item ", row, type(row), item[0], type(int(item[0])), item[1])
                 currentNumber = item[1]
                 current_button = cell['btn']
-                # print("572 cell and type are ", type(current_button), current_button, type(cell), cell)
-                # reset_cell_values(current_button, cell) # function doesn't work, but lines work
                 cell['done'] = True
                 cell['nums'] = currentNumber
                 cell['font'] = donefont
@@ -906,9 +944,7 @@ def solve_row_singles():
                 current_button['width'] = cell['width']
                 current_button['text'] = cell['nums']
                 current_button['fg'] = cell['fg']
-                # print("583 cell and type are ", type(cell), cell)
                 remove_aref_from_not_done_arefs(cell)
-                # update_puzzle(cell['row'], cell['col'], cell['sq'])
                 for aref in not_done_arefs:
                     current_button = aref['btn']
                     if row == aref['row'] and col == aref['col'] and sq == aref['sq']:
@@ -923,14 +959,11 @@ def solve_row_singles():
                             current_button['text'] = aref['nums']
 
     for cell in not_done_arefs:
-        # print("619 cell is ", cell)
-        # current_button = cell['btn']
         nums = cell['nums']
         row = cell['row']
         col = cell['col']
         sq = cell['sq']
         for item in delete_singles_col_list:
-            # print("619 col item ", col, type(col), item[0], type(int(item[0])), item[1])
             if col == int(item[0]) and item[1] in nums:
                 print("521 col item ", col, type(row),
                       item[0], type(int(item[0])), item[1])
@@ -938,7 +971,6 @@ def solve_row_singles():
                 current_button = cell['btn']
                 print("572 cell and type are ", type(current_button),
                       current_button, type(cell), cell)
-                # reset_cell_values(current_button, cell) # function doesn't work, but lines work
                 cell['done'] = True
                 cell['nums'] = currentNumber
                 cell['font'] = donefont
@@ -949,9 +981,7 @@ def solve_row_singles():
                 current_button['width'] = cell['width']
                 current_button['text'] = cell['nums']
                 current_button['fg'] = cell['fg']
-                # print("583 cell and type are ", type(cell), cell)
                 remove_aref_from_not_done_arefs(cell)
-                # update_puzzle(cell['row'], cell['col'], cell['sq'])
                 for aref in not_done_arefs:
                     current_button = aref['btn']
                     if row == aref['row'] and col == aref['col'] and sq == aref['sq']:
@@ -965,20 +995,14 @@ def solve_row_singles():
                             aref['nums'] = new_nums
                             current_button['text'] = aref['nums']
     for cell in not_done_arefs:
-        # print("652 cell is ", cell)
-        # current_button = cell['btn']
         nums = cell['nums']
         row = cell['row']
         col = cell['col']
         sq = cell['sq']
         for item in delete_singles_sq_list:
-            # print("659 sq item ", sq, type(sq), item[0], type(int(item[0])), item[1])
             if sq == int(item[0]) and item[1] in nums:
-                # print("568 item ", col, type(row), item[0], type(int(item[0])), item[1])
                 currentNumber = item[1]
                 current_button = cell['btn']
-                # print("572 cell and type are ", type(current_button), current_button, type(cell), cell)
-                # reset_cell_values(current_button, cell) # function doesn't work, but lines work
                 cell['done'] = True
                 cell['nums'] = currentNumber
                 cell['font'] = donefont
@@ -989,9 +1013,7 @@ def solve_row_singles():
                 current_button['width'] = cell['width']
                 current_button['text'] = cell['nums']
                 current_button['fg'] = cell['fg']
-                # print("583 cell and type are ", type(cell), cell)
                 remove_aref_from_not_done_arefs(cell)
-                # update_puzzle(cell['row'], cell['col'], cell['sq'])
                 for aref in not_done_arefs:
                     current_button = aref['btn']
                     if row == aref['row'] and col == aref['col'] and sq == aref['sq']:
@@ -1004,6 +1026,103 @@ def solve_row_singles():
                             new_nums = aref['nums'].replace(currentNumber, "")
                             aref['nums'] = new_nums
                             current_button['text'] = aref['nums']
+
+
+def find_only_num_in_RCS():
+    """ 1072
+    Use make_RCS_lists to fill in the numbers in a R, C, or S
+    Iterate through all done cells and remove the num from the row_X_nums =
+    string "0123456789ABCDEF" These are the numbers remaining in the RCS.
+    Use this list to check for "in" the row nums
+    """
+    global row_1_nums
+    global row_2_nums
+    global row_3_nums
+    global row_4_nums
+    global row_5_nums
+    global row_6_nums
+    global row_7_nums
+    global row_8_nums
+    global row_9_nums
+    global row_10_nums
+    global row_11_nums
+    global row_12_nums
+    global row_13_nums
+    global row_14_nums
+    global row_15_nums
+    global row_16_nums
+
+    for cell in done_arefs_list:
+        btn = cell['btn_str']
+        row = cell['row']
+        col = cell['col']
+        sq = cell['sq']
+        num = cell['nums']
+        # print("1084 btn ", btn, row, col, sq, num)
+        if row == 1:
+            temp_str = row_1_nums.replace(num, "")
+            row_1_nums = temp_str
+            print("1105 row_1_nums ", row_1_nums)
+        elif row == 2:
+            temp_str = row_2_nums.replace(num, "")
+            row_2_nums = temp_str
+            print("1109 row_2_nums ", row_2_nums)
+        elif row == 3:
+            temp_str = row_3_nums.replace(num, "")
+            row_3_nums = temp_str
+            print("1086 row_3_nums ", row_3_nums)
+        elif row == 4:
+            temp_str = row_4_nums.replace(num, "")
+            row_4_nums = temp_str
+            print("1086 row_4_nums ", row_4_nums)
+        elif row == 5:
+            temp_str = row_5_nums.replace(num, "")
+            row_5_nums = temp_str
+            print("1086 row_5_nums ", row_5_nums)
+        elif row == 6:
+            temp_str = row_6_nums.replace(num, "")
+            row_6_nums = temp_str
+            print("1086 row_6_nums ", row_6_nums)
+        elif row == 7:
+            temp_str = row_7_nums.replace(num, "")
+            row_7_nums = temp_str
+            print("1086 row_7_nums ", row_7_nums)
+        elif row == 8:
+            temp_str = row_8_nums.replace(num, "")
+            row_8_nums = temp_str
+            print("1086 row_8_nums ", row_8_nums)
+        elif row == 9:
+            temp_str = row_9_nums.replace(num, "")
+            row_9_nums = temp_str
+            print("1086 row_9_nums ", row_9_nums)
+        elif row == 10:
+            temp_str = row_10_nums.replace(num, "")
+            row_10_nums = temp_str
+            print("1086 row_10_nums ", row_10_nums)
+        elif row == 11:
+            temp_str = row_11_nums.replace(num, "")
+            row_11_nums = temp_str
+            print("1086 row_11_nums ", row_11_nums)
+        elif row == 12:
+            temp_str = row_12_nums.replace(num, "")
+            row_12_nums = temp_str
+            print("1086 row_12_nums ", row_12_nums)
+        elif row == 13:
+            temp_str = row_13_nums.replace(num, "")
+            row_13_nums = temp_str
+            print("1086 row_13_nums ", row_13_nums)
+        elif row == 14:
+            temp_str = row_14_nums.replace(num, "")
+            row_14_nums = temp_str
+            print("1086 row_14_nums ", row_14_nums)
+        elif row == 15:
+            temp_str = row_15_nums.replace(num, "")
+            row_15_nums = temp_str
+            print("1086 row_15_nums ", row_15_nums)
+        elif row == 16:
+            temp_str = row_16_nums.replace(num, "")
+            row_16_nums = temp_str
+            print("1086 row_16_nums ", row_16_nums)
 
 
 def find_Duple():
@@ -1160,7 +1279,6 @@ def make_Duple_Candidate_list():
 
 def find_Duple1():
     print("986 Entering find_Duple1")
-    # print("343 len(not_done_arefs) is ", len(not_done_arefs))
     ex_text = ""
     temp_list = []
     temp_list_1 = []
@@ -1182,11 +1300,8 @@ def find_Duple1():
             duple_candidate_list.append(list(temp_list))
             temp_list = []
             # *** The duple_list now has a list of all the lists of duple row, col, sq, and nums
-    # print("706 potential duple ", duple_list) #str(cell['row']), , cell['nums']
-    # ex_text = ""
     for item in duple_candidate_list:
         if item:
-            # print("716 item nums are ", item[0], item[1], item[2], item[3])
             i_row = int(item[0])
             i_col = int(item[1])
             i_sq = int(item[2])
@@ -1520,18 +1635,10 @@ def process_duple_list1(duples_list):
 
 def find_Triple():
     print("1153 Entering find_Triple")
-    txt_Explain.insert(END, "potential triple cell and values  are \n")
+    # txt_Explain.insert(END, "potential triple cell and values  are \n")
     triple_candidate_list = make_triple_candidate_list()
     RCS_lists = make_RCS_lists_for_triples(triple_candidate_list)
-    # id_triples(RCS_lists[0])
     id_triples(RCS_lists[1])
-    # id_triples(RCS_lists[2])
-    # print("1453 RCS_lists ", RCS_lists[0])
-    # print("1454 RCS_lists ", RCS_lists[1])
-    # print("1455 RCS_lists ", RCS_lists[2])
-    # for l in RCS_lists[1]:
-    #     print("1457 lists are ", l)
-    # id_triples(triple_candidate_list)
 
 
 def make_triple_candidate_list():
@@ -1567,7 +1674,6 @@ def make_RCS_lists_for_triples(triple_candidate_list):
     sq_list = [[1, ""], [2, ""], [3, ""], [4, ""], [5, ""], [6, ""], [7, ""], [
         8, ""], [9, ""], [10, ''], [11, ''], [12, ""], [13, ""], [14, ""], [15, ''], [16, '']]
     for item in triple_candidate_list:
-        # print("1490 t_c_l item is ", item)
         row_num = item[0]
         col_num = item[1]
         sq_num = item[2]
@@ -1579,27 +1685,13 @@ def make_RCS_lists_for_triples(triple_candidate_list):
         row_list[row_num - 1][1] += str(row_lists)
         col_list[col_num - 1][1] += str(row_lists)
         sq_list[sq_num - 1][1] += str(row_lists)
-    # print("1502 row_lists is ", row_lists)
-    # # row_list[row_num] += row_lists
-    # print("1504 row is ", row_list)
-    # print("1505 col is ", col_list)
-    # print("1506 sq is ", sq_list)
     RCS_lists = [row_list, col_list, sq_list]
     return RCS_lists
-    # nums = item['nums']
-
-    # print("1494 row_list is ", row_list)
-    # row_list = item['row']
-    # col0 = item[1]
-    # sq0 = item[2]
-    # nums0 = item[3]
-    # return triple_candidate_list
 
 
 def id_triples(candidate_list):
     print("1527 enter id_triples")
     print("1528 candidate_list = ", candidate_list)
-    # triple = ""
     list0 = (1, 4, 1, "37A")
     row_0, col0, sq0, sq1 = list0
     print("1542 list0 extracted ", row_0, col0, sq0, sq1)
@@ -1638,8 +1730,6 @@ def id_triples(candidate_list):
                 pass
             elif item1 != item and ((row0 == row1) or (col0 == col1) or (sq0 == sq1)):
                 num_cells = 2
-                # print(
-                #     "1249 triple item not equal to item1 and RCS are the same", item, item1)
                 temp_set = tcl_set0.copy()
                 print("1515 sets are ", tcl_set0, temp_set)
                 ''' The correct cells are being checked!'''
@@ -1659,11 +1749,9 @@ def id_triples(candidate_list):
                     num_cells = 1
                     temp_set = tcl_set0.copy()
                     continue
-                    # print("1266 sets exceeds size. No triple. ",
-                    #       tcl_set0, temp_set)
                 elif len(temp_set) <= 3:
-                    # print("1268 Two parts of Triple found. ", tcl_set0, temp_set)
-                    for item2 in triple_candidate_list:
+
+                    for item2 in candidate_list:
                         num_cells = 3
                         row2 = item2[0]
                         col2 = item2[1]
@@ -1677,8 +1765,6 @@ def id_triples(candidate_list):
                         elif item2 != item and ((row0 == row1 == row2) or (col0 == col1 == col2) or (sq0 == sq1 == sq2)):
                             print(
                                 "1549 triple item not equal to item2 and RCS are the same", item, item2)
-                            # num_cells = 2
-                            # nums2 = item2[3]
                             l2 = len(nums2)
                             nt1 = nums2[0]
                             temp_set.add(nt1)
@@ -1698,7 +1784,6 @@ def id_triples(candidate_list):
                                 print("1568 Triple found. ",
                                       tcl_set0, temp_set, item, item1, item2)
                                 ex_text = f"{item}, {item1}, {item2}"
-                                # ex_text = item + " " + item1 + " " + item2
                                 txt_Explain.insert(
                                     END, "A triple is \n")
                                 txt_Explain.insert(
@@ -1708,7 +1793,6 @@ def id_triples(candidate_list):
                                 tcl_set0 = {}
                                 temp_set = {}
                                 num_cells = 1
-                            # temp_set = tcl_set0.copy()
 
                 # print(
                 #     "1240 triple item not equal to item1 and rows are the same", item, item1)
@@ -1746,7 +1830,6 @@ def parse_list_items():
             num = ts[0:i_c]
             # i_ch = li_lists.slice(i_sb, )
             print("1670 num = ", num)
-            # print(char)
 
 
 def process_triple_list(temp_set, item, item1, item2):
@@ -1769,10 +1852,8 @@ def process_triple_list(temp_set, item, item1, item2):
           col1, sq1, nums1, row2, col2, sq2, nums2)
     if row0 == row1 == row2:
         process_row_triple(row0, item, item1, item2, temp_set)
-
     if col0 == col1 == col2:
         process_column_triple(col0, item, item1, item2, temp_set)
-
     if sq0 == sq1 == sq2:
         process_square_triple(sq0, item, item1, item2, temp_set)
 
@@ -1813,42 +1894,11 @@ def process_row_triple(row0, item, item1, item2, temp_set):
                     print("1443 ", aref['nums'])
                     print("1444 ", current_btn['text'])
                     # aref['nums'].replace(num, "")  # Remove num from a_nums
-                    # # current_button = aref['btn']
                     print("1446 ", current_btn, aref)
-                    # bRemoveANumberFromACell = True
                     current_btn['text'] = aref['nums']
-
-                    # currentNumber = ""
-                    # update_cell(current_btn, aref)
                     print("1448 aref['nums'], a_nums ", aref['nums'], a_nums)
                 else:
                     print("1450 Else fall through in triple remove number.")
-        # elif duple_row != 0 and first_row == a_row:
-        #     print("1110 partial match in aref", duple_row, duple_col,
-        #           duple_sq, first_row, a_row, first_chr_1, a_nums)
-        #     if first_chr_1 in a_nums:
-        #         new_nums = aref['nums'].replace(first_chr_1, "")
-        #         # print("723 new_nums ", new_nums)
-        #         aref['nums'] = new_nums
-        #         current_btn['text'] = aref['nums']
-        #     if second_chr_1 in a_nums:
-        #         new_nums = aref['nums'].replace(second_chr_1, "")
-        #         print("1121 new_nums ", new_nums)
-        #         aref['nums'] = new_nums
-        #         current_btn['text'] = aref['nums']
-        # elif duple_col != 0 and first_col == a_col:
-        #     print("1125 partial match in aref", duple_row, duple_col,
-        #           duple_sq, first_row, a_row, first_chr_1, a_nums)
-        #     if first_chr_1 in a_nums:
-        #         new_nums = aref['nums'].replace(first_chr_1, "")
-        #         print("1129 new_nums ", new_nums)
-        #         aref['nums'] = new_nums
-        #         current_btn['text'] = aref['nums']
-        #     if second_chr_1 in a_nums:
-        #         new_nums = aref['nums'].replace(second_chr_1, "")
-        #         print("1132 new_nums ", new_nums)
-        #         aref['nums'] = new_nums
-        #         current_btn['text'] = aref['nums']
 
 
 def process_column_triple(col0, item, item1, item2, temp_set):
@@ -2153,11 +2203,6 @@ def ID_Triples():
 def ID_Quads():
     bIDQuads = True
 
-# def find_Triple():
-#     print("953 Entering find_Triple")
-#     # number passed is the length sought plus 1
-#     make_RCS_sets(4)
-
 
 def find_Quad():
     print("1706 Entering find_Quad")
@@ -2275,24 +2320,22 @@ def reset_cell_values(current_btn, aref):
     aref['height'] = 4
     aref['fg'] = "red"
     current_btn['width'] = aref['width']
-    current_btn['width'] = aref['width']
     current_btn['text'] = aref['nums']
     current_btn['fg'] = aref['fg']
     # current_btn.config(font=donefont, width=4, height=2)
     print("2280 aref values", aref['done'], aref['nums'], aref)
-    # print("723 Entered reset_cell_values", current_btn, aref)
-    # current_btn['font'] = aref['font']
-    # current_btn['height'] = aref['height']
-    # aref['height'] = 2
+
+
+def enlarge_puzzle():
+    for aref in arrRefs_List:
+        current_btn = aref['btn_str']
+        current_btn.config(font=donefont, width=4, height=2)
 
 
 def refresh_display(current_btn, aref):
     print("2082 Entered refresh_display", current_btn, aref)
     aref['nums'] = currentNumber
     current_btn['text'] = aref['nums']
-    # arrRef0['nums'] = currentNumber
-    # arrRef0['font'] = buttonfont
-    # arrRef0['fg'] = "red"
 
 
 def set_bRemoveANumberFromACell():
@@ -2303,7 +2346,6 @@ def set_bRemoveANumberFromACell():
         # btn_del_num['text'] = "Del\nnum\nact\nive"
         history = 'set_bRemoveANumberFromACell()\n'
         save_current_to_history(history)
-
     else:
         # set_bRemoveANumber_False()
         bRemoveANumberFromACell = False
@@ -2333,9 +2375,10 @@ def remove_num_from_cell(current_btn, aref):
 
 
 def remove_aref_from_not_done_arefs(aref):
-    # print("709 Entered remove_aref_from_not_done_arefs.")
+    # print("2346 Entered remove_aref_from_not_done_arefs.")
     if aref in not_done_arefs:
         not_done_arefs.remove(aref)
+        done_arefs_list.append(aref)
 
 
 def clear_text():
@@ -2352,6 +2395,7 @@ def update_cell(btn, aref, btn_ID, aref_ID):
     global bIDTriples
     global bIDQuads
     # global history
+    print("2082 bRemoveANumberFromACell = ", bRemoveANumberFromACell)
     if not btn_ID == "" and bRemoveANumberFromACell == False:
         history = f"update_cell( {btn_ID}, {aref_ID}, \'{btn_ID}\', \'{aref_ID}\')"
         txt_Explain.insert(END, history)
@@ -2398,16 +2442,15 @@ def update_cell(btn, aref, btn_ID, aref_ID):
         # print(f"currentNumber = '{currentNumber}'")
         # print(f"update_cell'{btn}, {aref}")
     # print("1791 test")
-    # print_problem_cells()
+    print_problem_cells()
 
 
-# def test_1():
+# def test_y():
 #     print("2204 R5C2 values ", arrRef65)
 
-# def test_2():
+# def test_z():
 #     pass
     # print_problem_cells()
-
 
 def print_problem_cells():
     print("2204 R5C2 values ", arrRef65['done'], arrRef65['nums'])
@@ -2438,6 +2481,22 @@ def process_quads(btn, aref):
     quads_list.append(btn, aref)
     if len(quads_list) != 0:
         print(quads_list)
+
+
+def find_only_num_in_row_or_col_in_square():
+    ''' Make a set of all numbers in a square
+    Convert that set to an ordered list of numbers'''
+    '''For each number in that list, create 
+    a row set and a column set. 
+    E.G. 3_row_set, 3_col_set, 7_row_set, 7_col_set, etc.'''
+    '''For each not_done cell in the square, 
+          for each number in the cell
+             add that number to the row and col sets
+             '''
+    '''For each row and col set, if the set.length == 1
+       check every not_done cell in that row/col
+       If the number is in that cell, remove the number.
+       Print the results.'''
 
 
 def update_R1C1():
@@ -3742,56 +3801,18 @@ def cells_remaining():
 #             print("2797 row 1 nums", aref['row'])
 
 
-# def CheckForOnlyOneNumber():
-#     print("1733 Entering CheckForOnlyOneNumber.")
-#     for aref in arrRefs_List:
-#         if not aref['done']:
-#             for row in range(1, 16):
-#                 strTemp = ""
-#             for chr in startingString:
-#                 # do rows, then columns, then squares
-#                 strTemp = ""    #arrValues(i)
-#                 char_Count = 0
-#             if len(aref['nums']) > 2 and aref['row'] == 1:
-#                print("aref info ", aref['btn'], len(aref['nums']), aref['nums'])
-    # if "5" in aref['nums']:
-    #     # if "secret" in raw_file_content:
-    #     print("aref info ", aref['nums'])
-    #     if item == arrRef0:
-    #         current_btn = item['btn']
-    #         print(item['text'])  # , item[3], item[4], item[5]
-    # print("2394 aref ", item)
-    #     Me.TextBox1.Text = Me.TextBox1.Text & "Entering CheckForOnlyOneNumber " & vbCrLf
-    #     Dim i As Int16
-    #     'Dim j As Int16
-    #     Dim strTemp As String
-    #
-    #     'If there is only one number in a cell, mark it done, update its value, and refresh the puzzle
-    #     'Also, if a cell causes an update, run through the puzzle again looking for another cell. Thus, reset the counter "j"
-    #     'CheckForOnlyOneNumber()
-    #     'For j = 0 To 1
-    #     For i = 0 To 255
-    #         If arrDone(i) = False Then
-    #             strTemp = arrValues(i)
-    #             If Len(strTemp) = 1 Then
-    #                 If i = 74 Then
-    #                     Me.TextBox1.Text = TextBox1.Text & "Only number is " & CurrentRow & ", " & CurrentColumn & ", " & CurrentNumber & vbCrLf
-    #                 End If
-    #                 CurrentRow = arrReferences(i, 0)
-    #                 CurrentColumn = arrReferences(i, 1)
-    #                 CurrentSquare = arrReferences(i, 2)
-    #                 CurrentNumber = strTemp
-    #                 Me.TextBox1.Text = TextBox1.Text & "Only number is " & CurrentRow & ", " & CurrentColumn & ", " & CurrentNumber & vbCrLf
-    #
-    #                 arrDone(i) = True
-    #                 arrValues(i) = CurrentNumber
-    #                 UpdatePuzzle()
-    #                 RefreshPuzzle()
-    #                 Exit Sub
-    #             End If
-    #         End If
-    #     Next
-    # End Sub
+def load_solution_1():
+    print("3504 Entered load_solution_1")
+    global currentNumber
+    file = open("MS_5Star_1.txt", "r")
+    print("File opened")
+    for line in file:
+        print("line is ", line)
+        eval(line)
+    file.close()
+    print("File closed.")
+    cells_done()
+    cells_remaining()
 
 
 def CheckForOnlyNumberInARow():
@@ -3875,24 +3896,54 @@ def create_record():
 
 
 def test_1a():
-    # print("3674 len not done is ", len(not_done_arefs))
-    # print_problem_cells()
     parse_list_items()
-
-    # for cell in not_done_arefs:
-    # print("3676 cell is ", cell['btn'])
-    # if cell == arrRef65 or cell == arrRef69 or cell == arrRef86 or cell == arrRef161:
-    #     print("3679 arrRef65 is ", arrRef65['btn'], arrRef65['done'], arrRef65['nums'])
-    #     print("3681 arrRef69 is ", arrRef69['done'], arrRef69['nums'])
-    #     print("3683 arrRef86 is ", arrRef86['done'], arrRef86['nums'])
-    #     print("3685 arrRef161 is ", arrRef161['done'], arrRef161['nums'])
 
 
 def test_1():
-    only_1_num_in_cell()
+    # print("3898 ", arrRefs_set)
+    # print("3899 ", arrRefs_setq)
+    find_only_num_in_RCS()
+    print("3973 not_done_arefs ", not_done_arefs)
+    print("3974 done_arefs_list ", done_arefs_list)
+    # lal = len([arrRef0, arrRef1, arrRef2, arrRef3,
+    #           arrRef4, arrRef5, arrRef6, arrRef7])
+    # land = len([arrRef2, arrRef3,
+    #             arrRef4])
+    # print("3900 ", lal, land)
+    # las = set(['arrRef0', 'arrRef1', 'arrRef2', 'arrRef3',
+    #           'arrRef4', 'arrRef5', 'arrRef6', 'arrRef7'])
+    # print(las)
+    # lands = set(['arrRef0', 'arrRef2', 'arrRef4',
+    #             'arrRef6', 'arrRef7'])
+    # print("3904 ", lands)
+    # lad = las - lands
+    # print("3906 ", lad)
+    # llad = lad
+    # print("3908 ", lal, land, llad)
+    # print("3909 ", lad)
+    """
+    nums = [0, 1, 2, 36, 4, 5, 6, 7, 8, 9]
+    ns = set(nums)
+    nd = [3,7,8]
+    nsd = set(nd)
+    nd = ns - nsd
+    nd  --> {0, 1, 2, 4, 5, 6, 9}
+    """
+    # only_1_num_in_cell()
 
 
-def test_1c():
+def make_RCS_sets():
+    """
+    Start by initializing 
+    """
+
+
+def make_RCS_lists():
+    """ 
+    Make lists of all the numbers in each row, column, and square.
+    These lists update global variables and will be used to find 
+    when a number only occurs once in a row, column, or square. 
+    """
     print("3885 row_nums are ", row_nums[0])
     for cell in not_done_arefs:
         if cell['done'] == False and len(cell['nums']) != 1:
@@ -3900,41 +3951,19 @@ def test_1c():
             col_num = cell['col']
             sq_num = cell['sq']
             nums = cell['nums']
-            print("3892 cell['nums'] ", cell['btn_str'], cell['nums'])
-            row_nums[row_num][1] += nums
-            col_nums[col_num][1] += nums
-            sq_nums[sq_num][1] += nums
+            # print("3909 cell['nums'] ", cell['btn_str'], row_num, col_num,
+            #       sq_num, nums, row_nums, col_nums, sq_nums)
+            row_nums[row_num - 1][1] += nums
+            col_nums[col_num - 1][1] += nums
+            sq_nums[sq_num - 1][1] += nums
         elif cell['done'] == False and len(cell['nums']) == 1:
             row_num = cell['row']
             col_num = cell['col']
             sq_num = cell['sq']
             nums = cell['nums']
-            print("3901 cell['nums'] ", cell['btn_str'], cell['nums'])
-        print("3721 row_nums are ", row_num, row_nums[row_num][1])
-        print("3722 col_nums are ", col_num, col_nums[col_num][1])
-        print("3723 sq_nums are ", sq_num, sq_nums[sq_num][1])
-
-    # print("3708 row_nums are ", row_nums[1][1])
-    # row_nums[1][1] = '17F'
-    # print("3710 row_nums are ", row_nums[1][1])
-    # row_nums[1][1] = '17F' + row_nums[0][1]
-    # print("3710 row_nums are ", row_nums[1][1])
-    # [row_num][2])
-    # for aref in not_done_arefs:
-    #     print("3703 aref ", aref['row'])
-    # only_1_num_in_cell()
-    # for cell in not_done_arefs:
-    #     if cell['done'] == False and len(cell['nums']) == 1:
-    #         row_num = cell['row']
-    #         col_num = cell['col']
-    #         sq_num = cell['sq']
-    #         nums = cell['nums']
-    #         print("3696 not done cell nums are ",
-    #               row_num, col_num, sq_num, nums)
-    # print("3662 R2C5 is ", arrRef69('done'))
 
 
-def test_1b():
+def test_1c():
     for item in arrRefs_List:
         row = item['row']
         col = item['col']
@@ -4049,57 +4078,6 @@ def test_4():
             if item['done'] == False:
                 print("4023 item is ", item['aref'],
                       item['btn_str'], item['nums'])
-            # nums = item['nums']
-            # print("4017 aref nums are ", item['aref'], item['nums'])
-    # print("3917 aref_row_1 ", aref_row_1)
-
-    # aref_row_2 = []
-    # aref_row_3 = []
-    # aref_row_4 = []
-    # aref_row_5 = []
-    # aref_row_6 = []
-    # aref_row_7 = []
-    # aref_row_8 = []
-    # aref_row_9 = []
-    # aref_row_10 = []
-    # aref_row_11 = []
-    # aref_row_12 = []
-    # aref_row_13 = []
-    # aref_row_14 = []
-    # aref_row_15 = []
-    # aref_row_16 = []
-    # aref_col_1 = []
-    # aref_col_2 = []
-    # aref_col_3 = []
-    # aref_col_4 = []
-    # aref_col_5 = []
-    # aref_col_6 = []
-    # aref_col_7 = []
-    # aref_col_8 = []
-    # aref_col_9 = []
-    # aref_col_10 = []
-    # aref_col_11 = []
-    # aref_col_12 = []
-    # aref_col_13 = []
-    # aref_col_14 = []
-    # aref_col_15 = []
-    # aref_col_16 = []
-    # aref_sq_1 = []
-    # aref_sq_2 = []
-    # aref_sq_3 = []
-    # aref_sq_4 = []
-    # aref_sq_5 = []
-    # aref_sq_6 = []
-    # aref_sq_7 = []
-    # aref_sq_8 = []
-    # aref_sq_9 = []
-    # aref_sq_10 = []
-    # aref_sq_11 = []
-    # aref_sq_12 = []
-    # aref_sq_13 = []
-    # aref_sq_14 = []
-    # aref_sq_15 = []
-    # aref_sq_16 = []
 
 
 def temp_Test():
@@ -4118,7 +4096,6 @@ def temp_Test():
         print("1900 aref ", aref)
         print("1901 temp_aref ", temp_aref)
         print("1902 temp_aref ", type(temp_btn), temp_btn)
-
         break
 
 
@@ -4151,50 +4128,35 @@ def reloadPuzzle(btn='btn_R1C2', aref='arrRef1'):
         if item == 'arrRef1':
             print(item)
             print("3683 aref ", item['btn'])
-    # btn = btn_R1C2
-    # aref = arrRef1
-    # aref['done'] = False
-    # aref['nums'] = startingString
-    # aref['font'] = buttonfont
-    # aref['width'] = 6
-    # aref['height'] = 4
-    # aref['fg'] = "black"
-    # btn['width'] = aref['width']
-    # btn['width'] = aref['width']
-    # btn['text'] = aref['nums']
-    # btn['fg'] = aref['fg']
-    # row = 1
-    # col = 2
-    # sq = 1
-    # # reset_cell_values(btn, aref)
-    # remove_aref_from_not_done_arefs(aref)
-    # update_puzzle(row, col, sq)
     cells_done()
     cells_remaining()
 
 
 def load_currentSolution():
     print("3669 Entered load_currentSolution")
-    # if outFile.open:
-    #     outFile.close()
     with open('C:\PythonProjects\MonsterSudoku\MS_Current_Solution.txt', 'r') as outFile:
         for line in outFile:
             print("3671 line is ", line)
 
 
 def save_currentSolution():
-    '''This function is not needed. '''
-    pass
-    # print("3679 Entered save_currentSolution")
-    # with open('C:\PythonProjects\MonsterSudoku\MS_5Star_9.txt', 'wt') as outFile:
-    #     print("Testing save text.")
-    #     # outFile.write("Testing txt_Explain.dump")
-    #     # outFile.write(txt_Explain.dump) # write() argument must be str, not method
-    #     ex_text = txt_Explain.dump
-    #     print("After ex_text = txt_Explain.dump.")
-    #     outFile.write(f'{history}')
-    #     print("After outFile.write(f'{history}'.")
-    # print(txt_Explain.dump)
+    print("2764 Entered save_currentSolution")
+    global currentNumber
+    global currentSolution
+    currentSolution = ""
+    for cell in arrRefs_List:
+        if cell['done'] == True:
+            currentNumber = cell['nums']
+            print(f"2255 currentNumber = '{currentNumber}'")
+            # btn = cell['btn']
+            # aref = eval(btn_dict[cell['btn']])
+            aref = cell['aref']
+            btn = cell['btn']
+            # update_cell(btn_R1C2, arrRef1)
+            currentSolution += f"currentNumber = '{currentNumber}'"
+            # currentSolution += str(cell['nums']) + "\n"
+            print(f"2263 update_cell({btn} , {aref})")
+            currentSolution += f"update_cell({btn} , {aref})"
 
 
 def save_currentSolution_1():
@@ -4219,6 +4181,7 @@ def save_currentSolution_1():
 
 def load_solution_1():
     print("3755 Entered load_solution_1")
+    # enlarge_puzzle()
     # 'C:\PythonProjects\MonsterSudoku\MS_5Star_9.txt'
     global currentNumber
     file = open("C:\MonsterSudoku\MS_5Star_2.txt", "r")
@@ -4354,7 +4317,6 @@ btn_R2C4 = Button(F1_frame, wraplength=48, justify=LEFT, text=startingString,
 btn_R2C4.grid(row=2, column=3, sticky='w')
 btn_R2C4.config(font=labelfont)
 
-
 btn_R2C5 = Button(F2_frame, wraplength=48, justify=LEFT, text=startingString,
                   command=update_R2C5, width=6, height=hit)
 btn_R2C5.grid(row=2, column=0, sticky='w')
@@ -4428,7 +4390,6 @@ btn_7 = Button(sn_frame, wraplength=48, justify=LEFT, text='7',
                command=set_current_num_to_7, width=6, height=hit)
 btn_7.grid(row=3, column=3, sticky='nw')
 btn_7.config(font=entryfont)
-btn_7.bind("<<ButtonPress>>", set_current_num_to_7)
 
 btn_R3C1 = Button(F1_frame, wraplength=48, justify=LEFT, text=startingString,
                   command=update_R3C1, width=6, height=hit)
@@ -4589,6 +4550,7 @@ btn_R4C15 = Button(F4_frame, wraplength=48, justify=LEFT, text=startingString,
                    command=update_R4C15, width=6, height=hit)
 btn_R4C15.grid(row=4, column=2, sticky='w')
 btn_R4C15.config(font=labelfont)
+
 btn_R4C16 = Button(F4_frame, wraplength=48, justify=LEFT, text=startingString,
                    command=update_R4C16, width=6, height=hit)
 btn_R4C16.grid(row=4, column=3, sticky='w')
@@ -4844,7 +4806,7 @@ btn_R7C16 = Button(F8_frame, wraplength=48, justify=LEFT, text=startingString,
                    command=update_R7C16, width=6, height=hit)
 btn_R7C16.grid(row=3, column=3, sticky='w')
 btn_R7C16.config(font=labelfont)
-# btn_R1C16.bind("<<ComboboxSelected>>", create_record())
+
 btn_only_one_num = Button(fn_frame, wraplength=40, justify=LEFT, text='Find\nSingle',
                           command=CheckForOnlyOneNumber, width=6, height=3)
 btn_only_one_num.grid(row=0, column=0, sticky='nw')
@@ -4949,38 +4911,47 @@ btn_R9C2 = Button(F9_frame, wraplength=48, justify=LEFT, text=startingString,
                   command=update_R9C2, width=6, height=hit)
 btn_R9C2.grid(row=1, column=1, sticky='w')
 btn_R9C2.config(font=labelfont)
+
 btn_R9C3 = Button(F9_frame, wraplength=48, justify=LEFT, text=startingString,
                   command=update_R9C3, width=6, height=hit)
 btn_R9C3.grid(row=1, column=2, sticky='w')
 btn_R9C3.config(font=labelfont)
+
 btn_R9C4 = Button(F9_frame, wraplength=48, justify=LEFT, text=startingString,
                   command=update_R9C4, width=6, height=hit)
 btn_R9C4.grid(row=1, column=3, sticky='w')
 btn_R9C4.config(font=labelfont)
+
 btn_R9C5 = Button(F10_frame, wraplength=48, justify=LEFT, text=startingString,
                   command=update_R9C5, width=6, height=hit)
 btn_R9C5.grid(row=1, column=0, sticky='w')
 btn_R9C5.config(font=labelfont)
+
 btn_R9C6 = Button(F10_frame, wraplength=48, justify=LEFT, text=startingString,
                   command=update_R9C6, width=6, height=hit)
 btn_R9C6.grid(row=1, column=1, sticky='w')
 btn_R9C6.config(font=labelfont)
+
 btn_R9C7 = Button(F10_frame, wraplength=48, justify=LEFT, text=startingString,
                   command=update_R9C7, width=6, height=hit)
 btn_R9C7.grid(row=1, column=2, sticky='w')
 btn_R9C7.config(font=labelfont)
+
 btn_R9C8 = Button(F10_frame, wraplength=48, justify=LEFT, text=startingString,
                   command=update_R9C8, width=6, height=hit)
 btn_R9C8.grid(row=1, column=3, sticky='w')
 btn_R9C8.config(font=labelfont)
+
 btn_R9C9 = Button(F11_frame, wraplength=48, justify=LEFT, text=startingString,
                   command=update_R9C9, width=6, height=hit)
 btn_R9C9.grid(row=1, column=0, sticky='w')
 btn_R9C9.config(font=labelfont)
+
 btn_R9C10 = Button(F11_frame, wraplength=48, justify=LEFT, text=startingString,
                    command=update_R9C10, width=6, height=hit)
 btn_R9C10.grid(row=1, column=1, sticky='w')
 btn_R9C10.config(font=labelfont)
+
 btn_R9C11 = Button(F11_frame, wraplength=48, justify=LEFT, text=startingString,
                    command=update_R9C11, width=6, height=hit)
 btn_R9C11.grid(row=1, column=2, sticky='w')
@@ -4989,14 +4960,17 @@ btn_R9C12 = Button(F11_frame, wraplength=48, justify=LEFT, text=startingString,
                    command=update_R9C12, width=6, height=hit)
 btn_R9C12.grid(row=1, column=3, sticky='w')
 btn_R9C12.config(font=labelfont)
+
 btn_R9C13 = Button(F12_frame, wraplength=48, justify=LEFT, text=startingString,
                    command=update_R9C13, width=6, height=hit)
 btn_R9C13.grid(row=1, column=0, sticky='w')
 btn_R9C13.config(font=labelfont)
+
 btn_R9C14 = Button(F12_frame, wraplength=48, justify=LEFT, text=startingString,
                    command=update_R9C14, width=6, height=hit)
 btn_R9C14.grid(row=1, column=1, sticky='w')
 btn_R9C14.config(font=labelfont)
+
 btn_R9C15 = Button(F12_frame, wraplength=48, justify=LEFT, text=startingString,
                    command=update_R9C15, width=6, height=hit)
 btn_R9C15.grid(row=1, column=2, sticky='w')
@@ -5018,25 +4992,17 @@ btn_IDTriples = Button(fn_frame, wraplength=40, justify=LEFT, text='Test\n1',
                        command=test_1, width=6, height=hit)
 btn_IDTriples.grid(row=2, column=2, sticky='nw')
 btn_IDTriples.config(font=entryfont)
-# btn_y = Button(fn_frame, wraplength=40, justify=LEFT, text='y',
-#             command=set_current_num_to_6, width=6, height=hit)
-# btn_y.grid(row=2, column=2, sticky='nw')
-# btn_y.config(font=entryfont)
-btn_IDQuads = Button(fn_frame, wraplength=48, justify=LEFT, text='Find\nQuad',
-                     command=find_Quad, width=6, height=hit)
+
+btn_IDQuads = Button(fn_frame, wraplength=48, justify=LEFT, text='test\n2',
+                     command=test_1, width=6, height=hit)
 btn_IDQuads.grid(row=2, column=3, sticky='nw')
 btn_IDQuads.config(font=entryfont)  #
-# btn_IDQuads = Button(fn_frame, wraplength=40, justify=LEFT,
-#                      text='Save\nCurrent\nSolution', command=save_currentSolution, width=6, height=hit)
 
 btn_del_num = Button(fn_frame, wraplength=40, justify=LEFT, text='Del\nnum\nfrom\ncell',
                      command=set_bRemoveANumberFromACell, width=6, height=hit)
 btn_del_num.grid(row=3, column=0, sticky='nw')
 btn_del_num.config(font=entryfont)
-# btn_a = Button(fn_frame, wraplength=40, justify=LEFT, text='a',
-#             command=set_current_num_to_4, width=6, height=hit)
-# btn_a.grid(row=3, column=0, sticky='nw')
-# btn_a.config(font=entryfont)
+
 btn_Reload = Button(fn_frame, wraplength=40, justify=LEFT, text='Reload\nSolutn',
                     command=reloadPuzzle, width=6, height=hit)
 btn_Reload.grid(row=3, column=1, sticky='nw')
@@ -6131,6 +6097,10 @@ arrRef254 = dict(aref='arrRef254', btn=btn_R16C15, btn_str='btn_R16C15', row=16,
 arrRef255 = dict(aref='arrRef255', btn=btn_R16C16, btn_str='btn_R16C16', row=16, col=16,
                  sq=16, done=False, nums=startingString, width=6, height=hit, font=labelfont, fg="black")
 
+# arrRefs_set = set([arrRef0, arrRef1, arrRef2, arrRef3,
+#                   arrRef4, arrRef5, arrRef6, arrRef7])
+arrRefs_setq = set(['arrRef0', 'arrRef1', 'arrRef2', 'arrRef3',
+                   'arrRef4', 'arrRef5', 'arrRef6', 'arrRef7'])
 arrRefs_List = [arrRef0, arrRef1, arrRef2, arrRef3, arrRef4, arrRef5, arrRef6, arrRef7,
                 arrRef8, arrRef9, arrRef10, arrRef11, arrRef12, arrRef13, arrRef14,
                 arrRef15, arrRef16, arrRef17, arrRef18, arrRef19, arrRef20, arrRef21,
