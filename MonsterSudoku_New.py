@@ -1,4 +1,4 @@
-import sys
+import sys #2/22
 import pickle
 import json
 import ctypes
@@ -26,16 +26,12 @@ import tkinter as tk
 # from tkinter import messagebox as mb
 # from tkinter import font
 root = Tk()
-# root.config(text="Monster Sudoku Solver")
-# Calculate dimensions
 screen_height = root.winfo_screenheight()
 puzzle_height = int(screen_height * 7 / 8)
-puzzle_width = puzzle_height
-# screen_width = root.winfo_screenwidth()
-# screen_height = root.winfo_screenheight()
+puzzle_width = int(puzzle_height * 1.3)
+root.geometry(f"{puzzle_width}x{puzzle_height}")
 print("33 puzzle_width screen_height", puzzle_width, screen_height)
 root.geometry(f"{puzzle_width}x{puzzle_height}")
-# root.size()
 titlefont = ('Ariel', 12, 'bold')
 donefont = ('Ariel', 16, 'bold')
 labelfont = ('Ariel', 10, 'bold')
@@ -76,6 +72,8 @@ quints_rcs_list = []
 completed_duples_list = []
 completed_triples_list = []
 cells_remaining_num = 256
+n_in_row_sq = []
+n_in_col_sq = []
 D = 0
 R = 0
 NullValue = "Null"
@@ -89,69 +87,68 @@ col_nums = [[1, ""], [2, ""], [3, ""], [4, ""], [5, ""], [6, ""], [7, ""], [
     8, ""], [9, ""], [10, ''], [11, ''], [12, ""], [13, ""], [14, ""], [15, ''], [16, '']]
 sq_nums = [[1, ""], [2, ""], [3, ""], [4, ""], [5, ""], [6, ""], [7, ""], [
     8, ""], [9, ""], [10, ''], [11, ''], [12, ""], [13, ""], [14, ""], [15, ''], [16, '']]
-row_1_arefs = ['arrRef0', 'arrRef1', 'arrRef2', 'arrRef3', 'arrRef4', 'arrRef5', 'arrRef6', 'arrRef7',
-               'arrRef8', 'arrRef9', 'arrRef10', 'arrRef11', 'arrRef12', 'arrRef13', 'arrRef14', 'arrRef15']
-aref_row_1 = []
-aref_row_2 = []
-aref_row_3 = []
-aref_row_4 = []
-aref_row_5 = []
-aref_row_6 = []
-aref_row_7 = []
-aref_row_8 = []
-aref_row_9 = []
-aref_row_10 = []
-aref_row_11 = []
-aref_row_12 = []
-aref_row_13 = []
-aref_row_14 = []
-aref_row_15 = []
-aref_row_16 = []
-aref_rows = (aref_row_1, aref_row_2, aref_row_3, aref_row_4,
-             aref_row_5, aref_row_6, aref_row_7, aref_row_8, aref_row_9,
-             aref_row_10, aref_row_11, aref_row_12, aref_row_13,
-             aref_row_14, aref_row_15, aref_row_16)
-aref_col_1 = []
-aref_col_2 = []
-aref_col_3 = []
-aref_col_4 = []
-aref_col_5 = []
-aref_col_6 = []
-aref_col_7 = []
-aref_col_8 = []
-aref_col_9 = []
-aref_col_10 = []
-aref_col_11 = []
-aref_col_12 = []
-aref_col_13 = []
-aref_col_14 = []
-aref_col_15 = []
-aref_col_16 = []
-aref_cols = (aref_col_1, aref_col_2, aref_col_3, aref_col_4,
-             aref_col_5, aref_col_6, aref_col_7, aref_col_8, aref_col_9,
-             aref_col_10, aref_col_11, aref_col_12, aref_col_13,
-             aref_col_14, aref_col_15, aref_col_16)
-aref_sq_1 = []
-aref_sq_2 = []
-aref_sq_3 = []
-aref_sq_4 = []
-aref_sq_5 = []
-aref_sq_6 = []
-aref_sq_7 = []
-aref_sq_8 = []
-aref_sq_9 = ['arrRef128', 'arrRef129', 'arrRef130', 'arrRef131', 'arrRef144', 'arrRef145', 'arrRef146', 'arrRef147',
-             'arrRef160', 'arrRef161', 'arrRef162', 'arrRef163', 'arrRef176', 'arrRef177', 'arrRef178', 'arrRef179']
-aref_sq_10 = []
-aref_sq_11 = []
-aref_sq_12 = []
-aref_sq_13 = []
-aref_sq_14 = []
-aref_sq_15 = []
-aref_sq_16 = []
-aref_sqs = (aref_sq_1, aref_sq_2, aref_sq_3, aref_sq_4,
-            aref_sq_5, aref_sq_6, aref_sq_7, aref_sq_8, aref_sq_9,
-            aref_sq_10, aref_sq_11, aref_sq_12, aref_sq_13,
-            aref_sq_14, aref_sq_15, aref_sq_16)
+
+# row_1_arefs = ['arrRef0', 'arrRef1', 'arrRef2', 'arrRef3', 'arrRef4', 'arrRef5', 'arrRef6', 'arrRef7',
+#                'arrRef8', 'arrRef9', 'arrRef10', 'arrRef11', 'arrRef12', 'arrRef13', 'arrRef14', 'arrRef15']
+row_1_arefs = []
+row_2_arefs = []
+row_3_arefs = []
+row_4_arefs = []
+row_5_arefs = []
+row_6_arefs = []
+row_7_arefs = []
+row_8_arefs = []
+row_9_arefs = []
+row_10_arefs = []
+row_11_arefs = []
+row_12_arefs = []
+row_13_arefs = []
+row_14_arefs = []
+row_15_arefs = []
+row_16_arefs = []
+row_arefs = [row_1_arefs, row_2_arefs, row_3_arefs, row_4_arefs, row_5_arefs, row_6_arefs, row_7_arefs, row_8_arefs,
+             row_9_arefs, row_10_arefs, row_11_arefs, row_12_arefs, row_13_arefs, row_14_arefs, row_15_arefs, row_16_arefs]
+col_1_arefs = []
+col_2_arefs = []
+col_3_arefs = []
+col_4_arefs = []
+col_5_arefs = []
+col_6_arefs = []
+col_7_arefs = []
+col_8_arefs = []
+col_9_arefs = []
+col_10_arefs = []
+col_11_arefs = []
+col_12_arefs = []
+col_13_arefs = []
+col_14_arefs = []
+col_15_arefs = []
+col_16_arefs = []
+col_arefs = [col_1_arefs, col_2_arefs, col_3_arefs, col_4_arefs, col_5_arefs, col_6_arefs, col_7_arefs, col_8_arefs,
+             col_9_arefs, col_10_arefs, col_11_arefs, col_12_arefs, col_13_arefs, col_14_arefs, col_15_arefs, col_16_arefs]
+
+sq_1_arefs = []
+sq_2_arefs = []
+sq_3_arefs = []
+sq_4_arefs = []
+sq_5_arefs = []
+sq_6_arefs = []
+sq_7_arefs = []
+sq_8_arefs = []
+sq_9_arefs = []
+# sq_9_arefs = ['arrRef128', 'arrRef129', 'arrRef130', 'arrRef131', 'arrRef144', 'arrRef145', 'arrRef146', 'arrRef147',
+#               'arrRef160', 'arrRef161', 'arrRef162', 'arrRef163', 'arrRef176', 'arrRef177', 'arrRef178', 'arrRef179']
+sq_10_arefs = []
+sq_11_arefs = []
+sq_12_arefs = []
+sq_13_arefs = []
+sq_14_arefs = []
+sq_15_arefs = []
+sq_16_arefs = []
+sq_arefs = (sq_1_arefs, sq_2_arefs, sq_3_arefs, sq_4_arefs,
+            sq_5_arefs, sq_6_arefs, sq_7_arefs, sq_7_arefs,
+            sq_8_arefs, sq_9_arefs, sq_10_arefs, sq_11_arefs,
+            sq_12_arefs, sq_13_arefs, sq_14_arefs, sq_15_arefs, sq_16_arefs)
 
 # nums = 0
 r_1_nums = ""
@@ -264,10 +261,22 @@ col_nums_list = ['col_1_nums', 'col_2_nums', 'col_3_nums', 'col_4_nums', 'col_5_
 sqr_nums_list = ['sq_1_nums', 'sq_2_nums', 'sq_3_nums', 'sq_4_nums', 'sq_5_nums', 'sq_6_nums', 'sq_7_nums', 'sq_8_nums',
                  'sq_9_nums', 'sq_10_nums', 'sq_11_nums', 'sq_12_nums', 'sq_13_nums', 'sq_14_nums', 'sq_15_nums', 'sq_16_nums']
 
+# row_1_arefs = ['arrRef0', 'arrRef1', 'arrRef2', 'arrRef3', 'arrRef4', 'arrRef5', 'arrRef6', 'arrRef7',
+#                'arrRef8', 'arrRef9', 'arrRef10', 'arrRef11', 'arrRef12', 'arrRef13', 'arrRef14', 'arrRef15']
+# col_1_arefs = ['arrRef0', 'arrRef32', 'arrRef48', 'arrRef64', 'arrRef16',
+#                'arrRef16', 'arrRef16', 'arrRef16', 'arrRef16', 'arrRef16', 'arrRef16', 'arrRef16']
+# sq_1_arefs = ['arrRef0', 'arrRef1', 'arrRef2',
+#               'arrRef3''arrRef16', 'arrRef17', 'arrRef18', 'arrRef19''arrRef32', 'arrRef33', 'arrRef34', 'arrRef35''arrRef48', 'arrRef49', 'arrRef50', 'arrRef51']
+# row_9_arefs = ['arrRef128', 'arrRef129', 'arrRef130', 'arrRef131', 'arrRef132', 'arrRef133', 'arrRef134',
+#                'arrRef135', 'arrRef136', 'arrRef137', 'arrRef138', 'arrRef139', 'arrRef140', 'arrRef141', 'arrRef142', 'arrRef143']
+# col_9_arefs = []
+# sq_9_arefs = ['arrRef128', 'arrRef129', 'arrRef130', 'arrRef131', 'arrRef144', 'arrRef145', 'arrRef146', 'arrRef147',
+#               'arrRef160', 'arrRef162', 'arrRef163', 'arrRef164', 'arrRef176', 'arrRef177', 'arrRef178', 'arrRef179']
+
 delete_singles_row_list = []
 delete_singles_col_list = []
 delete_singles_sq_list = []
-sq_nums_lst = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+n_1_16 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 nums = ""
 done_arefs_list = []
 r1 = dict(nums='', n0="", ct_0=0, ct_0__col_refs=[], n1="", ct_1=0, ct_1__col_refs=[], n2="", ct_2=0, ct_2__col_refs=[], n3="", ct_3=0, ct_3__col_refs=[], n4="", ct_4=0, ct_4__col_refs=[], n5="", ct_5=0, ct_5__col_refs=[], n6="", ct_6=0, ct_6__col_refs=[], n7="", ct_7=0, ct_7__col_refs=[
@@ -303,7 +312,7 @@ r15 = dict(nums='', n0="", ct_0=0, ct_0__col_refs=[], n1="", ct_1=0, ct_1__col_r
 r16 = dict(nums='', n0="", ct_0=0, ct_0__col_refs=[], n1="", ct_1=0, ct_1__col_refs=[], n2="", ct_2=0, ct_2__col_refs=[], n3="", ct_3=0, ct_3__col_refs=[], n4="", ct_4=0, ct_4__col_refs=[], n5="", ct_5=0, ct_5__col_refs=[], n6="", ct_6=0, ct_6__col_refs=[], n7="", ct_7=0, ct_7__col_refs=[
 ], n8="", ct_8=0, ct_8__col_refs=[], n9="", ct_9=0, ct_9__col_refs=[], nA="", ct_A=0, ct_A__col_refs=[], nB="", ct_B=0, ct_B__col_refs=[], nC="", ct_C=0, ct_C__col_refs=[], nD="", ct_D=0, ct_D__col_refs=[], nE="", ct_E=0, ct_E__col_refs=[], nF="", ct_F=0, ct_F__col_refs=[])
 c1 = dict(nums='', n0="", ct_0=0, ct_0__row_refs=[], n1="", ct_1=0, ct_1__row_refs=[], n2="", ct_2=0, ct_2__row_refs=[], n3="", ct_3=0, ct_3__row_refs=[], n4="", ct_4=0, ct_4__row_refs=[], n5="", ct_5=0, ct_5__row_refs=[], n6="", ct_6=0, ct_6__row_refs=[], n7="", ct_7=0, ct_7__row_refs=[
-], n8="", ct_8=0, ct_8__row_refs=[], n9="", ct_9=0, ct_9__row_refs=[], nA="", ct_A=0, ct_A__row_refs=[], nB="", ct_B=0, ct_B__row_refs=[], nC="", ct_C=0, ct_C__row_refs=[], nD="", ct_D=0, ct_D__col_refs=[], nE="", ct_E=0, ct_E__row_refs=[], nF="", ct_F=0, ct_F__row_refs=[])
+], n8="", ct_8=0, ct_8__row_refs=[], n9="", ct_9=0, ct_9__row_refs=[], nA="", ct_A=0, ct_A__row_refs=[], nB="", ct_B=0, ct_B__row_refs=[], nC="", ct_C=0, ct_C__row_refs=[], nD="", ct_D=0, ct_D__row_refs=[], ct_D__col_refs=[], nE="", ct_E=0, ct_E__row_refs=[], nF="", ct_F=0, ct_F__row_refs=[])
 c2 = dict(nums='', n0="", ct_0=0, ct_0__row_refs=[], n1="", ct_1=0, ct_1__row_refs=[], n2="", ct_2=0, ct_2__row_refs=[], n3="", ct_3=0, ct_3__row_refs=[], n4="", ct_4=0, ct_4__row_refs=[], n5="", ct_5=0, ct_5__row_refs=[], n6="", ct_6=0, ct_6__row_refs=[], n7="", ct_7=0, ct_7__row_refs=[
 ], n8="", ct_8=0, ct_8__row_refs=[], n9="", ct_9=0, ct_9__row_refs=[], nA="", ct_A=0, ct_A__row_refs=[], nB="", ct_B=0, ct_B__row_refs=[], nC="", ct_C=0, ct_C__row_refs=[], nD="", ct_D=0, ct_D__col_refs=[], nE="", ct_E=0, ct_E__row_refs=[], nF="", ct_F=0, ct_F__row_refs=[])
 c3 = dict(nums='', n0="", ct_0=0, ct_0__row_refs=[], n1="", ct_1=0, ct_1__row_refs=[], n2="", ct_2=0, ct_2__row_refs=[], n3="", ct_3=0, ct_3__row_refs=[], n4="", ct_4=0, ct_4__row_refs=[], n5="", ct_5=0, ct_5__row_refs=[], n6="", ct_6=0, ct_6__row_refs=[], n7="", ct_7=0, ct_7__row_refs=[
@@ -335,7 +344,13 @@ c15 = dict(nums='', n0="", ct_0=0, ct_0__row_refs=[], n1="", ct_1=0, ct_1__row_r
 c16 = dict(nums='', n0="", ct_0=0, ct_0__row_refs=[], n1="", ct_1=0, ct_1__row_refs=[], n2="", ct_2=0, ct_2__row_refs=[], n3="", ct_3=0, ct_3__row_refs=[], n4="", ct_4=0, ct_4__row_refs=[], n5="", ct_5=0, ct_5__row_refs=[], n6="", ct_6=0, ct_6__row_refs=[], n7="", ct_7=0, ct_7__row_refs=[
 ], n8="", ct_8=0, ct_8__row_refs=[], n9="", ct_9=0, ct_9__row_refs=[], nA="", ct_A=0, ct_A__row_refs=[], nB="", ct_B=0, ct_B__row_refs=[], nC="", ct_C=0, ct_C__row_refs=[], nD="", ct_D=0, ct_D__col_refs=[], nE="", ct_E=0, ct_E__row_refs=[], nF="", ct_F=0, ct_F__row_refs=[])
 
-
+# s_9_num_cts_old = dict(n0 = "", n0_row_ct = 0, n0_col_ct = 0, n1 = "", n1_row_ct = 0, n1_col_ct = 0, n2 = "", n2_row_ct = 0, n2_col_ct = 0, n3 = "", n3_row_ct = 0, n3_col_ct = 0, n4 = "", n4_row_ct = 0, n4_col_ct = 0, n5 = "", n5_row_ct = 0, n5_col_ct = 0,n6 = "", n6_row_ct = 0, n6_col_ct = 0, n7 = "", n7_row_ct = 0, n7_col_ct = 0, n8 = "", n8_row_ct = 0, n8_col_ct = 0, n9 = "", n9_row_ct = 0, n9_col_ct = 0, nA = "", nA_row_ct = 0, nA_col_ct = 0, nB = "", nB_row_ct = 0, nB_col_ct = 0, nC = "", nC_row_ct = 0, nC_col_ct = 0, nD = "", nD_row_ct = 0, nD_col_ct = 0, nE = "", nE_row_ct = 0, nE_col_ct = 0, nF = "", nF_row_ct = 0, nF_col_ct = 0)
+''' The s_9_num_cts dictionary stores the count of the number of rows, the number of columns, and the number of times a number occurs in the square. 
+Thus, s_9_num_cts[7][2][1][2] would record that the number 7 occurs in 2 rows, in 1 column and 2 times in the square.'''
+# s_9_num_cts = [[0, [], [], []], [1, [], [], []], [2, [], [], []], [3, [], [], []], [4, [], [], []], [5, [], [], []], [6, [], [], []], [7, [], [], []], [
+#     8, [], [], []], [9, [], [], []], ['A', [], [], []], ['B', [], [], []], ['C', [], [], []], ['D', [], [], []], ['E', [], [], []], ['F', [], [], []]]
+s_9_num_cts = [['0', 0, 0, 0], ['1', 0, 0, 0], ['2', 0, 0, 0], ['3', 0, 0, 0], ['4', 0, 0, 0], ['5', 0, 0, 0], ['6', 0, 0, 0], [
+    '7', 0, 0, 0], ['8', 0, 0, 0], ['9', 0, 0, 0], ['A', 0, 0, 0], ['B', 0, 0, 0], ['C', 0, 0, 0], ['D', 0, 0, 0], ['E', 0, 0, 0], ["F", 0, 0, 0]]
 """ The following function isn't used."""
 
 
@@ -358,16 +373,8 @@ bShow = False
 main_frame = Frame(root)
 main_frame.grid(row=0, column=0, columnspan=10)
 main_frame.config(highlightbackground="red", highlightthickness=2)
-# Create a Canvas
 main_canvas = Canvas(main_frame)
 main_canvas.grid(row=0, column=0, columnspan=10)
-# Add a Scrollbar to the Canvas
-# sb = Scrollbar(main_frame, orient=VERTICAL,command=main_canvas.yview)
-# sb.pack(side=RIGHT)
-# Configure the Canvas
-# main_canvas.configure(yscrollcommand=sb.set)
-# main_canvas.bind('<Configure>', lambda e: main_canvas.configure(scrollregion=main_canvas.bbox("all")))
-# Create another Frame inside the Canvas
 F1_frame = Frame(main_canvas)
 F1_frame.grid(row=2, column=0, sticky="nw")
 F1_frame.config(highlightbackground="blue", highlightthickness=2)
@@ -578,6 +585,1058 @@ def set_current_num_to_F():
 
 
 def num_in_row_col_of_sq():
+    print("638 entering new num_in_row_col_of_sq")
+    global s_9_num_cts
+    global sq_1_arefs
+    sq_1_arefs = []
+    global sq_2_arefs
+    sq_2_arefs = []
+    global sq_3_arefs
+    sq_3_arefs = []
+    global sq_4_arefs
+    sq_4_arefs = []
+    global sq_5_arefs
+    sq_5_arefs = []
+    global sq_6_arefs
+    sq_6_arefs = []
+    global sq_7_arefs
+    sq_7_arefs = []
+    global sq_8_arefs
+    sq_8_arefs = []
+    global sq_9_arefs
+    sq_9_arefs = []
+    global sq_10_arefs
+    sq_10_arefs = []
+    global sq_11_arefs
+    sq_11_arefs = []
+    global sq_12_arefs
+    sq_12_arefs = []
+    global sq_13_arefs
+    sq_13_arefs = []
+    global sq_14_arefs
+    sq_14_arefs = []
+    global sq_15_arefs
+    sq_15_arefs = []
+    global sq_16_arefs
+    sq_16_arefs = []
+    global n_in_row_sq
+    global n_in_col_sq
+    make_current_arefs()
+    print("700 after make_arefs")
+    s_1_nums_set = []
+    s_2_nums_set = []
+    s_3_nums_set = []
+    s_4_nums_set = []
+    s_5_nums_set = []
+    s_6_nums_set = []
+    s_7_nums_set = []
+    s_8_nums_set = []
+    s_9_nums_set = []
+    s_10_nums_set = []
+    s_11_nums_set = []
+    s_12_nums_set = []
+    s_13_nums_set = []
+    s_14_nums_set = []
+    s_15_nums_set = []
+    s_16_nums_set = []
+    sq = 0
+    for sq in n_1_16:
+        '''Get the square references
+           check each for not done
+           process the whole square
+           and store and report the results
+           so user can use a fix function.
+           The main concern is to limit complexity
+           by completing only one square at a time.
+           '''
+        # Start by setting all row and col strings to ""
+        print("685 square is ", sq)
+        s_x_rows = []
+        s_x_cols = []
+        s_x_nums_set = []
+        sr_1_nums = ""
+        sr_2_nums = ""
+        sr_3_nums = ""
+        sr_4_nums = ""
+        sc_1_nums = ""
+        sc_2_nums = ""
+        sc_3_nums = ""
+        sc_4_nums = ""
+        if sq == 1:
+            sq_aref = sq_1_arefs
+            s_x_nums_set = s_1_nums_set
+        elif sq == 2:
+            sq_aref = sq_2_arefs
+            s_x_nums_set = s_2_nums_set
+        elif sq == 3:
+            sq_aref = sq_3_arefs
+            s_x_nums_set = s_3_nums_set
+        elif sq == 4:
+            sq_aref = sq_4_arefs
+            s_x_nums_set = s_4_nums_set
+        elif sq == 5:
+            sq_aref = sq_5_arefs
+            s_x_nums_set = s_5_nums_set
+        elif sq == 6:
+            sq_aref = sq_6_arefs
+            s_x_nums_set = s_6_nums_set
+        elif sq == 7:
+            sq_aref = sq_7_arefs
+            s_x_nums_set = s_7_nums_set
+        elif sq == 8:
+            sq_aref = sq_8_arefs
+            s_x_nums_set = s_8_nums_set
+        elif sq == 9:
+            sq_aref = sq_9_arefs
+            s_x_nums_set = s_9_nums_set
+        elif sq == 10:
+            sq_aref = sq_10_arefs
+            s_x_nums_set = s_10_nums_set
+        elif sq == 11:
+            sq_aref = sq_11_arefs
+            s_x_nums_set = s_11_nums_set
+        elif sq == 12:
+            sq_aref = sq_12_arefs
+            s_x_nums_set = s_12_nums_set
+        elif sq == 13:
+            sq_aref = sq_13_arefs
+            s_x_nums_set = s_13_nums_set
+        elif sq == 14:
+            sq_aref = sq_14_arefs
+            s_x_nums_set = s_14_nums_set
+        elif sq == 15:
+            sq_aref = sq_15_arefs
+            s_x_nums_set = s_15_nums_set
+        elif sq == 16:
+            sq_aref = sq_16_arefs
+            s_x_nums_set = s_16_nums_set
+        # print("742 sq_aref is ", sq_aref)
+        # s_9_rows = [r_9_nums, r_10_nums, r_11_nums, r_12_nums]
+        # s_9_cols = [c_1_nums, c_2_nums, c_3_nums, c_4_nums]
+        # print("745 s_9_cols ", s_9_cols)
+        for aref in sq_aref:
+            # print("747 sq_aref ", aref)
+            sq = aref['sq']
+            if aref['done'] == False:
+                btn = aref['btn_str']
+                # print("536 sq_9 ", aref['sq'], btn)
+                row = aref['row']
+                col = aref['col']
+                sq = aref['sq']
+                num = aref['nums']
+                # print("541 aref in sq 9 is ", btn, row, col, sq, num)
+                for n in num:
+                    if not n in s_x_nums_set:
+                        s_x_nums_set.append(n)
+                #     # print("761 s_9_nums_set is ", s_9_nums_set)
+                #     # s_9_num_cts[n][1].append(n)
+                #     # s_9_num_cts[n][2].append(n)
+                #     if n == 1:
+                #         s_9_num_cts[1][1] += 1
+                #         s_9_num_cts[1][2] += 1
+                #         s_9_num_cts[1][3] += 1
+                #         # print("641 s_9_num_cts ", s_9_num_cts)
+                if row == 1:  # and not n in r_1_nums
+                    sr_1_nums += aref['nums']
+                    r_1_nums = row_nums[0][1]
+                elif row == 2:
+                    sr_2_nums += aref['nums']
+                    r_2_nums = row_nums[1][1]
+                elif row == 3:
+                    sr_3_nums += aref['nums']
+                    r_3_nums = row_nums[2][1]
+                elif row == 4:  # and not n in r_4_nums
+                    sr_4_nums += aref['nums']
+                    r_4_nums = row_nums[3][1]
+                elif row == 5:
+                    sr_1_nums += aref['nums']
+                    r_1_nums = row_nums[4][1]
+                elif row == 6:
+                    sr_2_nums += aref['nums']
+                    r_2_nums = row_nums[5][1]
+                elif row == 7:
+                    sr_3_nums += aref['nums']
+                    r_3_nums = row_nums[6][1]
+                elif row == 8:
+                    sr_4_nums += aref['nums']
+                    r_4_nums = row_nums[7][1]
+                elif row == 9:
+                    sr_1_nums += aref['nums']
+                    r_1_nums = row_nums[8][1]
+                elif row == 10:
+                    sr_2_nums += aref['nums']
+                    r_2_nums = row_nums[9][1]
+                elif row == 11:
+                    sr_3_nums += aref['nums']
+                    r_3_nums = row_nums[10][1]
+                elif row == 12:
+                    sr_4_nums += aref['nums']
+                    r_4_nums = row_nums[11][1]
+                elif row == 13:
+                    sr_1_nums += aref['nums']
+                    r_1_nums = row_nums[12][1]
+                elif row == 14:
+                    sr_2_nums += aref['nums']
+                    r_2_nums = row_nums[13][1]
+                elif row == 15:
+                    sr_3_nums += aref['nums']
+                    r_3_nums = row_nums[14][1]
+                elif row == 16:
+                    sr_4_nums += aref['nums']
+                    r_4_nums = row_nums[15][1]
+                if col == 1:  # and not n in c_1_nums
+                    sc_1_nums += aref['nums']
+                    c_1_nums = col_nums[0][1]
+                elif col == 2:
+                    sc_2_nums += aref['nums']
+                    c_2_nums = col_nums[1][1]
+                elif col == 3:
+                    sc_3_nums += aref['nums']
+                    c_3_nums = col_nums[2][1]
+                elif col == 4:
+                    sc_4_nums += aref['nums']
+                    c_4_nums = col_nums[3][1]
+                elif col == 5:
+                    sc_1_nums += aref['nums']
+                    c_1_nums = col_nums[4][1]
+                elif col == 6:
+                    sc_2_nums += aref['nums']
+                    c_2_nums = col_nums[5][1]
+                elif col == 7:
+                    sc_3_nums += aref['nums']
+                    c_3_nums = col_nums[6][1]
+                elif col == 8:
+                    sc_4_nums += aref['nums']
+                    c_4_nums = col_nums[7][1]
+                elif col == 9:
+                    sc_1_nums += aref['nums']
+                    c_1_nums = col_nums[8][1]
+                elif col == 10:
+                    sc_2_nums += aref['nums']
+                    c_2_nums = col_nums[9][1]
+                elif col == 11:
+                    sc_3_nums += aref['nums']
+                    c_3_nums = col_nums[10][1]
+                elif col == 12:
+                    sc_4_nums += aref['nums']
+                    c_4_nums = col_nums[11][1]
+                elif col == 13:
+                    sc_1_nums += aref['nums']
+                    c_1_nums = col_nums[12][1]
+                elif col == 14:
+                    sc_2_nums += aref['nums']
+                    c_2_nums = col_nums[13][1]
+                elif col == 15:
+                    sc_3_nums += aref['nums']
+                    c_3_nums = col_nums[14][1]
+                elif col == 16:
+                    sc_4_nums += aref['nums']
+                    c_4_nums = col_nums[15][1]
+        s_x_rows = [sr_1_nums, sr_2_nums, sr_3_nums, sr_4_nums]
+        # s_x_rows = [r_1_nums, r_2_nums, r_3_nums, r_4_nums]
+        s_x_cols = [sc_1_nums, sc_2_nums, sc_3_nums, sc_4_nums]
+        # print("655 s_9_num_cts ", s_9_num_cts)
+        print("800 s_x_rows ", s_x_rows)
+        print("801 s_x_cols ", s_x_cols)
+        print("802 s_x_nums_set", s_x_nums_set)
+        for num in s_x_nums_set:
+            if (num in sr_1_nums) and (num not in sr_2_nums) and (num not in sr_3_nums) and (num not in sr_4_nums):
+                cnt = sr_1_nums.count(num)
+                r_nums = r_1_nums.count(num)
+                if r_nums > cnt:
+                    ex_text = f"{num} is only in row 1 of square {sq}\n"
+                    ex_text = ex_text + \
+                        f"But {num} is in other cells of that row "
+                    ex_text = ex_text + \
+                        f"outside of that square\n {sq},{num}, {cnt}, {r_nums}\n"
+                    txt_Explain.insert(END, ex_text)
+                    if not num in n_in_row_sq:
+                        n_list = [sq, num]
+                        n_in_row_sq.append(n_list)
+            if (num in sr_2_nums) and (num not in sr_1_nums) and (num not in sr_3_nums) and (num not in sr_4_nums):
+                cnt = sr_2_nums.count(num)
+                r_nums = r_2_nums.count(num)
+                if r_nums > cnt:
+                    ex_text = f"{num} is only in row 2 of square {sq}\n"
+                    ex_text = ex_text + \
+                        f"But {num} is in other cells of that row "
+                    ex_text = ex_text + \
+                        f"outside of that square\n {sq},{num}, {cnt}, {r_nums}\n"
+                    txt_Explain.insert(END, ex_text)
+                    if not num in n_in_row_sq:
+                        n_list = [sq, num]
+                        n_in_row_sq.append(n_list)
+            if (num in sr_3_nums) and (num not in sr_1_nums) and (num not in sr_2_nums) and (num not in sr_4_nums):
+                cnt = sr_3_nums.count(num)
+                r_nums = r_3_nums.count(num)
+                if r_nums > cnt:
+                    ex_text = f"{num} is only in row 3 of square {sq}\n"
+                    ex_text = ex_text + \
+                        f"But {num} is in other cells of that row "
+                    ex_text = ex_text + \
+                        f"outside of that square\n {sq},{num}, {cnt}, {r_nums}\n"
+                    # {num}, {cnt}, {r_nums}
+                    txt_Explain.insert(END, ex_text)
+                    if not num in n_in_row_sq:
+                        n_list = [sq, num]
+                        n_in_row_sq.append(n_list)
+            if (num in sr_4_nums) and (num not in sr_1_nums) and (num not in sr_2_nums) and (num not in sr_3_nums):
+                cnt = sr_4_nums.count(num)
+                r_nums = r_4_nums.count(num)
+                if r_nums > cnt:
+                    ex_text = f"{num} is only in row 4 of square {sq}\n"
+                    ex_text = ex_text + \
+                        f"But {num} is in other cells of that row "
+                    ex_text = ex_text + \
+                        f"outside of that  square\n {sq},{num}, {cnt}, {r_nums}\n"
+                    txt_Explain.insert(END, ex_text)
+                    if not num in n_in_row_sq:
+                        n_list = [sq, num]
+                        n_in_row_sq.append(n_list)
+        for num in s_x_nums_set:
+            if (num in sc_1_nums) and (num not in sc_2_nums) and (num not in sc_3_nums) and (num not in sc_4_nums):
+                cnt = sc_1_nums.count(num)
+                c_nums = c_1_nums.count(num)
+                if c_nums > cnt:
+                    ex_text = f"{num} is only in column 1 of square {sq}\n"
+                    ex_text = ex_text + \
+                        f"But {num} is in other cells of that column "
+                    ex_text = ex_text + \
+                        f"outside of that square\n {sq},{num}, {cnt}, {c_nums}\n"
+                    txt_Explain.insert(END, ex_text)
+                    if not num in n_in_col_sq:
+                        n_list = [sq, num]
+                        n_in_col_sq.append(n_list)
+            if (num in sc_2_nums) and (num not in sc_1_nums) and (num not in sc_3_nums) and (num not in sc_4_nums):
+                cnt = sc_2_nums.count(num)
+                c_nums = c_2_nums.count(num)
+                if c_nums > cnt:
+                    ex_text = f"{num} is only in column 2 of square {sq}\n"
+                    ex_text = ex_text + \
+                        f"But {num} is in other cells of that column "
+                    ex_text = ex_text + \
+                        f"outside of that square\n {sq},{num}, {cnt}, {c_nums}\n"
+                    txt_Explain.insert(END, ex_text)
+                    if not num in n_in_col_sq:
+                        n_list = [sq, num]
+                        n_in_col_sq.append(n_list)
+            if (num in sc_3_nums) and (num not in sc_1_nums) and (num not in sc_2_nums) and (num not in sc_4_nums):
+                cnt = sc_3_nums.count(num)
+                c_nums = c_3_nums.count(num)
+                if c_nums > cnt:
+                    ex_text = f"{num} is only in col 3 of square {sq}\n"
+                    ex_text = ex_text + \
+                        f"But {num} is in other cells of that column "
+                    ex_text = ex_text + \
+                        f"outside of that square\n {sq},{num}, {cnt}, {c_nums}\n"
+                    txt_Explain.insert(END, ex_text)
+                    if not num in n_in_col_sq:
+                        n_list = [sq, num]
+                        n_in_col_sq.append(n_list)
+            if (num in sc_4_nums) and (num not in sc_1_nums) and (num not in sc_2_nums) and (num not in sc_3_nums):
+                cnt = sc_4_nums.count(num)
+                c_nums = c_4_nums.count(num)
+                if c_nums > cnt:
+                    ex_text = f"{num} is only in col 4 of square {sq}\n"
+                    ex_text = ex_text + \
+                        f"But {num} is in other cells of that column "
+                    ex_text = ex_text + \
+                        f"outside of that square\n {sq},{num}, {cnt}, {c_nums}\n"
+                    txt_Explain.insert(END, ex_text)
+                    if not num in n_in_col_sq:
+                        n_list = [sq, num]
+                        n_in_col_sq.append(n_list)
+
+
+def remove_num_in_row_sq():
+    print("955 entering remove_num_in_row_sq")
+    print("956 n_in_row_sq ", n_in_row_sq, n_in_row_sq[0])
+    print("957 n_in_row_sq ", n_in_row_sq[0],
+          n_in_row_sq[0][0], n_in_row_sq[0][1])
+    global bRemoveANumberFromACell
+    global currentNumber
+    for lsts in n_in_row_sq:
+        print("960 n_in_row_sq ", lsts)
+        r_sq = lsts[0]
+        r_num = lsts[1]
+        if r_sq in [1, 2, 3, 4]:
+            r_sq_list = [1, 2, 3, 4]
+        elif r_sq in [5, 6, 7, 8]:
+            r_sq_list = [5, 6, 7, 8]
+        elif r_sq in [9, 10, 11, 12]:
+            r_sq_list = [9, 10, 11, 12]
+        elif r_sq in [13, 14, 15, 16]:
+            r_sq_list = [13, 14, 15, 16]
+
+        print("957 row nums are ", r_sq, r_num)
+        for aref in not_done_arefs:
+            sq = aref['sq']
+            nums = aref['nums']
+            # row = aref['row']
+            btn = aref['btn']
+            btn_str = aref['btn_str']
+            if sq in r_sq_list and r_num in nums:
+                r_row = aref['row']
+                print("971 sq and number are ", sq, nums)
+                for aref in not_done_arefs:
+                    str1_aref = aref['aref']
+                    sq1 = aref['sq']
+                    nums1 = aref['nums']
+                    row1 = aref['row']
+                    btn1 = aref['btn']
+                    btn1_str = aref['btn_str']
+                    if (not sq1 == sq) and (r_row == row1):
+                        if r_num in nums1:
+                            bRemoveANumberFromACell = True
+                            currentNumber = r_num
+                            update_cell(btn1, aref, btn1_str, str1_aref)
+                            print("992 btn1 etc. ", btn1,
+                                  aref, btn1_str, str1_aref)
+
+
+def remove_num_in_col_sq():
+    print("955 entering remove_num_in_col_sq")
+    print("956 n_in_col_sq ", n_in_col_sq, n_in_col_sq[0])
+    print("957 n_in_col_sq ", n_in_col_sq[0],
+          n_in_col_sq[0][0], n_in_col_sq[0][1])
+    global bRemoveANumberFromACell
+    global currentNumber
+    global not_done_arefs
+    for lsts in n_in_col_sq:
+        print("960 n_in_col_sq ", lsts)
+        c_sq = lsts[0]
+        c_num = lsts[1]
+        if c_sq in [1, 5, 9, 13]:
+            c_sq_list = [1, 2, 3, 4]
+        elif c_sq in [2, 6, 10, 14]:
+            c_sq_list = [5, 6, 7, 8]
+        elif c_sq in [3, 7, 11, 15]:
+            c_sq_list = [9, 10, 11, 12]
+        elif c_sq in [4, 8, 12, 16]:
+            c_sq_list = [13, 14, 15, 16]
+    # first, get the correct column in the square
+        for aref in not_done_arefs:
+            sq = aref['sq']
+            nums = aref['nums']
+            if (sq == c_sq) and (c_num in nums):
+                c_col = aref['col']
+            else:
+                print("1036 error finding sq column")
+        print("957 row nums are ", c_sq, c_num)
+        for aref in not_done_arefs:
+            sq = aref['sq']
+            nums = aref['nums']
+            # row = aref['row']
+            btn = aref['btn']
+            btn_str = aref['btn_str']
+            if sq in c_sq_list and c_num in nums:
+                col1 = aref['col']
+                print("971 sq and number are ", sq, nums)
+                for aref in not_done_arefs:
+                    str1_aref = aref['aref']
+                    sq1 = aref['sq']
+                    nums1 = aref['nums']
+                    col1 = aref['col']
+                    btn1 = aref['btn']
+                    btn1_str = aref['btn_str']
+                    if (not sq1 == c_sq) and (c_col == col1):
+                        if c_num in nums1:
+                            bRemoveANumberFromACell = True
+                            currentNumber = c_num
+                            update_cell(btn1, aref, btn1_str, str1_aref)
+                            print("992 btn1 etc. ", btn1,
+                                  aref, btn1_str, str1_aref)
+
+
+def num_in_row_col_of_sq_too_complex():
+    print("638 entering new num_in_row_col_of_sq")
+    global r_1_nums
+    global r_2_nums
+    global r_3_nums
+    global r_4_nums
+    global r_5_nums
+    global r_6_nums
+    global r_7_nums
+    global r_8_nums
+    global r_9_nums
+    global r_10_nums
+    global r_11_nums
+    global r_12_nums
+    global r_13_nums
+    global r_14_nums
+    global r_15_nums
+    global r_16_nums
+    global c_1_nums
+    global c_2_nums
+    global c_3_nums
+    global c_4_nums
+    global c_5_nums
+    global c_6_nums
+    global c_7_nums
+    global c_8_nums
+    global s_9_nums
+    global c_10_nums
+    global c_11_nums
+    global c_12_nums
+    global c_13_nums
+    global c_14_nums
+    global c_15_nums
+    global s_9_num_cts
+    s1_r_1_nums = ""
+    s1_r_2_nums = ""
+    s1_r_3_nums = ""
+    s1_r_4_nums = ""
+    s2_r_1_nums = ""
+    s2_r_2_nums = ""
+    s2_r_3_nums = ""
+    s2_r_4_nums = ""
+    s3_r_1_nums = ""
+    s3_r_2_nums = ""
+    s3_r_3_nums = ""
+    s3_r_4_nums = ""
+    s4_r_1_nums = ""
+    s4_r_2_nums = ""
+    s4_r_3_nums = ""
+    s4_r_4_nums = ""
+    s5_r_5_nums = ""
+    s5_r_6_nums = ""
+    s5_r_7_nums = ""
+    s5_r_8_nums = ""
+    s6_r_5_nums = ""
+    s6_r_6_nums = ""
+    s6_r_7_nums = ""
+    s6_r_8_nums = ""
+    s7_r_5_nums = ""
+    s7_r_6_nums = ""
+    s7_r_7_nums = ""
+    s7_r_8_nums = ""
+    s8_r_5_nums = ""
+    s8_r_6_nums = ""
+    s8_r_7_nums = ""
+    s8_r_8_nums = ""
+    s9_r_9_nums = ""
+    s9_r_10_nums = ""
+    s9_r_11_nums = ""
+    s9_r_12_nums = ""
+    s10_r_9_nums = ""
+    s10_r_10_nums = ""
+    s10_r_11_nums = ""
+    s10_r_12_nums = ""
+    s11_r_9_nums = ""
+    s11_r_10_nums = ""
+    s11_r_11_nums = ""
+    s11_r_12_nums = ""
+    s12_r_9_nums = ""
+    s12_r_10_nums = ""
+    s12_r_11_nums = ""
+    s12_r_12_nums = ""
+    s13_r_13_nums = ""
+    s13_r_14_nums = ""
+    s13_r_15_nums = ""
+    s13_r_16_nums = ""
+    s14_r_13_nums = ""
+    s14_r_14_nums = ""
+    s14_r_15_nums = ""
+    s14_r_16_nums = ""
+    s15_r_13_nums = ""
+    s15_r_14_nums = ""
+    s15_r_15_nums = ""
+    s15_r_16_nums = ""
+    s16_r_13_nums = ""
+    s16_r_14_nums = ""
+    s16_r_15_nums = ""
+    s16_r_16_nums = ""
+    s1_c_1_nums = ""
+    s1_c_2_nums = ""
+    s1_c_3_nums = ""
+    s1_c_4_nums = ""
+    s2_c_5_nums = ""
+    s2_c_6_nums = ""
+    s2_c_7_nums = ""
+    s2_c_8_nums = ""
+    s3_c_9_nums = ""
+    s3_c_10_nums = ""
+    s3_c_11_nums = ""
+    s3_c_12_nums = ""
+    s4_c_13_nums = ""
+    s4_c_14_nums = ""
+    s4_c_15_nums = ""
+    s4_c_16_nums = ""
+    s5_c_1_nums = ""
+    s5_c_2_nums = ""
+    s5_c_3_nums = ""
+    s5_c_4_nums = ""
+    s6_c_5_nums = ""
+    s6_c_6_nums = ""
+    s6_c_7_nums = ""
+    s6_c_8_nums = ""
+    s7_c_9_nums = ""
+    s7_c_10_nums = ""
+    s7_c_11_nums = ""
+    s7_c_12_nums = ""
+    s8_c_13_nums = ""
+    s8_c_14_nums = ""
+    s8_c_15_nums = ""
+    s8_c_16_nums = ""
+    s9_c_1_nums = ""
+    s9_c_2_nums = ""
+    s9_c_3_nums = ""
+    s9_c_4_nums = ""
+    s10_c_5_nums = ""
+    s10_c_6_nums = ""
+    s10_c_7_nums = ""
+    s10_c_8_nums = ""
+    s11_c_9_nums = ""
+    s11_c_10_nums = ""
+    s11_c_11_nums = ""
+    s11_c_12_nums = ""
+    s12_c_13_nums = ""
+    s12_c_14_nums = ""
+    s12_c_15_nums = ""
+    s12_c_16_nums = ""
+    s13_c_1_nums = ""
+    s13_c_2_nums = ""
+    s13_c_3_nums = ""
+    s13_c_4_nums = ""
+    s14_c_5_nums = ""
+    s14_c_6_nums = ""
+    s14_c_7_nums = ""
+    s14_c_8_nums = ""
+    s15_c_9_nums = ""
+    s15_c_10_nums = ""
+    s15_c_11_nums = ""
+    s15_c_12_nums = ""
+    s16_c_13_nums = ""
+    s16_c_14_nums = ""
+    s16_c_15_nums = ""
+    s16_c_16_nums = ""
+    s_x_nums_set = []
+    global sq_1_arefs
+    sq_1_arefs = []
+    global sq_2_arefs
+    sq_2_arefs = []
+    global sq_3_arefs
+    sq_3_arefs = []
+    global sq_4_arefs
+    sq_4_arefs = []
+    global sq_5_arefs
+    sq_5_arefs = []
+    global sq_6_arefs
+    sq_6_arefs = []
+    global sq_7_arefs
+    sq_7_arefs = []
+    global sq_8_arefs
+    sq_8_arefs = []
+    global sq_9_arefs
+    sq_9_arefs = []
+    global sq_10_arefs
+    sq_10_arefs = []
+    global sq_11_arefs
+    sq_11_arefs = []
+    global sq_12_arefs
+    sq_12_arefs = []
+    global sq_13_arefs
+    sq_13_arefs = []
+    global sq_14_arefs
+    sq_14_arefs = []
+    global sq_15_arefs
+    sq_15_arefs = []
+    global sq_16_arefs
+    sq_16_arefs = []
+
+    make_current_arefs()
+
+    print("700 after make_arefs")
+    row_adj = 0
+    col_adj = 0
+    # print("701 sq_9_arefs)", sq_9_arefs)
+    for sq in n_1_16:
+        # print("746 sq done? ", sq["done"])
+        # if not sq["done"] == False:
+        #     continue
+        # print("746 sq in sq_arefs is ", sq)
+        if sq == 1:
+            sq_aref = sq_1_arefs
+            row_adj = 0
+            col_adj = 0
+        # if (sq[0] in sq_1_arefs) or (sq[3] in sq_1_arefs) or (sq[7] in sq_1_arefs) or (sq[9] in sq_1_arefs):
+        elif sq == 2:
+            sq_aref = sq_2_arefs
+            row_adj = 0
+            col_adj = - 4
+        # elif (sq[0] in sq_2_arefs) or (sq[3] in sq_2_arefs) or (sq[7] in sq_2_arefs) or (sq[9] in sq_2_arefs):
+
+        # elif (sq[0] in sq_3_arefs) or (sq[3] in sq_3_arefs) or (sq[7] in sq_3_arefs) or (sq[9] in sq_3_arefs):
+        elif sq == 3:
+            sq_aref = sq_3_arefs
+            row_adj = 0
+            col_adj = - 8
+        elif sq == 4:
+            sq_aref = sq_4_arefs
+            row_adj = 0
+            col_adj = - 12
+        elif sq == 5:
+            sq_aref = sq_5_arefs
+            row_adj = - 4
+            col_adj = 0
+        elif sq == 6:
+            sq_aref = sq_6_arefs
+            row_adj = - 4
+            col_adj = - 4
+        elif sq == 7:
+            sq_aref = sq_7_arefs
+            row_adj = - 4
+            col_adj = - 8
+        elif sq == 8:
+            sq_aref = sq_8_arefs
+            row_adj = - 4
+            col_adj = - 12
+        elif sq == 9:
+            sq_aref = sq_9_arefs
+            row_adj = - 8
+            col_adj = 0
+        elif sq == 10:
+            sq_aref = sq_10_arefs
+            row_adj = - 8
+            col_adj = - 4
+        elif sq == 11:
+            sq_aref = sq_11_arefs
+            row_adj = - 8
+            col_adj = - 8
+        elif sq == 12:
+            sq_aref = sq_12_arefs
+            row_adj = - 8
+            col_adj = - 12
+        elif sq == 13:
+            sq_aref = sq_13_arefs
+            row_adj = - 12
+            col_adj = 0
+        elif sq == 14:
+            sq_aref = sq_14_arefs
+            row_adj = - 12
+            col_adj = - 4
+        elif sq == 15:
+            sq_aref = sq_15_arefs
+            row_adj = - 12
+            col_adj = - 8
+        elif sq == 16:
+            sq_aref = sq_16_arefs
+            row_adj = - 12
+            col_adj = - 12
+        else:
+            print("1245 error, no matching sq and aref")
+            # or (sq[0] in sq_3_arefs) or (sq[0] in sq_8_arefs) or (sq[0] in sq_9_arefs):
+        for aref in sq_aref:
+            # print("786 aref is ", aref, sq_aref)
+            sq = aref['sq']
+            if aref['done'] == False:
+                btn = aref['btn_str']
+                row = aref['row']
+                col = aref['col']
+                # adj_row = aref['row'] + row_adj
+                # adj_col = aref['col'] + col_adj
+                sq = aref['sq']
+                num = aref['nums']
+                # print("757 aref in sq 9 is ", btn,
+                #       adj_row, adj_col, sq, num)
+                for n in num:
+                    # n = int(nm)
+                    if not n in s_x_nums_set:
+                        s_x_nums_set.append(n)
+                        # print("716 s_9_nums_set is ", s_9_nums_set)
+                    if n == 1:
+                        s_9_num_cts[1][1] += 1
+                        s_9_num_cts[1][2] += 1
+                        s_9_num_cts[1][3] += 1
+                        print("767 s_9_num_cts ", s_9_num_cts)
+                    if sq == 1 and row == 1:
+                        s1_r_1_nums += n
+                    elif sq == 1 and row == 2:
+                        s1_r_2_nums += n
+                    elif sq == 1 and row == 3:
+                        s1_r_3_nums += n
+                    elif sq == 1 and row == 4:
+                        s1_r_4_nums += n
+                    elif sq == 2 and row == 1:
+                        s2_r_1_nums += n
+                    elif sq == 2 and row == 2:
+                        s2_r_2_nums += n
+                    elif sq == 2 and row == 3:
+                        s2_r_3_nums += n
+                    elif sq == 2 and row == 4:
+                        s2_r_4_nums += n
+                    elif sq == 3 and row == 1:
+                        s3_r_1_nums += n
+                    elif sq == 3 and row == 2:
+                        s3_r_2_nums += n
+                    elif sq == 3 and row == 3:
+                        s3_r_3_nums += n
+                    elif sq == 3 and row == 4:
+                        s3_r_4_nums += n
+                    elif sq == 4 and row == 1:
+                        s4_r_1_nums += n
+                    elif sq == 4 and row == 2:
+                        s4_r_2_nums += n
+                    elif sq == 4 and row == 3:
+                        s4_r_3_nums += n
+                    elif sq == 4 and row == 4:
+                        s4_r_4_nums += n
+                    elif sq == 5 and row == 5:
+                        s5_r_5_nums += n
+                    elif sq == 5 and row == 6:
+                        s5_r_6_nums += n
+                    elif sq == 5 and row == 7:
+                        s5_r_7_nums += n
+                    elif sq == 5 and row == 8:
+                        s5_r_8_nums += n
+                    elif sq == 6 and row == 5:
+                        s6_r_5_nums += n
+                    elif sq == 6 and row == 6:
+                        s6_r_6_nums += n
+                    elif sq == 6 and row == 7:
+                        s6_r_7_nums += n
+                    elif sq == 6 and row == 8:
+                        s6_r_8_nums += n
+                    elif sq == 7 and row == 5:
+                        s7_r_5_nums += n
+                    elif sq == 7 and row == 6:
+                        s7_r_6_nums += n
+                    elif sq == 7 and row == 7:
+                        s7_r_7_nums += n
+                    elif sq == 7 and row == 8:
+                        s7_r_8_nums += n
+                    elif sq == 8 and row == 5:
+                        s8_r_5_nums += n
+                    elif sq == 8 and row == 6:
+                        s8_r_6_nums += n
+                    elif sq == 8 and row == 7:
+                        s8_r_7_nums += n
+                    elif sq == 8 and row == 8:
+                        s8_r_8_nums += n
+                    elif sq == 9 and row == 9:
+                        s9_r_9_nums += n
+                    elif sq == 9 and row == 10:
+                        s9_r_10_nums += n
+                    elif sq == 9 and row == 11:
+                        s9_r_11_nums += n
+                    elif sq == 9 and row == 12:
+                        s9_r_12_nums += n
+                    elif sq == 10 and row == 9:
+                        s10_r_9_nums += n
+                    elif sq == 10 and row == 10:
+                        s10_r_10_nums += n
+                    elif sq == 10 and row == 11:
+                        s10_r_11_nums += n
+                    elif sq == 10 and row == 12:
+                        s10_r_12_nums += n
+                    elif sq == 11 and row == 9:
+                        s11_r_9_nums += n
+                    elif sq == 11 and row == 10:
+                        s11_r_10_nums += n
+                    elif sq == 11 and row == 11:
+                        s11_r_11_nums += n
+                    elif sq == 11 and row == 12:
+                        s11_r_12_nums += n
+                    elif sq == 12 and row == 9:
+                        s12_r_9_nums += n
+                    elif sq == 12 and row == 10:
+                        s12_r_10_nums += n
+                    elif sq == 12 and row == 11:
+                        s12_r_11_nums += n
+                    elif sq == 12 and row == 12:
+                        s12_r_12_nums += n
+                    elif sq == 13 and row == 13:
+                        s13_r_13_nums += n
+                    elif sq == 13 and row == 14:
+                        s13_r_14_nums += n
+                    elif sq == 13 and row == 15:
+                        s13_r_15_nums += n
+                    elif sq == 13 and row == 16:
+                        s13_r_16_nums += n
+                    elif sq == 14 and row == 13:
+                        s14_r_13_nums += n
+                    elif sq == 14 and row == 14:
+                        s14_r_14_nums += n
+                    elif sq == 14 and row == 15:
+                        s14_r_15_nums += n
+                    elif sq == 14 and row == 16:
+                        s14_r_16_nums += n
+                    elif sq == 15 and row == 13:
+                        s15_r_13_nums += n
+                    elif sq == 15 and row == 14:
+                        s15_r_14_nums += n
+                    elif sq == 15 and row == 15:
+                        s15_r_15_nums += n
+                    elif sq == 15 and row == 16:
+                        s15_r_16_nums += n
+                    elif sq == 16 and row == 13:
+                        s16_r_13_nums += n
+                    elif sq == 16 and row == 14:
+                        s16_r_14_nums += n
+                    elif sq == 16 and row == 15:
+                        s16_r_15_nums += n
+                    elif sq == 16 and row == 16:
+                        s16_r_16_nums += n
+
+                    if sq == 1 and col == 1:
+                        s1_c_1_nums += n
+                    elif sq == 1 and col == 2:
+                        s1_c_2_nums += n
+                    elif sq == 1 and col == 3:
+                        s1_c_3_nums += n
+                    elif sq == 1 and col == 4:
+                        s1_c_4_nums += n
+                    elif sq == 2 and col == 5:
+                        s2_c_5_nums += n
+                    elif sq == 2 and col == 6:
+                        s2_c_6_nums += n
+                    elif sq == 2 and col == 7:
+                        s2_c_7_nums += n
+                    elif sq == 2 and col == 8:
+                        s2_c_8_nums += n
+                    elif sq == 3 and col == 9:
+                        s3_c_9_nums += n
+                    elif sq == 3 and col == 10:
+                        s3_c_10_nums += n
+                    elif sq == 3 and col == 11:
+                        s3_c_11_nums += n
+                    elif sq == 3 and col == 12:
+                        s3_c_12_nums += n
+                    elif sq == 4 and col == 13:
+                        s4_c_13_nums += n
+                    elif sq == 4 and col == 14:
+                        s4_c_14_nums += n
+                    elif sq == 4 and col == 15:
+                        s4_c_15_nums += n
+                    elif sq == 4 and col == 16:
+                        s4_c_16_nums += n
+                    elif sq == 5 and col == 1:
+                        s5_c_1_nums += n
+                    elif sq == 5 and col == 2:
+                        s5_c_2_nums += n
+                    elif sq == 5 and col == 3:
+                        s5_c_3_nums += n
+                    elif sq == 5 and col == 4:
+                        s5_c_4_nums += n
+                    elif sq == 6 and col == 5:
+                        s6_c_5_nums += n
+                    elif sq == 6 and col == 6:
+                        s6_c_6_nums += n
+                    elif sq == 6 and col == 7:
+                        s6_c_7_nums += n
+                    elif sq == 6 and col == 8:
+                        s6_c_8_nums += n
+                    elif sq == 7 and col == 9:
+                        s7_c_9_nums += n
+                    elif sq == 7 and col == 10:
+                        s7_c_10_nums += n
+                    elif sq == 7 and col == 11:
+                        s7_c_11_nums += n
+                    elif sq == 7 and col == 12:
+                        s7_c_12_nums += n
+                    elif sq == 8 and col == 13:
+                        s8_c_13_nums += n
+                    elif sq == 8 and col == 14:
+                        s8_c_14_nums += n
+                    elif sq == 8 and col == 15:
+                        s8_c_15_nums += n
+                    elif sq == 8 and col == 16:
+                        s8_c_16_nums += n
+                    elif sq == 9 and col == 1:
+                        s9_c_1_nums += n
+                    elif sq == 9 and col == 2:
+                        s9_c_2_nums += n
+                    elif sq == 9 and col == 3:
+                        s9_c_3_nums += n
+                    elif sq == 9 and col == 4:
+                        s9_c_4_nums += n
+                    elif sq == 10 and col == 5:
+                        s10_c_5_nums += n
+                    elif sq == 10 and col == 6:
+                        s10_c_6_nums += n
+                    elif sq == 10 and col == 7:
+                        s10_c_7_nums += n
+                    elif sq == 10 and col == 8:
+                        s10_c_8_nums += n
+                    elif sq == 11 and col == 9:
+                        s11_c_9_nums += n
+                    elif sq == 11 and col == 10:
+                        s11_c_10_nums += n
+                    elif sq == 11 and col == 11:
+                        s11_c_11_nums += n
+                    elif sq == 11 and col == 12:
+                        s11_c_12_nums += n
+                    elif sq == 12 and col == 13:
+                        s12_c_13_nums += n
+                    elif sq == 12 and col == 14:
+                        s12_c_14_nums += n
+                    elif sq == 12 and col == 15:
+                        s12_c_15_nums += n
+                    elif sq == 12 and col == 16:
+                        s12_c_16_nums += n
+                    elif sq == 13 and col == 1:
+                        s13_c_1_nums += n
+                    elif sq == 13 and col == 2:
+                        s13_c_2_nums += n
+                    elif sq == 13 and col == 3:
+                        s13_c_3_nums += n
+                    elif sq == 13 and col == 4:
+                        s13_c_4_nums += n
+                    elif sq == 14 and col == 5:
+                        s14_c_5_nums += n
+                    elif sq == 14 and col == 6:
+                        s14_c_6_nums += n
+                    elif sq == 14 and col == 7:
+                        s14_c_7_nums += n
+                    elif sq == 14 and col == 8:
+                        s14_c_8_nums += n
+                    elif sq == 15 and col == 9:
+                        s15_c_9_nums += n
+                    elif sq == 15 and col == 10:
+                        s15_c_10_nums += n
+                    elif sq == 15 and col == 11:
+                        s15_c_11_nums += n
+                    elif sq == 15 and col == 12:
+                        s15_c_12_nums += n
+                    elif sq == 16 and col == 13:
+                        s16_c_13_nums += n
+                    elif sq == 16 and col == 14:
+                        s16_c_14_nums += n
+                    elif sq == 16 and col == 15:
+                        s16_c_15_nums += n
+                    elif sq == 16 and col == 16:
+                        s16_c_16_nums += n
+
+    # s_9_rows = [r_9_nums, r_10_nums, r_11_nums, r_12_nums]
+    # s_9_cols = [c_1_nums, c_2_nums, c_3_nums, c_4_nums]
+    # print("655 s_9_num_cts ", s_9_num_cts)
+    # print("570 s_9_cols ", s_9_cols)
+    print("789 s_x_nums_set", sq, s_x_nums_set)
+    # for num in s_9_nums_set:
+    #     c = 8
+    #     # print("569 num is ", num)
+    #     for row_n in s_9_rows:
+    #         c += 1
+    #         if num in row_n:
+    #             pass
+    # print("749 s_9_nums_set ", s_9_nums_set)
+    for num in s_x_nums_set:
+        # print("751 num ", num, c_1_nums, c_2_nums, c_3_nums, c_4_nums)
+        print("797 num ", num, c_1_nums)
+        # print("798 num ", num, c_2_nums)
+        # print("799 num ", num, c_3_nums)
+        # print("800 num ", num, c_4_nums)
+        if (num in c_1_nums) and (num not in c_2_nums) and (num not in c_3_nums) and (num not in c_4_nums):
+            print("675 num in only col 1 ", sq, num)
+        if (num in c_2_nums) and (num not in c_1_nums) and (num not in c_3_nums) and (num not in c_4_nums):
+            print("677 num in only col 2 ", sq, num)
+        if (num in c_3_nums) and (num not in c_1_nums) and (num not in c_2_nums) and (num not in c_4_nums):
+            print("679 num in only col 3 ", sq, num)
+        if (num in c_4_nums) and (num not in c_1_nums) and (num not in c_2_nums) and (num not in c_3_nums):
+            print("681 num in only col 4 ", sq, num)
+
+
+def num_in_row_col_of_sq_old():
     global r_9_nums
     global r_10_nums
     global r_11_nums
@@ -587,6 +1646,7 @@ def num_in_row_col_of_sq():
     global c_3_nums
     global c_4_nums
     global s_9_nums
+    global s_9_num_cts
     r_9_nums = ""
     r_10_nums = ""
     r_11_nums = ""
@@ -595,14 +1655,30 @@ def num_in_row_col_of_sq():
     c_2_nums = ""
     c_3_nums = ""
     c_4_nums = ""
+    s_1_nums_set = []
+    s_2_nums_set = []
+    s_3_nums_set = []
+    s_4_nums_set = []
+    s_5_nums_set = []
+    s_6_nums_set = []
+    s_7_nums_set = []
+    s_8_nums_set = []
     s_9_nums_set = []
+    s_10_nums_set = []
+    s_11_nums_set = []
+    s_12_nums_set = []
+    s_13_nums_set = []
+    s_14_nums_set = []
+    s_15_nums_set = []
+    s_16_nums_set = []
     # s_9_rows = [9, 10, 11, 12]
     s_9_rows = [r_9_nums, r_10_nums, r_11_nums, r_12_nums]
     s_9_cols = [c_1_nums, c_2_nums, c_3_nums, c_4_nums]
     print("534 s_9_cols ", s_9_cols)
-    for aref in not_done_arefs:
+    for aref in sq_9_arefs:
+        print("662 sq_9_arefs ", aref)
         sq = aref['sq']
-        if sq == 9:
+        if aref['done'] == False:
             btn = aref['btn_str']
             # print("536 sq_9 ", aref['sq'], btn)
             row = aref['row']
@@ -611,8 +1687,18 @@ def num_in_row_col_of_sq():
             num = aref['nums']
             # print("541 aref in sq 9 is ", btn, row, col, sq, num)
             for n in num:
+                # n = int(nm)
                 if not n in s_9_nums_set:
                     s_9_nums_set.append(n)
+                print("676 s_9_nums_set is ", s_9_nums_set)
+                # s_9_num_cts[n][1].append(n)
+                # s_9_num_cts[n][2].append(n)
+                if n == 1:
+                    s_9_num_cts[1][1] += 1
+                    s_9_num_cts[1][2] += 1
+                    s_9_num_cts[1][3] += 1
+                    print("641 s_9_num_cts ", s_9_num_cts)
+
             if row == 9:
                 r_9_nums += aref['nums']
             elif row == 10:
@@ -632,22 +1718,37 @@ def num_in_row_col_of_sq():
 
     s_9_rows = [r_9_nums, r_10_nums, r_11_nums, r_12_nums]
     s_9_cols = [c_1_nums, c_2_nums, c_3_nums, c_4_nums]
+    # print("655 s_9_num_cts ", s_9_num_cts)
     print("570 s_9_cols ", s_9_cols)
+    print("665 s_9_nums_set", s_9_nums_set)
     for num in s_9_nums_set:
         c = 8
         # print("569 num is ", num)
         for row_n in s_9_rows:
             c += 1
             if num in row_n:
-                print("584 num in row ", num, c)
+                pass
+                # print("584 num in row ", num, c)
     for num in s_9_nums_set:
-        c = 0
-        # print("569 num is ", num)
-        for col_n in s_9_cols:
-            c += 1
-            # print("571 col_n is ", col_n)
-            if num in col_n:
-                print("592 num in column ", num, c)
+        if (num in c_1_nums) and (num not in c_2_nums) and (num not in c_3_nums) and (num not in c_4_nums):
+            print("675 num in only col 1 ", num)
+        if (num in c_2_nums) and (num not in c_1_nums) and (num not in c_3_nums) and (num not in c_4_nums):
+            print("677 num in only col 1 ", num)
+        if (num in c_3_nums) and (num not in c_1_nums) and (num not in c_2_nums) and (num not in c_4_nums):
+            print("679 num in only col 1 ", num)
+        if (num in c_4_nums) and (num not in c_1_nums) and (num not in c_2_nums) and (num not in c_3_nums):
+            print("681 num in only col 1 ", num)
+        # c = 0
+        # col_ct = 0
+        # # print("569 num is ", num)
+        # for col_n in s_9_cols:
+        #     c += 1
+        #     # print("571 col_n is ", col_n)
+        #     if num in col_n:
+        #         col_ct += 1
+        #         print("592 num in column ", num, c)
+        #         if col_ct == 1:
+        #             print("664 num in only 1 col of sq ", num, c)
 
 
 def make_RCS_sets_1():
@@ -802,6 +1903,7 @@ def make_RCS_sets_1():
 
 def only_1_num_in_cell():
     for cell in not_done_arefs:
+        global currentNumber
         if cell['done'] == False and len(cell['nums']) == 1:
             row_num = cell['row']
             col_num = cell['col']
@@ -811,7 +1913,8 @@ def only_1_num_in_cell():
             btn_name = cell['btn_str']
             print("527 not done cell num is ",
                   row_num, col_num, sq_num, num)
-            eval(f"set_current_num_to_{num}()")
+            currentNumber = num
+            # eval(f"set_current_num_to_{num}()")
             update_cell(btn, cell, btn_name, str(cell))
 
 
@@ -1075,6 +2178,7 @@ def solve_rcs_singles():
     bSolve_singles = True
     print("877 delete_singles_row_list is ", delete_singles_row_list)
     for cell in not_done_arefs:
+        print("1103 cell and type ", cell, type(cell))
         nums = cell['nums']
         row = cell['row']
         col = cell['col']
@@ -2782,22 +3886,22 @@ def make_row_dicts():
                 else:
                     print("1448 fell through if num")
 
-    print("17xx r1 is ", r1)
-    print("17xx r2 is ", r2)
-    print("17xx r3 is ", r3)
-    print("17xx r4 is ", r4)
-    print("17xx r5 is ", r5)
-    print("17xx r6 is ", r6)
-    print("17xx r7 is ", r7)
-    print("17xx r8 is ", r8)
-    print("17xx r9 is ", r9)
-    print("17xx r10 is ", r10)
-    print("17xx r11 is ", r11)
-    print("17xx r12 is ", r12)
-    print("17xx r13 is ", r13)
-    print("17xx r14 is ", r14)
-    print("17xx r15 is ", r15)
-    print("17xx r16 is ", r16)
+    # print("17xx r1 is ", r1)
+    # print("17xx r2 is ", r2)
+    # print("17xx r3 is ", r3)
+    # print("17xx r4 is ", r4)
+    # print("17xx r5 is ", r5)
+    # print("17xx r6 is ", r6)
+    # print("17xx r7 is ", r7)
+    # print("17xx r8 is ", r8)
+    # print("17xx r9 is ", r9)
+    # print("17xx r10 is ", r10)
+    # print("17xx r11 is ", r11)
+    # print("17xx r12 is ", r12)
+    # print("17xx r13 is ", r13)
+    # print("17xx r14 is ", r14)
+    # print("17xx r15 is ", r15)
+    # print("17xx r16 is ", r16)
 
 
 def make_col_dicts():
@@ -2916,7 +4020,7 @@ def make_col_dicts():
                     c1['ct_F__row_refs'].append(aref)
                 else:
                     print("1448 fell through if num")
-    print("2919 col c1 is ", c1)
+    # print("2919 col c1 is ", c1)
     # print("17xx r1 is ", r1)
 
 
@@ -3034,27 +4138,92 @@ def fix_triples():
         resources list to determine whether the row, columns or squares
         are the common feature and calls the approriate function.
     '''
-    print("1303 entered fix_triples.")
-    print("1304 triples_list is ", triples_list)
+    print("4153 entered fix_triples.")
+    print("4154 triples_list is ", triples_list)
     for triple in triples_list:
         tuple_found = False
-        print("1310 triple is ", triple, type(triple))
+        print("4157 triple is ", triple, type(triple))
         if type(triple) == set:
             triple_set = triple
-            print("1312 triple set is ", triple_set)
+            print("4160 triple set is ", triple_set)
             tuple_found = True
             nums = str(" ".join(map(str, triple_set)))
             n0 = nums[0]
             n1 = nums[2]
             n2 = nums[4]
-            print("1317 nums ", nums, n0, n1, n2)
+            print("4166 nums ", nums, n0, n1, n2)
         elif type(triple) == list:
             triple_list = triple
-            print("1398 triple as list ", triple_list)
+            print("4169 triple as list ", triple_list)
             l0 = triple[0]
             l1 = triple[1]
             l2 = triple[2]
-            print("1403 lists are ", l0, l1, l2)
+            print("4173 lists are ", l0, l1, l2)
+            if not tuple_found == True:
+                pass
+            row0 = l0[0]
+            col0 = l0[1]
+            sq0 = l0[2]
+            nums0 = l0[3]
+            row1 = l1[0]
+            col1 = l1[1]
+            sq1 = l1[2]
+            nums1 = l2[3]
+            row2 = l2[0]
+            col2 = l2[1]
+            sq2 = l2[2]
+            nums2 = l2[3]
+            print("4188 triple list is ", row0, row1, row2,
+                  col0, col1, col2, sq0, sq1, sq2, nums0, nums1, nums2)
+            if row0 == row1 == row2:
+                print("4191 rows are common")
+                print(row0, row1, col0, col1, sq0, sq1)
+                process_row_triple(row0, triple_set, triple_list)
+            if col0 == col1 == col2:
+                print("4195 cols are common")
+                print(row0, row1, col0, col1, sq0, sq1)
+                process_column_triple(col0, triple_set, triple_list)
+            if sq0 == sq1 == sq2:
+                print("4199 sqs are common")
+                print(row0, row1, col0, col1, sq0, sq1)
+                process_sq_triple(sq0, triple_set, triple_list)
+        else:
+            print("4203 no match for object type.")
+
+    print("4205 triples_list ", triples_list)
+    for item in triples_list:
+        triples_list.remove(item)
+    print("4208 triples_list ", triples_list)
+
+
+def fix_quads():
+    ''' The fix function compares the first two items in the rcs
+        resources list to determine whether the row, columns or squares
+        are the common feature and calls the approriate function.
+    '''
+    global quads_list
+    print("4121 entered fix_quads.")
+    print("4122 quads_list is ", quads_list)
+    for quad in quads_list:
+        tuple_found = False
+        print("1310 triple is ", quad, type(quad))
+        if type(quad) == set:
+            quads_set = quad
+            print("1312 triple set is ", quads_set)
+            tuple_found = True
+            nums = str(" ".join(map(str, quads_set)))
+            n0 = nums[0]
+            n1 = nums[2]
+            n2 = nums[4]
+            print("4134 nums ", nums, n0, n1, n2)
+        elif type(quad) == list:
+            quads_list = quad
+            print("1398 triple as list ", quads_list)
+            l0 = quad[0]
+            l1 = quad[1]
+            l2 = quad[2]
+            l3 = quad[3]
+            print("1403 lists are ", l0, l1, l2, l3)
             if not tuple_found == True:
                 pass
             row0 = l0[0]
@@ -3072,24 +4241,24 @@ def fix_triples():
             print("1418 triple list is ", row0, row1, row2,
                   col0, col1, col2, sq0, sq1, sq2, nums0, nums1, nums2)
             if row0 == row1 == row2:
-                print("1421 rows are common")
+                print("4256 rows are common")
                 print(row0, row1, col0, col1, sq0, sq1)
-                process_row_triple(row0, triple_set, triple_list)
+                process_row_triple(row0, quads_set, quads_list)
             if col0 == col1 == col2:
-                print("1425 cols are common")
+                print("4260 cols are common")
                 print(row0, row1, col0, col1, sq0, sq1)
-                process_column_triple(col0, triple_set, triple_list)
+                process_column_triple(col0, quads_set, quads_list)
             if sq0 == sq1 == sq2:
-                print("1429 sqs are common")
+                print("4264 sqs are common")
                 print(row0, row1, col0, col1, sq0, sq1)
-                process_sq_triple(sq0, triple_set, triple_list)
+                process_sq_quad(sq0, quads_set, quads_list)
         else:
-            print("1433 no match for object type.")
+            print("4268 no match for object type.")
 
-    print("1435 triples_list ", triples_list)
-    for item in triples_list:
-        triples_list.remove(item)
-    print("1438 triples_list ", triples_list)
+    print("4270 quads_list ", quads_list)
+    for item in quads_list:
+        quads_list.remove(item)
+    print("4273 quads_list ", quads_list)
 
 
 def process_duple_list():
@@ -3361,8 +4530,8 @@ def process_duple_list1(duples_list):
     print("1332 completed_duples_list is ", completed_duples_list)
 
 
-def find_Triple():
-    print("1153 Entering find_Triple")
+def find_Triples_1():
+    print("4387 Entering find_Triple")
     # txt_Explain.insert(END, "potential triple cell and values  are \n")
     triple_candidate_list = make_triple_candidate_list()
     RCS_lists = make_RCS_lists_for_triples(triple_candidate_list)
@@ -3396,7 +4565,7 @@ def make_triple_candidate_list():
 
 
 def make_RCS_lists_for_triples(triple_candidate_list):
-    print("1482 enter id_triples ", triple_candidate_list)
+    print("1482 enter make_RCS_lists_for_tripless ", triple_candidate_list)
     row_list = [[1, ""], [2, ""], [3, ""], [4, ""], [5, ""], [6, ""], [7, ""], [
         8, ""], [9, ""], [10, ''], [11, ''], [12, ""], [13, ""], [14, ""], [15, ''], [16, '']]
     col_list = [[1, ""], [2, ""], [3, ""], [4, ""], [5, ""], [6, ""], [7, ""], [
@@ -3421,7 +4590,7 @@ def make_RCS_lists_for_triples(triple_candidate_list):
 
 
 def id_triples(candidate_list):
-    print("1926 enter id_triples")
+    print("4446 enter id_triples")
     print("1927 *** id_triples is still being used. ***")
     print("1528 candidate_list = ", candidate_list)
     for item in candidate_list:
@@ -3460,7 +4629,7 @@ def id_triples(candidate_list):
             elif item1 != item and ((row0 == row1) or (col0 == col1) or (sq0 == sq1)):
                 num_cells = 2
                 temp_set = tcl_set0.copy()
-                print("1515 sets are ", tcl_set0, temp_set)
+                print("4644 sets are ", tcl_set0, temp_set)
                 ''' The correct cells are being checked!'''
                 """ Now check for triples by checking for a 'set' of 3 nums"""
                 """ Each set of numbers must have at least 2 and at most 3 numbers."""
@@ -3473,7 +4642,7 @@ def id_triples(candidate_list):
                 if l1 == 3:
                     ns3 = nums1[2]
                     temp_set.add(ns3)
-                print("1528 sets are ", tcl_set0, temp_set)
+                print("4657 sets are ", tcl_set0, temp_set)
                 if len(temp_set) > 3:
                     num_cells = 1
                     temp_set = tcl_set0.copy()
@@ -3486,14 +4655,14 @@ def id_triples(candidate_list):
                         col2 = item2[1]
                         sq2 = item2[2]
                         nums2 = item2[3]
-                        print("1543 triple item and item1 are ",
+                        print("4670 triple item and item1 are ",
                               item, item1, item2)
                         if item2 == item or item2 == item1:
                             num_cells = 2
                             continue
                         elif item2 != item and ((row0 == row1 == row2) or (col0 == col1 == col2) or (sq0 == sq1 == sq2)):
                             print(
-                                "1549 triple item not equal to item2 and RCS are the same", item, item2)
+                                "4677 triple item not equal to item2 and RCS are the same", item, item2)
                             l2 = len(nums2)
                             nt1 = nums2[0]
                             temp_set.add(nt1)
@@ -3527,7 +4696,15 @@ def id_triples(candidate_list):
                 pass
 
 
+def find_Quads():
+    print("4712 find_Quads")
+    global quads_list
+    _find_Tuples(4)
+    # show_Triple()
+
+
 def find_Triples():
+    print("4707 find_triples")
     global triples_list
     triples_list = []
     _find_Tuples(3)
@@ -3718,20 +4895,20 @@ def _find_Tuples(num):
     for r in row_tuples:
         if len(r) >= num:
             print("2056 ", r)
-            _process_tuple_RCS(r, r)
+            _process_tuple_RCS(r, r, num)
     print("2057 column tuple candidates are:")
     for c in col_tuples:
         if len(c) >= num:
             print("2059 ", c)
-            _process_tuple_RCS(c, c)
+            _process_tuple_RCS(c, c, num)
     print("2060 square tuple candidates are:")
     for s in sq_tuples:
         if len(s) >= num:
             print("2062 ", s)
-            _process_tuple_RCS(s, s)
+            _process_tuple_RCS(s, s, num)
 
 
-def _process_tuple_RCS(tuple_candidate, rcs):
+def _process_tuple_RCS(tuple_candidate, rcs, num):
     ''' Process each row, column, and square to identify
     tuples of size 'num' which was a parameter of the function.
     '''
@@ -3750,173 +4927,494 @@ def _process_tuple_RCS(tuple_candidate, rcs):
         row = item[0]
         col = item[1]
         sq = item[2]
-        num = item[3]
-        print("2094 rcsn ", row, col, sq, num)
+        nums = item[3]
+        print("2094 rcsn ", row, col, sq, nums)
         tc = tuple_candidate
         tcl = len(tuple_candidate)
+        s3012 = []
+        s3013 = []
+        s3014 = []
+        s3015 = []
+        s3023 = []
+        s3024 = []
+        s3025 = []
+        s3123 = []
+        s3124 = []
+        s3125 = []
+        s3234 = []
+        s3235 = []
+        s3567 = []
+        s40123 = []
+        s40134 = []
+        s41234 = []
+        # sa1 = []
+        # sa2 = []
+        # sa3 = []
+        # sa4 = []
+        # sa5 = []
+        # sa6 = []
+        # sa7 = []
+        # sa8 = []
+        # sa9 = []
+        # sa10 = []
+        # sa11 = []
+        # sa12 = []
+        # sa13 = []
+        # sa14 = []
+        # sa15 = []
+        # sa16 = []
+        # sa17 = []
+        # sa18 = []
+        # sa19 = []
+        # sa20 = []
+        # sb1 = []
+        # sb2 = []
+        # sb3 = []
+        # sc1 = []
+        # sc2 = []
+        # sd1 = []
+        # sd2 = []
         print("2114 tcl is ", tcl)
         s0 = set(tc[0][3])
         s1 = set(tc[1][3])
         s2 = set(tc[2][3])
-        if tcl == 3:
+        if tcl == 3 and num == 3:
             # sa = s0.union(s1)
-            sa1 = s0.union(s1).union(s2)
-            if len(sa1) == 3:
-                print(f"2146 Triples are {sa1}")
-                ex_text = f"2147 Triple is {sa1} \n"
+            s3012 = s0.union(s1).union(s2)
+            if len(s3012) == 3:
+                print(f"4836 Triples are {s3012}")
+                ex_text = f"4835 Triple is s3012 {s3012} \n"
                 txt_Explain.insert(END, ex_text)
-            s_set_list = [sa1]
-            for item in s_set_list:
-                if len(item) == 3:
-                    triples_list.append(item)
-                    triples_list.append(rcs)
-                    # triples_rcs_list.append(rcs)
-
-        if tcl == 4:
+            # s_set_list = [s3012]
+            # if len(item) == 3:
+                triples_list.append(s3012)
+                triples_list.append(rcs)
+            # if len(item) == 3:
+            #     triples_list.append(item)
+            #     triples_list.append(rcs)
+        if tcl == 4 and num == 3:
             s3 = set(tc[3][3])
             # sa = s0.union(s1)
-            sa1 = s0.union(s1).union(s2)
-            if len(sa1) == 3:
-                print(f"2154 Triples are {sa1}")
-                ex_text = f"2154 Triple is {sa1} \n"
+            s3012 = s0.union(s1).union(s2)
+            if len(s3012) == 3:
+                print(f"2154 Triples are {s3012}")
+                ex_text = f"2154 Triple is {s3012} \n"
                 txt_Explain.insert(END, ex_text)
-            sa2 = s0.union(s1).union(s3)
-            if len(sa2) == 3:
-                print(f"2159 Triples are {sa2}")
-
-            # sb = s1.union(s2)
-            sb1 = s1.union(s2).union(s3)
-            if len(sb1) == 3:
-                print(f"2164 Triples are {sb1}")
-                ex_text = f"2165 Triple is {sb1} \n"
+            s3013 = s0.union(s1).union(s3)
+            if len(s3013) == 3:
+                print(f"2159 Triples are {s3013}")
+                ex_text = f"2154 Triple is {s3013} \n"
                 txt_Explain.insert(END, ex_text)
-            s_set_list = [sa1, sa2, sb1]
+            s3123 = s1.union(s2).union(s3)
+            if len(s3123) == 3:
+                print(f"2164 Triples are {s3123}")
+                ex_text = f"2165 Triple is {s3123} \n"
+                txt_Explain.insert(END, ex_text)
+            s_set_list = [s3012, s3013, s3123]
             for item in s_set_list:
                 if len(item) == 3:
                     ex_text = f"2159 Triple is {item} \n"
                     txt_Explain.insert(END, ex_text)
                     triples_list.append(item)
                     triples_list.append(rcs)
-                    # triples_rcs_list.append(rcs)
 
-        if tcl == 5:
+        if tcl == 4 and num == 4:
+            s3 = set(tc[3][3])
+            s4 = set(tc[3][3])
+            s40123 = s0.union(s1).union(s2).union(s3)
+            if len(s40123) == 4:
+                print(f"2154 Quad is {s40123}")
+                ex_text = f"2154 Quad is {s40123} \n"
+                txt_Explain.insert(END, ex_text)
+
+        if tcl == 5 and num == 3:
             s3 = set(tc[3][3])
             s4 = set(tc[4][3])
-            # sa = s0.union(s1)
-            # print("2316 set 01 ", sa, len(sa))
-            sa1 = s0.union(s1).union(s2)
-            if len(sa1) == 3:
-                print(f"2180 Triples are {sa1}")
-                ex_text = f"2181 Triple is {sa1} \n"
+            s3012 = s0.union(s1).union(s2)
+            if len(s3012) == 3:
+                print(f"2180 Triples are {s3012}")
+                ex_text = f"2181 Triple is {s3012} \n"
                 txt_Explain.insert(END, ex_text)
-            sa2 = s0.union(s1).union(s3)
-            if len(sa2) == 3:
-                print(f"2184 Triples are {sa2}")
-                ex_text = f"2186 Triple is {sa2} \n"
+            s3013 = s0.union(s1).union(s3)
+            if len(s3013) == 3:
+                print(f"2184 Triples are {s3013}")
+                ex_text = f"2186 Triple is {s3013} \n"
                 txt_Explain.insert(END, ex_text)
-            sa3 = s0.union(s1).union(s4)
-            if len(sa3) == 3:
-                print(f"2189 Triples are {sa3}")
-                ex_text = f"2191 Triple is {sa3} \n"
+            s3014 = s0.union(s1).union(s4)
+            if len(s3014) == 3:
+                print(f"4893 Triples are {s3014}")
+                ex_text = f"4894 Triple is {s3014} \n"
                 txt_Explain.insert(END, ex_text)
-            # sb0 = s0.union(s2)
-            # print("2333 set 12 ", sb0, len(sb0))
-            sb1 = s0.union(s2).union(s3)
-            if len(sb1) == 3:
-                print(f"2196 Triples are {sb1}")
-                ex_text = f"2198 Triple is {sb1} \n"
+            s3023 = s0.union(s2).union(s3)
+            if len(s3023) == 3:
+                print(f"2196 Triples are {s3023}")
+                ex_text = f"2198 Triple is {s3023} \n"
                 txt_Explain.insert(END, ex_text)
-            sb2 = s0.union(s2).union(s4)
-            if len(sb2) == 3:
-                print(f"2202 Triples are {sb2}")
-                ex_text = f"2203 Triple is {sb2} \n"
+            s3024 = s0.union(s2).union(s4)
+            if len(s3024) == 3:
+                print(f"2202 Triples are {s3024}")
+                ex_text = f"2203 Triple is {s3024} \n"
                 txt_Explain.insert(END, ex_text)
-            # sc0 = s2.union(s3)
-            sc1 = s2.union(s3).union(s4)
-            if len(sc1) == 3:
-                print(f"2207 Triples are {sc1}")
-                ex_text = f"2209 Triple is {sc1} \n"
+            s3123 = s1.union(s2).union(s3)
+            if len(s3123) == 3:
+                print(f"2202 Triples are {s3123}")
+                ex_text = f"2203 Triple is {s3123} \n"
                 txt_Explain.insert(END, ex_text)
-            s_set_list = [sa1, sa2, sa3, sb1, sb2, sc1]
+            s3124 = s1.union(s2).union(s4)
+            if len(s3124) == 3:
+                print(f"4913 Triples are {s3124}")
+                ex_text = f"4914 Triple is s3124, {s3124} \n"
+                txt_Explain.insert(END, ex_text)
+            s3234 = s2.union(s3).union(s4)
+            if len(s3234) == 3:
+                print(f"2207 Triples are s3234 {s3234}")
+                ex_text = f"2209 Triple is s3234 {s3234} \n"
+                txt_Explain.insert(END, ex_text)
+            s_set_list = [s3012, s3013, s3014,
+                          s3023, s3024, s3123, s3124, s3234]
             for item in s_set_list:
                 if len(item) == 3:
-                    if not item in triples_list:
-                        triples_list.append(item)
-                        triples_list.append(rcs)
-                        # triples_rcs_list.append(rcs)
-                        print("2155 triple set is ", item, rcs)
+                    # if not item in triples_list:
+                    triples_list.append(item)
+                    triples_list.append(rcs)
+                    # triples_rcs_list.append(rcs)
+                    print("4929 triple set is ", item, rcs)
 
-        if tcl == 6:
+        if tcl == 5 and num == 4:
+            s3 = set(tc[3][3])
+            s4 = set(tc[4][3])
+            s40123 = s0.union(s1).union(s2).union(s3)
+            if len(s40123) == 4:
+                print(f"5097 Quad is {s40123}")
+                ex_text = f"5098 Quad is {s40123} \n"
+                txt_Explain.insert(END, ex_text)
+            s40124 = s0.union(s1).union(s2).union(s4)
+            if len(s40124) == 4:
+                print(f"5102 Quad is {s40124}")
+                ex_text = f"5103 Quad is {s40124} \n"
+                txt_Explain.insert(END, ex_text)
+            s41234 = s1.union(s2).union(s3).union(s4)
+            if len(s41234) == 4:
+                print(f"5107 Quad is {s41234}")
+                ex_text = f"5108 Quad is {s41234} \n"
+                txt_Explain.insert(END, ex_text)
+            s_set_list = [s40123, s40124, s41234]
+            for item in s_set_list:
+                if len(item) == 4:
+                    # if not item in quads_list:
+                    quads_list.append(item)
+                    quads_list.append(rcs)
+                    # triples_rcs_list.append(rcs)
+                    print("4956 Quad is ", item, rcs)
+
+        if tcl == 6 and num == 3:
             s3 = set(tc[3][3])
             s4 = set(tc[4][3])
             s5 = set(tc[5][3])
-            # sa = s0.union(s1)
-            # print("2365 set 01 ", sa, len(sa))
-            sa1 = s0.union(s1).union(s2)
-            if len(sa1) == 3:
-                print(f"2227 Triples are {sa1}")
-                ex_text = f"2228 Triple is {sa1} \n"
+            # s6 = set(tc[6][3])
+            s3012 = s0.union(s1).union(s2)
+            if len(s3012) == 3:
+                print(f"2227 Triples are {s3012}")
+                ex_text = f"2228 Triple is {s3012} \n"
                 txt_Explain.insert(END, ex_text)
-            sa2 = s0.union(s1).union(s3)
-            if len(sa2) == 3:
-                print(f"2232 Triples are {sa2}")
-                ex_text = f"2233 Triple is {sa2} \n"
+            s3013 = s0.union(s1).union(s3)
+            if len(s3013) == 3:
+                print(f"4970 Triples are {s3013}")
+                ex_text = f"4971 Triple is {s3013} \n"
                 txt_Explain.insert(END, ex_text)
-            sa3 = s0.union(s1).union(s4)
-            if len(sa3) == 3:
-                print(f"2237 Triples are {sa3}")
-                ex_text = f"2238 Triple is {sa3} \n"
+            s3014 = s0.union(s1).union(s4)
+            if len(s3014) == 3:
+                print(f"2237 Triples are {s3014}")
+                ex_text = f"2238 Triple is {s3014} \n"
                 txt_Explain.insert(END, ex_text)
-            sa4 = s0.union(s1).union(s5)
-            if len(sa4) == 3:
-                print(f"2237 Triples are {sa3}")
-                ex_text = f"2238 Triple is {sa3} \n"
+            s3015 = s0.union(s1).union(s5)
+            if len(s3015) == 3:
+                print(f"2237 Triples are {s3015}")
+                ex_text = f"2238 Triple is {s3015} \n"
                 txt_Explain.insert(END, ex_text)
-            # print("2382 set 12 ", sb0, len(sb0))
-            sb1 = s1.union(s2).union(s3)
-            if len(sb1) == 3:
-                print(f"2184 Triples are {sb1}")
-                ex_text = f"2245 Triple is {sb1} \n"
+            s3023 = s0.union(s2).union(s3)
+            if len(s3023) == 3:
+                print(f"2237 Triples are {s3023}")
+                ex_text = f"2238 Triple is {s3023} \n"
                 txt_Explain.insert(END, ex_text)
-            sb2 = s1.union(s2).union(s4)
-            if len(sb2) == 3:
-                print(f"2249 Triples are {sb2}")
-                # ex_text = f"2250 Triple is {sb2} \n"
-                # txt_Explain.insert(END, ex_text)
-            sb3 = s1.union(s2).union(s5)
-            if len(sa3) == 3:
-                print(f"2254 Triples are {sa3}")
-                ex_text = f"2255 Triple is {sa3} \n"
+            s3024 = s0.union(s2).union(s4)
+            if len(s3024) == 3:
+                print(f"2237 Triples are {s3024}")
+                ex_text = f"2238 Triple is {s3024} \n"
                 txt_Explain.insert(END, ex_text)
-            # sc0 = s1.union(s2).union(s3)
-            # print("2399 set 23 ", sc0, len(sc0))
-            sc1 = s2.union(s3).union(s4)
-            if len(sc1) == 3:
-                print(f"2261 Triples are {sc1}")
-                ex_text = f"2262 Triple is {sc1} \n"
+            s3025 = s0.union(s2).union(s5)
+            if len(s3025) == 3:
+                print(f"2237 Triples are {s3025}")
+                ex_text = f"2238 Triple is {s3025} \n"
                 txt_Explain.insert(END, ex_text)
-            sc2 = s2.union(s3).union(s5)
-            if len(sc2) == 3:
-                print(f"2266 Triples are {sc2}")
-                ex_text = f"2267 Triple is {sc2} \n"
+            s3123 = s1.union(s2).union(s3)
+            if len(s3123) == 3:
+                print(f"5065 Triples are {s3123}")
+                ex_text = f"5066 Triple is {s3123} \n"
                 txt_Explain.insert(END, ex_text)
-            # sd0 = s3.union(s4)
-            # print("2411 set 34 ", sd0, len(sd0))
-            sd1 = s3.union(s4).union(s5)
-            if len(sd1) == 3:
-                print(f"2184 Triples are {sd1}")
-                ex_text = f"2274 Triple is {sd1} \n"
+            s3124 = s1.union(s2).union(s4)
+            if len(s3124) == 3:
+                print(f"5070 Triples are {s3124}")
+                ex_text = f"5071 Triple is {s3124} \n"
                 txt_Explain.insert(END, ex_text)
-            s_set_list = [sa1, sa2, sa3, sb1, sb2, sb3, sc1, sc2, sd1]
+            s3125 = s1.union(s2).union(s5)
+            if len(s3125) == 3:
+                print(f"2254 Triples are {s3125}")
+                ex_text = f"2255 Triple is {s3125} \n"
+                txt_Explain.insert(END, ex_text)
+            s3234 = s2.union(s3).union(s4)
+            if len(s3234) == 3:
+                print(f"2261 Triples are {s3234}")
+                ex_text = f"2262 Triple is {s3234} \n"
+                txt_Explain.insert(END, ex_text)
+            s3235 = s2.union(s3).union(s5)
+            if len(s3235) == 3:
+                print(f"2266 Tuples are {s3235}")
+                ex_text = f"2267 Tuple is {s3235} \n"
+                txt_Explain.insert(END, ex_text)
+            s3345 = s3.union(s4).union(s5)
+            if len(s3345) == 3:
+                print(f"2184 Tuples are {s3345}")
+                ex_text = f"2274 Tuple is s3345, {s3345} \n"
+                txt_Explain.insert(END, ex_text)
+
+            #     txt_Explain.insert(END, ex_text)
+            s_set_list = [s3012, s3013, s3014, s3015, s3023, s3024,
+                          s3025, s3123, s3124, s3125, s3234, s3235, s3345]
             for item in s_set_list:
                 if len(item) == 3:
-                    if not item in triples_list:
-                        triples_list.append(item)
-                        triples_list.append(rcs)
-                        print("2292 triples_list is ", item, rcs)
-                        ex_text = f"2250 Triple is {sb2} \n"
-                        txt_Explain.insert(END, ex_text)
-            print("2295 triples_list is ", triples_list)
+                    # if not item in triples_list:
+                    triples_list.append(item)
+                    triples_list.append(rcs)
+                    # triples_rcs_list.append(rcs)
+                    print("5035 triple set is ", item, rcs)
+
+        if tcl == 6 and num == 4:
+            s3 = set(tc[3][3])
+            s4 = set(tc[4][3])
+            s5 = set(tc[5][3])
+            # s6 = set(tc[6][3])
+            s40123 = s0.union(s1).union(s2).union(s3)
+            if len(s40123) == 4:
+                print(f"5044 Quad is {s40123}")
+                ex_text = f"5045 Quad is {s40123} \n"
+                txt_Explain.insert(END, ex_text)
+            s40124 = s0.union(s1).union(s2).union(s4)
+            if len(s40124) == 4:
+                print(f"5049 Quad ise {s40124}")
+                ex_text = f"5050 Quad is {s40124} \n"
+                txt_Explain.insert(END, ex_text)
+            s40125 = s0.union(s1).union(s2).union(s5)
+            if len(s40125) == 4:
+                print(f"5054 Quad is {s40125}")
+                ex_text = f"5055 Quad is {s40125} \n"
+                txt_Explain.insert(END, ex_text)
+            s40134 = s0.union(s1).union(s3).union(s4)
+            if len(s40134) == 4:
+                print(f"5054 Quad is {s40134}")
+                ex_text = f"5055 Quad is s40134 {s40134} \n"
+                txt_Explain.insert(END, ex_text)
+            s40135 = s0.union(s1).union(s3).union(s5)
+            if len(s40135) == 4:
+                print(f"5054 Quad is {s40135}")
+                ex_text = f"5055 Quad is {s40135} \n"
+                txt_Explain.insert(END, ex_text)
+            s40145 = s0.union(s1).union(s4).union(s5)
+            if len(s40134) == 4:
+                print(f"5054 Quad is {s40145}")
+                ex_text = f"5055 Quad is s40134 {s40145} \n"
+                txt_Explain.insert(END, ex_text)
+            if len(s41234) == 4:
+                print(f"5059 Quad is {s41234}")
+                ex_text = f"5060 Quad is {s41234} \n"
+                txt_Explain.insert(END, ex_text)
+            s41235 = s1.union(s2).union(s3).union(s5)
+            if len(s41235) == 4:
+                print(f"5064 Quad is {s41235}")
+                ex_text = f"5065 Quad is {s41235} \n"
+                txt_Explain.insert(END, ex_text)
+            s42345 = s2.union(s3).union(s4).union(s5)
+            if len(s42345) == 4:
+                print(f"2232 Quad is {s42345}")
+                ex_text = f"2233 Quad is {s42345} \n"
+                txt_Explain.insert(END, ex_text)
+            s_set_list = [s40123, s40124, s40125, s40134,
+                          s40135, s40145, s41234, s41235, s42345]
+            for item in s_set_list:
+                if len(item) == 4:
+                    if not item in quads_list:
+                        quads_list.append(item)
+                        quads_list.append(rcs)
+                        # triples_rcs_list.append(rcs)
+                        print("5078 Quad is ", item, rcs)
+
+        if tcl == 7 and num == 3:
+            s3 = set(tc[3][3])
+            s4 = set(tc[4][3])
+            s5 = set(tc[5][3])
+            s6 = set(tc[6][3])
+            # s7 = set(tc[7][3])
+            s3456 = s4.union(s5).union(s6)
+            if len(s3456) == 3:
+                print(f"5182 Tuples are {s3456}")
+                ex_text = f"5283 Tuple is s3456, {s3456} \n"
+
+        if tcl == 8 and num == 3:
+            s3 = set(tc[3][3])
+            s4 = set(tc[4][3])
+            s5 = set(tc[5][3])
+            s6 = set(tc[6][3])
+            s7 = set(tc[7][3])
+            s3567 = s5.union(s6).union(s7)
+            if len(s3567) == 3:
+                print(f"5182 Tuples are {s3567}")
+                ex_text = f"5283 Tuple is s3567, {s3567} \n"
+            # s3567 = s5.union(s6).union(s7)
+            # if len(s3567) == 3:
+            #     print(f"2227 Triple is {s3567}")
+            #     ex_text = f"2228 Triple is s3567 {s3567} \n"
+            #     txt_Explain.insert(END, ex_text)
+            s_set_list = [s3567]  # , s3567
+            for item in s_set_list:
+                if len(item) == 3:
+                    # if not item in triples_list:
+                    triples_list.append(item)
+                    triples_list.append(rcs)
+                    # triples_rcs_list.append(rcs)
+                    print("5284 triple set is ", item, rcs)
+                    ex_text = f"5285 triple is {item} \n"
+                    txt_Explain.insert(END, ex_text)
+
+        if tcl == 7 and num == 4:
+            s3 = set(tc[3][3])
+            s4 = set(tc[4][3])
+            s5 = set(tc[5][3])
+            s6 = set(tc[6][3])
+            s40123 = s0.union(s1).union(s2).union(s3)
+            if len(s40123) == 4:
+                print(f"2227 Quad is {s40123}")
+                ex_text = f"2228 Quad is {s40123} \n"
+                txt_Explain.insert(END, ex_text)
+            s40124 = s0.union(s1).union(s2).union(s4)
+            if len(s40124) == 4:
+                print(f"2232 Quad is {s40124}")
+                ex_text = f"2233 Quad is {s40124} \n"
+                txt_Explain.insert(END, ex_text)
+            s40125 = s0.union(s1).union(s2).union(s5)
+            if len(s40125) == 4:
+                print(f"2232 Quad is {s40125}")
+                ex_text = f"2233 Quad is {s40125} \n"
+                txt_Explain.insert(END, ex_text)
+            s40126 = s0.union(s1).union(s2).union(s6)
+            if len(s40126) == 4:
+                print(f"2232 Quad is {s40126}")
+                ex_text = f"2233 Quad is {s40126} \n"
+                txt_Explain.insert(END, ex_text)
+            s40234 = s0.union(s2).union(s3).union(s4)
+            if len(s40234) == 4:
+                print(f"2232 Quad is {s40234}")
+                ex_text = f"2233 Quad is {s40234} \n"
+                txt_Explain.insert(END, ex_text)
+            s40235 = s0.union(s2).union(s3).union(s5)
+            if len(s40235) == 4:
+                print(f"2232 Quad are {s40235}")
+                ex_text = f"2233 Quad is {s40235} \n"
+                txt_Explain.insert(END, ex_text)
+            s40236 = s0.union(s2).union(s3).union(s6)
+            if len(s40236) == 4:
+                print(f"2232 Quad are {s40236}")
+                ex_text = f"2233 Quad is {s40236} \n"
+                txt_Explain.insert(END, ex_text)
+            s40245 = s0.union(s2).union(s4).union(s5)
+            if len(s40245) == 4:
+                print(f"2232 Quad are {s40245}")
+                ex_text = f"2233 Quad is {s40245} \n"
+                txt_Explain.insert(END, ex_text)
+            s40246 = s0.union(s2).union(s4).union(s6)
+            if len(s40246) == 4:
+                print(f"2232 Quad are {s40246}")
+                ex_text = f"2233 Quad is {s40246} \n"
+                txt_Explain.insert(END, ex_text)
+            s40256 = s0.union(s2).union(s5).union(s6)
+            if len(s40256) == 4:
+                print(f"5133 Quad are {s40256}")
+                ex_text = f"5134 Quad is s40256 {s40256} \n"
+                txt_Explain.insert(END, ex_text)
+            s40345 = s0.union(s3).union(s4).union(s5)
+            if len(s40345) == 4:
+                print(f"2232 Quad are {s40345}")
+                ex_text = f"2233 Quad is {s40345} \n"
+                txt_Explain.insert(END, ex_text)
+            s40346 = s0.union(s3).union(s4).union(s6)
+            if len(s40346) == 4:
+                print(f"2232 Quad are {s40346}")
+                ex_text = f"2233 Quad is {s40346} \n"
+                txt_Explain.insert(END, ex_text)
+            s40456 = s0.union(s4).union(s5).union(s6)
+            if len(s40456) == 4:
+                print(f"2232 Quad are {s40456}")
+                ex_text = f"2233 Quad is {s40456} \n"
+                txt_Explain.insert(END, ex_text)
+            s41234 = s1.union(s2).union(s3).union(s4)
+            if len(s41234) == 4:
+                print(f"2232 Quad are {s41234}")
+                ex_text = f"2233 Quad is {s41234} \n"
+                txt_Explain.insert(END, ex_text)
+            s41235 = s1.union(s2).union(s3).union(s5)
+            if len(s41235) == 4:
+                print(f"2232 Quad are {s41235}")
+                ex_text = f"2233 Quad is {s41235} \n"
+                txt_Explain.insert(END, ex_text)
+            s41236 = s1.union(s2).union(s3).union(s6)
+            if len(s41236) == 4:
+                print(f"2232 Quad are {s41236}")
+                ex_text = f"2233 Quad is {s41236} \n"
+                txt_Explain.insert(END, ex_text)
+            s41345 = s1.union(s3).union(s4).union(s5)
+            if len(s41345) == 4:
+                print(f"2232 Quad are {s41345}")
+                ex_text = f"2233 Quad is {s41345} \n"
+                txt_Explain.insert(END, ex_text)
+            s41346 = s1.union(s3).union(s4).union(s6)
+            if len(s41346) == 4:
+                print(f"4063 Quad are {s41346}")
+                ex_text = f"4064 Quad is {s41346} \n"
+                txt_Explain.insert(END, ex_text)
+            s41456 = s1.union(s4).union(s5).union(s6)
+            if len(s41456) == 4:
+                print(f"4063 Quad are {s41456}")
+                ex_text = f"4064 Quad is {s41456} \n"
+                txt_Explain.insert(END, ex_text)
+            s42345 = s2.union(s3).union(s4).union(s5)
+            if len(s42345) == 4:
+                print(f"2232 Quad are {s42345}")
+                ex_text = f"2233 Quad is {s42345} \n"
+                txt_Explain.insert(END, ex_text)
+            s42346 = s2.union(s3).union(s4).union(s6)
+            if len(s42346) == 4:
+                print(f"2232 Quad are {s42346}")
+                ex_text = f"2233 Quad is {s42346} \n"
+                txt_Explain.insert(END, ex_text)
+            s43456 = s3.union(s4).union(s5).union(s6)
+            if len(s43456) == 4:
+                print(f"2232 Quad are {s43456}")
+                ex_text = f"2233 Quad is {s43456} \n"
+                txt_Explain.insert(END, ex_text)
+            s_set_list = [s40123, s40124, s40125, s40126, s40234, s40235, s40236, s40245, s40246, s40256, s40345,
+                          s40346, s40456, s41234, s41235, s41236, s41345, s41346, s41456, s42345, s42346, s43456]
+            for item in s_set_list:
+                # if not item == []:
+                # print("4016 item is ", item)
+                if len(item) == 4:
+                    # if not item in quads_list:
+                    quads_list.append(item)
+                    quads_list.append(rcs)
+                    print("5205 quads_list is ", item, rcs)
+                    ex_text = f"5206 Quad is {item} \n"
+                    txt_Explain.insert(END, ex_text)
+
+        print("5208 triples_list is ", triples_list)
+        print("5209 quads_list is ", quads_list)
 
 
 def show_Triple(triple):
@@ -3956,7 +5454,7 @@ def parse_list_items():
 
 
 def process_row_triple(t_row, triple_set, triple_list):
-    print("2736 process_column_triple ", t_row)
+    print("2736 process_row_triple ", t_row)
     print("2737 triple_list is ", t_row,
           triple_set, triple_list)  # triples_list)
     c_set = triple_set
@@ -4149,7 +5647,7 @@ def process_column_triple_Old(t_col):
 
 
 def process_sq_triple(t_sq, triple_set, triple_list):
-    print("2736 process_sq_triple ", t_sq)
+    print("5441 process_sq_triple ", t_sq)
     print("2737 triple_list is ", t_sq,
           triple_set, triple_list)  # triples_list)
     c_set = triple_set
@@ -4187,6 +5685,50 @@ def process_sq_triple(t_sq, triple_set, triple_list):
                     else:
                         print(
                             "1450 Else fall through in triple remove number.")
+        else:
+            pass
+
+
+def process_sq_quad(t_sq, quads_set, quads_list):
+    print("5550 process_sq_quad ", t_sq)
+    print("2737 quads_list is ", t_sq,
+          quads_set, quads_list)  # triples_list)
+    c_set = quads_set
+    print("2744 t_set ", c_set)
+    nums = " ".join(map(str, c_set))
+    # nums = str(" ".join(map(str, triple))) #old
+    n0 = nums[0]
+    n1 = nums[2]
+    n2 = nums[4]
+    n3 = nums[6]
+    print("5561 nums ", c_set, nums, n0, n1, n2, n3)
+    print("5562 triple_list is ", quads_list)
+
+    for aref in not_done_arefs:
+        sq0 = aref['sq']
+        if sq0 != t_sq:
+            pass
+        elif sq0 == t_sq:
+            current_btn = aref['btn']
+            row0 = aref['row']
+            col0 = aref['col']
+            sq0 = aref['sq']
+            nums0 = aref['nums']
+            total_nums = c_set.union(nums0)
+            print("5573 quad ", current_btn,
+                  row0, col0, sq0, nums0, total_nums)
+            if len(total_nums) > 4:
+                for num in c_set:
+                    if num in nums0:
+                        print("5578 num is ", num)
+                        nums1 = aref['nums'].replace(num, "")
+                        print("2594 nums0 are ", nums1)
+                        aref['nums'] = str(nums1)
+                        print("2596 new text is ", aref['nums'])
+                        current_btn['text'] = aref['nums']
+                    else:
+                        print(
+                            "5586 Else fall through in quads remove number.")
         else:
             pass
 
@@ -6062,7 +7604,9 @@ def cells_remaining():
 def load_solution_1():
     print("3504 Entered load_solution_1")
     global currentNumber
-    file = open("MS_5Star_1.txt", "r")
+    # file = open("C:\MonsterSudoku\MS_4Star_1.txt", "r")
+    file = open("C:\MonsterSudoku\MS_5Star_2.txt", "r")
+    # file = open("C:\PythonProjects\MonsterSudoku\MS_5Star_1.txt", "r")
     print("File opened")
     for line in file:
         print("line is ", line)
@@ -6079,7 +7623,7 @@ def CheckForOnlyNumberInARow():
 
 def num_in_only_RC_in_Sq():
     # CheckForOnlyOneNumber()
-    print("3527 sq_nums_lst ", sq_nums_lst)
+    print("3527 n_1_16 ", n_1_16)
     global s_1_nums
     global s_2_nums
     global s_3_nums
@@ -6100,7 +7644,7 @@ def num_in_only_RC_in_Sq():
     for cell in not_done_arefs:
         # current_button = cell['btn']
         # print("3546 ", current_button)
-        # for num in sq_nums_lst
+        # for num in n_1_16
         if cell['sq'] == 1:
             for num in startingString:
                 print("3548 num in startingString is ", num)
@@ -6153,15 +7697,278 @@ def create_record():
     pass
 
 
+def test_1():
+    make_arefs()
+
+
+def make_arefs():
+    '''Make rcs references lists'''
+    print("6510 type not_done_arefs is ", type(not_done_arefs))
+    for aref in not_done_arefs:
+        row = aref['row']
+        col = aref['col']
+        sq = aref['sq']
+        if row == 1:
+            row_1_arefs.append(aref)
+        elif row == 2:
+            sq_2_arefs.append(aref)
+        elif row == 3:
+            row_3_arefs.append(aref)
+        elif row == 4:
+            row_4_arefs.append(aref)
+        elif row == 5:
+            row_5_arefs.append(aref)
+        elif row == 6:
+            row_6_arefs.append(aref)
+        elif row == 7:
+            row_7_arefs.append(aref)
+        elif row == 8:
+            row_8_arefs.append(aref)
+        elif row == 9:
+            row_9_arefs.append(aref)
+        elif row == 10:
+            row_10_arefs.append(aref)
+        elif row == 11:
+            row_11_arefs.append(aref)
+        elif row == 12:
+            row_12_arefs.append(aref)
+        elif row == 13:
+            row_13_arefs.append(aref)
+        elif row == 14:
+            row_14_arefs.append(aref)
+        elif row == 15:
+            row_15_arefs.append(aref)
+        elif row == 16:
+            row_16_arefs.append(aref)
+
+        col = aref['col']
+        if col == 1:
+            col_1_arefs.append(aref)
+        elif col == 2:
+            col_2_arefs.append(aref)
+        elif col == 3:
+            col_3_arefs.append(aref)
+        elif col == 4:
+            col_4_arefs.append(aref)
+        elif col == 5:
+            col_5_arefs.append(aref)
+        elif col == 6:
+            col_6_arefs.append(aref)
+        elif col == 7:
+            col_7_arefs.append(aref)
+        elif col == 8:
+            col_8_arefs.append(aref)
+        elif col == 9:
+            col_9_arefs.append(aref)
+        elif col == 10:
+            col_10_arefs.append(aref)
+        elif col == 11:
+            col_11_arefs.append(aref)
+        elif col == 12:
+            col_12_arefs.append(aref)
+        elif col == 13:
+            col_13_arefs.append(aref)
+        elif col == 14:
+            col_14_arefs.append(aref)
+        elif col == 15:
+            col_15_arefs.append(aref)
+        elif col == 16:
+            col_16_arefs.append(aref)
+
+        sq = aref['sq']
+        if sq == 1:
+            sq_1_arefs.append(aref)
+        elif sq == 2:
+            sq_2_arefs.append(aref)
+        elif sq == 3:
+            sq_3_arefs.append(aref)
+        elif sq == 4:
+            sq_4_arefs.append(aref)
+        elif sq == 5:
+            sq_5_arefs.append(aref)
+        elif sq == 6:
+            sq_6_arefs.append(aref)
+        elif sq == 7:
+            sq_7_arefs.append(aref)
+        elif sq == 8:
+            sq_8_arefs.append(aref)
+        elif sq == 9:
+            sq_9_arefs.append(aref)
+        elif sq == 10:
+            sq_10_arefs.append(aref)
+        elif sq == 11:
+            sq_11_arefs.append(aref)
+        elif sq == 12:
+            sq_12_arefs.append(aref)
+        elif sq == 13:
+            sq_13_arefs.append(aref)
+        elif sq == 14:
+            sq_14_arefs.append(aref)
+        elif sq == 15:
+            sq_15_arefs.append(aref)
+        elif sq == 16:
+            sq_16_arefs.append(aref)
+    # print("6615 arefs and types are ", type(row_16_arefs), row_16_arefs)
+    # print("6616 arefs and types are ", type(col_16_arefs), col_16_arefs)
+    # print("6617 arefs and types are ", type(sq_16_arefs), sq_16_arefs)
+
+
+def make_current_arefs():
+    '''Make rcs references lists'''
+    global row_1_arefs
+    row_1_arefs = []
+    row_2_arefs = []
+    row_3_arefs = []
+    row_4_arefs = []
+    row_5_arefs = []
+    row_6_arefs = []
+    row_7_arefs = []
+    row_8_arefs = []
+    row_9_arefs = []
+    row_10_arefs = []
+    row_11_arefs = []
+    row_12_arefs = []
+    row_13_arefs = []
+    row_14_arefs = []
+    row_15_arefs = []
+    row_16_arefs = []
+    col_1_arefs = []
+    col_2_arefs = []
+    col_3_arefs = []
+    col_4_arefs = []
+    col_5_arefs = []
+    col_6_arefs = []
+    col_7_arefs = []
+    col_8_arefs = []
+    col_9_arefs = []
+    col_10_arefs = []
+    col_11_arefs = []
+    col_12_arefs = []
+    col_13_arefs = []
+    col_14_arefs = []
+    col_15_arefs = []
+    col_16_arefs = []
+    print("6510 type not_done_arefs is ", type(not_done_arefs))
+    for aref in not_done_arefs:
+        row = aref['row']
+        col = aref['col']
+        sq = aref['sq']
+        if row == 1:
+            row_1_arefs.append(aref)
+        elif row == 2:
+            row_2_arefs.append(aref)
+        elif row == 3:
+            row_3_arefs.append(aref)
+        elif row == 4:
+            row_4_arefs.append(aref)
+        elif row == 5:
+            row_5_arefs.append(aref)
+        elif row == 6:
+            row_6_arefs.append(aref)
+        elif row == 7:
+            row_7_arefs.append(aref)
+        elif row == 8:
+            row_8_arefs.append(aref)
+        elif row == 9:
+            row_9_arefs.append(aref)
+        elif row == 10:
+            row_10_arefs.append(aref)
+        elif row == 11:
+            row_11_arefs.append(aref)
+        elif row == 12:
+            row_12_arefs.append(aref)
+        elif row == 13:
+            row_13_arefs.append(aref)
+        elif row == 14:
+            row_14_arefs.append(aref)
+        elif row == 15:
+            row_15_arefs.append(aref)
+        elif row == 16:
+            row_16_arefs.append(aref)
+
+        col = aref['col']
+        if col == 1:
+            col_1_arefs.append(aref)
+        elif col == 2:
+            col_2_arefs.append(aref)
+        elif col == 3:
+            col_3_arefs.append(aref)
+        elif col == 4:
+            col_4_arefs.append(aref)
+        elif col == 5:
+            col_5_arefs.append(aref)
+        elif col == 6:
+            col_6_arefs.append(aref)
+        elif col == 7:
+            col_7_arefs.append(aref)
+        elif col == 8:
+            col_8_arefs.append(aref)
+        elif col == 9:
+            col_9_arefs.append(aref)
+        elif col == 10:
+            col_10_arefs.append(aref)
+        elif col == 11:
+            col_11_arefs.append(aref)
+        elif col == 12:
+            col_12_arefs.append(aref)
+        elif col == 13:
+            col_13_arefs.append(aref)
+        elif col == 14:
+            col_14_arefs.append(aref)
+        elif col == 15:
+            col_15_arefs.append(aref)
+        elif col == 16:
+            col_16_arefs.append(aref)
+
+        sq = aref['sq']
+        if sq == 1:
+            sq_1_arefs.append(aref)
+        elif sq == 2:
+            sq_2_arefs.append(aref)
+        elif sq == 3:
+            sq_3_arefs.append(aref)
+        elif sq == 4:
+            sq_4_arefs.append(aref)
+        elif sq == 5:
+            sq_5_arefs.append(aref)
+        elif sq == 6:
+            sq_6_arefs.append(aref)
+        elif sq == 7:
+            sq_7_arefs.append(aref)
+        elif sq == 8:
+            sq_8_arefs.append(aref)
+        elif sq == 9:
+            sq_9_arefs.append(aref)
+        elif sq == 10:
+            sq_10_arefs.append(aref)
+        elif sq == 11:
+            sq_11_arefs.append(aref)
+        elif sq == 12:
+            sq_12_arefs.append(aref)
+        elif sq == 13:
+            sq_13_arefs.append(aref)
+        elif sq == 14:
+            sq_14_arefs.append(aref)
+        elif sq == 15:
+            sq_15_arefs.append(aref)
+        elif sq == 16:
+            sq_16_arefs.append(aref)
+    # print("6615 arefs and types are ", type(row_16_arefs), row_16_arefs)
+    # print("6616 arefs and types are ", type(col_16_arefs), col_16_arefs)
+    # print("6617 arefs and types are ", type(sq_16_arefs), sq_16_arefs)
+
+
 def test_2():
-    # make_aref_RCS_lists()
-    # make_RCS_strings()
-    # # make_done_arefs()
-    # make_RCS_sets_1()
+    make_aref_RCS_lists()
+    make_RCS_strings()
+    make_done_arefs()
+    make_RCS_sets_1()
     make_RCS_sets()
     make_row_dicts()
     make_col_dicts()
-    # num_in_row_col_of_sq()
+    num_in_row_col_of_sq()
+    remove_num_in_row_sq()
+    remove_num_in_col_sq()
 
 
 def make_RCS_strings():
@@ -6170,27 +7977,27 @@ def make_RCS_strings():
     These lists update global variables and will be used to find
     when a number only occurs once in a row, column, or square.
     """
-    print("3885 row_nums are ", row_nums[0])
+    for r in n_1_16:
+        row_nums[r - 1][1] = ""
+        col_nums[r - 1][1] = ""
+    # row_nums = [[1, ""],
+    # print("3885 row_nums are ", row_nums, row_nums[0])
     for cell in not_done_arefs:
-        if cell['sq'] == 5 and len(cell['nums']) != 1:
-            row_num = cell['row']
-            col_num = cell['col']
-            sq_num = cell['sq']
-            nums = cell['nums']
-            # print("3909 cell['nums'] ", cell['btn_str'], row_num, col_num,
-            #       sq_num, nums, row_nums, col_nums, sq_nums)
-            row_nums[row_num - 1][1] += nums
-            col_nums[col_num - 1][1] += nums
-            sq_nums[sq_num - 1][1] += nums
-        elif cell['done'] == False and len(cell['nums']) == 1:
-            row_num = cell['row']
-            col_num = cell['col']
-            sq_num = cell['sq']
-            nums = cell['nums']
-    print("3990 row numbers are ", row_nums)
+        # if cell['sq'] == 5 and len(cell['nums']) != 1:
+        row_num = cell['row']
+        col_num = cell['col']
+        sq_num = cell['sq']
+        nums = cell['nums']
+        # print("3909 cell['nums'] ", cell['btn_str'], row_num, col_num,
+        #       sq_num, nums, row_nums, col_nums, sq_nums)
+        row_nums[row_num - 1][1] += nums
+        col_nums[col_num - 1][1] += nums
+        sq_nums[sq_num - 1][1] += nums
+    print("7648 row numbers are ", row_nums)
+    print("7649 col numbers are ", col_nums)
 
 
-def test_1():
+def test_1a():
     for item in arrRefs_List:
         row = item['row']
         col = item['col']
@@ -6200,111 +8007,111 @@ def test_1():
         if row == 1:
             # print("3912 aref is ", item)
             # print("3913 aref is ", item['aref'], nums)
-            aref_row_1.append(nums)
-            row_1_arefs.append(aref)
-
+            row_1_arefs.append(item)
+            # row_1_arefs.append(nums)
+            # row_1_arefs.append(aref)
         elif row == 2:
-            aref_row_2.append(item)
+            row_2_arefs.append(item)
         elif row == 3:
-            aref_row_3.append(item)
+            row_3_arefs.append(item)
         elif row == 4:
-            aref_row_4.append(item)
+            row_4_arefs.append(item)
         elif row == 5:
-            aref_row_5.append(item)
+            row_5_arefs.append(item)
         elif row == 6:
-            aref_row_6.append(item)
+            row_6_arefs.append(item)
         elif row == 7:
-            aref_row_7.append(item)
+            row_7_arefs.append(item)
         elif row == 8:
-            aref_row_8.append(item)
+            row_8_arefs.append(item)
         elif row == 9:
-            aref_row_9.append(item)
+            row_9_arefs.append(item)
         elif row == 10:
-            aref_row_10.append(item)
+            row_10_arefs.append(item)
         elif row == 11:
-            aref_row_11.append(item)
+            row_11_arefs.append(item)
         elif row == 12:
-            aref_row_12.append(item)
+            row_12_arefs.append(item)
         elif row == 13:
-            aref_row_13.append(item)
+            row_13_arefs.append(item)
         elif row == 14:
-            aref_row_14.append(item)
+            row_14_arefs.append(item)
         elif row == 15:
-            aref_row_15.append(item)
+            row_15_arefs.append(item)
         elif row == 16:
-            aref_row_16.append(item)
+            row_16_arefs.append(item)
         if col == 1:
-            aref_col_1.append(item)
+            col_1_arefs.append(item)
         elif col == 2:
-            aref_col_2.append(item)
+            col_2_arefs.append(item)
         elif col == 3:
-            aref_col_3.append(item)
+            col_3_arefs.append(item)
         elif col == 4:
-            aref_col_4.append(item)
+            col_3_arefs.append(item)
         elif col == 5:
-            aref_col_5.append(item)
+            col_5_arefs.append(item)
         elif col == 6:
-            aref_col_6.append(item)
+            col_6_arefs.append(item)
         elif col == 7:
-            aref_col_7.append(item)
+            col_6_arefs.append(item)
         elif col == 8:
-            aref_col_8.append(item)
+            col_8_arefs.append(item)
         elif col == 9:
-            aref_col_9.append(item)
+            col_9_arefs.append(item)
         elif col == 10:
-            aref_col_10.append(item)
+            col_10_arefs.append(item)
         elif col == 11:
-            aref_col_11.append(item)
+            col_11_arefs.append(item)
         elif col == 12:
-            aref_col_12.append(item)
+            col_12_arefs.append(item)
         elif col == 13:
-            aref_col_13.append(item)
+            col_13_arefs.append(item)
         elif col == 14:
-            aref_col_14.append(item)
+            col_14_arefs.append(item)
         elif col == 15:
-            aref_col_15.append(item)
+            col_15_arefs.append(item)
         elif col == 16:
-            aref_col_16.append(item)
+            col_16_arefs.append(item)
         if sq == 1:
-            aref_sq_1.append(item)
+            sq_1_arefs.append(item)
         elif sq == 2:
-            aref_sq_2.append(item)
+            sq_2_arefs.append(item)
         elif sq == 3:
-            aref_sq_3.append(item)
+            sq_3_arefs.append(item)
         elif sq == 4:
-            aref_sq_4.append(item)
+            sq_4_arefs.append(item)
         elif sq == 5:
-            aref_sq_5.append(item)
+            sq_5_arefs.append(item)
         elif sq == 6:
-            aref_sq_6.append(item)
+            sq_6_arefs.append(item)
         elif sq == 7:
-            aref_sq_7.append(item)
+            sq_7_arefs.append(item)
         elif sq == 8:
-            aref_sq_8.append(item)
+            sq_8_arefs.append(item)
         elif sq == 9:
-            aref_sq_9.append(item)
+            sq_9_arefs.append(item)
         elif sq == 10:
-            aref_sq_10.append(item)
+            sq_10_arefs.append(item)
         elif sq == 11:
-            aref_sq_11.append(item)
+            sq_11_arefs.append(item)
         elif sq == 12:
-            aref_sq_12.append(item)
+            sq_12_arefs.append(item)
         elif sq == 13:
-            aref_sq_13.append(item)
+            sq_13_arefs.append(item)
         elif sq == 14:
-            aref_sq_14.append(item)
+            sq_14_arefs.append(item)
         elif sq == 15:
-            aref_sq_15.append(item)
+            sq_15_arefs.append(item)
         elif sq == 16:
-            aref_sq_16.append(item)
+            sq_16_arefs.append(item)
     print("4644 row_1_arefs ", row_1_arefs)
-    print("4645 aref_sq_9 ", aref_sq_9)
+    print("4645 aref_sq_9 ", sq_9_arefs)
 
     test_4()
 
 
 def test_4():
-    for aref_list in aref_rows:
+    for aref_list in row_arefs:
         print("4644 ", aref_list)
         for item in aref_list:
             print("4646 item in aref_list is ", item)
@@ -6351,15 +8158,23 @@ def save_current_to_history(history):
 
 def auto():
     print("5148 Auto set")
-    CheckForOnlyOneNumber()
-    solve_rcs_singles()
-    CheckForOnlyOneNumber()
-    solve_rcs_singles()
-    find_Duples()
-    fix_duples()
-    find_Duples()
-    fix_duples()
-    find_Triple()
+    only_1_num_in_cell()
+    # CheckForOnlyOneNumber()
+    # solve_rcs_singles()
+    # CheckForOnlyOneNumber()
+    # solve_rcs_singles()
+    # only_1_num_in_cell()
+    # CheckForOnlyOneNumber()
+    # only_1_num_in_cell()
+    # CheckForOnlyOneNumber()
+    # only_1_num_in_cell()
+    # find_Duples()
+    # fix_duples()
+    # CheckForOnlyOneNumber()
+    # only_1_num_in_cell()
+    # find_Duples()
+    # fix_duples()
+    # find_Triples()
     # fix_triples()
     # num_in_only_RC_in_Sq()
 
@@ -6397,7 +8212,7 @@ def save_currentSolution():
             currentSolution += f"update_cell({btn} , {aref})"
 
 
-def load_solution_1():
+def load_solution_1a():
     print("3755 Entered load_solution_1")
     # enlarge_puzzle()
     # 'C:\PythonProjects\MonsterSudoku\MS_5Star_9.txt'
@@ -7034,8 +8849,8 @@ btn_find_triple = Button(fn_frame, wraplength=40, justify=LEFT, text='Find\nTrip
                          command=find_Triples, width=6, height=hit)
 btn_find_triple.grid(row=0, column=2, sticky='nw')
 btn_find_triple.config(font=entryfont)
-btn_find_quad = Button(fn_frame, wraplength=40, justify=LEFT, text='Test\n1',
-                       command=test_1, width=6, height=hit)
+btn_find_quad = Button(fn_frame, wraplength=40, justify=LEFT, text='Find\nQuads',
+                       command=find_Quads, width=6, height=hit)
 btn_find_quad.grid(row=0, column=3, sticky='nw')
 btn_find_quad.config(font=entryfont)
 btn_R8C1 = tk.Button(F5_frame, wraplength=48, justify=LEFT, text=startingString,
@@ -7208,10 +9023,10 @@ btn_IDTriples = Button(fn_frame, wraplength=40, justify=LEFT, text='Fix\ntriples
 btn_IDTriples.grid(row=2, column=2, sticky='nw')
 btn_IDTriples.config(font=entryfont)
 
-btn_IDQuads = Button(fn_frame, wraplength=48, justify=LEFT, text='test\n2',
-                     command=test_2, width=6, height=hit)
-btn_IDQuads.grid(row=2, column=3, sticky='nw')
-btn_IDQuads.config(font=entryfont)  #
+btn_FixQuads = Button(fn_frame, wraplength=48, justify=LEFT, text='Fix\nquads',
+                      command=fix_quads, width=6, height=hit)
+btn_FixQuads.grid(row=2, column=3, sticky='nw')
+btn_FixQuads.config(font=entryfont)  #
 
 btn_del_num = Button(fn_frame, wraplength=40, justify=LEFT, text='Del\nnum\nfrom\ncell',
                      command=set_bRemoveANumberFromACell, width=6, height=hit)
@@ -7231,8 +9046,8 @@ btn_remaining = Button(fn_frame, wraplength=48, justify=LEFT, text='Cells\nRemai
 btn_remaining.grid(row=3, column=3, sticky='nw')
 btn_remaining.config(font=entryfont)
 
-btn_e = Button(fn_frame, wraplength=40, justify=LEFT, text='Numb\nin only\n1 RC',
-               command=num_in_only_RC_in_Sq, width=6, height=hit)
+btn_e = Button(fn_frame, wraplength=40, justify=LEFT, text='Test\n2',
+               command=test_2, width=6, height=hit)
 btn_e.grid(row=4, column=0, sticky='nw')
 btn_e.config(font=entryfont)
 btn_load = Button(fn_frame, wraplength=40, justify=LEFT, text='Load\nsoln',
@@ -8421,7 +10236,8 @@ btn_dict = {'btn_R1C1': 'arrRef0', 'btn_R1C2': 'arrRef1', 'btn_R1C3': 'arrRef2',
             }
 not_done_arefs = arrRefs_List.copy()
 
-
 if __name__ == '__main__':
+    make_arefs()
     root.mainloop()
+
     # clear_current_history_file()
