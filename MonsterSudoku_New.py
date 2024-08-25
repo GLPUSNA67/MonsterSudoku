@@ -7130,7 +7130,7 @@ def update_R11C3():
 
 
 def update_R11C4():
-    update_cell(btn_R11C4, arrRef163, 'btn_R11C4', 'arrRef164')
+    update_cell(btn_R11C4, arrRef163, 'btn_R11C4', 'arrRef163')
 
 
 def update_R11C5():
