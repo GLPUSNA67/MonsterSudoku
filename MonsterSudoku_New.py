@@ -1,4 +1,4 @@
-import sys #2/22
+import sys  # 2/22
 import pickle
 import json
 import ctypes
@@ -345,7 +345,7 @@ c16 = dict(nums='', n0="", ct_0=0, ct_0__row_refs=[], n1="", ct_1=0, ct_1__row_r
 ], n8="", ct_8=0, ct_8__row_refs=[], n9="", ct_9=0, ct_9__row_refs=[], nA="", ct_A=0, ct_A__row_refs=[], nB="", ct_B=0, ct_B__row_refs=[], nC="", ct_C=0, ct_C__row_refs=[], nD="", ct_D=0, ct_D__col_refs=[], nE="", ct_E=0, ct_E__row_refs=[], nF="", ct_F=0, ct_F__row_refs=[])
 
 # s_9_num_cts_old = dict(n0 = "", n0_row_ct = 0, n0_col_ct = 0, n1 = "", n1_row_ct = 0, n1_col_ct = 0, n2 = "", n2_row_ct = 0, n2_col_ct = 0, n3 = "", n3_row_ct = 0, n3_col_ct = 0, n4 = "", n4_row_ct = 0, n4_col_ct = 0, n5 = "", n5_row_ct = 0, n5_col_ct = 0,n6 = "", n6_row_ct = 0, n6_col_ct = 0, n7 = "", n7_row_ct = 0, n7_col_ct = 0, n8 = "", n8_row_ct = 0, n8_col_ct = 0, n9 = "", n9_row_ct = 0, n9_col_ct = 0, nA = "", nA_row_ct = 0, nA_col_ct = 0, nB = "", nB_row_ct = 0, nB_col_ct = 0, nC = "", nC_row_ct = 0, nC_col_ct = 0, nD = "", nD_row_ct = 0, nD_col_ct = 0, nE = "", nE_row_ct = 0, nE_col_ct = 0, nF = "", nF_row_ct = 0, nF_col_ct = 0)
-''' The s_9_num_cts dictionary stores the count of the number of rows, the number of columns, and the number of times a number occurs in the square. 
+''' The s_9_num_cts dictionary stores the count of the number of rows, the number of columns, and the number of times a number occurs in the square.
 Thus, s_9_num_cts[7][2][1][2] would record that the number 7 occurs in 2 rows, in 1 column and 2 times in the square.'''
 # s_9_num_cts = [[0, [], [], []], [1, [], [], []], [2, [], [], []], [3, [], [], []], [4, [], [], []], [5, [], [], []], [6, [], [], []], [7, [], [], []], [
 #     8, [], [], []], [9, [], [], []], ['A', [], [], []], ['B', [], [], []], ['C', [], [], []], ['D', [], [], []], ['E', [], [], []], ['F', [], [], []]]
@@ -848,7 +848,8 @@ def num_in_row_col_of_sq():
                     ex_text = ex_text + \
                         f"But {num} is in other cells of that row "
                     ex_text = ex_text + \
-                        f"outside of that square\n {sq},{num}, {cnt}, {r_nums}\n"
+                        f"outside of that square\n"
+                    ex_text = ex_text + f"{sq}, {num}, {cnt}, {r_nums}\n"
                     txt_Explain.insert(END, ex_text)
                     if not num in n_in_row_sq:
                         n_list = [sq, num]
@@ -861,7 +862,8 @@ def num_in_row_col_of_sq():
                     ex_text = ex_text + \
                         f"But {num} is in other cells of that row "
                     ex_text = ex_text + \
-                        f"outside of that square\n {sq},{num}, {cnt}, {r_nums}\n"
+                        f"outside of that square\n"
+                    ex_text = ex_text + f"{sq}, {num}, {cnt}, {r_nums}\n"
                     txt_Explain.insert(END, ex_text)
                     if not num in n_in_row_sq:
                         n_list = [sq, num]
@@ -874,8 +876,8 @@ def num_in_row_col_of_sq():
                     ex_text = ex_text + \
                         f"But {num} is in other cells of that row "
                     ex_text = ex_text + \
-                        f"outside of that square\n {sq},{num}, {cnt}, {r_nums}\n"
-                    # {num}, {cnt}, {r_nums}
+                        f"outside of that square\n"
+                    ex_text = ex_text + f"{sq}, {num}, {cnt}, {r_nums}\n"
                     txt_Explain.insert(END, ex_text)
                     if not num in n_in_row_sq:
                         n_list = [sq, num]
@@ -888,7 +890,8 @@ def num_in_row_col_of_sq():
                     ex_text = ex_text + \
                         f"But {num} is in other cells of that row "
                     ex_text = ex_text + \
-                        f"outside of that  square\n {sq},{num}, {cnt}, {r_nums}\n"
+                        f"outside of that square\n"
+                    ex_text = ex_text + f"{sq}, {num}, {cnt}, {r_nums}\n"
                     txt_Explain.insert(END, ex_text)
                     if not num in n_in_row_sq:
                         n_list = [sq, num]
@@ -902,7 +905,8 @@ def num_in_row_col_of_sq():
                     ex_text = ex_text + \
                         f"But {num} is in other cells of that column "
                     ex_text = ex_text + \
-                        f"outside of that square\n {sq},{num}, {cnt}, {c_nums}\n"
+                        f"outside of that square\n"
+                    ex_text = ex_text + f"{sq}, {num}, {cnt}, {r_nums}\n"
                     txt_Explain.insert(END, ex_text)
                     if not num in n_in_col_sq:
                         n_list = [sq, num]
@@ -915,7 +919,8 @@ def num_in_row_col_of_sq():
                     ex_text = ex_text + \
                         f"But {num} is in other cells of that column "
                     ex_text = ex_text + \
-                        f"outside of that square\n {sq},{num}, {cnt}, {c_nums}\n"
+                        f"outside of that square\n"
+                    ex_text = ex_text + f"{sq}, {num}, {cnt}, {r_nums}\n"
                     txt_Explain.insert(END, ex_text)
                     if not num in n_in_col_sq:
                         n_list = [sq, num]
@@ -928,7 +933,8 @@ def num_in_row_col_of_sq():
                     ex_text = ex_text + \
                         f"But {num} is in other cells of that column "
                     ex_text = ex_text + \
-                        f"outside of that square\n {sq},{num}, {cnt}, {c_nums}\n"
+                        f"outside of that square\n"
+                    ex_text = ex_text + f"{sq}, {num}, {cnt}, {r_nums}\n"
                     txt_Explain.insert(END, ex_text)
                     if not num in n_in_col_sq:
                         n_list = [sq, num]
@@ -941,7 +947,8 @@ def num_in_row_col_of_sq():
                     ex_text = ex_text + \
                         f"But {num} is in other cells of that column "
                     ex_text = ex_text + \
-                        f"outside of that square\n {sq},{num}, {cnt}, {c_nums}\n"
+                        f"outside of that square\n"
+                    ex_text = ex_text + f"{sq}, {num}, {cnt}, {r_nums}\n"
                     txt_Explain.insert(END, ex_text)
                     if not num in n_in_col_sq:
                         n_list = [sq, num]
@@ -1752,7 +1759,7 @@ def num_in_row_col_of_sq_old():
 
 
 def make_RCS_sets_1():
-    ''' Make sets of the sets of nums in each cell in 
+    ''' Make sets of the sets of nums in each cell in
         each row, col, and sq. --> r_1_s = {'378A', '89AE', '37', '18', '139', '089A', '07A', '39AE'}
     '''
     print("322 Entered make_RCS_sets_1")
@@ -4071,13 +4078,17 @@ def id_duples(duple_candidate_list):
                     pass
                 # If the current cell is not the same as the original cell, process it
                 elif i_pair == c_pair and (i_row == c_row or i_col == c_col or i_sq == c_sq):
-                    ex_text = f"{i_row}, {i_col}, {i_sq}, {i_pair}, {c_row}, {c_col}, {c_sq}, {c_pair}"
+                    ex_text = f"{i_row}, {i_col}, {i_sq},{i_pair} "
+                    ex_text = ex_text + \
+                        f"{c_row}, {c_col}, {c_sq}, {c_pair}"
                     print("913 pairs are ", i_row, i_col, i_sq, i_pair, i_aref, i_btn,
                           c_row, c_col, c_sq, c_pair, c_pair[0], c_pair[1], c_aref, c_btn)
                     # duple_first = {i_row}, {i_col}, {i_sq}, {i_pair}
-                    duple_first = f"{i_row}, {i_col}, {i_sq}, {i_pair}, {i_aref}"
+                    duple_first = f"{i_row}, {i_col}, \
+                        {i_sq}, {i_pair}, {i_aref}"
                     duple_first = duple_first.split(',')
-                    duple_second = f"{c_row}, {c_col}, {c_sq}, {c_pair}, {c_aref}, {c_btn}"
+                    duple_second = f"{c_row}, {c_col}, \
+                        {c_sq}, {c_pair}, {c_aref}, {c_btn}"
                     duple_second = duple_second.split(',')
                     current_duple = [duple_first, duple_second]
                     print("912 duple_first is ", duple_first)
@@ -4891,7 +4902,7 @@ def _find_Tuples(num):
                           c_9_tuples, c_10_tuples, c_11_tuples, c_12_tuples, c_13_tuples, c_14_tuples, c_15_tuples, c_16_tuples)
             sq_tuples = (s_1_tuples, s_2_tuples, s_3_tuples, s_4_tuples, s_5_tuples, s_6_tuples, s_7_tuples, s_8_tuples,
                          s_9_tuples, s_10_tuples, s_11_tuples, s_12_tuples, s_13_tuples, s_14_tuples, s_15_tuples, s_16_tuples)
-    print("2054 row tuple candidates are:")
+    print("2054 row tuple candidates are: ", r_8_tuples)
     for r in row_tuples:
         if len(r) >= num:
             print("2056 ", r)
@@ -4947,33 +4958,6 @@ def _process_tuple_RCS(tuple_candidate, rcs, num):
         s40123 = []
         s40134 = []
         s41234 = []
-        # sa1 = []
-        # sa2 = []
-        # sa3 = []
-        # sa4 = []
-        # sa5 = []
-        # sa6 = []
-        # sa7 = []
-        # sa8 = []
-        # sa9 = []
-        # sa10 = []
-        # sa11 = []
-        # sa12 = []
-        # sa13 = []
-        # sa14 = []
-        # sa15 = []
-        # sa16 = []
-        # sa17 = []
-        # sa18 = []
-        # sa19 = []
-        # sa20 = []
-        # sb1 = []
-        # sb2 = []
-        # sb3 = []
-        # sc1 = []
-        # sc2 = []
-        # sd1 = []
-        # sd2 = []
         print("2114 tcl is ", tcl)
         s0 = set(tc[0][3])
         s1 = set(tc[1][3])
@@ -5065,13 +5049,18 @@ def _process_tuple_RCS(tuple_candidate, rcs, num):
                 print(f"4913 Triples are {s3124}")
                 ex_text = f"4914 Triple is s3124, {s3124} \n"
                 txt_Explain.insert(END, ex_text)
+            s3134 = s1.union(s3).union(s4)
+            if len(s3134) == 3:
+                print(f"4913 Triples are s3134 {s3134}")
+                ex_text = f"4914 Triple is s3134, {s3134} \n"
+                txt_Explain.insert(END, ex_text)
             s3234 = s2.union(s3).union(s4)
             if len(s3234) == 3:
                 print(f"2207 Triples are s3234 {s3234}")
                 ex_text = f"2209 Triple is s3234 {s3234} \n"
                 txt_Explain.insert(END, ex_text)
             s_set_list = [s3012, s3013, s3014,
-                          s3023, s3024, s3123, s3124, s3234]
+                          s3023, s3024, s3123, s3124, s3134, s3234]
             for item in s_set_list:
                 if len(item) == 3:
                     # if not item in triples_list:
@@ -5114,8 +5103,8 @@ def _process_tuple_RCS(tuple_candidate, rcs, num):
             # s6 = set(tc[6][3])
             s3012 = s0.union(s1).union(s2)
             if len(s3012) == 3:
-                print(f"2227 Triples are {s3012}")
-                ex_text = f"2228 Triple is {s3012} \n"
+                print(f"5090 Triples are s3012 {s3012}")
+                ex_text = f"5091 Triple is s3012 {s3012} \n"
                 txt_Explain.insert(END, ex_text)
             s3013 = s0.union(s1).union(s3)
             if len(s3013) == 3:
@@ -5164,8 +5153,8 @@ def _process_tuple_RCS(tuple_candidate, rcs, num):
                 txt_Explain.insert(END, ex_text)
             s3234 = s2.union(s3).union(s4)
             if len(s3234) == 3:
-                print(f"2261 Triples are {s3234}")
-                ex_text = f"2262 Triple is {s3234} \n"
+                print(f"2261 Triples are s3234 {s3234}")
+                ex_text = f"2262 Triple is s3234 {s3234} \n"
                 txt_Explain.insert(END, ex_text)
             s3235 = s2.union(s3).union(s5)
             if len(s3235) == 3:
@@ -5224,9 +5213,25 @@ def _process_tuple_RCS(tuple_candidate, rcs, num):
                 print(f"5054 Quad is {s40145}")
                 ex_text = f"5055 Quad is s40134 {s40145} \n"
                 txt_Explain.insert(END, ex_text)
+            s40234 = s0.union(s2).union(s3).union(s4)
+            if len(s40234) == 4:
+                print(f"5054 Quad is s40234 {s40234}")
+                ex_text = f"5055 Quad is s40234 {s40234} \n"
+                txt_Explain.insert(END, ex_text)
+            s40235 = s0.union(s2).union(s3).union(s5)
+            if len(s40235) == 4:
+                print(f"5054 Quad is s40235 {s40235}")
+                ex_text = f"5055 Quad is s40235 {s40235} \n"
+                txt_Explain.insert(END, ex_text)
+            s40345 = s0.union(s3).union(s4).union(s5)
+            if len(s40345) == 4:
+                print(f"5054 Quad is s40345 {s40345}")
+                ex_text = f"5055 Quad is s40345 {s40345} \n"
+                txt_Explain.insert(END, ex_text)
+            s41234 = s1.union(s2).union(s3).union(s4)
             if len(s41234) == 4:
-                print(f"5059 Quad is {s41234}")
-                ex_text = f"5060 Quad is {s41234} \n"
+                print(f"5059 Quad is s41234 {s41234}")
+                ex_text = f"5060 Quad is s41234 {s41234} \n"
                 txt_Explain.insert(END, ex_text)
             s41235 = s1.union(s2).union(s3).union(s5)
             if len(s41235) == 4:
@@ -5239,13 +5244,12 @@ def _process_tuple_RCS(tuple_candidate, rcs, num):
                 ex_text = f"2233 Quad is {s42345} \n"
                 txt_Explain.insert(END, ex_text)
             s_set_list = [s40123, s40124, s40125, s40134,
-                          s40135, s40145, s41234, s41235, s42345]
+                          s40135, s40145, s40234, s40235, s40345, s41234, s41235, s42345]
             for item in s_set_list:
                 if len(item) == 4:
                     if not item in quads_list:
                         quads_list.append(item)
                         quads_list.append(rcs)
-                        # triples_rcs_list.append(rcs)
                         print("5078 Quad is ", item, rcs)
 
         if tcl == 7 and num == 3:
@@ -5253,11 +5257,23 @@ def _process_tuple_RCS(tuple_candidate, rcs, num):
             s4 = set(tc[4][3])
             s5 = set(tc[5][3])
             s6 = set(tc[6][3])
-            # s7 = set(tc[7][3])
+            s3234 = s2.union(s3).union(s4)
+            if len(s3234) == 3:
+                print(f"5182 Tuples are s3234 {s3234}")
+                ex_text = f"5283 Tuple is s3234, {s3234} \n"
             s3456 = s4.union(s5).union(s6)
             if len(s3456) == 3:
                 print(f"5182 Tuples are {s3456}")
                 ex_text = f"5283 Tuple is s3456, {s3456} \n"
+            s_set_list = [s3234, s3456]  # , s3567
+            for item in s_set_list:
+                if len(item) == 3:
+                    # if not item in triples_list:
+                    triples_list.append(item)
+                    triples_list.append(rcs)
+                    print("5245 triple set is ", item, rcs)
+                    ex_text = f"5245 triple is {item} \n"
+                    txt_Explain.insert(END, ex_text)
 
         if tcl == 8 and num == 3:
             s3 = set(tc[3][3])
@@ -5269,18 +5285,11 @@ def _process_tuple_RCS(tuple_candidate, rcs, num):
             if len(s3567) == 3:
                 print(f"5182 Tuples are {s3567}")
                 ex_text = f"5283 Tuple is s3567, {s3567} \n"
-            # s3567 = s5.union(s6).union(s7)
-            # if len(s3567) == 3:
-            #     print(f"2227 Triple is {s3567}")
-            #     ex_text = f"2228 Triple is s3567 {s3567} \n"
-            #     txt_Explain.insert(END, ex_text)
             s_set_list = [s3567]  # , s3567
             for item in s_set_list:
                 if len(item) == 3:
-                    # if not item in triples_list:
                     triples_list.append(item)
                     triples_list.append(rcs)
-                    # triples_rcs_list.append(rcs)
                     print("5284 triple set is ", item, rcs)
                     ex_text = f"5285 triple is {item} \n"
                     txt_Explain.insert(END, ex_text)
@@ -5292,8 +5301,8 @@ def _process_tuple_RCS(tuple_candidate, rcs, num):
             s6 = set(tc[6][3])
             s40123 = s0.union(s1).union(s2).union(s3)
             if len(s40123) == 4:
-                print(f"2227 Quad is {s40123}")
-                ex_text = f"2228 Quad is {s40123} \n"
+                print(f"5282 Quad is {s40123}")
+                ex_text = f"5283 Quad is {s40123} \n"
                 txt_Explain.insert(END, ex_text)
             s40124 = s0.union(s1).union(s2).union(s4)
             if len(s40124) == 4:
@@ -6199,7 +6208,7 @@ def update_cell(btn, aref, btn_ID, aref_ID):
     # global history
     print("2082 bRemoveANumberFromACell = ", bRemoveANumberFromACell)
     if not btn_ID == "" and bRemoveANumberFromACell == False:
-        history = f"update_cell( {btn_ID}, {aref_ID}, \'{btn_ID}\', \'{aref_ID}\')"
+        history = f"update_cell( {btn_ID}, {aref_ID}, {btn_ID}, {aref_ID})"
         txt_Explain.insert(END, history)
         txt_Explain.insert(END, "\n")
         # global history
@@ -7958,6 +7967,10 @@ def make_current_arefs():
     # print("6617 arefs and types are ", type(sq_16_arefs), sq_16_arefs)
 
 
+def only_1_num_in_cell_1():
+    num_in_row_col_of_sq()
+
+
 def test_2():
     make_aref_RCS_lists()
     make_RCS_strings()
@@ -9046,7 +9059,7 @@ btn_remaining = Button(fn_frame, wraplength=48, justify=LEFT, text='Cells\nRemai
 btn_remaining.grid(row=3, column=3, sticky='nw')
 btn_remaining.config(font=entryfont)
 
-btn_e = Button(fn_frame, wraplength=40, justify=LEFT, text='Test\n2',
+btn_e = Button(fn_frame, wraplength=40, justify=LEFT, text='Num\nin 1\nr or c \n in sq',
                command=test_2, width=6, height=hit)
 btn_e.grid(row=4, column=0, sticky='nw')
 btn_e.config(font=entryfont)
